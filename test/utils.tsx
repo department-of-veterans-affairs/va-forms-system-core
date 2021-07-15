@@ -5,7 +5,9 @@ import { Formik, FormikProps, FormikConfig } from 'formik';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
 
-export const buildRenderForm = (initialValues: Record<string, unknown>) => {
+export const buildRenderForm = (
+  initialValues: Record<string, unknown> = {}
+) => {
   type Values = typeof initialValues;
 
   // Got this from Formik's Field tests
