@@ -11,10 +11,10 @@ export const buildRenderForm = (
   type Values = typeof initialValues;
 
   // Got this from Formik's Field tests
-  return function renderForm(
+  const renderForm = (
     ui?: React.ReactNode,
     props?: Partial<FormikConfig<Values>>
-  ) {
+  ) => {
     let injected: FormikProps<Values>;
     const { rerender, ...rest } = render(
       <Formik onSubmit={noop} initialValues={initialValues} {...props}>
@@ -25,7 +25,7 @@ export const buildRenderForm = (
     );
 
     return {
-      getFormProps(): FormikProps<Values> {
+      getFormProps: (): FormikProps<Values> => {
         return injected;
       },
       ...rest,
@@ -39,4 +39,5 @@ export const buildRenderForm = (
         ),
     };
   };
+  return renderForm;
 };
