@@ -17,7 +17,14 @@ describe('Form Builder - TextField', () => {
     expect(input?.getAttribute('label')).toEqual('The Thing');
   });
 
-  test('renders the validation error message', () => {});
+  test('renders initial value', () => {
+    const rf = buildRenderForm({ thing: 'asdf' });
+    const { container } = rf(<TextField name="thing" label="The Thing" />);
+    const input = container.querySelector('va-text-input');
+    expect(input?.getAttribute('value')).toEqual('asdf');
+  });
+
+  test('renders the default validation error message', () => {});
 
   test('renders initial value', () => {});
 
