@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import React from 'react';
@@ -15,6 +16,7 @@ describe('Form Builder - TextField', () => {
     );
     const input = container.querySelector('va-text-input');
     expect(input?.getAttribute('label')).toEqual('The Thing');
+    expect(input?.getAttribute('name')).toEqual('thing');
   });
 
   test('renders initial value', () => {
@@ -24,9 +26,15 @@ describe('Form Builder - TextField', () => {
     expect(input?.getAttribute('value')).toEqual('asdf');
   });
 
-  test('renders the default validation error message', () => {});
+  test.skip('renders the default "required" validation error message', () => {
+    const { container, getFormProps } = renderForm(
+      <TextField name="thing" label="The Thing" required />
+    );
+    const input = container.querySelector('va-text-input');
+    expect(input?.getAttribute('error')).toEqual('The Thing');
+  });
 
-  test('renders initial value', () => {});
+  test('renders a custom "required" validation error message', () => {});
 
   /**
    * I'm not sure what to do here. When the event fires
@@ -40,22 +48,21 @@ describe('Form Builder - TextField', () => {
    * how to test that it updates the state. I expect it's something to do with
    * the helper.
    */
-  test.skip('updates the formik state', async () => {
-    const { container, getFormProps, rerender } = renderForm(
+  test('updates the formik state', async () => {
+    const rf = buildRenderForm({ thing: 'foo' });
+    const { container, getFormProps } = rf(
       <TextField name="thing" label="The Thing" />
     );
     const input = container.querySelector('va-text-input');
     if (!input) throw new Error('No va-text-input found');
 
     // Simulate the input changing without hooking up the web component
-    const changeEvent = new CustomEvent('vaChange', {
-      detail: { value: 'asdf' },
-    });
+    // @ts-ignore
+    input.value = 'asdf';
 
-    fireEvent(input, changeEvent);
     await waitFor(() => {
-      rerender();
-      expect(getFormProps().values).toEqual({ thing: 'asdf' });
+      fireEvent(input, new CustomEvent('vaChange'));
     });
+    expect(getFormProps().values).toEqual({ thing: 'asdf' });
   });
 });
