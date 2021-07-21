@@ -3,6 +3,7 @@
 
 import React from 'react';
 import TextField from '../../src/form-builder/TextField';
+import { waitFor } from '@testing-library/react';
 
 import { buildRenderForm, changeValue } from '../utils';
 
@@ -31,15 +32,44 @@ describe('Form Builder - TextField', () => {
     expect(input?.getAttribute('value')).toEqual('asdf');
   });
 
-  test.skip('renders the default "required" validation error message', () => {
+  test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
       <TextField name="thing" label="The Thing" required />
     );
-    const input = container.querySelector('va-text-input');
-    expect(input?.getAttribute('error')).toEqual('The Thing');
+    const input = getInput(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('thing');
+    });
+    expect(input?.getAttribute('error')).toEqual('Please provide a response');
   });
 
-  test('renders a custom "required" validation error message', () => {});
+  test('renders a custom "required" validation error message', async () => {
+    const { container, getFormProps } = renderForm(
+      <TextField
+        name="thing"
+        label="The Thing"
+        required="You need to fill this in, bub"
+      />
+    );
+    const input = getInput(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('thing');
+    });
+    expect(input?.getAttribute('error')).toEqual(
+      'You need to fill this in, bub'
+    );
+  });
+
+  test('validates using a function', async () => {
+    const spy = jest.fn();
+    const { getFormProps } = renderForm(
+      <TextField name="thing" label="The Thing" validate={spy} />
+    );
+    await waitFor(() => {
+      getFormProps().validateField('thing');
+    });
+    expect(spy).toBeCalled();
+  });
 
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
