@@ -20,16 +20,16 @@ describe('Form Builder - TextField', () => {
     const { container } = renderForm(
       <TextField name="thing" label="The Thing" />
     );
-    const input = container.querySelector('va-text-input');
-    expect(input?.getAttribute('label')).toEqual('The Thing');
-    expect(input?.getAttribute('name')).toEqual('thing');
+    const input = getInput(container);
+    expect(input.getAttribute('label')).toEqual('The Thing');
+    expect(input.getAttribute('name')).toEqual('thing');
   });
 
   test('renders initial value', () => {
     const rf = buildRenderForm({ thing: 'asdf' });
     const { container } = rf(<TextField name="thing" label="The Thing" />);
-    const input = container.querySelector('va-text-input');
-    expect(input?.getAttribute('value')).toEqual('asdf');
+    const input = getInput(container);
+    expect(input.getAttribute('value')).toEqual('asdf');
   });
 
   test('renders the default "required" validation error message', async () => {
