@@ -36,13 +36,11 @@ const Wrapper = (props: FieldProps<string>) => {
 const TextField = (props: FieldProps<string>): JSX.Element => {
   const id = props.id || props.name;
   const validate = (value: string) => {
-    console.log(`validation run on ${props.name}:`, value);
     if (props.required && !value) {
       const errorMessage =
         typeof props.required === 'string'
           ? props.required
           : getMessage('required.default');
-      console.log(`  ${errorMessage}`);
       return errorMessage;
     }
 
