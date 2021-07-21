@@ -3,11 +3,16 @@
 
 import React from 'react';
 import TextField from '../../src/form-builder/TextField';
-import { fireEvent, waitFor } from '@testing-library/react';
 
-import { buildRenderForm } from '../utils';
+import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm();
+
+const getInput = (container: HTMLElement) => {
+  const input = container.querySelector('va-text-input') as HTMLInputElement;
+  if (!input) throw new Error('No va-text-input found');
+  return input;
+};
 
 describe('Form Builder - TextField', () => {
   test('renders', () => {
@@ -53,16 +58,8 @@ describe('Form Builder - TextField', () => {
     const { container, getFormProps } = rf(
       <TextField name="thing" label="The Thing" />
     );
-    const input = container.querySelector('va-text-input');
-    if (!input) throw new Error('No va-text-input found');
-
-    // Simulate the input changing without hooking up the web component
-    // @ts-ignore
-    input.value = 'asdf';
-
-    await waitFor(() => {
-      fireEvent(input, new CustomEvent('vaChange'));
-    });
+    const input = getInput(container);
+    await changeValue(input, 'asdf');
     expect(getFormProps().values).toEqual({ thing: 'asdf' });
   });
 });

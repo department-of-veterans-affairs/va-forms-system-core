@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Formik, FormikProps, FormikConfig } from 'formik';
+import { fireEvent, waitFor } from '@testing-library/react';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
@@ -40,4 +41,15 @@ export const buildRenderForm = (
     };
   };
   return renderForm;
+};
+
+export const changeValue = async (
+  el: HTMLInputElement,
+  eventName = 'vaChange'
+) => {
+  el.value = 'asdf';
+
+  await waitFor(() => {
+    fireEvent(el, new CustomEvent('vaChange'));
+  });
 };
