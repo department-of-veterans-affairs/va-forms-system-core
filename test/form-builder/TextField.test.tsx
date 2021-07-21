@@ -41,18 +41,6 @@ describe('Form Builder - TextField', () => {
 
   test('renders a custom "required" validation error message', () => {});
 
-  /**
-   * I'm not sure what to do here. When the event fires
-   * - It's caught by the React wrapper
-   *   - I verified this by changing the event handler to log something
-   * - It runs the validation
-   *   - I added a console.log() to the validation function in TextField that
-   *     only fires after the event is dispatched
-   *
-   * Additionally, it works as expected in my sandbox project. I just don't know
-   * how to test that it updates the state. I expect it's something to do with
-   * the helper.
-   */
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
     const { container, getFormProps } = rf(
