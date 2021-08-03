@@ -9,7 +9,7 @@
     "build": "tsdx build",
     "watch": "tsdx watch",
     "test": "jest",
-    "prepare": "husky install && npm run build"
+    "prepare": "npm run build"
   },
   "author": "",
   "license": "ISC",
