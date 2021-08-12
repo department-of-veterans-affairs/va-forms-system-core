@@ -45,11 +45,12 @@ export const buildRenderForm = (
 
 export const changeValue = async (
   el: HTMLInputElement,
+  value: string,
   eventName = 'vaChange'
-) => {
-  el.value = 'asdf';
+): Promise<void> => {
+  el.value = value;
 
   await waitFor(() => {
-    fireEvent(el, new CustomEvent('vaChange'));
+    fireEvent(el, new CustomEvent(eventName));
   });
 };
