@@ -10,14 +10,20 @@ type CheckboxProps = FieldProps<string> & { checked: boolean };
 // TODO: Figure out how to actually import the type defintions for these web components
 // The @ts-ignore comments are because the web component types aren't available.
 const Wrapper = (props: CheckboxProps) => {
-  const [field, meta] = useField(props as FieldHookConfig<string>);
+  const [field, meta, helpers] = useField(props as FieldHookConfig<boolean>);
 
   // TODO: Use the web component type
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     // @ts-ignore
-    ref.current.addEventListener('vaChange', field.onChange);
-  }, [field.onChange]);
+    ref.current.addEventListener('vaChange', (e: CustomEvent) => {
+      helpers.setValue((e?.target as HTMLInputElement).checked);
+    });
+    // ESlint wants to set helpers as a useEffect dependency, but that'll add a
+    // _bunch_ of new event listeners. We only need the one.
+    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     // @ts-ignore
     ref.current.addEventListener('vaBlur', field.onBlur);
