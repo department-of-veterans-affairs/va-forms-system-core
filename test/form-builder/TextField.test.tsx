@@ -2,9 +2,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import React from 'react';
-import TextField from '../../src/form-builder/TextField';
 import { waitFor } from '@testing-library/react';
 
+import TextField from '../../src/form-builder/TextField';
 import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm();
