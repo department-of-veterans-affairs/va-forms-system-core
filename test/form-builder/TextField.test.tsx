@@ -7,7 +7,7 @@ import { waitFor } from '@testing-library/react';
 import TextField from '../../src/form-builder/TextField';
 import { buildRenderForm, changeValue } from '../utils';
 
-const renderForm = buildRenderForm();
+const renderForm = buildRenderForm({});
 
 const getInput = (container: HTMLElement) => {
   const input = container.querySelector('va-text-input') as HTMLInputElement;
