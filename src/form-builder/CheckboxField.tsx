@@ -41,7 +41,7 @@ const Wrapper = (props: CheckboxProps) => {
   );
 };
 
-const TextField = (props: CheckboxProps): JSX.Element => {
+const CheckboxField = (props: CheckboxProps): JSX.Element => {
   const id = props.id || props.name;
   const validate = (value: string) => {
     if (props.required && !value) {
@@ -57,4 +57,4 @@ const TextField = (props: CheckboxProps): JSX.Element => {
   return <Wrapper id={id} {...props} validate={validate} />;
 };
 
-export default TextField;
+export default CheckboxField;
