@@ -2,9 +2,9 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 
 import CheckboxField from '../../src/form-builder/CheckboxField';
-import { buildRenderForm } from '../utils';
+import { buildRenderForm, changeValue } from '../utils';
 
-const renderForm = buildRenderForm({ foo: false });
+const renderForm = buildRenderForm({ thing: false });
 
 const getInput = (container: HTMLElement) => {
   const input = container.querySelector('va-checkbox') as HTMLInputElement;
@@ -70,13 +70,12 @@ describe('Form Builder - CheckboxField', () => {
     expect(spy).toBeCalled();
   });
 
-  // test('updates the formik state', async () => {
-  //   const rf = buildRenderForm({ thing: 'foo' });
-  //   const { container, getFormProps } = rf(
-  //     <CheckboxField name="thing" label="The Thing" />
-  //   );
-  //   const input = getInput(container);
-  //   await changeValue(input, 'asdf');
-  //   expect(getFormProps().values).toEqual({ thing: 'asdf' });
-  // });
+  test('updates the formik state', async () => {
+    const { container, getFormProps } = renderForm(
+      <CheckboxField name="thing" label="The Thing" />
+    );
+    const input = getInput(container);
+    await changeValue(input, true);
+    expect(getFormProps().values).toEqual({ thing: true });
+  });
 });
