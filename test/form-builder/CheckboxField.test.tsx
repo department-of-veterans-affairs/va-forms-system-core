@@ -1,6 +1,7 @@
 import React from 'react';
-import CheckboxField from '../../src/form-builder/CheckboxField';
+import { waitFor } from '@testing-library/react';
 
+import CheckboxField from '../../src/form-builder/CheckboxField';
 import { buildRenderForm } from '../utils';
 
 const renderForm = buildRenderForm({ foo: false });
@@ -20,4 +21,62 @@ describe('Form Builder - CheckboxField', () => {
     expect(input.getAttribute('label')).toEqual('The Thing');
     expect(input.getAttribute('name')).toEqual('thing');
   });
+
+  test('renders initial value', () => {
+    const rf = buildRenderForm({ thing: true });
+    const { container } = rf(<CheckboxField name="thing" label="The Thing" />);
+    const input = getInput(container);
+    // This expects the string "true" because attributes on HTML elements are
+    // always strings
+    expect(input.getAttribute('value')).toEqual('true');
+  });
+
+  test('renders the default "required" validation error message', async () => {
+    const { container, getFormProps } = renderForm(
+      <CheckboxField name="thing" label="The Thing" required />
+    );
+    const input = getInput(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('thing');
+    });
+    expect(input?.getAttribute('error')).toEqual('Please provide a response');
+  });
+
+  test('renders a custom "required" validation error message', async () => {
+    const { container, getFormProps } = renderForm(
+      <CheckboxField
+        name="thing"
+        label="The Thing"
+        required="You can't proceed without checking this box"
+      />
+    );
+    const input = getInput(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('thing');
+    });
+    expect(input?.getAttribute('error')).toEqual(
+      "You can't proceed without checking this box"
+    );
+  });
+
+  test('validates using a function', async () => {
+    const spy = jest.fn();
+    const { getFormProps } = renderForm(
+      <CheckboxField name="thing" label="The Thing" validate={spy} />
+    );
+    await waitFor(() => {
+      getFormProps().validateField('thing');
+    });
+    expect(spy).toBeCalled();
+  });
+
+  // test('updates the formik state', async () => {
+  //   const rf = buildRenderForm({ thing: 'foo' });
+  //   const { container, getFormProps } = rf(
+  //     <CheckboxField name="thing" label="The Thing" />
+  //   );
+  //   const input = getInput(container);
+  //   await changeValue(input, 'asdf');
+  //   expect(getFormProps().values).toEqual({ thing: 'asdf' });
+  // });
 });
