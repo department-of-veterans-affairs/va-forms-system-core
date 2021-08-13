@@ -9,7 +9,7 @@ import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm({});
 
-const getInput = (container: HTMLElement) => {
+const getInput = (container: HTMLElement): HTMLInputElement => {
   const input = container.querySelector('va-text-input') as HTMLInputElement;
   if (!input) throw new Error('No va-text-input found');
   return input;
@@ -40,7 +40,7 @@ describe('Form Builder - TextField', () => {
     await waitFor(() => {
       getFormProps().setFieldTouched('thing');
     });
-    expect(input?.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual('Please provide a response');
   });
 
   test('renders a custom "required" validation error message', async () => {
