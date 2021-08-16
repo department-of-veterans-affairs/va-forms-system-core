@@ -11,7 +11,7 @@ const renderForm = buildRenderForm({});
 
 const getInput = (container: HTMLElement): HTMLInputElement => {
   const input = container.querySelector('va-select') as HTMLInputElement;
-  if (!input) throw new Error('No va-text-input found');
+  if (!input) throw new Error('No va-select found');
   return input;
 };
 
