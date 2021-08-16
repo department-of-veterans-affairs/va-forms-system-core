@@ -23,10 +23,6 @@ const Wrapper = (props: SelectProps) => {
     // @ts-ignore
     ref.current.addEventListener('vaSelect', props.onVaSelect);
   }, [field.onChange, props.onVaSelect]);
-  // useEffect(() => {
-  //   // @ts-ignore
-  //   ref.current.addEventListener('blur', field.onBlur);
-  // }, [field.onBlur]);
 
   // TODO: Try using the <ErrorMessage> component
   return (
