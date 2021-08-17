@@ -36,6 +36,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
       required={!!props.required}
       {...field}
       onVaSelect={field.onChange}
+      error={(meta.touched && meta.error) || undefined}
     >
       {props.children}
     </VaSelect>
