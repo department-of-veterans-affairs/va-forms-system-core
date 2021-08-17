@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 
