@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useRef, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
@@ -17,7 +16,6 @@ const SelectField = (props: SelectProps): JSX.Element => {
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
-  const { required, ...nonRequired } = props;
   return (
     <VaSelect
       id={id}
