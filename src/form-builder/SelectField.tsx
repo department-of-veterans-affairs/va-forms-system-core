@@ -8,7 +8,7 @@ import { VaSelect } from 'web-components/react-bindings';
 
 type SelectProps = FieldProps<string> & {
   onVaSelect: (e: CustomEvent) => void;
-  children: any;
+  children: HTMLOptionElement[];
 };
 
 const SelectField = (props: SelectProps): JSX.Element => {
