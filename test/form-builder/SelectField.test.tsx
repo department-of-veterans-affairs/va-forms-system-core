@@ -6,8 +6,8 @@ import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm({});
 
-const getInput = (container: HTMLElement): HTMLInputElement => {
-  const input = container.querySelector('va-select') as HTMLInputElement;
+const getInput = (container: HTMLElement): HTMLVaSelectElement => {
+  const input = container.querySelector('va-select') as HTMLVaSelectElement;
   if (!input) throw new Error('No va-select found');
   return input;
 };
