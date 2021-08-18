@@ -33,7 +33,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx|js|jsx)$/,
         use: 'babel-loader',
         exclude: /node_modules/,
       },
@@ -41,6 +41,9 @@ const config = {
         test: /\.ts(x)?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          configFile: path.resolve(__dirname, '../tsconfig.json'),
+        },
       },
     ],
   },
