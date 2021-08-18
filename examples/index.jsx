@@ -1,4 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<h1>Hello, world!</h1>, document.getElementById('root'));
+const App = () => (
+  <div
+    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+  >
+    <h1>Formulate Examples</h1>
+    <ul>
+      <li>
+        <a href="simple-form">Simple form</a>
+      </li>
+    </ul>
+  </div>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
