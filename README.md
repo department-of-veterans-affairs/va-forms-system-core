@@ -13,6 +13,12 @@ library" instead.
 
 _Instructions for getting up and running go here._
 
+Run the [examples](examples) in this repo with:
+
+```sh
+yarn serve-examples
+```
+
 ## Documentation
 
 When we write documentation, we'll put links to it here.
