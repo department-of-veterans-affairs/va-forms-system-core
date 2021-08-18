@@ -63,7 +63,7 @@ Object.entries(entries).forEach(([name, indexPath]) => {
   config.plugins.push(
     new HtmlWebpackPlugin({
       chunks: [name],
-      template: path.resolve(__dirname, 'index.html'),
+      template: path.resolve(__dirname, 'template.html'),
       filename: name === 'root' ? 'index.html' : `${name}/index.html`,
     })
   );
