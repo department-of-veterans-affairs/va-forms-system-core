@@ -10,7 +10,8 @@
     "lint": "eslint",
     "prepare": "husky install && npm run build",
     "test": "jest",
-    "watch": "tsdx watch"
+    "watch": "tsdx watch",
+    "build-examples": "webpack --config examples/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +33,7 @@
     "@typescript-eslint/parser": "^4.26.1",
     "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
@@ -51,6 +53,7 @@
     "typescript": "^4.3.5",
     "web-components": "https://github.com/department-of-veterans-affairs/component-library.git#wc-v0.9.3",
     "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0",
     "webpack-dev-middleware": "^5.0.0",
     "webpack-hot-middleware": "^2.25.0"
   },

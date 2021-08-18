@@ -3,8 +3,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
+  mode: 'development',
   entry: { root: path.resolve(__dirname, 'index.jsx') },
   output: {
     path: path.resolve(__dirname, 'webpack-output'),
@@ -29,17 +31,14 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      templateContent: ({ htmlWebpackPlugin }) =>
-        '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
-        htmlWebpackPlugin.options.title +
-        '</title></head><body><div id="app"></div></body></html>',
+      template: path.resolve(__dirname, 'index.html'),
       filename: 'index.html',
     }),
-    ,
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
     }),
+    new CleanWebpackPlugin(),
   ],
 };
 
