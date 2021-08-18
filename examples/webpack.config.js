@@ -46,6 +46,12 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
+    alias: {
+      '@department-of-veterans-affairs/formulate': path.resolve(
+        __dirname,
+        '../src'
+      ),
+    },
   },
   plugins: [
     new BundleAnalyzerPlugin({
