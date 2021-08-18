@@ -11,7 +11,8 @@
     "prepare": "husky install && npm run build",
     "test": "jest",
     "watch": "tsdx watch",
-    "build-examples": "webpack --config examples/webpack.config.js"
+    "build-examples": "webpack --config examples/webpack.config.js",
+    "serve-examples": "webpack serve --config examples/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -55,6 +56,7 @@
     "webpack": "^5.50.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-middleware": "^5.0.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-hot-middleware": "^2.25.0"
   },
   "peerDependencies": {
