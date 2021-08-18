@@ -23,8 +23,6 @@ const entries = fs
   );
 entries.root = path.resolve(__dirname, 'index.jsx');
 
-console.log('entries:', entries);
-
 const config = {
   mode: 'development',
   entry: entries,
