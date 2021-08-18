@@ -1,16 +1,36 @@
-const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const outputDirectory = 'webpack-output';
+
+// Dynamically find all the examples. Note: This only works for one level deep
+// and a root file name of index.jsx.
+const entries = fs
+  .readdirSync(path.resolve(__dirname), { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .filter((dirent) => dirent.name !== outputDirectory)
+  .reduce(
+    (compiledList, dirent) => ({
+      ...compiledList,
+      [dirent.name]: path.resolve(__dirname, `${dirent.name}/index.jsx`),
+    }),
+    {}
+  );
+entries.root = path.resolve(__dirname, 'index.jsx');
+
+console.log('entries:', entries);
+
 const config = {
   mode: 'development',
-  entry: { root: path.resolve(__dirname, 'index.jsx') },
+  entry: entries,
   output: {
-    path: path.resolve(__dirname, 'webpack-output'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, outputDirectory),
+    filename: '[name]/bundle.js',
   },
   module: {
     rules: [
@@ -30,10 +50,6 @@ const config = {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
-      filename: 'index.html',
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
@@ -41,5 +57,18 @@ const config = {
     new CleanWebpackPlugin(),
   ],
 };
+
+// Generate a separate HTML file per entry. Note: This only works one level
+// deep. That is, `examples/path/to/my/deeply/nested/thing/index.jsx` won't
+// generate the JS / HTML at that path.
+Object.entries(entries).forEach(([name, indexPath]) => {
+  config.plugins.push(
+    new HtmlWebpackPlugin({
+      chunks: [name],
+      template: path.resolve(__dirname, 'index.html'),
+      filename: name === 'root' ? 'index.html' : `${name}/index.html`,
+    })
+  );
+});
 
 module.exports = config;
