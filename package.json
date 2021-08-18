@@ -12,7 +12,7 @@
     "test": "jest",
     "watch": "tsdx watch",
     "build-examples": "webpack --config examples/webpack.config.js",
-    "serve-examples": "webpack serve --config examples/webpack.config.js"
+    "serve-examples": "node examples/server.js"
   },
   "author": "",
   "license": "ISC",
