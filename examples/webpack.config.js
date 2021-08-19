@@ -45,6 +45,10 @@ const config = {
           configFile: path.resolve(__dirname, '../tsconfig.json'),
         },
       },
+      {
+        test: /.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
