@@ -7,6 +7,7 @@ import {
   DebuggerView,
 } from '@department-of-veterans-affairs/formulate';
 
+import 'web-components/dist/component-library/component-library.css';
 import { defineCustomElements } from 'web-components/loader';
 
 void defineCustomElements();
