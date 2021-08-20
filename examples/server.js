@@ -1,6 +1,5 @@
 /* eslint-disable */
 const express = require('express');
-const path = require('path');
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const devMiddleware = require('webpack-dev-middleware');
