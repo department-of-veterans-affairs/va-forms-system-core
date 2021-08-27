@@ -4,6 +4,9 @@
   "description": "Department of Veterans Affairs forms library.",
   "main": "dist/index.js",
   "module": "dist/formulate.cjs.production.min.js",
+  "workspaces": [
+    "docs/"
+  ],
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsdx build",

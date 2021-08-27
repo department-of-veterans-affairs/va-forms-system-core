@@ -7,3 +7,9 @@ jest.config.js
 babel.config.js
 
 examples/webpack.config.js
+
+docs/_includes/assets/
+docs/admin/
+docs/filters/
+docs/loader.js
+docs/**/*.config.js
