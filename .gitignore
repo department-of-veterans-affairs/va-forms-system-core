@@ -22,3 +22,5 @@ coverage/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+temp/

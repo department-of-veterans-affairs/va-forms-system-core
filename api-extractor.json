@@ -119,7 +119,7 @@
      */
     // "reportFileName": "<unscopedPackageName>.api.md",
 
-    "reportFolder": "<projectFolder>/_etc/"
+    "reportFolder": "<projectFolder>/extraction/"
 
     /**
      * Specifies the folder where the temporary report file is written.  The file name portion is determined by
@@ -144,7 +144,7 @@
     /**
      * (REQUIRED) Whether to generate a doc model file.
      */
-    "enabled": true
+    "enabled": true,
 
     /**
      * The output path for the doc model file.  The file extension should be ".api.json".
@@ -155,7 +155,7 @@
      * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
      * DEFAULT VALUE: "<projectFolder>/temp/<unscopedPackageName>.api.json"
      */
-    // "apiJsonFilePath": "<projectFolder>/temp/<unscopedPackageName>.api.json"
+    "apiJsonFilePath": "<projectFolder>/extraction/<unscopedPackageName>.api.json"
   },
 
   /**
