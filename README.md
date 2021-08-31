@@ -35,6 +35,7 @@ To run the Jekyll site locally, run the following commands:
 
 ```shell
 cd docs
+bundle install
 bundle exec jekyll serve
 ```
 
