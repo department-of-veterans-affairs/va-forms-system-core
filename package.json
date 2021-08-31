@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsdx build",
     "docs:extract": "api-extractor run --local --verbose",
-    "docs:generate": "api-documenter markdown --input-folder ./extraction --output-folder ./docs/reference",
+    "docs:generate": "api-documenter markdown --input-folder ./doc-extraction --output-folder ./docs/reference",
     "docs:build": "yarn docs:extract && yarn docs:generate",
     "lint": "eslint",
     "prepare": "husky install && npm run build",

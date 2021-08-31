@@ -24,4 +24,4 @@ coverage/
 .pnp.*
 
 temp/
-extraction/formulate.api.json
+doc-extraction/formulate.api.json

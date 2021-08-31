@@ -3,11 +3,11 @@
   "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",
   "apiReport": {
     "enabled": true,
-    "reportFolder": "<projectFolder>/extraction/"
+    "reportFolder": "<projectFolder>/doc-extraction/"
   },
   "docModel": {
     "enabled": true,
-    "apiJsonFilePath": "<projectFolder>/extraction/<unscopedPackageName>.api.json"
+    "apiJsonFilePath": "<projectFolder>/doc-extraction/<unscopedPackageName>.api.json"
   },
   "dtsRollup": {
     "enabled": true
