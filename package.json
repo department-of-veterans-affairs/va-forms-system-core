@@ -7,8 +7,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsdx build",
-    "extract": "api-extractor run --local --verbose",
-    "generate": "api-documenter markdown --input-folder ./extraction --output-folder ./docs/reference",
+    "docs:extract": "api-extractor run --local --verbose",
+    "docs:generate": "api-documenter markdown --input-folder ./extraction --output-folder ./docs/reference",
+    "docs:build": "yarn docs:extract && yarn docs:generate",
     "lint": "eslint",
     "prepare": "husky install && npm run build",
     "test": "jest",
