@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsdx build",
     "extract": "api-extractor run --local --verbose",
-    "generate": "cd _etc && api-documenter markdown --input-folder ../temp --output-folder .docs/reference",
+    "generate": "cd _etc && api-documenter markdown --input-folder ../temp --output-folder ../docs/reference",
     "lint": "eslint",
     "prepare": "husky install && npm run build",
     "test": "jest",
