@@ -7,7 +7,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   This site contains documentation for "formulate" - the forms library
   for the Department of Veterans Affairs.
 baseurl: "/formulate" # the subpath of your site, e.g. /blog
-url: "https://department-of-veterans-affairs.github.io/formulate" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: just-the-docs
