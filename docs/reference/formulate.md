@@ -6,9 +6,10 @@
 
 ## Variables
 
-| Variable                                      | Description              |
-| --------------------------------------------- | ------------------------ |
-| [CheckboxField](./formulate.checkboxfield.md) |                          |
-| [DebuggerView](./formulate.debuggerview.md)   | Display the Formik state |
-| [SelectField](./formulate.selectfield.md)     |                          |
-| [TextField](./formulate.textfield.md)         |                          |
+|  Variable | Description |
+|  --- | --- |
+|  [CheckboxField](./formulate.checkboxfield.md) |  |
+|  [DebuggerView](./formulate.debuggerview.md) | Display the Formik state |
+|  [SelectField](./formulate.selectfield.md) |  |
+|  [TextField](./formulate.textfield.md) |  |
+

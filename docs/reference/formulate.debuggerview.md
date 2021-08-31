@@ -9,5 +9,5 @@ Display the Formik state
 <b>Signature:</b>
 
 ```typescript
-DebuggerView: () => JSX.Element;
+DebuggerView: () => JSX.Element
 ```

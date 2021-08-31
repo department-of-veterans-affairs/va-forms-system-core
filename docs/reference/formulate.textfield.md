@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-TextField: (props: FieldProps<string>) => JSX.Element;
+TextField: (props: FieldProps<string>) => JSX.Element
 ```

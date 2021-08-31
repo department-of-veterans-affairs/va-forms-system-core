@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-SelectField: (props: SelectProps) => JSX.Element;
+SelectField: (props: SelectProps) => JSX.Element
 ```

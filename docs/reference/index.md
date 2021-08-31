@@ -6,6 +6,7 @@
 
 ## Packages
 
-| Package                                                     | Description |
-| ----------------------------------------------------------- | ----------- |
-| [@department-of-veterans-affairs/formulate](./formulate.md) |             |
+|  Package | Description |
+|  --- | --- |
+|  [@department-of-veterans-affairs/formulate](./formulate.md) |  |
+

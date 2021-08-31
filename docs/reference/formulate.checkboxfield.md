@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-CheckboxField: (props: CheckboxProps) => JSX.Element;
+CheckboxField: (props: CheckboxProps) => JSX.Element
 ```
