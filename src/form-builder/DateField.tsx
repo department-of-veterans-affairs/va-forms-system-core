@@ -22,19 +22,14 @@ export type ComponentLibraryDateValue = {
   };
 };
 
-export type DateProps = FieldProps<string> & {
-  /**
-   * Format: MM-DD-YYYY
-   */
-  date: string;
-};
+export type DateProps = FieldProps<string>;
 
 /**
  * Convert the date string passed to DateField to the object expected by the
  * component library Date component.
  */
 const dateStringToValue = (dateString = '') => {
-  // TODO: Make this safer
+  // TODO: Make this conversion handle edge cases
   const [month = '', day = '', year = ''] = dateString.split('-');
   return {
     day: { value: day, dirty: false },
@@ -43,12 +38,15 @@ const dateStringToValue = (dateString = '') => {
   };
 };
 
+/**
+ * Field value format: M-D-YYYY
+ */
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = { ...props, validate: validator(props) };
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
-  const value = dateStringToValue(props.date);
+  const value = dateStringToValue(field.value);
 
   return (
     <Date id={id} {...props} onValueChange={field.onChange} date={value} />
