@@ -2,7 +2,7 @@ import React from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
-import { validator } from '../utils/validation';
+import { required } from '../utils/validation';
 
 import Date from '@department-of-veterans-affairs/component-library/Date';
 
@@ -44,7 +44,7 @@ const dateValueToString = ({ day, month, year }: ComponentLibraryDateValue) => {
  * Field value format: M-D-YYYY
  */
 const DateField = (props: DateProps): JSX.Element => {
-  const withValidation = { ...props, validate: validator(props) };
+  const withValidation = { ...props, validate: required(props) };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string>
   );
