@@ -15,11 +15,9 @@ export type ComponentLibraryDatePart = {
  * What the Date in the component library expects.
  */
 export type ComponentLibraryDateValue = {
-  date: {
-    day: ComponentLibraryDatePart;
-    month: ComponentLibraryDatePart;
-    year: ComponentLibraryDatePart;
-  };
+  day: ComponentLibraryDatePart;
+  month: ComponentLibraryDatePart;
+  year: ComponentLibraryDatePart;
 };
 
 export type DateProps = FieldProps<string>;
@@ -38,19 +36,27 @@ const dateStringToValue = (dateString = '') => {
   };
 };
 
+const dateValueToString = ({ day, month, year }: ComponentLibraryDateValue) => {
+  return `${month.value}-${day.value}-${year.value}`;
+};
+
 /**
  * Field value format: M-D-YYYY
  */
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = { ...props, validate: validator(props) };
-  const [field, meta] = useField(withValidation as FieldHookConfig<string>);
+  const [field, meta, helpers] = useField(
+    withValidation as FieldHookConfig<string>
+  );
   const id = props.id || props.name;
 
   const value = dateStringToValue(field.value);
 
-  return (
-    <Date id={id} {...props} onValueChange={field.onChange} date={value} />
-  );
+  const onChange = (dateValue: ComponentLibraryDateValue) => {
+    helpers.setValue(dateValueToString(dateValue));
+  };
+
+  return <Date id={id} {...props} onValueChange={onChange} date={value} />;
 };
 
 export default DateField;
