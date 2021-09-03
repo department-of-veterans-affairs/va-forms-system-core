@@ -28,7 +28,7 @@ export const chainValidations = <T>(
   };
 };
 
-export const addRequired = <T>(
+export const required = <T>(
   value: T,
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
