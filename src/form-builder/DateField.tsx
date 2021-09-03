@@ -2,7 +2,12 @@ import React from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
-import { addRequired } from '../utils/validation';
+import { getMessage } from '../utils/i18n';
+import {
+  ValidationFunction,
+  chainValidations,
+  required,
+} from '../utils/validation';
 
 import Date from '@department-of-veterans-affairs/component-library/Date';
 
@@ -41,10 +46,31 @@ const dateValueToString = ({ day, month, year }: ComponentLibraryDateValue) => {
 };
 
 /**
+ * Super basic date string validation. Only checks for the non-empty strings
+ * between the `-`s.
+ */
+const validDate: ValidationFunction<string> = (
+  value: string,
+  props: DateProps
+) => {
+  if (props.required) {
+    const [month = '', day = '', year = ''] = value.split('-');
+    if (!month || !day || !year) {
+      return typeof props.required === 'string'
+        ? props.required
+        : getMessage('required.default');
+    }
+  }
+};
+
+/**
  * Field value format: M-D-YYYY
  */
 const DateField = (props: DateProps): JSX.Element => {
-  const withValidation = { ...props, validate: addRequired(props) };
+  const withValidation = {
+    ...props,
+    validate: chainValidations(props, [required, validDate]),
+  };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string>
   );
@@ -56,7 +82,15 @@ const DateField = (props: DateProps): JSX.Element => {
     helpers.setValue(dateValueToString(dateValue));
   };
 
-  return <Date id={id} {...props} onValueChange={onChange} date={value} />;
+  return (
+    <Date
+      id={id}
+      {...props}
+      onValueChange={onChange}
+      date={value}
+      requiredMessage={meta.error}
+    />
+  );
 };
 
 export default DateField;
