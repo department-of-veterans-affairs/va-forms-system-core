@@ -20,6 +20,7 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
       label={props.label}
       required={!!props.required}
       {...field}
+      checked={field.value}
       onVaChange={(e: CustomEvent) => {
         helpers.setValue((e?.target as HTMLInputElement).checked);
       }}
