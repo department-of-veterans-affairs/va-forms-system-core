@@ -13,7 +13,6 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
     withValidation as FieldHookConfig<boolean>
   );
   const id = props.id || props.name;
-  console.log(field);
 
   return (
     <VaCheckbox
