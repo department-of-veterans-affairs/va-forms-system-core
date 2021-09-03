@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
-import { getMessage } from '../utils/i18n';
+import { chainValidations, required } from '../utils/validation';
 
 // TODO: Figure out how to actually import the type defintions for these web components
 // The @ts-ignore comments are because the web component types aren't available.
@@ -35,17 +35,7 @@ const Wrapper = (props: FieldProps<string>) => {
 
 const TextField = (props: FieldProps<string>): JSX.Element => {
   const id = props.id || props.name;
-  const validate = (value: string) => {
-    if (props.required && !value) {
-      const errorMessage =
-        typeof props.required === 'string'
-          ? props.required
-          : getMessage('required.default');
-      return errorMessage;
-    }
-
-    return props.validate ? props.validate(value) : undefined;
-  };
+  const validate = chainValidations(props, [required]);
   return <Wrapper id={id} {...props} validate={validate} />;
 };
 
