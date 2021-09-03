@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
-import { required } from '../utils/validation';
+import { addRequired } from '../utils/validation';
 
 import { VaSelect } from 'web-components/react-bindings';
 
@@ -12,7 +12,7 @@ type SelectProps = FieldProps<string> & {
 };
 
 const SelectField = (props: SelectProps): JSX.Element => {
-  const withValidation = { ...props, validate: required(props) };
+  const withValidation = { ...props, validate: addRequired(props) };
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 

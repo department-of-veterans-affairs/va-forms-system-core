@@ -8,7 +8,7 @@ export type ValidationFunction<T> = (
   props: FieldProps<T>
 ) => ValidationFunctionResult<T>;
 
-export const required = <T>(
+export const addRequired = <T>(
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
   return (value: T) => {
