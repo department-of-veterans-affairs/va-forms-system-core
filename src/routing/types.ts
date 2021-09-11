@@ -6,6 +6,3 @@ export interface PageType extends React.Component {
     title: string;
   };
 }
-
-// Not ideal, but it works
-export type Routable = PageType;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Routable } from './types';
+import { PageType } from './types';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
 interface RouterProps {
-  children: Array<Routable>;
+  children: Array<PageType>;
   basename: string;
   history: any; // TODO: It's the browser history...
 }
