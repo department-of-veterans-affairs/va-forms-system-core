@@ -11,13 +11,25 @@ type PageProps = {
   previous: string;
 };
 
+type WrapperProps = {
+  children: JSX.Element;
+};
+
 export default function Page(props: PageProps): JSX.Element {
   const handleSubmit = () => {
     console.log('submiting');
   };
 
+  const Wrapper = (wrapperProps: WrapperProps) => {
+    return props.path ? (
+      <Route path={props.path}>{wrapperProps.children}</Route>
+    ) : (
+      <>{wrapperProps.children}</>
+    );
+  };
+
   return (
-    <Route path={props.path}>
+    <Wrapper>
       <div
         style={{
           display: 'flex',
@@ -26,13 +38,13 @@ export default function Page(props: PageProps): JSX.Element {
         }}
       >
         <h1>{props.title}</h1>
-        <Formik initialValues={{ foo: '', bar: true }} onSubmit={handleSubmit}>
+        <Formik initialValues={{}} onSubmit={handleSubmit}>
           <Form>{props.children}</Form>
         </Formik>
 
         {props.previous && <Link to={props.previous}>Previous page</Link>}
         {props.next && <Link to={props.next}>Next page</Link>}
       </div>
-    </Route>
+    </Wrapper>
   );
 }
