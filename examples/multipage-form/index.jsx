@@ -18,18 +18,20 @@ void defineCustomElements();
 
 const App = () => (
   <Router basename="multipage-form">
-    <Page title="Example form" path="/one" next="/two">
+    <Page title="Example form" path="/one">
       <TextField name="foo" label="Example" required />
       <DebuggerView />
     </Page>
 
-    <Page title="Second page" path="/two" previous="/one">
+    <Page title="Second page" path="/two">
       <CheckboxField name="bar" label="Do you have pets?" required />
       <DebuggerView />
     </Page>
 
     <Route path="/">
       <Link to="one">Page one</Link>
+      <br />
+      <Link to="two">Page two</Link>
     </Route>
   </Router>
 );

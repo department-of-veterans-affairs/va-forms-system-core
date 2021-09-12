@@ -7,8 +7,6 @@ type PageProps = {
   children: JSX.Element[];
   title: string;
   path: string;
-  next: string; // These next and previous props are temporary until we implement Context
-  previous: string;
 };
 
 export default function Page(props: PageProps): JSX.Element {
@@ -29,9 +27,6 @@ export default function Page(props: PageProps): JSX.Element {
         <Formik initialValues={{ foo: '', bar: true }} onSubmit={handleSubmit}>
           <Form>{props.children}</Form>
         </Formik>
-
-        {props.previous && <Link to={props.previous}>Previous page</Link>}
-        {props.next && <Link to={props.next}>Next page</Link>}
       </div>
     </Route>
   );
