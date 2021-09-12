@@ -14,10 +14,17 @@ import { defineCustomElements } from 'web-components/loader';
 void defineCustomElements();
 
 const App = () => (
-  <Page title="Example form">
-    <TextField name="foo" label="Example" required />
-    <DebuggerView />
-  </Page>
+  <div
+    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+  >
+    <h1>Example form</h1>
+    <Formik initialValues={{ foo: '' }}>
+      <Form>
+        <TextField name="foo" label="Example" required />
+        <DebuggerView />
+      </Form>
+    </Formik>
+  </div>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
