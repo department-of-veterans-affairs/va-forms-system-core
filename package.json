@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@department-of-veterans-affairs/component-library": "portal:../component-library",
+    "@department-of-veterans-affairs/component-library": "^2.5.7",
     "@size-limit/preset-small-lib": "^5.0.1",
     "@testing-library/react": "^11.2.7",
     "@types/express": "^4.17.13",

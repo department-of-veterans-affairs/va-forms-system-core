@@ -1396,9 +1396,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@portal:../component-library::locator=%40department-of-veterans-affairs%2Fformulate%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@department-of-veterans-affairs/component-library@portal:../component-library::locator=%40department-of-veterans-affairs%2Fformulate%40workspace%3A."
+"@department-of-veterans-affairs/component-library@npm:^2.5.7":
+  version: 2.5.8
+  resolution: "@department-of-veterans-affairs/component-library@npm:2.5.8"
   dependencies:
     classnames: ^2.2.6
     core-js: ^3.9.0
@@ -1414,8 +1414,9 @@ __metadata:
     recast: ^0.14.4
   peerDependencies:
     react: ^16.13.1
+  checksum: 200e7f73124206e403c4cdeb46489ae658658eec7bd798a926b33b21bb348e87ac75dc17aa5d2bfb7be95e090207b3402a402ed44ed5e7a6db3b1094e908c53c
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@department-of-veterans-affairs/formulate@workspace:.":
   version: 0.0.0-use.local
@@ -1425,7 +1426,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": "portal:../component-library"
+    "@department-of-veterans-affairs/component-library": ^2.5.7
     "@size-limit/preset-small-lib": ^5.0.1
     "@testing-library/react": ^11.2.7
     "@types/express": ^4.17.13
