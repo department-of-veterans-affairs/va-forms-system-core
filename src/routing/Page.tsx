@@ -9,6 +9,11 @@ type PageProps = {
   path: string;
 };
 
+/**
+ * Renders the page contents
+ *
+ * @beta
+ */
 export default function Page(props: PageProps): JSX.Element {
   const handleSubmit = () => {
     console.log('submiting');

@@ -4,6 +4,13 @@
 
 ## formulate package
 
+## Functions
+
+|  Function | Description |
+|  --- | --- |
+|  [Page(props)](./formulate.page.md) |  |
+|  [Router(props)](./formulate.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes |
+
 ## Variables
 
 |  Variable | Description |

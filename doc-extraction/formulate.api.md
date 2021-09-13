@@ -15,6 +15,16 @@ export const CheckboxField: (props: CheckboxProps) => JSX.Element;
 // @public
 export const DebuggerView: () => JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "PageProps" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function Page(props: PageProps): JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "RouterProps" needs to be exported by the entry point index.d.ts
+//
+// @beta
+export function Router(props: RouterProps): JSX.Element;
+
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
