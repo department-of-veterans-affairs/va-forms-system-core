@@ -3,9 +3,12 @@ export interface RouterProps {
   basename: string;
 }
 
+export interface Routable {
+  path: string;
+}
+
 export interface PageType extends React.Component {
-  props: {
-    path: string; // Used by the Router directly
+  props: Routable & {
     exact?: boolean;
     children: React.Component;
     title: string;
