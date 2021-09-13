@@ -1396,9 +1396,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@npm:^2.5.7":
-  version: 2.5.8
-  resolution: "@department-of-veterans-affairs/component-library@npm:2.5.8"
+"@department-of-veterans-affairs/component-library@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@department-of-veterans-affairs/component-library@npm:3.1.0"
   dependencies:
     classnames: ^2.2.6
     core-js: ^3.9.0
@@ -1414,7 +1414,7 @@ __metadata:
     recast: ^0.14.4
   peerDependencies:
     react: ^16.13.1
-  checksum: 200e7f73124206e403c4cdeb46489ae658658eec7bd798a926b33b21bb348e87ac75dc17aa5d2bfb7be95e090207b3402a402ed44ed5e7a6db3b1094e908c53c
+  checksum: af22a0840715274f4a635255eb287f66eda87a22189be146db1e84764c03cf9320e4a330e7dd9c2c47a1db8e5e848e88e54e12b9633236c6645eee92f40e119d
   languageName: node
   linkType: hard
 
@@ -1426,7 +1426,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": ^2.5.7
+    "@department-of-veterans-affairs/component-library": ^3.1.0
     "@microsoft/api-documenter": ^7.13.41
     "@microsoft/api-extractor": ^7.18.6
     "@size-limit/preset-small-lib": ^5.0.1
@@ -1469,7 +1469,7 @@ __metadata:
     webpack-dev-server: ^3.11.2
     webpack-hot-middleware: ^2.25.0
   peerDependencies:
-    "@department-of-veterans-affairs/component-library": ^2.5.7
+    "@department-of-veterans-affairs/component-library": ^3.1.0
     formik: ^2.2.9
     react: ">=16"
     web-components: "*"
@@ -15487,7 +15487,7 @@ typescript@^3.7.3:
 
 "typescript@patch:typescript@^3.7.3#~builtin<compat/typescript>":
   version: 3.9.10
-  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=32657b"
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -15497,11 +15497,11 @@ typescript@^3.7.3:
 
 "typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>, typescript@patch:typescript@~4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
-  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=32657b"
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 4e2edec3c9b7b9a22ad9cbf9371339d9e13bfe44731f0e2d6a5287f991c3b0e3e0ac0c0ebbf9bf6fc2051e30559c789bfc9cf572cd6b836a0222ae141fac1dba
+  checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
   languageName: node
   linkType: hard
 
