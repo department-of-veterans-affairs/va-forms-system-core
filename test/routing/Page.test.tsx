@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Page from '../../src/routing/Page';
 
 describe('Routing - Page', () => {
-  test('can switch pages', () => {
+  test('is navigable', () => {
     const { queryByText } = render(
       <BrowserRouter>
         <Switch>
