@@ -65,6 +65,8 @@ const validDate: ValidationFunction<string> = (
 
 /**
  * Field value format: M-D-YYYY
+ *
+ * TODO: Convert the Date component into a web component and use it here.
  */
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = {
@@ -76,6 +78,7 @@ const DateField = (props: DateProps): JSX.Element => {
   );
   const id = props.id || props.name;
 
+  // TODO: Keep track of the dirty state of these
   const value = dateStringToValue(field.value);
 
   const onChange = (dateValue: ComponentLibraryDateValue) => {
