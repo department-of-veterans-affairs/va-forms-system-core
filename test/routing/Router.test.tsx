@@ -2,25 +2,24 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Router from '../../src/routing/Router';
 import Page from '../../src/routing/Page';
 
-describe('Routing - Page', () => {
+describe('Routing - Router', () => {
   test('can switch pages', () => {
     const { queryByText } = render(
-      <BrowserRouter>
-        <Switch>
-          <Page path="/my-page" title="My page">
-            <div>I am a child!</div>
-            <div>Me too!</div>
-          </Page>
+      <Router>
+        <Page path="/my-page" title="My page">
+          <div>I am a child!</div>
+          <div>Me too!</div>
+        </Page>
 
-          <Route path="/">
-            <h1>Intro page</h1>
-            <Link to="my-page">Go to my page</Link>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+        <Page path="/">
+          <h1>Intro page</h1>
+          <Link to="my-page">Go to my page</Link>
+        </Page>
+      </Router>
     );
     expect(queryByText(/Intro page/i)).not.toBeNull();
     expect(queryByText('My page')).toBeNull();
