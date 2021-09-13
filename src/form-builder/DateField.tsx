@@ -78,7 +78,6 @@ const DateField = (props: DateProps): JSX.Element => {
   );
   const id = props.id || props.name;
 
-  // TODO: Keep track of the dirty state of these
   const value = dateStringToValue(field.value);
 
   const onChange = (dateValue: ComponentLibraryDateValue) => {
