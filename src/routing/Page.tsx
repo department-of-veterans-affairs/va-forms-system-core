@@ -24,7 +24,7 @@ export default function Page(props: PageProps): JSX.Element {
         }}
       >
         <h1>{props.title}</h1>
-        <Formik initialValues={{ foo: '', bar: true }} onSubmit={handleSubmit}>
+        <Formik initialValues={{}} onSubmit={handleSubmit}>
           <Form>{props.children}</Form>
         </Formik>
       </div>
