@@ -9,7 +9,7 @@ import {
   required,
 } from '../utils/validation';
 
-import Date from '@department-of-veterans-affairs/component-library/Date';
+import { SimpleDate } from '@department-of-veterans-affairs/component-library/Date';
 
 export type ComponentLibraryDatePart = {
   value: string;
@@ -86,12 +86,13 @@ const DateField = (props: DateProps): JSX.Element => {
   };
 
   return (
-    <Date
+    <SimpleDate
       id={id}
       {...props}
       onValueChange={onChange}
       date={value}
-      requiredMessage={meta.error}
+      errorMessage={meta.touched && meta.error}
+      onBlur={() => helpers.setTouched(true)}
     />
   );
 };

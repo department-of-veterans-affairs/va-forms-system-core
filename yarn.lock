@@ -1396,9 +1396,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@npm:^2.5.7":
-  version: 2.5.7
-  resolution: "@department-of-veterans-affairs/component-library@npm:2.5.7"
+"@department-of-veterans-affairs/component-library@portal:../component-library::locator=%40department-of-veterans-affairs%2Fformulate%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@department-of-veterans-affairs/component-library@portal:../component-library::locator=%40department-of-veterans-affairs%2Fformulate%40workspace%3A."
   dependencies:
     classnames: ^2.2.6
     core-js: ^3.9.0
@@ -1407,16 +1407,15 @@ __metadata:
     lodash: ^4.17.15
     moment: ^2.23.0
     prop-types: ^15.6.2
-    react-focus-lock: ^2.4.0
+    react-focus-lock: ^2.5.1
     react-focus-on: ^3.5.1
     react-scroll: ^1.7.16
     react-transition-group: 1
     recast: ^0.14.4
   peerDependencies:
     react: ^16.13.1
-  checksum: 7cdd6e68dc3bb0995527e3e804539ed9c9bdd9a592c7de45ca2b3e19a36929e083e53225980b18b55a7bdf562a85baf007db3f4da9d72382427ae702215ffca7
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@department-of-veterans-affairs/formulate@workspace:.":
   version: 0.0.0-use.local
@@ -1426,7 +1425,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": ^2.5.7
+    "@department-of-veterans-affairs/component-library": "portal:../component-library"
     "@size-limit/preset-small-lib": ^5.0.1
     "@testing-library/react": ^11.2.7
     "@types/express": ^4.17.13
@@ -1467,6 +1466,7 @@ __metadata:
     webpack-dev-server: ^3.11.2
     webpack-hot-middleware: ^2.25.0
   peerDependencies:
+    "@department-of-veterans-affairs/component-library": ^2.5.7
     formik: ^2.2.9
     react: ">=16"
     web-components: "*"
@@ -12722,7 +12722,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-focus-lock@npm:^2.4.0, react-focus-lock@npm:^2.5.0":
+"react-focus-lock@npm:^2.5.0, react-focus-lock@npm:^2.5.1":
   version: 2.5.2
   resolution: "react-focus-lock@npm:2.5.2"
   dependencies:
@@ -15284,7 +15284,7 @@ typescript@^4.3.5:
 
 "typescript@patch:typescript@^3.7.3#~builtin<compat/typescript>":
   version: 3.9.10
-  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=d8b4e7"
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=32657b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -15294,11 +15294,11 @@ typescript@^4.3.5:
 
 "typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
-  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=32657b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
+  checksum: 4e2edec3c9b7b9a22ad9cbf9371339d9e13bfe44731f0e2d6a5287f991c3b0e3e0ac0c0ebbf9bf6fc2051e30559c789bfc9cf572cd6b836a0222ae141fac1dba
   languageName: node
   linkType: hard
 
