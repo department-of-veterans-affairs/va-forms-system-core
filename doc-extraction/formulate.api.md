@@ -18,7 +18,7 @@ export const DebuggerView: () => JSX.Element;
 // @beta
 export function Page(props: PageProps): JSX.Element;
 
-// @public (undocumented)
+// @beta
 export interface PageProps {
   // (undocumented)
   children: JSX.Element[];
@@ -28,7 +28,7 @@ export interface PageProps {
   title: string;
 }
 
-// @public (undocumented)
+// @beta
 export interface PageType extends React.Component {
   // (undocumented)
   props: Routable & {
@@ -38,7 +38,7 @@ export interface PageType extends React.Component {
   };
 }
 
-// @public (undocumented)
+// @beta
 export interface Routable {
   // (undocumented)
   path: string;
@@ -47,12 +47,12 @@ export interface Routable {
 // @beta
 export function Router(props: RouterProps): JSX.Element;
 
-// @public (undocumented)
+// @beta
 export interface RouterProps {
   // (undocumented)
   basename: string;
   // (undocumented)
-  children: Array<PageType>;
+  children: Routable | Array<Routable>;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts

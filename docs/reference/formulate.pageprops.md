@@ -4,6 +4,11 @@
 
 ## PageProps interface
 
+> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+> 
+
+The properties for the Page React component
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,7 +19,7 @@ export interface PageProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [children](./formulate.pageprops.children.md) | JSX.Element\[\] |  |
-|  [path](./formulate.pageprops.path.md) | string |  |
-|  [title](./formulate.pageprops.title.md) | string |  |
+|  [children](./formulate.pageprops.children.md) | JSX.Element\[\] | <b><i>(BETA)</i></b> |
+|  [path](./formulate.pageprops.path.md) | string | <b><i>(BETA)</i></b> |
+|  [title](./formulate.pageprops.title.md) | string | <b><i>(BETA)</i></b> |
 

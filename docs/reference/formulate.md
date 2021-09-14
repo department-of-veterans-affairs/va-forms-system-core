@@ -15,10 +15,10 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [PageProps](./formulate.pageprops.md) |  |
-|  [PageType](./formulate.pagetype.md) |  |
-|  [Routable](./formulate.routable.md) |  |
-|  [RouterProps](./formulate.routerprops.md) |  |
+|  [PageProps](./formulate.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
+|  [PageType](./formulate.pagetype.md) | <b><i>(BETA)</i></b> The type of React component that the Router expects in its children |
+|  [Routable](./formulate.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
+|  [RouterProps](./formulate.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
 
 ## Variables
 

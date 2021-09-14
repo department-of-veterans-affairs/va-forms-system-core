@@ -4,6 +4,11 @@
 
 ## PageType interface
 
+> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+> 
+
+The type of React component that the Router expects in its children
+
 <b>Signature:</b>
 
 ```typescript
@@ -15,5 +20,5 @@ export interface PageType extends React.Component
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [props](./formulate.pagetype.props.md) | [Routable](./formulate.routable.md) &amp; { exact?: boolean; children: JSX.Element\[\] \| JSX.Element; title: string; } |  |
+|  [props](./formulate.pagetype.props.md) | [Routable](./formulate.routable.md) &amp; { exact?: boolean; children: JSX.Element\[\] \| JSX.Element; title: string; } | <b><i>(BETA)</i></b> |
 

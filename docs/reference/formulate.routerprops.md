@@ -4,6 +4,11 @@
 
 ## RouterProps interface
 
+> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+> 
+
+The properties for the Router React component
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,6 +19,6 @@ export interface RouterProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [basename](./formulate.routerprops.basename.md) | string |  |
-|  [children](./formulate.routerprops.children.md) | Array&lt;[PageType](./formulate.pagetype.md)<!-- -->&gt; |  |
+|  [basename](./formulate.routerprops.basename.md) | string | <b><i>(BETA)</i></b> |
+|  [children](./formulate.routerprops.children.md) | [Routable](./formulate.routable.md) \| Array&lt;[Routable](./formulate.routable.md)<!-- -->&gt; | <b><i>(BETA)</i></b> |
 
