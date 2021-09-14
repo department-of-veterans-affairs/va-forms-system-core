@@ -11,6 +11,14 @@
 |  [Page(props)](./formulate.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
 |  [Router(props)](./formulate.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes |
 
+## Interfaces
+
+|  Interface | Description |
+|  --- | --- |
+|  [PageType](./formulate.pagetype.md) |  |
+|  [Routable](./formulate.routable.md) |  |
+|  [RouterProps](./formulate.routerprops.md) |  |
+
 ## Variables
 
 |  Variable | Description |

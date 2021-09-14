@@ -19,7 +19,7 @@ export default function Router(props: RouterProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | RouterProps |  |
+|  props | [RouterProps](./formulate.routerprops.md) |  |
 
 <b>Returns:</b>
 

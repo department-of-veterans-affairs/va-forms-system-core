@@ -20,10 +20,32 @@ export const DebuggerView: () => JSX.Element;
 // @beta
 export function Page(props: PageProps): JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "RouterProps" needs to be exported by the entry point index.d.ts
-//
+// @public (undocumented)
+export interface PageType extends React.Component {
+  // (undocumented)
+  props: Routable & {
+    exact?: boolean;
+    children: JSX.Element[] | JSX.Element;
+    title: string;
+  };
+}
+
+// @public (undocumented)
+export interface Routable {
+  // (undocumented)
+  path: string;
+}
+
 // @beta
 export function Router(props: RouterProps): JSX.Element;
+
+// @public (undocumented)
+export interface RouterProps {
+  // (undocumented)
+  basename: string;
+  // (undocumented)
+  children: Array<PageType>;
+}
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
 //
