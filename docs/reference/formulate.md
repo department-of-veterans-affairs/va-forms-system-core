@@ -8,7 +8,7 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [Page(props)](./formulate.page.md) |  |
+|  [Page(props)](./formulate.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
 |  [Router(props)](./formulate.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes |
 
 ## Variables

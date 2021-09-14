@@ -17,7 +17,7 @@ export const DebuggerView: () => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "PageProps" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @beta
 export function Page(props: PageProps): JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "RouterProps" needs to be exported by the entry point index.d.ts
