@@ -13,7 +13,6 @@ import { SimpleDate } from '@department-of-veterans-affairs/component-library/Da
 
 export type ComponentLibraryDatePart = {
   value: string;
-  dirty: boolean;
 };
 
 /**
@@ -35,9 +34,9 @@ const dateStringToValue = (dateString = '') => {
   // TODO: Make this conversion handle edge cases
   const [month = '', day = '', year = ''] = dateString.split('-');
   return {
-    day: { value: day, dirty: false },
-    month: { value: month, dirty: false },
-    year: { value: year, dirty: false },
+    day: { value: day },
+    month: { value: month },
+    year: { value: year },
   };
 };
 
