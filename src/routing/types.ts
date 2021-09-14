@@ -10,7 +10,7 @@ export interface Routable {
 export interface PageType extends React.Component {
   props: Routable & {
     exact?: boolean;
-    children: React.Component;
+    children: JSX.Element[] | JSX.Element;
     title: string;
   };
 }
