@@ -49,17 +49,10 @@ const dateValueToString = ({ day, month, year }: ComponentLibraryDateValue) => {
  * Super basic date string validation. Only checks for the non-empty strings
  * between the `-`s.
  */
-const validDate: ValidationFunction<string> = (
-  value: string,
-  props: DateProps
-) => {
-  if (props.required) {
-    const [month = '', day = '', year = ''] = value.split('-');
-    if (!month || !day || !year) {
-      return typeof props.required === 'string'
-        ? props.required
-        : getMessage('required.default');
-    }
+const validDate: ValidationFunction<string> = (value: string) => {
+  const [month = '', day = '', year = ''] = value.split('-');
+  if (!month || !day || !year) {
+    return getMessage('date.incomplete');
   }
 };
 
