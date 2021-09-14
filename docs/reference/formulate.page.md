@@ -19,7 +19,7 @@ export default function Page(props: PageProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | PageProps |  |
+|  props | [PageProps](./formulate.pageprops.md) |  |
 
 <b>Returns:</b>
 

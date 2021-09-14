@@ -2,12 +2,7 @@ import React from 'react';
 
 import { Formik, Form } from 'formik';
 import { Link, Route } from 'react-router-dom';
-
-type PageProps = {
-  children: JSX.Element[];
-  title: string;
-  path: string;
-};
+import { PageProps } from './types';
 
 /**
  * Renders the page contents

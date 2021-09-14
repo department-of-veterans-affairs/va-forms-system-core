@@ -15,6 +15,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [PageProps](./formulate.pageprops.md) |  |
 |  [PageType](./formulate.pagetype.md) |  |
 |  [Routable](./formulate.routable.md) |  |
 |  [RouterProps](./formulate.routerprops.md) |  |

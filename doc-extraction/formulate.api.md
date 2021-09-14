@@ -15,10 +15,18 @@ export const CheckboxField: (props: CheckboxProps) => JSX.Element;
 // @public
 export const DebuggerView: () => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "PageProps" needs to be exported by the entry point index.d.ts
-//
 // @beta
 export function Page(props: PageProps): JSX.Element;
+
+// @public (undocumented)
+export interface PageProps {
+  // (undocumented)
+  children: JSX.Element[];
+  // (undocumented)
+  path: string;
+  // (undocumented)
+  title: string;
+}
 
 // @public (undocumented)
 export interface PageType extends React.Component {
