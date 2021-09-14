@@ -1,5 +1,5 @@
 export interface RouterProps {
-  children: Array<PageType>;
+  children: Routable | Array<Routable>;
   basename: string;
 }
 
