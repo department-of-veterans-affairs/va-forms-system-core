@@ -29,16 +29,6 @@ export interface PageProps {
 }
 
 // @beta
-export interface PageType extends React.Component {
-  // (undocumented)
-  props: Routable & {
-    exact?: boolean;
-    children: JSX.Element[] | JSX.Element;
-    title: string;
-  };
-}
-
-// @beta
 export interface Routable {
   // (undocumented)
   path: string;

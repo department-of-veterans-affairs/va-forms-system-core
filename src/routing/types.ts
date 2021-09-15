@@ -28,16 +28,3 @@ export interface PageProps {
   title: string;
   path: string;
 }
-
-/**
- * The type of React component that the Router expects in its children
- *
- * @beta
- */
-export interface PageType extends React.Component {
-  props: Routable & {
-    exact?: boolean;
-    children: JSX.Element[] | JSX.Element;
-    title: string;
-  };
-}
