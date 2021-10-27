@@ -1396,25 +1396,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "@department-of-veterans-affairs/component-library@npm:3.1.1"
+"@department-of-veterans-affairs/component-library@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "@department-of-veterans-affairs/component-library@npm:3.3.4"
   dependencies:
-    classnames: ^2.2.6
-    core-js: ^3.9.0
-    date-fns: ^2.17.0
+    "@department-of-veterans-affairs/react-components": 3.2.3
+    "@department-of-veterans-affairs/web-components": 0.13.0
     date-fns-tz: ^1.1.1
-    lodash: ^4.17.15
-    moment: ^2.23.0
-    prop-types: ^15.6.2
-    react-focus-lock: ^2.5.1
     react-focus-on: ^3.5.1
     react-scroll: ^1.7.16
-    react-transition-group: 1
-    recast: ^0.14.4
-  peerDependencies:
-    react: ^16.13.1
-  checksum: 4250ab77fc514073a8c068e058323aa57e9b309590451bd693ad7a1f2ce361451f82c50e38a8829951cbeb9d009d5eee8cf38a21e0a6fad1bb91d0a4f3c8573d
+    react-transition-group: ^1.0.0
+  checksum: 8ac42c9b7ab4c1d8dad32115a4b59d4eaabbdad21b60d440369789c01f9e3b5b97020c9f74199470bd1f67d27e6cbdac41436ece67e8b167627da3ac6ed56ca8
   languageName: node
   linkType: hard
 
@@ -1426,7 +1418,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": ^3.1.0
+    "@department-of-veterans-affairs/component-library": ^3.3.4
     "@microsoft/api-documenter": ^7.13.41
     "@microsoft/api-extractor": ^7.18.6
     "@size-limit/preset-small-lib": ^5.0.1
@@ -1465,19 +1457,56 @@ __metadata:
     tsdx: ^0.14.1
     tslib: ^2.3.0
     typescript: ^4.3.5
-    web-components: "https://github.com/department-of-veterans-affairs/component-library/releases/download/wc-v0.9.4/web-components-v0.9.4.tgz"
     webpack: ^5.50.0
     webpack-cli: ^4.8.0
     webpack-dev-middleware: ^5.0.0
     webpack-dev-server: ^3.11.2
     webpack-hot-middleware: ^2.25.0
   peerDependencies:
-    "@department-of-veterans-affairs/component-library": ^3.1.0
+    "@department-of-veterans-affairs/component-library": ^3.3.4
     formik: ^2.2.9
     react: ">=16"
-    web-components: "*"
   languageName: unknown
   linkType: soft
+
+"@department-of-veterans-affairs/react-components@npm:3.2.3":
+  version: 3.2.3
+  resolution: "@department-of-veterans-affairs/react-components@npm:3.2.3"
+  dependencies:
+    classnames: ^2.2.6
+    core-js: ^3.9.0
+    date-fns: ^2.17.0
+    date-fns-tz: ^1.1.1
+    lodash: ^4.17.15
+    moment: ^2.23.0
+    number-to-words: ^1.2.4
+    prop-types: ^15.6.2
+    react-focus-lock: ^2.5.1
+    react-focus-on: ^3.5.1
+    react-scroll: ^1.7.16
+    react-transition-group: 1
+    recast: ^0.14.4
+  peerDependencies:
+    react: ^16.13.1
+    web-components: "*"
+  checksum: 40fa06376e3964487e3272d4303f8bc2935f6e32df928ec24d068a97c7b529da334788ce034038f7442321f8248bc6185aeea11dfd9e144e02cba9520025773a
+  languageName: node
+  linkType: hard
+
+"@department-of-veterans-affairs/web-components@npm:0.13.0":
+  version: 0.13.0
+  resolution: "@department-of-veterans-affairs/web-components@npm:0.13.0"
+  dependencies:
+    "@stencil/core": ^2.8.1
+    "@stencil/postcss": ^2.0.0
+    classnames: ^2.3.1
+    intersection-observer: ^0.12.0
+    postcss-url: ^10.1.1
+  peerDependencies:
+    "@department-of-veterans-affairs/formation": ^6.14.0
+  checksum: 723725bb713d6ac125c7dd2ad11ffdce5e908ebd7a6118c06ca8094e4700a25f4cf2910d8606b19866f6b9d4ac939ec9bc2913157268dbff3431b22e7c625343
+  languageName: node
+  linkType: hard
 
 "@discoveryjs/json-ext@npm:^0.5.0":
   version: 0.5.5
@@ -2263,12 +2292,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stencil/core@npm:^2.0.1":
-  version: 2.8.1
-  resolution: "@stencil/core@npm:2.8.1"
+"@stencil/core@npm:^2.8.1":
+  version: 2.9.0
+  resolution: "@stencil/core@npm:2.9.0"
   bin:
     stencil: bin/stencil
-  checksum: 0a75e65ea8a2b3f39c6a0981a5e82e9fb21499a706cf4bc7f63fcb11ede22ae9de2a1c63450d1ede5a9957bcadada6a97ae3be9f5d9d384e4f715f47b9bfe69a
+  checksum: aa513b0242ea4677fad5156186216bf398902ff7217634e451a29fb86d190cc152b414ef9308cc05d13fa3f1deb516cd4cc3eabd1e78a3d72b0d212b9aed1142
   languageName: node
   linkType: hard
 
@@ -4852,7 +4881,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.6":
+"classnames@npm:^2.2.6, classnames@npm:^2.3.1":
   version: 2.3.1
   resolution: "classnames@npm:2.3.1"
   checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
@@ -8460,6 +8489,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"intersection-observer@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "intersection-observer@npm:0.12.0"
+  checksum: 96d2f3ea4995b7b429b79646467c975230cfbe3ede7fb08d0c022cfe6ee0c89dfa98aa4377e8b5f7bee880322eb118e6c0275607a53043f9c50921da8363c1e8
+  languageName: node
+  linkType: hard
+
 "invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
@@ -11460,6 +11496,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"number-to-words@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "number-to-words@npm:1.2.4"
+  checksum: 468f4d745b18f961c7a6f933d3beb3f3b8b434f3daa2b3d891a43f5f43c6eeddea9f08bbc25d46a8221adaf2b31d5acc801ef6ece270190267ae79c6ac27857d
+  languageName: node
+  linkType: hard
+
 "nwsapi@npm:^2.2.0":
   version: 2.2.0
   resolution: "nwsapi@npm:2.2.0"
@@ -13147,7 +13190,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-transition-group@npm:1":
+"react-transition-group@npm:1, react-transition-group@npm:^1.0.0":
   version: 1.2.1
   resolution: "react-transition-group@npm:1.2.1"
   dependencies:
@@ -16077,19 +16120,6 @@ typescript@~4.3.5:
   dependencies:
     defaults: ^1.0.3
   checksum: 814e9d1ddcc9798f7377ffa448a5a3892232b9275ebb30a41b529607691c0491de47cba426e917a4d08ded3ee7e9ba2f3fe32e62ee3cd9c7d3bafb7754bd553c
-  languageName: node
-  linkType: hard
-
-"web-components@https://github.com/department-of-veterans-affairs/component-library/releases/download/wc-v0.9.4/web-components-v0.9.4.tgz":
-  version: 0.9.4
-  resolution: "web-components@https://github.com/department-of-veterans-affairs/component-library/releases/download/wc-v0.9.4/web-components-v0.9.4.tgz"
-  dependencies:
-    "@stencil/core": ^2.0.1
-    "@stencil/postcss": ^2.0.0
-    postcss-url: ^10.1.1
-  peerDependencies:
-    "@department-of-veterans-affairs/formation": ^6.14.0
-  checksum: 9d57874ad8f136caf671c6b2c0308f8bde21eb94b54e05b265e12ff061c5c6551671fb655bf0dd348f105e850388955f0f28bb95d6252f92bda6b6bd780e03c7
   languageName: node
   linkType: hard
 
