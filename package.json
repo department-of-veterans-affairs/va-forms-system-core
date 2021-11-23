@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "module": "dist/formulate.cjs.production.min.js",
   "typings": "dist/index.d.ts",
+  "release": {
+    "branches": ["master"]
+  },
   "scripts": {
     "build": "tsdx build",
     "docs:extract": "api-extractor run --local --verbose",
@@ -59,6 +62,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
+    "semantic-release": "^18.0.0",
     "style-loader": "^3.2.1",
     "ts-loader": "^9.2.5",
     "tsdx": "^0.14.1",

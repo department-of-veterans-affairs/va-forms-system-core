@@ -1,8 +1,14 @@
 name: Yarn publish
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# on:
+#   release:
+#     types: [published]
 
 jobs:
   publish:
@@ -21,8 +27,14 @@ jobs:
     
     - name: Build package NPM package
       run: yarn build
-    
-    - name: Publish build artifacts to NPM
-      run: yarn npm publish --access public --tolerate-republish
+
+    - name: Run npx semantic-release, create Github Release, and Publish NPM package
+      run: npx semantic-release
       env:
-        YARN_NPM_AUTH_TOKEN: ${{ secrets.YARN_NPM_AUTH_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.YARN_NPM_AUTH_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    # - name: Publish build artifacts to NPM
+    #   run: yarn npm publish --access public --tolerate-republish
+    #   env:
+    #     YARN_NPM_AUTH_TOKEN: ${{ secrets.YARN_NPM_AUTH_TOKEN }}
