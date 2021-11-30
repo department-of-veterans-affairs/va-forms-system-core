@@ -1,13 +1,21 @@
 import React from 'react';
 
 import { Formik, Form } from 'formik';
-import { Link, Route } from 'react-router-dom';
-import { PageProps } from './types';
+import { Route } from 'react-router-dom';
+import { PageProps, Routable } from './types';
+
+type RoutableElement = JSX.Element & Routable;
 
 /**
  * Renders the page contents
  *
  * @beta
+ *
+ * ```typescript
+ * <Page title="Example form" path="/one">
+ *   <TextField name="foo" label="Example" required />
+ * </Page>
+ * ```
  */
 export default function Page(props: PageProps): JSX.Element {
   const handleSubmit = () => {
@@ -29,5 +37,5 @@ export default function Page(props: PageProps): JSX.Element {
         </Formik>
       </div>
     </Route>
-  );
+  ) as RoutableElement;
 }

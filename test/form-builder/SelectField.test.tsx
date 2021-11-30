@@ -4,6 +4,7 @@ import { waitFor } from '@testing-library/react';
 import SelectField from '../../src/form-builder/SelectField';
 import { buildRenderForm, changeValue } from '../utils';
 
+const vaSelectSpy = jest.fn();
 const renderForm = buildRenderForm({});
 
 const getInput = (container: HTMLElement): HTMLVaSelectElement => {
@@ -13,7 +14,7 @@ const getInput = (container: HTMLElement): HTMLVaSelectElement => {
 };
 
 const componentUnderTest = (
-  <SelectField name="thing" label="The Thing">
+  <SelectField name="thing" label="The Thing" onVaSelect={vaSelectSpy}>
     <option value="first">Item one</option>
     <option value="second">Item two</option>
   </SelectField>
@@ -36,7 +37,12 @@ describe('Form Builder - SelectField', () => {
 
   test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <SelectField name="thing" label="The Thing" required />
+      <SelectField
+        name="thing"
+        label="The Thing"
+        onVaSelect={vaSelectSpy}
+        required
+      />
     );
     const input = getInput(container);
     await waitFor(() => {
@@ -50,6 +56,7 @@ describe('Form Builder - SelectField', () => {
       <SelectField
         name="thing"
         label="The Thing"
+        onVaSelect={vaSelectSpy}
         required="You need to fill this in, bub"
       />
     );
@@ -65,7 +72,12 @@ describe('Form Builder - SelectField', () => {
   test('validates using a function', async () => {
     const spy = jest.fn();
     const { getFormProps } = renderForm(
-      <SelectField name="thing" label="The Thing" validate={spy} />
+      <SelectField
+        name="thing"
+        label="The Thing"
+        validate={spy}
+        onVaSelect={vaSelectSpy}
+      />
     );
     await waitFor(() => {
       getFormProps().validateField('thing');

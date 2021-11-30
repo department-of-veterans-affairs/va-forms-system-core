@@ -59,6 +59,9 @@ const validDate: ValidationFunction<string> = (value: string) => {
  * Field value format: M-D-YYYY
  *
  * TODO: Convert the Date component into a web component and use it here.
+ * ```typescript
+ * <DateField label="baz" required />
+ * ```
  */
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = {

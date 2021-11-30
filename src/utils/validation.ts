@@ -1,20 +1,22 @@
+import { FieldValidator } from 'formik';
 import { FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
 
-export type ValidationFunctionResult<T> =
+export type ValidationFunctionResult =
   | void
   | undefined
   | string
-  | Promise<any>;
+  | Promise<FieldValidator | string | void>;
+
 export type ValidationFunction<T> = (
   value: T,
   props: FieldProps<T>
-) => ValidationFunctionResult<T>;
+) => ValidationFunctionResult;
 
 export const chainValidations = <T>(
   props: FieldProps<T>,
   validations: ValidationFunction<T>[]
-): ((value: T) => ValidationFunctionResult<T>) => {
+): ((value: T) => ValidationFunctionResult) => {
   return (value: T) => {
     // Return the error message from the first validation function that fails.
     const errorMessage = validations
@@ -31,7 +33,7 @@ export const chainValidations = <T>(
 export const required = <T>(
   value: T,
   props: FieldProps<T>
-): ValidationFunctionResult<T> => {
+): ValidationFunctionResult => {
   if (props.required && !value) {
     const errorMessage =
       typeof props.required === 'string'

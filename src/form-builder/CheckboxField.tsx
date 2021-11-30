@@ -5,8 +5,13 @@ import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaCheckbox } from 'web-components/react-bindings';
 
-type CheckboxProps = FieldProps<string> & { checked: boolean };
+export type CheckboxProps = FieldProps<string> & { checked: boolean };
 
+/**
+ * ```typescript
+ * <CheckboxField name="bar" label="Do you have pets?" checked required />
+ * ```
+ */
 const CheckboxField = (props: CheckboxProps): JSX.Element => {
   const withValidation = {
     ...props,

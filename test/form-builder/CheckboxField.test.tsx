@@ -2,7 +2,7 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 
 import CheckboxField from '../../src/form-builder/CheckboxField';
-import { buildRenderForm, changeValue } from '../utils';
+import { buildRenderForm, changeCheckedValue } from '../utils';
 
 const renderForm = buildRenderForm({ thing: false });
 
@@ -15,7 +15,7 @@ const getInput = (container: HTMLElement): HTMLVaCheckboxElement => {
 describe('Form Builder - CheckboxField', () => {
   test('renders', () => {
     const { container } = renderForm(
-      <CheckboxField name="thing" label="The Thing" />
+      <CheckboxField name="thing" label="The Thing" checked={false} />
     );
     const input = getInput(container);
     expect(input.getAttribute('label')).toEqual('The Thing');
@@ -24,7 +24,9 @@ describe('Form Builder - CheckboxField', () => {
 
   test('renders initial value', () => {
     const rf = buildRenderForm({ thing: true });
-    const { container } = rf(<CheckboxField name="thing" label="The Thing" />);
+    const { container } = rf(
+      <CheckboxField name="thing" label="The Thing" checked />
+    );
     const input = getInput(container);
     // This expects the string "true" because attributes on HTML elements are
     // always strings
@@ -33,7 +35,7 @@ describe('Form Builder - CheckboxField', () => {
 
   test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <CheckboxField name="thing" label="The Thing" required />
+      <CheckboxField name="thing" label="The Thing" required checked />
     );
     const input = getInput(container);
     await waitFor(() => {
@@ -47,6 +49,7 @@ describe('Form Builder - CheckboxField', () => {
       <CheckboxField
         name="thing"
         label="The Thing"
+        checked={false}
         required="You can't proceed without checking this box"
       />
     );
@@ -62,7 +65,7 @@ describe('Form Builder - CheckboxField', () => {
   test('validates using a function', async () => {
     const spy = jest.fn();
     const { getFormProps } = renderForm(
-      <CheckboxField name="thing" label="The Thing" validate={spy} />
+      <CheckboxField name="thing" label="The Thing" validate={spy} checked />
     );
     await waitFor(() => {
       getFormProps().validateField('thing');
@@ -72,10 +75,10 @@ describe('Form Builder - CheckboxField', () => {
 
   test('updates the formik state', async () => {
     const { container, getFormProps } = renderForm(
-      <CheckboxField name="thing" label="The Thing" />
+      <CheckboxField name="thing" label="The Thing" checked={false} />
     );
     const input = getInput(container);
-    await changeValue(input, true);
+    await changeCheckedValue(input, true);
     expect(getFormProps().values).toEqual({ thing: true });
   });
 });

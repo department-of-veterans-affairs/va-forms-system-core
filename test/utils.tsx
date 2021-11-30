@@ -44,7 +44,7 @@ export const buildRenderForm = (
 };
 
 export const changeValue = async (
-  el: HTMLInputElement | HTMLVaSelectElement,
+  el: HTMLInputElement | HTMLVaTextInputElement | HTMLVaSelectElement,
   value: string | boolean,
   eventName = 'vaChange'
 ): Promise<void> => {
@@ -53,6 +53,18 @@ export const changeValue = async (
   } else if (typeof value === 'boolean') {
     (el as HTMLInputElement).checked = value;
   }
+
+  await waitFor(() => {
+    fireEvent(el, new CustomEvent(eventName));
+  });
+};
+
+export const changeCheckedValue = async (
+  el: HTMLVaCheckboxElement,
+  value: boolean,
+  eventName = 'vaChange'
+): Promise<void> => {
+  el.checked = value;
 
   await waitFor(() => {
     fireEvent(el, new CustomEvent(eventName));

@@ -5,6 +5,11 @@ import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaTextInput } from 'web-components/react-bindings';
 
+/**
+ * ```typescript
+ * <TextField name="foo" label="Example" required />
+ * ```
+ */
 const TextField = (props: FieldProps<string>): JSX.Element => {
   const withValidation = {
     ...props,

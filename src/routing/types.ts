@@ -1,12 +1,14 @@
+import { ReactNode } from 'react';
+
 /**
  * The properties for the Router React component
  *
  * @beta
  */
-export interface RouterProps {
-  children: Routable | Array<Routable>;
+export type RouterProps = {
+  children: ReactNode;
   basename: string;
-}
+};
 
 /**
  * Indicates if a component can be routed using `react-router-dom`. The `path`
@@ -14,17 +16,16 @@ export interface RouterProps {
  *
  * @beta
  */
-export interface Routable {
+export type Routable = {
   path: string;
-}
+};
 
 /**
  * The properties for the Page React component
  *
  * @beta
  */
-export interface PageProps {
+export type PageProps = Routable & {
   children: JSX.Element[];
   title: string;
-  path: string;
-}
+};

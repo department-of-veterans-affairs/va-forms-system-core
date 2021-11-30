@@ -15,7 +15,9 @@
     "test": "jest",
     "watch": "tsdx watch",
     "build-examples": "webpack --config examples/webpack.config.js",
-    "serve-examples": "node examples/server.js"
+    "serve-examples": "node examples/server.js",
+    "typedoc": "typedoc ./src/form-builder/index.ts ./src/routing/index.ts --out typedocs/",
+    "typedoc:open": "open ./typedocs/index.html"
   },
   "author": "",
   "license": "ISC",
@@ -63,6 +65,7 @@
     "ts-loader": "^9.2.5",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.0",
+    "typedoc": "^0.22.10",
     "typescript": "^4.3.5",
     "web-components": "https://github.com/department-of-veterans-affairs/component-library/releases/download/wc-v0.9.4/web-components-v0.9.4.tgz",
     "webpack": "^5.50.0",

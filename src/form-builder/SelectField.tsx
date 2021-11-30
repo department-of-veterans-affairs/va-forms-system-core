@@ -6,11 +6,18 @@ import { chainValidations, required } from '../utils/validation';
 
 import { VaSelect } from 'web-components/react-bindings';
 
-type SelectProps = FieldProps<string> & {
+export type SelectProps = FieldProps<string> & {
   onVaSelect: (e: CustomEvent) => void;
-  children: HTMLOptionElement[];
 };
 
+/**
+ * ```typescript
+ * <SelectField name="thing" label="The Thing" onVaSelect={onSelectHandler}>
+ *   <option value="first">Item one</option>
+ *   <option value="second">Item two</option>
+ * </SelectField>
+ * ```
+ */
 const SelectField = (props: SelectProps): JSX.Element => {
   const withValidation = {
     ...props,
