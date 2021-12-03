@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [@department-of-veterans-affairs/formulate](./formulate.md) &gt; [Routable](./formulate.routable.md)
 
-## Routable interface
+## Routable type
 
 > This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 > 
@@ -12,12 +12,7 @@ Indicates if a component can be routed using `react-router-dom`<!-- -->. The `pa
 <b>Signature:</b>
 
 ```typescript
-export interface Routable 
+export declare type Routable = {
+    path: string;
+};
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [path](./formulate.routable.path.md) | string | <b><i>(BETA)</i></b> |
-

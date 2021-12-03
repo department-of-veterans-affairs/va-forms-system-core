@@ -9,6 +9,12 @@
 
 Renders the page contents
 
+```typescript
+<Page title="Example form" path="/one">
+  <TextField name="foo" label="Example" required />
+</Page>
+```
+
 <b>Signature:</b>
 
 ```typescript

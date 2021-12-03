@@ -4,6 +4,10 @@
 
 ## TextField variable
 
+```typescript
+<TextField name="foo" label="Example" required />
+```
+
 <b>Signature:</b>
 
 ```typescript

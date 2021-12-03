@@ -4,6 +4,10 @@
 
 ## CheckboxField variable
 
+```typescript
+<CheckboxField name="bar" label="Do you have pets?" checked required />
+```
+
 <b>Signature:</b>
 
 ```typescript

@@ -8,23 +8,61 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [Page(props)](./formulate.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
-|  [Router(props)](./formulate.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes |
-
-## Interfaces
-
-|  Interface | Description |
-|  --- | --- |
-|  [PageProps](./formulate.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
-|  [Routable](./formulate.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
-|  [RouterProps](./formulate.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
+|  [Page(props)](./formulate.page.md) | <b><i>(BETA)</i></b> Renders the page contents
+```typescript
+<Page title="Example form" path="/one">
+  <TextField name="foo" label="Example" required />
+</Page>
+```
+ |
+|  [Router(props)](./formulate.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes
+```typescript
+<Router basename="multipage-form">
+  <Page title="Example form" path="/one">
+    <TextField name="foo" label="Example" required />
+  </Page>
+</Router>
+```
+ |
 
 ## Variables
 
 |  Variable | Description |
 |  --- | --- |
-|  [CheckboxField](./formulate.checkboxfield.md) |  |
+|  [CheckboxField](./formulate.checkboxfield.md) | 
+```typescript
+<CheckboxField name="bar" label="Do you have pets?" checked required />
+```
+ |
+|  [DateField](./formulate.datefield.md) | Field value format: M-D-YYYY<!-- -->TODO: Convert the Date component into a web component and use it here.
+```typescript
+<DateField label="baz" required />
+```
+ |
 |  [DebuggerView](./formulate.debuggerview.md) | Display the Formik state |
-|  [SelectField](./formulate.selectfield.md) |  |
-|  [TextField](./formulate.textfield.md) |  |
+|  [SelectField](./formulate.selectfield.md) | 
+```typescript
+<SelectField name="thing" label="The Thing" onVaSelect={onSelectHandler}>
+  <option value="first">Item one</option>
+  <option value="second">Item two</option>
+</SelectField>
+```
+ |
+|  [TextField](./formulate.textfield.md) | 
+```typescript
+<TextField name="foo" label="Example" required />
+```
+ |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [CheckboxProps](./formulate.checkboxprops.md) |  |
+|  [DateProps](./formulate.dateprops.md) |  |
+|  [FieldProps](./formulate.fieldprops.md) |  |
+|  [PageProps](./formulate.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
+|  [Routable](./formulate.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
+|  [RouterProps](./formulate.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
+|  [SelectProps](./formulate.selectprops.md) |  |
 

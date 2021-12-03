@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [@department-of-veterans-affairs/formulate](./formulate.md) &gt; [PageProps](./formulate.pageprops.md)
 
-## PageProps interface
+## PageProps type
 
 > This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 > 
@@ -12,14 +12,10 @@ The properties for the Page React component
 <b>Signature:</b>
 
 ```typescript
-export interface PageProps 
+export declare type PageProps = Routable & {
+    children: JSX.Element[];
+    title: string;
+};
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [children](./formulate.pageprops.children.md) | JSX.Element\[\] | <b><i>(BETA)</i></b> |
-|  [path](./formulate.pageprops.path.md) | string | <b><i>(BETA)</i></b> |
-|  [title](./formulate.pageprops.title.md) | string | <b><i>(BETA)</i></b> |
+<b>References:</b> [Routable](./formulate.routable.md)
 

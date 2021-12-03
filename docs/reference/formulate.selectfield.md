@@ -4,6 +4,13 @@
 
 ## SelectField variable
 
+```typescript
+<SelectField name="thing" label="The Thing" onVaSelect={onSelectHandler}>
+  <option value="first">Item one</option>
+  <option value="second">Item two</option>
+</SelectField>
+```
+
 <b>Signature:</b>
 
 ```typescript

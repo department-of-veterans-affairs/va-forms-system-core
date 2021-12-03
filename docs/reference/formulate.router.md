@@ -9,6 +9,14 @@
 
 Manages form pages as routes
 
+```typescript
+<Router basename="multipage-form">
+  <Page title="Example form" path="/one">
+    <TextField name="foo" label="Example" required />
+  </Page>
+</Router>
+```
+
 <b>Signature:</b>
 
 ```typescript
