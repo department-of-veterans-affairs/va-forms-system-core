@@ -26,7 +26,7 @@ VAFSC will include but not limited to:
 
 ## Quick start
 
-Once you have the prerequisites download you are ready to get the project built.
+Once you have the prerequisites downloaded you are ready to get the project built.
 
 First you need to install all of the packages and their dependancies by running:
 ```sh
