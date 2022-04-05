@@ -1,14 +1,10 @@
 name: Yarn publish
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-# on:
-#   release:
-#     types: [published]
+  workflow_run:
+    workflows: [Build and Test]
+    types: [completed]
+    branches: [master]
 
 jobs:
   publish:

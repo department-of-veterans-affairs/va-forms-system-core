@@ -7,13 +7,14 @@ import {
   DebuggerView,
   Page,
   Router,
-} from '@department-of-veterans-affairs/formulate';
+} from '@department-of-veterans-affairs/va-forms-system-core';
 
 import { Link, Route } from 'react-router-dom';
 
-import 'web-components/dist/component-library/component-library.css';
-import { defineCustomElements } from 'web-components/loader';
+import '@department-of-veterans-affairs/component-library/dist/main.css';
+import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
 const App = () => (
