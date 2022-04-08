@@ -8,11 +8,7 @@ export interface RadioItemProps {
 
 // Child component for each radio item. We only use it 
 // for its props,  so it does not render anything
-export function RadioItem (props: RadioItemProps): JSX.Element {
-    return (
-        <span />
-    )
-}
+const RadioItem = (props: RadioItemProps): null => null;
 
 export interface RadioGroupProps {
     name: string;
@@ -20,7 +16,7 @@ export interface RadioGroupProps {
     onChange: (v: string) => void;
 } ;
 
-export default function RadioGroup (props: RadioGroupProps): JSX.Element {
+function RadioGroup (props: RadioGroupProps): JSX.Element {
     const children = props.children;
     const name = props.name;
     const [sel, setSel] = useState<string | null>(null);
@@ -30,29 +26,30 @@ export default function RadioGroup (props: RadioGroupProps): JSX.Element {
         props.onChange(e.target.value);
     }
 
-return (
-    <>
-        {children.map( child => {
-            const value = child.props.value;
-            const id = `${name}-${value}`;
-            const description = child.props.children;
-            return (
-                <div key={id}>
-                    <input
-                        type="radio" 
-                        id={id}
-                        name={name}
-                        onChange={handleChange}
-                        //required={!!props.required}
-                    />
-                    <label htmlFor={id}>
-                    {description}
-                </label>
-              </div>
+    return (
+        <>
+            {children.map( child => {
+                const value = child.props.value;
+                const id = `${name}-${value}`;
+                const description = child.props.children;
+                return (
+                    <div key={id}>
+                        <input
+                            type="radio" 
+                            id={id}
+                            name={name}
+                            onChange={handleChange}
+                            //required={!!props.required}
+                        />
+                        <label htmlFor={id}>
+                        {description}
+                    </label>
+                </div>
+                )}
             )}
-        )}
-    </>
+        </>
 
-)
+    )
 };
 
+export {RadioGroup, RadioItem};
