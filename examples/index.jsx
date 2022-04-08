@@ -13,6 +13,9 @@ const App = () => (
       <li>
         <a href="multipage-form">Multipage form</a>
       </li>
+      <li>
+        <a href="radio-group">Radio group</a>
+      </li>
     </ul>
   </div>
 );
