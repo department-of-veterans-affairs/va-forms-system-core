@@ -1,4 +1,4 @@
-name: VA Forms System Core Testing
+name: Build and Test
 
 on:
   push:

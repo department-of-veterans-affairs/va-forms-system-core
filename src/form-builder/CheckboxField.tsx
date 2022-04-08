@@ -3,7 +3,7 @@ import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
-import { VaCheckbox } from 'web-components/react-bindings';
+import { VaCheckbox } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { CheckboxProps } from './types';
 
 const CheckboxField = (props: CheckboxProps): JSX.Element => {
