@@ -76,6 +76,7 @@ describe('Form Builder - CheckboxField', () => {
     );
     const input = getInput(container);
     await changeValue(input, true);
+    const getFormPrps = getFormProps();
     expect(getFormProps().values).toEqual({ thing: true });
   });
 });
