@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {
   TextField,
   CheckboxField,
+  RadioGroup,
   DebuggerView,
   Page,
   Router,

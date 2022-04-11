@@ -9,3 +9,15 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
    */
   required?: boolean | string;
 };
+
+export interface RadioGroupProps {
+  name: string;
+  children: React.ReactElement<RadioItemProps>[];
+  onChange: (v: string) => void;
+} ;
+export interface RadioItemProps {
+  value: string;
+  children: string;
+}
+
+export * from './types';

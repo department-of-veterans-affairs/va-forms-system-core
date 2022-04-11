@@ -1,22 +1,13 @@
 import React, {useState} from 'react';
+import { RadioItemProps, RadioGroupProps } from './types';
+import { VaRadio } from "@department-of-veterans-affairs/component-library/dist/react-bindings";
 // import { useField, FieldHookConfig } from 'formik';
-
-export interface RadioItemProps {
-    value: string;
-    children: string;
-}
 
 // Child component for each radio item. We only use it 
 // for its props,  so it does not render anything
-const RadioItem = (props: RadioItemProps): null => null;
+export const RadioItem = (props: RadioItemProps): null => null;
 
-export interface RadioGroupProps {
-    name: string;
-    children: React.ReactElement<RadioItemProps>[];
-    onChange: (v: string) => void;
-} ;
-
-function RadioGroup (props: RadioGroupProps): JSX.Element {
+export function RadioGroup (props: RadioGroupProps): JSX.Element {
     const children = props.children;
     const name = props.name;
     const [sel, setSel] = useState<string | null>(null);
@@ -28,28 +19,40 @@ function RadioGroup (props: RadioGroupProps): JSX.Element {
 
     return (
         <>
-            {children.map( child => {
-                const value = child.props.value;
-                const id = `${name}-${value}`;
-                const description = child.props.children;
-                return (
-                    <div key={id}>
-                        <input
-                            type="radio" 
-                            id={id}
-                            name={name}
-                            onChange={handleChange}
-                            //required={!!props.required}
-                        />
-                        <label htmlFor={id}>
-                        {description}
-                    </label>
-                </div>
-                )}
-            )}
+            <VaRadio
+                label={'i am a label'}
+                name={'name'}
+                checked={true}
+                options={options}
+                // radioOptionSelected={}
+                // error={}
+                // required
+            >
+                {options.map(radioOption => (
+                <va-radio-option key={radioOption.value} {...radioOption} />
+              ))}
+            </VaRadio>
+ 
         </>
 
     )
 };
 
-export {RadioGroup, RadioItem};
+// {children.map( child => {
+                //     const value = child.props.value;
+                //     const id = `${name}-${value}`;
+                //     const description = child.props.children;
+                //     return (
+                //         <div key={id}>
+                //             <input
+                //                 id={id}
+                //                 name={name}
+                //                 onChange={handleChange}
+                //                 //required={!!props.required}
+                //             />
+                //             <label htmlFor={id}>
+                //             {description}
+                //         </label>
+                //     </div>
+                //     )}
+            // )}
