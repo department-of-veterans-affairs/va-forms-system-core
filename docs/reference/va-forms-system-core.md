@@ -15,6 +15,8 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [IFormContextType](./va-forms-system-core.iformcontexttype.md) | <b><i>(BETA)</i></b> The type for the FormContext to manage state between Chapters and Pages |
+|  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
 |  [PageProps](./va-forms-system-core.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
 |  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
 |  [RouterProps](./va-forms-system-core.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |

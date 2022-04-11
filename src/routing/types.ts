@@ -28,3 +28,22 @@ export interface PageProps {
   title: string;
   path: string;
 }
+
+/**
+ * The type for the FormData to define the flexible data object
+ *
+ * @beta
+ */
+export interface IFormData {
+  [prop: string]: unknown;
+}
+
+/**
+ * The type for the FormContext to manage state between Chapters and Pages
+ *
+ * @beta
+ */
+export interface IFormContextType {
+  formData: IFormData;
+  handleUpdate?: () => void;
+}
