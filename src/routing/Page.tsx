@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Formik, Form } from 'formik';
-import { Link, Route } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import { Route, useRouteMatch } from 'react-router-dom';
 import { PageProps } from './types';
+import { buildRelativePath } from '../utils/helpers';
 
 /**
  * Renders the page contents
@@ -14,8 +15,11 @@ export default function Page(props: PageProps): JSX.Element {
     console.log('submiting');
   };
 
+  const { path } = useRouteMatch();
+  const combinedPath = buildRelativePath(path, props.path);
+
   return (
-    <Route path={props.path}>
+    <Route path={combinedPath}>
       <div
         style={{
           display: 'flex',
