@@ -5,6 +5,8 @@
 ```ts
 /// <reference types="react" />
 
+import { Context } from 'react';
+import { FC } from 'react';
 import { FieldHookConfig } from 'formik';
 
 // Warning: (ae-forgotten-export) The symbol "CheckboxProps" needs to be exported by the entry point index.d.ts
@@ -19,6 +21,14 @@ export const DateField: (props: DateProps) => JSX.Element;
 
 // @public
 export const DebuggerView: () => JSX.Element;
+
+// Warning: (ae-incompatible-release-tags) The symbol "FormContext" is marked as @public, but its signature references "IFormContextType" which is marked as @beta
+//
+// @public (undocumented)
+export const FormContext: Context<IFormContextType>;
+
+// @public (undocumented)
+export const FormProvider: FC;
 
 // @beta
 export interface IFormContextType {
