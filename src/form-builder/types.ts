@@ -10,9 +10,12 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
   required?: boolean | string;
 };
 
-export type CheckboxProps = FieldProps<string> & { checked: boolean };
+export type CheckboxProps = FieldProps<string> & {
+  checked?: boolean;
+  content?: string;
+};
 
-export type CheckboxGroupProps = {
-  fieldProps: FieldProps<string>;
-  checkboxes: CheckboxProps[];
+export type CheckboxGroupProps = FieldProps<string> & {
+  values: { [key: string]: boolean };
+  options: CheckboxProps[];
 };

@@ -1,46 +1,71 @@
 import React from 'react';
-import { FieldArray, useFormikContext } from 'formik';
+import {
+  useField,
+  FieldHookConfig,
+  FieldArray,
+  useFormikContext,
+} from 'formik';
 
-import CheckboxField from './CheckboxField';
-import { CheckboxGroupProps } from './types';
+import { chainValidations, required } from '../utils/validation';
+// import CheckboxField from './CheckboxField';
+import { CheckboxGroupProps, CheckboxProps } from './types';
+
+// import CheckboxGroup from 'local-web-components/CheckboxGroup';
+import CheckboxGroup from '@department-of-veterans-affairs/component-library/CheckboxGroup';
 
 const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
-  const formikContext = useFormikContext();
-  const { fieldProps, checkboxes } = props;
+  // const formikContext = useFormikContext();
+  // console.log(formikContext);
+
+  const withValidation = {
+    ...props,
+    validate: chainValidations(props, [required]),
+  };
+  const [field, meta, helpers] = useField(
+    withValidation as FieldHookConfig<string>
+  );
 
   return (
     <>
-      <legend id={`checkbox-group-${fieldProps.name}`}>
-        {fieldProps.label}
-      </legend>
-      <div role="group">
-        <FieldArray
-          name={fieldProps.name}
-          render={(arrayHelpers) => (
-            <>
-              {checkboxes.map((prop) => (
-                // checkboxField has a required property of checked?
-                <CheckboxField
-                  key={`checkbox-group-${fieldProps.name}-${prop.name}`}
-                  name={prop.name}
-                  label={prop.label}
-                  required={prop?.required}
-                  checked={false}
-                  // onChange={(e: any) => {
-                  //   // push to or remove from field array
-                  //   if (e.target.checked) {
-                  //     arrayHelpers.push(prop.value);
-                  //   } else {
-                  //     const idx = values.tags.indexOf(prop.value);
-                  //     arrayHelpers.remove(idx);
-                  //   }
-                  // }}
-                />
-              ))}
-            </>
-          )}
-        />
-      </div>
+      <CheckboxGroup
+        id={props.id}
+        label={props.label}
+        required={!!props.required}
+        name={props.name}
+        values={props.values}
+        options={props.options}
+        onValueChange={(option: CheckboxProps) => {
+          // convert field to array
+
+          // !!field.value.length && isValidJson(field.value) ? JSON.parse(field.value) :
+          const fieldValue: string[] = [];
+          const fieldIndex: number = fieldValue.indexOf(option.value);
+          if (fieldIndex >= 0) {
+            fieldValue.splice(fieldIndex, 1);
+          } else {
+            fieldValue.push(option.value);
+          }
+          // convert to string and submit
+          const fieldSerialize: string = fieldValue.length
+            ? JSON.stringify(fieldValue)
+            : '';
+
+          helpers.setValue(fieldSerialize, true);
+          helpers.setTouched(true, false);
+        }}
+        handleChange={(e: any) => {
+          console.log(e);
+        }}
+        errorMessage={(meta.touched && meta.error) || undefined}
+      >
+        {/* {props.options.map((option) => (
+            // checkboxField has a required property of checked?
+            <CheckboxField
+              key={option.value}
+              {...option}
+            />
+          ))} */}
+      </CheckboxGroup>
     </>
   );
 };

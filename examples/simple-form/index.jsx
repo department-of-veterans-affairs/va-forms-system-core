@@ -15,31 +15,32 @@ import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 
 const checkboxProps = {
-  fieldProps: {
-    label: 'What kind of breakfast do you like?',
-    name: 'breakfast',
-    id: 12,
-    /**
-     * If `required` is true, the default message will be used. If `required` is a
-     * string, it will be used as the error message.
-     */
-    required: true,
+  label: 'What breakfast?',
+  name: 'breakfast',
+  id: '12',
+  /**
+   * If `required` is true, the default message will be used. If `required` is a
+   * string, it will be used as the error message.
+   */
+  required: true,
+  values: {
+    eggs: true,
   },
-  checkboxes: [
+  options: [
     {
-      name: 'eggs',
+      value: 'eggs',
       label: 'Eggs',
-      id: '12a',
+      content: '🐥🐣',
     },
     {
-      name: 'protien',
+      value: 'protien',
       label: 'Protien Shake',
-      id: '12b',
+      content: '🏋️',
     },
     {
-      name: 'toast',
+      value: 'toast',
       label: 'Toast',
-      id: '12c',
+      content: '🍞',
     },
   ],
 };
@@ -52,11 +53,11 @@ const App = () => (
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
     <h1>Example form</h1>
-    <Formik initialValues={{ foo: '', bar: true, baz: '', checkboxes: [] }}>
+    <Formik initialValues={{ bar: true, breakfast: '' }}>
       <Form>
-        <TextField name="foo" label="Example" required />
+        {/* <TextField name="foo" label="Example" required /> */}
         <CheckboxField name="bar" label="Do you have pets?" required />
-        <DateField name="baz" required />
+        {/* <DateField name="baz" required /> */}
 
         <CheckboxFieldGroup {...checkboxProps} />
         <DebuggerView />
