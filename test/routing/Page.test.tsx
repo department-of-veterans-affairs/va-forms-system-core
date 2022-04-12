@@ -2,15 +2,18 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { BrowserRouter, Link, Route, Router } from 'react-router-dom';
+import { Link, Route, Router } from 'react-router-dom';
 import Page from '../../src/routing/Page';
 import Chapter from '../../src/routing/Chapter';
 import { createMemoryHistory } from 'history';
 
 describe('Routing - Page', () => {
-  test('is navigable', () => {
+  test('is navigable without Chapter components', () => {
+    const history = createMemoryHistory({
+      initialEntries: ['/'],
+    });
     const { queryByText } = render(
-      <BrowserRouter>
+      <Router history={history}>
         <Page path="/my-page" title="My page">
           <div>I am a child!</div>
           <div>Me too!</div>
@@ -20,15 +23,17 @@ describe('Routing - Page', () => {
           <h1>Intro page</h1>
           <Link to="my-page">Go to my page</Link>
         </Route>
-      </BrowserRouter>
+      </Router>
     );
     expect(queryByText(/Intro page/i)).not.toBeNull();
     expect(queryByText('My page')).toBeNull();
+    expect(history.entries[0].pathname).toEqual('/');
 
     userEvent.click(queryByText('Go to my page'));
 
     expect(queryByText('My page')).not.toBeNull();
     expect(queryByText('Intro page')).toBeNull();
+    expect(history.entries[1].pathname).toEqual('/my-page');
   });
 
   test('it can navigate between Pages within a Chapter', () => {
