@@ -1,3 +1,9 @@
+/**
+ * Combines multiple, sequential path segments into one path and
+ * normalizes the path with a single "/" character between them.
+ * @param args Path arguments
+ * @returns {String} Returns the combined, normalized path
+ */
 export const buildPath = (...args: string[]): string => {
   return args
     .map((part, i) => {
@@ -11,6 +17,12 @@ export const buildPath = (...args: string[]): string => {
     .join('/');
 };
 
+/**
+ * Returns the same normalized path as the buildPath function, but
+ * the path will always start with a leading "/" character.
+ * @param args Path arguments
+ * @returns {String} Returns the combined, normalized path with a leading "/"
+ */
 export const buildRelativePath = (...args: string[]): string => {
   const path = buildPath(...args);
 
