@@ -51,12 +51,11 @@ const App = () => (
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
     <h1>Example form</h1>
-    <Formik initialValues={{ bar: true, breakfast: [] }}>
+    <Formik initialValues={{ bar: true, breakfast: ['protien', 'eggs'] }}>
       <Form>
-        {/* <TextField name="foo" label="Example" required /> */}
+        <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />
-        {/* <DateField name="baz" required /> */}
-
+        <DateField name="baz" required />
         <CheckboxFieldGroup {...checkboxProps} />
         <DebuggerView />
       </Form>

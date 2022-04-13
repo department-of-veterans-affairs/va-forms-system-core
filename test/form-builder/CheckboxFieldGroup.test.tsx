@@ -4,7 +4,7 @@ import { waitFor } from '@testing-library/react';
 import CheckboxFieldGroup from '../../src/form-builder/CheckboxFieldGroup';
 import { buildRenderForm, changeValue } from '../utils';
 
-const renderForm = buildRenderForm({ thing: false });
+const renderForm = buildRenderForm({ thing: false, breakfast: [] });
 
 const getInput = (container: HTMLElement): HTMLElement => {
   const input = container.querySelector('.fieldset-input') as HTMLElement;
@@ -26,7 +26,6 @@ const testData: CheckboxGroupProps = {
    * string, it will be used as the error message.
    */
   required: true,
-  values: {},
   options: [
     {
       value: 'eggs',
@@ -70,11 +69,8 @@ describe('Form Builder - CheckboxFieldGroup', () => {
   });
 
   test('renders initial value', () => {
-    // const rf = buildRenderForm({ thing: true });
-    const checkboxGroupProps = { ...testData, values: { eggs: true } };
-    const { container } = renderForm(
-      <CheckboxFieldGroup {...checkboxGroupProps} />
-    );
+    const rf = buildRenderForm({ breakfast: ['eggs'] });
+    const { container } = rf(<CheckboxFieldGroup {...testData} />);
     const input = getInput(container);
     const firstCheckbox = input.querySelector('input');
     // This expects the string "true" because attributes on HTML elements are
