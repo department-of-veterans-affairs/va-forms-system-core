@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom';
 
 import { FormContext } from '../../src/routing/FormContext2';
 
@@ -9,7 +9,7 @@ import {
   TextField,
   DebuggerView,
   Router,
-  Page
+  Page,
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
@@ -50,7 +50,11 @@ const App = () => {
       {/* is the first to match a path, and a `/` would be a match for any page */}
       {/* https://reactrouter.com/web/guides/quick-start */}
       <Route path="/">
-        <Link to="one">Page one</Link>
+        <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+          <Link to="/one">
+            <h1>State Form App Page!</h1>
+          </Link>
+        </div>
       </Route>
     </Router>
   );

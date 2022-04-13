@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from 'react';
+import React, { createContext, FC, useState } from 'react';
 import { IFormContextType } from './types';
 
 const defaultState = {
@@ -14,10 +14,10 @@ const FormProvider: FC = ({ children }) => {
 
   const updateFormData = () => {
     console.log(handleUpdate);
-    
+
     return {
-      ...formData
-    }
+      ...formData,
+    };
   };
 
   return (

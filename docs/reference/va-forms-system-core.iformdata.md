@@ -7,7 +7,7 @@
 > This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 > 
 
-&lt;<!-- -->&lt;<!-- -->&lt;<!-- -->&lt;<!-- -->&lt;<!-- -->&lt;<!-- -->&lt; HEAD The type for the FormData to define the flexible data object
+The type for the FormData to define the flexible data object
 
 <b>Signature:</b>
 
