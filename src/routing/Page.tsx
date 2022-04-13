@@ -13,12 +13,6 @@ import { FormContext } from './FormContext2';
  * @beta
  */
 export default function Page(props: PageProps): JSX.Element {
-  
-  // I DONT WANT TO PUT THIS HERE, THERE SHOULD BE SOME WAY TO HAVE 
-  // HANDLEUPDATE COME FROM CONTEXT
-  const handleUpdate = () => {
-    console.log('submiting');
-  };
 
   const { path } = useRouteMatch();
   const combinedPath = buildRelativePath(path, props.path);
@@ -30,7 +24,9 @@ export default function Page(props: PageProps): JSX.Element {
         <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
           <h1>{props.title}</h1>
           {/* <Formik initialValues={value.formData} onSubmit={value.handleUpdate}> */}
-          <Formik initialValues={value.formData} onSubmit={handleUpdate}>
+          <Formik initialValues={value.formData} onSubmit={(values) => {
+            value.handleUpdate ? value.handleUpdate(values?.formData as Record<string, unknown>) : null;
+          }}>
             <Form>{props.children}</Form>
           </Formik>
         </div>

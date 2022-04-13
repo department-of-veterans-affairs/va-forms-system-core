@@ -5,9 +5,7 @@ export const defaultState = {
   formData: {
     foo: 'Testing',
   },
-  handleUpdate: () => {
-    console.log('Updating something in formData');
-  },
+  handleUpdate: () => {},
 };
 
 export const FormContext = createContext<IFormContextType>(defaultState);

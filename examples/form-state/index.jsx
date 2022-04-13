@@ -24,28 +24,25 @@ const App = () => {
   return (
     <Router basename="form-data">
       <Page title="Example form" path="/one">
-        {/* <div
-        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-        >
-          <Formik initialValues={formData}>
-            <Form>
-              <TextField name="foo" label="Example" required />
-              <button type="submit" onClick={handleUpdate}>
-                Click Me!
-              </button>
-              <DebuggerView />
-            </Form>
-          </Formik>
-        </div> */}
         <TextField name="formData.foo" label="Foo Example Field" required />
         <TextField name="formData.bar" label="Bar Example Field" required />
 
         <button type="submit" onClick={handleUpdate}>
           Push My Button
         </button>
+        <Link to="/two"> Page two </Link>
         <DebuggerView />
       </Page>
+      <Page title="Example form" path="/two">
+        <TextField name="formData.fiz" label="Fiz Example Field" required />
+        <TextField name="formData.buz" label="Buz Example Field" required />
 
+        <button type="submit" onClick={handleUpdate}>
+          Push My Button
+        </button>
+        <Link to="/one">Page one</Link>
+        <DebuggerView />
+      </Page>
       {/* This Route is last because a Switch will render whichever component */}
       {/* is the first to match a path, and a `/` would be a match for any page */}
       {/* https://reactrouter.com/web/guides/quick-start */}

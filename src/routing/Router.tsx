@@ -4,7 +4,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 
 // import { FormProvider } from './FormContext';
 
-import { defaultState, FormContext } from './FormContext2';
+import { FormContext } from './FormContext2';
 // import { FormContext } from './FormContext2';
 
 /**
@@ -15,14 +15,11 @@ import { defaultState, FormContext } from './FormContext2';
 export default function Router(props: RouterProps): JSX.Element {
   // const [formData, handleUpdate] = useState({});
 
-  const [formData, handleUpdate] = useState(defaultState);
+  const [formData, handleUpdate] = useState({});
 
-  const updateFormData = () => {
-    console.log(handleUpdate);
-
-    return {
-      ...formData
-    }
+  const updateFormData = (data:Record<string, unknown>) => {
+    const updatedData = {...formData, ...data};
+    handleUpdate(updatedData);
   }
   
   return (
