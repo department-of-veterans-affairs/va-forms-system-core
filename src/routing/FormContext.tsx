@@ -14,10 +14,13 @@ const FormProvider: FC = ({ children }) => {
 
   const updateFormData = () => {
     console.log(handleUpdate);
+    
+    return {
+      ...formData
+    }
   };
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <FormContext.Provider
       value={{
         formData,

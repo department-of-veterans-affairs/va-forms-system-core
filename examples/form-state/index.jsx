@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Link } from 'react-router-dom'
 
-import { FormContext } from '../../src/routing/FormContext';
+import { FormContext } from '../../src/routing/FormContext2';
 
-import { Formik, Form } from 'formik';
+// import { Formik, Form } from 'formik';
 import {
   TextField,
   DebuggerView,
+  Router,
+  Page
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
@@ -19,20 +22,37 @@ const App = () => {
   const { formData, handleUpdate } = useContext(FormContext);
 
   return (
-    <div
-      style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-    >
-      <h1>Example form</h1>
-      <Formik initialValues={formData}>
-        <Form>
-          <TextField name="foo" label="Example" required />
-          <button type="submit" onClick={handleUpdate}>
-            Click Me!
-          </button>
-          <DebuggerView />
-        </Form>
-      </Formik>
-    </div>
+    <Router basename="form-data">
+      <Page title="Example form" path="/one">
+        {/* <div
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+        >
+          <Formik initialValues={formData}>
+            <Form>
+              <TextField name="foo" label="Example" required />
+              <button type="submit" onClick={handleUpdate}>
+                Click Me!
+              </button>
+              <DebuggerView />
+            </Form>
+          </Formik>
+        </div> */}
+        <TextField name="formData.foo" label="Foo Example Field" required />
+        <TextField name="formData.bar" label="Bar Example Field" required />
+
+        <button type="submit" onClick={handleUpdate}>
+          Push My Button
+        </button>
+        <DebuggerView />
+      </Page>
+
+      {/* This Route is last because a Switch will render whichever component */}
+      {/* is the first to match a path, and a `/` would be a match for any page */}
+      {/* https://reactrouter.com/web/guides/quick-start */}
+      <Route path="/">
+        <Link to="one">Page one</Link>
+      </Route>
+    </Router>
   );
 };
 
