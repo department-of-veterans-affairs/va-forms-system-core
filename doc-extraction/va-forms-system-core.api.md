@@ -7,6 +7,16 @@
 
 import { FieldHookConfig } from 'formik';
 
+// @beta
+export interface ChapterProps {
+  // (undocumented)
+  children: typeof Page[];
+  // (undocumented)
+  path: string;
+  // (undocumented)
+  title: string;
+}
+
 // Warning: (ae-forgotten-export) The symbol "CheckboxProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
@@ -42,10 +52,12 @@ export interface Routable {
 // @beta
 export function Router(props: RouterProps): JSX.Element;
 
-// @beta
+// @public (undocumented)
 export interface RouterProps {
   // (undocumented)
   basename: string;
+  // Warning: (ae-incompatible-release-tags) The symbol "children" is marked as @public, but its signature references "Routable" which is marked as @beta
+  //
   // (undocumented)
   children: Routable | Array<Routable>;
 }
