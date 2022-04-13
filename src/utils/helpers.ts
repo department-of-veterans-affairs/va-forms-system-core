@@ -1,6 +1,6 @@
 /**
- * Combines multiple, sequential path segments into one path and
- * normalizes the path with a single "/" character between them.
+ * Combines multiple, sequential path segments into one normalized path
+ * with a single "/" character between the segments.
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path
  */
