@@ -32,7 +32,6 @@ export interface PageProps {
 }
 
 /**
-<<<<<<< HEAD
  * The type for the FormData to define the flexible data object
  *
  * @beta
