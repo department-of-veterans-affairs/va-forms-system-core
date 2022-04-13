@@ -13,6 +13,7 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
 export type CheckboxProps = FieldProps<string> & {
   checked?: boolean;
   content?: string;
+  onValueChange?: any;
 };
 
 export type CheckboxGroupProps = FieldProps<string> & {
