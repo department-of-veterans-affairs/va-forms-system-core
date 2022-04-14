@@ -17,5 +17,6 @@ export type CheckboxProps = FieldProps<string> & {
 };
 
 export type CheckboxGroupProps = FieldProps<string> & {
+  values: { [key: string]: boolean };
   options: CheckboxProps[];
 };

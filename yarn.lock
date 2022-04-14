@@ -1475,7 +1475,6 @@ __metadata:
     husky: ^6.0.0
     jest: ^27.0.4
     lint-staged: ^11.0.0
-    local-web-components: "file:../component-library/packages/react-components"
     lodash: ^4.17.21
     prettier: ^2.3.1
     react: ^17.0.2
@@ -10553,24 +10552,6 @@ fsevents@^1.2.7:
     emojis-list: ^3.0.0
     json5: ^2.1.2
   checksum: 6856423131b50b6f5f259da36f498cfd7fc3c3f8bb17777cf87fdd9159e797d4ba4288d9a96415fd8da62c2906960e88f74711dee72d03a9003bddcd0d364a51
-  languageName: node
-  linkType: hard
-
-"local-web-components@file:../component-library/packages/react-components::locator=%40department-of-veterans-affairs%2Fva-forms-system-core%40workspace%3A.":
-  version: 6.0.0
-  resolution: "local-web-components@file:../component-library/packages/react-components#../component-library/packages/react-components::hash=d01e1b&locator=%40department-of-veterans-affairs%2Fva-forms-system-core%40workspace%3A."
-  dependencies:
-    classnames: ^2.2.6
-    prop-types: ^15.6.2
-    react-focus-on: ^3.5.1
-    react-scroll: ^1.7.16
-    react-transition-group: 1
-    recast: ^0.14.4
-  peerDependencies:
-    "@department-of-veterans-affairs/web-components": "*"
-    react: ^17
-    react-dom: "*"
-  checksum: b2b3efb12101d85fa460ca34ad37f85cfd1ca13a41e216c19b14036e8258ac9edec338525af0ca350a3a803d203ca3dbcfa81af4b4430ecd68afda9000737be9
   languageName: node
   linkType: hard
 

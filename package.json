@@ -60,7 +60,6 @@
     "husky": "^6.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
-    "local-web-components": "file:../component-library/packages/react-components",
     "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

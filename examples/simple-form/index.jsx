@@ -51,7 +51,7 @@ const App = () => (
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
     <h1>Example form</h1>
-    <Formik initialValues={{ bar: true, breakfast: ['protien', 'eggs'] }}>
+    <Formik initialValues={{ bar: true, breakfast: [] }}>
       <Form>
         <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />

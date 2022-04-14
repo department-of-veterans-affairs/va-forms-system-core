@@ -11,6 +11,7 @@ import {
   chainValidations,
   required,
   requiredLength,
+  validationChainMock,
 } from '../utils/validation';
 import CheckboxField from './CheckboxField';
 import { CheckboxGroupProps, CheckboxProps } from './types';
@@ -38,11 +39,12 @@ const storeInheritedValues = (fieldValue: string[] | undefined) => {
 const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   const withValidation = {
     ...props,
-    validate: chainArrayValidations(props, [requiredLength]), // chainValidations(props, [required]),
+    validate: validationChainMock(props), // chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string[]>
   );
+  const inheritedValues = storeInheritedValues(field.value);
 
   return (
     <>
@@ -51,12 +53,11 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
         label={props.label}
         required={!!props.required}
         name={props.name}
-        values={storeInheritedValues(field.value)}
+        values={inheritedValues}
         options={props.options}
         onValueChange={(option: CheckboxProps) => {
           // convert field to array
           let fieldArray: string[] = [...field.value];
-          // const fieldArray : any = !!field.value.length ? JSON.parse(field.value) : [];
 
           const fieldIndex: string | undefined = fieldArray.find(
             (fieldOption) => fieldOption === option.value
@@ -69,16 +70,8 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
           } else {
             fieldArray.push(option.value);
           }
-          // convert to string and submit
-          // const fieldSerialize: string = fieldValue.length
-          //   ? JSON.stringify(fieldValue)
-          //   : '';
-
-          helpers.setValue(fieldArray, true);
           helpers.setTouched(true, false);
-        }}
-        handleChange={(e: any) => {
-          console.log(e);
+          helpers.setValue(fieldArray, true);
         }}
         errorMessage={(meta.touched && meta.error) || undefined}
       ></CheckboxGroup>
