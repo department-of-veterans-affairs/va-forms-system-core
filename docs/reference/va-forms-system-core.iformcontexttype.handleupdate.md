@@ -10,5 +10,5 @@
 <b>Signature:</b>
 
 ```typescript
-handleUpdate?: () => void;
+handleUpdate?: (data: Record<string, unknown>) => void;
 ```

@@ -20,5 +20,5 @@ export interface IFormContextType
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [formData](./va-forms-system-core.iformcontexttype.formdata.md) | [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> |
-|  [handleUpdate?](./va-forms-system-core.iformcontexttype.handleupdate.md) | () =&gt; void | <b><i>(BETA)</i></b> <i>(Optional)</i> |
+|  [handleUpdate?](./va-forms-system-core.iformcontexttype.handleupdate.md) | (data: Record&lt;string, unknown&gt;) =&gt; void | <b><i>(BETA)</i></b> <i>(Optional)</i> |
 
