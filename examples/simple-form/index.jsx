@@ -40,6 +40,11 @@ const checkboxProps = {
       label: 'Toast',
       content: '🍞',
     },
+    {
+      value: 'fruit',
+      label: 'Fruit',
+      content: '🍐',
+    },
   ],
 };
 
@@ -55,8 +60,13 @@ const App = () => (
       <Form>
         <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />
-        <DateField name="baz" required />
+        {/* <DateField name="baz" required /> */}
         <CheckboxFieldGroup {...checkboxProps} />
+        <button type="submit" className="btn">
+          {' '}
+          submit
+        </button>
+
         <DebuggerView />
       </Form>
     </Formik>

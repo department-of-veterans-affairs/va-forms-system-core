@@ -37,6 +37,7 @@ const storeInheritedValues = (fieldValue: string[] | undefined) => {
 };
 
 const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
+  // component re-renders these values per form input inside the form
   const withValidation = {
     ...props,
     validate: validationChainMock(props), // chainValidations(props, [required]),
@@ -44,6 +45,7 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string[]>
   );
+  // convert the field values to a format that the component stores default values
   const inheritedValues = storeInheritedValues(field.value);
 
   return (
@@ -56,20 +58,23 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
         values={inheritedValues}
         options={props.options}
         onValueChange={(option: CheckboxProps) => {
-          // convert field to array
+          // store field value
           let fieldArray: string[] = [...field.value];
 
           const fieldIndex: string | undefined = fieldArray.find(
             (fieldOption) => fieldOption === option.value
           );
           if (fieldIndex) {
-            // field.value.
+            // filter out old values
             fieldArray = fieldArray.filter((fieldOption) => {
               return fieldOption !== option.value;
             });
           } else {
+            // push new values to array
             fieldArray.push(option.value);
           }
+
+          // store and validate the value and set the field as touched
           helpers.setTouched(true, false);
           helpers.setValue(fieldArray, true);
         }}
