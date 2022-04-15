@@ -10,7 +10,6 @@ import {
   chainArrayValidations,
   required,
   requiredLength,
-  validationChainMock,
 } from '../utils/validation';
 import CheckboxField from './CheckboxField';
 import { CheckboxGroupProps, CheckboxProps } from './types';
