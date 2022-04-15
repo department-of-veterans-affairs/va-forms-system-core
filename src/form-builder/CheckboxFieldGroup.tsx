@@ -8,7 +8,6 @@ import {
 
 import {
   chainArrayValidations,
-  chainValidations,
   required,
   requiredLength,
   validationChainMock,
@@ -40,7 +39,7 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   // component re-renders these values per form input inside the form
   const withValidation = {
     ...props,
-    validate: validationChainMock(props), // chainValidations(props, [required]),
+    validate: chainArrayValidations(props, [requiredLength]), // chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string[]>

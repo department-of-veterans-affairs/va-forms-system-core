@@ -17,22 +17,6 @@ export type ValidationFunctionArray<T> = (
   props: FieldProps<T>
 ) => ValidationFunctionResult<T>;
 
-export const validationChainMock = <T>(
-  props: FieldProps<T>
-): ((value: T[]) => ValidationFunctionResult<T>) => {
-  return (value: T[]) => {
-    if (props.required && value?.length <= 0) {
-      const errorMessage =
-        typeof props.required === 'string'
-          ? props.required
-          : getMessage('required.default');
-      return errorMessage;
-    }
-
-    return props.validate ? props.validate(value) : undefined;
-  };
-};
-
 export const chainArrayValidations = <T>(
   props: FieldProps<T>,
   validations: ValidationFunctionArray<T>[]
