@@ -15,8 +15,7 @@ import { defineCustomElements } from '@department-of-veterans-affairs/component-
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
-const App = () => {
-  const { formData, handleUpdate } = useContext(FormContext);
+export const ContextApp = () => {
 
   return (
     <Router basename="form-data">
@@ -24,7 +23,7 @@ const App = () => {
         <TextField name="formData.foo" label="Foo Example Field" required />
         <TextField name="formData.bar" label="Bar Example Field" required />
 
-        <button type="submit" onClick={handleUpdate}>
+        <button type="submit">
           Push My Button
         </button>
         <Link to="/two"> Page two </Link>
@@ -34,7 +33,7 @@ const App = () => {
         <TextField name="formData.fiz" label="Fiz Example Field" required />
         <TextField name="formData.buz" label="Buz Example Field" required />
 
-        <button type="submit" onClick={handleUpdate}>
+        <button type="submit">
           Push My Button
         </button>
         <Link to="/one">Page one</Link>
@@ -55,4 +54,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ContextApp />, document.getElementById('root'));

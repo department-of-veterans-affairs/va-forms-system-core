@@ -8,6 +8,7 @@ import { Page } from './index';
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
+  optionalHandleUpdate?: () => void;
 }
 
 /**
