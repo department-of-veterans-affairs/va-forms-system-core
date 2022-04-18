@@ -23,9 +23,18 @@ const App = () => (
     <Formik initialValues={
       { 
         name: 'Label',
+        radioTest: null,
       }}>
       <Form>
-        <RadioGroup name="radio-test" options={[{checked: true, label: "yes", name: "yes", value: true}, {checked: false, label: "No", name: "no", value: false}]} >
+        <RadioGroup 
+          label="Label" 
+          name="radioTest" 
+          options={
+            [
+              {label: "yes", name: "yes", value: "yes", key: 1}, 
+              {label: "No", name: "no", value: "no", key: 2}
+            ]
+          } >
         </RadioGroup>
         <DebuggerView />
       </Form>
