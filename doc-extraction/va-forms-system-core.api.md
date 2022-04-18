@@ -7,6 +7,7 @@
 /// <reference types="react" />
 
 import { FieldHookConfig } from 'formik';
+import { default as React_2 } from 'react';
 
 // Warning: (ae-forgotten-export) The symbol "CheckboxProps" needs to be exported by the entry point index.d.ts
 //
@@ -38,11 +39,6 @@ export interface PageProps {
 //
 // @public (undocumented)
 export function RadioGroup(props: RadioGroupProps): JSX.Element;
-
-// Warning: (ae-forgotten-export) The symbol "RadioItemProps" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export const RadioItem: (props: RadioItemProps) => null;
 
 // @beta
 export interface Routable {

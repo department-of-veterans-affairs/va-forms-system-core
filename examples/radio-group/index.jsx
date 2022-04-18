@@ -20,10 +20,12 @@ const App = () => (
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
     <h1>Example radio group</h1>
-    <Formik initialValues={{ foo: '', bar: true, baz: '' }}>
+    <Formik initialValues={
+      { 
+        name: 'Label',
+      }}>
       <Form>
-        <RadioGroup name="radio-test">
-            <RadioItem></RadioItem>
+        <RadioGroup name="radio-test" options={[{checked: true, label: "yes", name: "yes", value: true}, {checked: false, label: "No", name: "no", value: false}]} >
         </RadioGroup>
         <DebuggerView />
       </Form>
