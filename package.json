@@ -77,7 +77,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": "eslint --cache --fix",
-    "*.{js,ts,jsx,tsx,css,md}": "prettier --write"
+    "src/**/*.{js,ts,jsx,tsx}": "eslint --cache --fix",
+    "src/**/*.{js,ts,jsx,tsx,css,md}": "prettier --write"
   }
 }

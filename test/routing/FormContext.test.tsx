@@ -2,36 +2,36 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {
-  // Router,
-  // Page,
+  Router,
+  Page,
   FormContext,
 } from '../../src';
 
-// import { Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
-// const TestForm = ( { handleSubmit, children } ) => {
-//   return (
-//     <Router optionalHandleUpdate={handleSubmit}>
-//       <Page title="Example form" path="/one">
-//         <label htmlFor="fiz">Fiz</label>
-//         <input id="fiz" type="text" name="fiz" />
+const TestForm = ( { handleSubmit, children } ) => {
+  return (
+    <Router optionalHandleUpdate={handleSubmit}>
+      <Page title="Example form" path="/one">
+        <label htmlFor="fiz">Fiz</label>
+        <input id="fiz" type="text" name="fiz" />
 
-//         <label htmlFor="buz">Buz</label>
-//         <input id="buz" type="text" name="buz" />
+        <label htmlFor="buz">Buz</label>
+        <input id="buz" type="text" name="buz" />
 
-//         <button type="submit" name="submit">
-//           {children}
-//         </button>
-//       </Page>
+        <button type="submit" name="submit">
+          {children}
+        </button>
+      </Page>
 
-//       <Route path="/">
-//         <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
-//           <Link to="/one">Go to Form</Link>
-//         </div>
-//       </Route>
-//     </Router>
-//   )
-// }
+      <Route path="/">
+        <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+          <Link to="/one">Go to Form</Link>
+        </div>
+      </Route>
+    </Router>
+  )
+}
 
 describe('FormContext is being used through Pages', () => {
   /**
@@ -56,18 +56,18 @@ describe('FormContext is being used through Pages', () => {
   /**
    *  Test that submit can be called after routing through pages
    */
-  // test('While going through pages, submit was called at least once', async () => {
-  //   const handleClick = jest.fn()
+  test('While going through pages, submit was called at least once', async () => {
+    const handleClick = jest.fn()
 
-  //   const example2 = render(<TestForm handleSubmit={handleClick}>Click Me</TestForm>)
+    const example2 = render(<TestForm handleSubmit={handleClick}>Click Me</TestForm>)
 
-  //   fireEvent.click(example2.getByText(/go to form/i))
+    fireEvent.click(example2.getByText(/go to form/i))
 
-  //   fireEvent.click(example2.getByText(/click me/i))
+    fireEvent.click(example2.getByText(/click me/i))
 
-  //   await waitFor(() =>
-  //     expect(handleClick).toHaveBeenCalledTimes(1));
-  // });
+    await waitFor(() =>
+      expect(handleClick).toHaveBeenCalledTimes(1));
+  });
 
   /**
    *  Form Data passes through form and submitted
