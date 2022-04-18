@@ -68,33 +68,4 @@ describe('FormContext is being used through Pages', () => {
     await waitFor(() =>
       expect(handleClick).toHaveBeenCalledTimes(1));
   });
-
-  /**
-   *  Form Data passes through form and submitted
-   */
-  // test('Data is accurate after entering fields', async () => {
-  //   const handleClick = jest.fn();
-
-  //   const example3 = render(<TestForm onClick={handleClick}>Click Me</TestForm>);
-
-  //   fireEvent.click(example3.getByText(/go to form/i));
-
-  //   fireEvent.change(example3.getByLabelText(/fiz/i), {target: {value: 'John'}})
-  //   fireEvent.change(example3.getByLabelText(/buz/i), {target: { value: 'Dee' }})
-
-  //   fireEvent.click(example3.getByText(/click me/i));
-
-  //   await waitFor(() => {
-  //     expect(handleClick).toHaveBeenCalledWith(
-  //       {
-  //         values: {
-  //           formData: {
-  //             buz: "Dee",
-  //             fiz: "John"
-  //           }
-  //         }
-  //       }
-  //     );
-  //   });
-  // });
 });
