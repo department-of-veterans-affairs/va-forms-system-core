@@ -10,27 +10,25 @@ import { FormContext } from './FormContext';
  */
 export default function Router(props: RouterProps): JSX.Element {
   const [formData, handleUpdate] = useState({});
-  // const [optionalHandleUpdate] = props;
-  const updateFormData = (data:Record<string, unknown>) => {
-    const updatedData = {...formData, ...data};
+
+  const updateFormData = (data: Record<string, unknown>) => {
     if (props.optionalHandleUpdate) {
-      console.log('gets here', props.optionalHandleUpdate);
-      // This should be one level deep, should only be something 
-      // like props.optionalHandleUpdate
-      props.optionalHandleUpdate.handleSubmit();
-    };
-    handleUpdate(updatedData);
-  }
-  
+      handleUpdate(props.optionalHandleUpdate);
+    } else {
+      const updatedData = { ...formData, ...data };
+      handleUpdate(updatedData);
+    }
+  };
+
   return (
-    <FormContext.Provider value={{
+    <FormContext.Provider
+      value={{
         formData,
-        handleUpdate: updateFormData
-      }}>
+        handleUpdate: updateFormData,
+      }}
+    >
       <BrowserRouter basename={props.basename}>
-        <Switch>
-          {props.children}
-        </Switch>
+        <Switch>{props.children}</Switch>
       </BrowserRouter>
     </FormContext.Provider>
   );
