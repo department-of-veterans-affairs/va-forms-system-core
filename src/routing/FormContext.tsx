@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 import { IFormContextType } from './types';
 
-export const defaultState = {
-  formData: {
-    foo: 'Testing',
+const defaultState = {
+  formData: {},
+  handleUpdate: () => {
+    console.log('submitting');
   },
-  handleUpdate: () => {},
 };
 
 export const FormContext = createContext<IFormContextType>(defaultState);

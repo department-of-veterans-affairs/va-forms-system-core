@@ -12,12 +12,8 @@ export default function Router(props: RouterProps): JSX.Element {
   const [formData, handleUpdate] = useState({});
 
   const updateFormData = (data: Record<string, unknown>) => {
-    if (props.optionalHandleUpdate) {
-      handleUpdate(props.optionalHandleUpdate);
-    } else {
-      const updatedData = { ...formData, ...data };
-      handleUpdate(updatedData);
-    }
+    const updatedData = { ...formData, ...data };
+    handleUpdate(updatedData);
   };
 
   return (
