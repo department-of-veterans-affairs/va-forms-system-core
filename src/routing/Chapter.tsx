@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ChapterProps } from './types';
 
 /**
@@ -9,13 +9,24 @@ import { ChapterProps } from './types';
  */
 export default function Chapter(props: ChapterProps): JSX.Element {
   return (
+    // <Route path={props.path}>
+    //   <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+    //     <h1>{props.title}</h1>
+    //   </div>
+    //   <Routes>
+    //     <>
+    //       {props.children}
+    //     </>
+    //   </Routes>
+    // </Route>
     <Route path={props.path}>
-      <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
-        <h1>{props.title}</h1>
-      </div>
-      <Switch>
-        <>{props.children}</>
-      </Switch>
+      <>
+        {/* <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+          <h1>{props.title}</h1>
+        </div> */}
+
+        {props.children}
+      </>
     </Route>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouterProps } from './types';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 
 /**
  * Manages form pages as routes
@@ -10,7 +10,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 export default function Router(props: RouterProps): JSX.Element {
   return (
     <BrowserRouter basename={props.basename}>
-      <Switch>{props.children}</Switch>
+      <Routes>{props.children}</Routes>
     </BrowserRouter>
   );
 }
