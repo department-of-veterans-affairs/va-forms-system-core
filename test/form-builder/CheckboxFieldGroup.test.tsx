@@ -2,22 +2,29 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 
 import CheckboxFieldGroup from '../../src/form-builder/CheckboxFieldGroup';
+import VaCheckboxGroup from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm({ thing: false, breakfast: [] });
 
-const getInput = (container: HTMLElement): HTMLElement => {
-  const input = container.querySelector('.fieldset-input') as HTMLElement;
-  if (!input) throw new Error('No va-checkbox found');
-  return input;
+const getCheckboxGroupContainer = (container: HTMLElement): HTMLElement => {
+  const checkboxGroupContainer = container.querySelector(
+    'va-checkbox-group'
+  ) as HTMLElement;
+  if (!checkboxGroupContainer) throw new Error('No va-checkbox found');
+  return checkboxGroupContainer;
 };
 import {
   CheckboxProps,
   CheckboxGroupProps,
 } from '../../src/form-builder/types';
-import { required } from '../../src/utils/validation';
+import {
+  required,
+  requiredValue,
+  chainValidations,
+} from '../../src/utils/validation';
 
-const testData: CheckboxGroupProps = {
+const testData = {
   label: 'What breakfast?',
   name: 'breakfast',
   id: '12',
@@ -26,21 +33,31 @@ const testData: CheckboxGroupProps = {
    * string, it will be used as the error message.
    */
   required: true,
+  values: {},
   options: [
     {
-      value: 'eggs',
+      name: 'eggs',
       label: 'Eggs',
-      name: 'breakfast',
+      content: '🐥🐣',
+      required: false,
     },
     {
-      value: 'protien',
+      name: 'protien',
       label: 'Protien Shake',
-      name: 'breakfast',
+      content: '🏋️',
+      required: true,
     },
     {
-      value: 'toast',
+      name: 'toast',
       label: 'Toast',
-      name: 'breakfast',
+      content: '🍞',
+      required: false,
+    },
+    {
+      name: 'fruit',
+      label: 'Fruit',
+      content: '🍐',
+      required: false,
     },
   ],
 };
@@ -48,33 +65,45 @@ const testData: CheckboxGroupProps = {
 describe('Form Builder - CheckboxFieldGroup', () => {
   test('renders', () => {
     const { container } = renderForm(<CheckboxFieldGroup {...testData} />);
-    const input = getInput(container);
-    const firstCheckboxLabel = input.querySelector(
-      '.form-checkbox-buttons label'
-    );
-    expect(firstCheckboxLabel?.textContent).toEqual('Eggs');
+    const checkboxGroup = getCheckboxGroupContainer(container);
+    const firstCheckbox = checkboxGroup.querySelector('va-checkbox');
+    expect(firstCheckbox?.label).toEqual('Eggs');
   });
 
   test('renders the default "required" validation error message', async () => {
-    const { container, getFormProps } = renderForm(
+    const rf = buildRenderForm({
+      breakfast: {
+        eggs: false,
+        protien: false,
+        toast: false,
+        fruit: false,
+      },
+    });
+    const { container, getFormProps } = rf(
       <CheckboxFieldGroup {...testData} />
     );
-    const input = getInput(container);
+    const input = getCheckboxGroupContainer(container);
     await waitFor(() => {
       getFormProps().setFieldTouched('breakfast');
     });
-    expect(
-      input?.querySelector('.usa-input-error-message')?.textContent
-    ).toContain('Please provide a response');
+
+    expect(input.getAttribute('error')).toContain('Please provide a response');
   });
 
   test('renders initial value', () => {
-    const rf = buildRenderForm({ breakfast: ['eggs'] });
+    const rf = buildRenderForm({
+      breakfast: {
+        eggs: true,
+        protien: false,
+        toast: false,
+        fruit: false,
+      },
+    });
     const { container } = rf(<CheckboxFieldGroup {...testData} />);
-    const input = getInput(container);
-    const firstCheckbox = input.querySelector('input');
+    const input = getCheckboxGroupContainer(container);
+    const firstCheckbox = input.querySelector('va-checkbox');
     // This expects the string "true" because attributes on HTML elements are
     // always strings
-    expect(firstCheckbox?.hasAttribute('checked')).toBeTruthy();
+    expect(firstCheckbox?.getAttribute('checked')).toBeTruthy();
   });
 });

@@ -1,5 +1,4 @@
 declare module '@department-of-veterans-affairs/component-library/Date';
 declare module '@department-of-veterans-affairs/component-library/CheckboxGroup';
 
-declare module 'local-web-components/CheckboxGroup';
 declare module '@department-of-veterans-affairs/component-library/dist/react-bindings';

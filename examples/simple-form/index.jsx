@@ -26,24 +26,29 @@ const checkboxProps = {
   values: {},
   options: [
     {
-      value: 'eggs',
+      name: 'eggs',
       label: 'Eggs',
       content: '🐥🐣',
+      checked: true,
+      required: false,
     },
     {
-      value: 'protien',
+      name: 'protien',
       label: 'Protien Shake',
       content: '🏋️',
+      required: true,
     },
     {
-      value: 'toast',
+      name: 'toast',
       label: 'Toast',
       content: '🍞',
+      required: false,
     },
     {
-      value: 'fruit',
+      name: 'fruit',
       label: 'Fruit',
       content: '🍐',
+      required: false,
     },
   ],
 };
@@ -56,10 +61,20 @@ const App = () => (
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
     <h1>Example form</h1>
-    <Formik initialValues={{ bar: true, breakfast: [] }}>
+    <Formik
+      initialValues={{
+        bar: true,
+        breakfast: {
+          eggs: true,
+          protien: false,
+          toast: false,
+          fruit: false,
+        },
+      }}
+    >
       <Form>
-        <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />
+        <TextField name="foo" label="Example" required />
         {/* <DateField name="baz" required /> */}
         <CheckboxFieldGroup {...checkboxProps} />
         <button type="submit" className="btn">
