@@ -20,6 +20,7 @@ const App = () => (
     <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
       <Link to="/simple-form">Simple Form</Link> <br />
       <Link to="/multipage-form">Multipage Form</Link> <br />
+      <Link to="/form-state">Form State</Link> <br />
       <Link to="/router-v6">React Router V6</Link> <br />
     </nav>
   </div>
