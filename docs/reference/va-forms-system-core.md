@@ -8,6 +8,7 @@
 
 |  Function | Description |
 |  --- | --- |
+|  [Chapter(props)](./va-forms-system-core.chapter.md) | <b><i>(BETA)</i></b> Renders the chapter contents |
 |  [Page(props)](./va-forms-system-core.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
 |  [Router(props)](./va-forms-system-core.router.md) | <b><i>(BETA)</i></b> Manages form pages as routes |
 

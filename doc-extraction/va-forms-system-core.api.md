@@ -8,6 +8,9 @@
 import { FieldHookConfig } from 'formik';
 
 // @beta
+export function Chapter(props: ChapterProps): JSX.Element;
+
+// @beta
 export interface ChapterProps {
   // (undocumented)
   children: typeof Page[];

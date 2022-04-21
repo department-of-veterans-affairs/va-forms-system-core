@@ -1,101 +1,125 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 import {
+  TextField,
   CheckboxField,
   DebuggerView,
-  Page,
-  Router,
-  TextField,
 } from '@department-of-veterans-affairs/va-forms-system-core';
-
-import { Link, Route, Routes, Outlet } from 'react-router-dom';
-
+import { Formik, Form } from 'formik';
+import { Link, Outlet } from 'react-router-dom';
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
-import Chapter from '@department-of-veterans-affairs/va-forms-system-core/routing/Chapter';
+import { Routes, Route } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
-const App = () => (
-  // <Router basename="multipage-form">
-  //   <>
-  //     <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
-  //       <Link to="/intro-page">Intro Page</Link>
-  //     </div>
-
-  //     <Routes>
-  //       <>
-  //         <Page title="Intro Page" path="/intro-page">
-  //           <div>
-  //             This Intro &lt;Page/&gt; component does not use a &lt;Chapter/&gt;
-  //             component.
-  //           </div>
-  //           <div>
-  //             The next few links will take you through &lt;Chapter/&gt; and
-  //             &lt;Page/&gt; components.
-  //           </div>
-  //           <Link to="/chapter-one/page-one">Chapter 1 - Page 1</Link>
-  //         </Page>
-
-  //         <Chapter title="Chapter One" path="/chapter-one">
-  //           <Page title="Page One" path="/page-one">
-  //             <TextField name="foo" label="Example" required />
-  //             <DebuggerView />
-  //             <Link to="/chapter-one/page-two">Chapter 1 - Page 2</Link>
-  //           </Page>
-
-  //           <Page title="Page Two" path="/page-two">
-  //             <CheckboxField name="bar" label="Do you have pets?" required />
-  //             <DebuggerView />
-  //             <Link to="/chapter-two/page-one">Chapter 2 - Page 1</Link>
-  //           </Page>
-  //         </Chapter>
-
-  //         <Chapter title="Chapter Two" path="/chapter-two">
-  //           <Page title="Page One" path="/page-one">
-  //             <div>Page 1</div>
-  //             <Link to="/chapter-two/page-two">Chapter 2 - Page 2</Link>
-  //           </Page>
-
-  //           <Page title="Page Two" path="/page-two">
-  //             <div>Page 2</div>
-  //             <div>done</div>
-  //             <Link to="/chapter-one/page-one">Chapter 1 - Page 1</Link>
-  //           </Page>
-  //         </Chapter>
-  //       </>
-  //     </Routes>
-  //   </>
-  // </Router>
-  // <MyPage></MyPage>
-  <>
-    <Router basename="multipage-form">
-      {/* <h1>HELLOOOOOOOO</h1>
-      <MyPage></MyPage> */}
-      <Routes>
-        <Route path="my-page" element={<MyPage />} />
-      </Routes>
-    </Router>
-
-    <div>
-      <nav>
-        <Link to="me">My Profile</Link>
-      </nav>
-
-      <Outlet />
-    </div>
-  </>
+const NoMatch = (props) => (
+  <main style={{ padding: '1rem' }}>
+    <p>There is nothing here! {props.name}</p>
+  </main>
 );
 
-const MyPage = () => {
-  return (
-    // <Route path="/my-page">
-    //   <h1>Hello From My Page</h1>
-    // </Route>
-    <h1> HELLLLLOOOOOO </h1>
-  );
-};
+const Chapter = () => (
+  <div>
+    <Outlet />
+  </div>
+);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Pages = () => (
+  <Routes>
+    <Route index element={<Page1 />} />
+    <Route path="page-one" element={<Page1 />} />
+    <Route path="page-two" element={<Page2 />} />
+    <Route path="page-three" element={<Page3 />} />
+    <Route path="page-four" element={<Page4 />} />
+    <Route path="*" element={<NoMatch name="No Routes for Multipage-Form" />} />
+  </Routes>
+);
+
+const Page1 = () => (
+  <div>
+    <TextField
+      name="formData.chapter1.foo"
+      label="Enter your FOO data"
+      required
+    />
+    <Link to="page-two">Continue to page 2</Link>
+  </div>
+);
+
+const Page2 = () => (
+  <div>
+    <TextField
+      name="formData.chapter1.bar"
+      label="Enter your BAR data"
+      required
+    />
+    <Link to="/multipage-form/chapter-two">
+      <b>Chapter 2</b>
+    </Link>
+  </div>
+);
+
+const Page3 = () => (
+  <div>
+    <TextField
+      name="formData.chapter2.username"
+      label="Enter your USERNAME data"
+      required
+    />
+    <Link to="page-four">Continue to page 4</Link>
+  </div>
+);
+
+const Page4 = () => (
+  <div>
+    <CheckboxField
+      name="formData.chapter2.termAgreement"
+      label="Do you agree with the data shown below?"
+      required
+    />
+    <button type="submit">Submit form!</button>
+  </div>
+);
+
+const MultiPageApp = () => (
+  <div
+    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+  >
+    <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
+      <h1>Welcome to React Router V6 Form Example</h1>
+      <div>
+        The links below will help you navigate through the 2 chapters and 4
+        pages of this form
+      </div>
+      <Link to="chapter-one">Chapter 1</Link> &nbsp;&nbsp;
+      <Link to="chapter-two">Chapter 2</Link> &nbsp;&nbsp;
+      <Link to="chapter-three">Chapter 3</Link> &nbsp;&nbsp;
+      <br />
+      <Formik
+        initialValues={{
+          formData: {
+            chapter1: {
+              foo: '',
+              bar: '',
+            },
+            chapter2: {
+              username: '',
+              termAgreement: false,
+            },
+          },
+          handleUpdate: () => {
+            console.log('subitting');
+          },
+        }}
+      >
+        <Form>
+          <Outlet />
+          <DebuggerView />
+        </Form>
+      </Formik>
+    </nav>
+  </div>
+);
+
+export { MultiPageApp, Chapter, Pages, Page1, Page2, Page3, Page4 };

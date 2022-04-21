@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { Form, Formik } from 'formik';
 import {
@@ -15,7 +14,7 @@ import { defineCustomElements } from '@department-of-veterans-affairs/component-
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
-const App = () => (
+const SimpleApp = () => (
   <div
     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
   >
@@ -31,4 +30,4 @@ const App = () => (
   </div>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default SimpleApp;
