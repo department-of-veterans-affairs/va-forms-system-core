@@ -14,15 +14,6 @@ const getCheckboxGroupContainer = (container: HTMLElement): HTMLElement => {
   if (!checkboxGroupContainer) throw new Error('No va-checkbox found');
   return checkboxGroupContainer;
 };
-import {
-  CheckboxProps,
-  CheckboxGroupProps,
-} from '../../src/form-builder/types';
-import {
-  required,
-  requiredValue,
-  chainValidations,
-} from '../../src/utils/validation';
 
 const testData = {
   label: 'What breakfast?',
@@ -42,8 +33,8 @@ const testData = {
       required: false,
     },
     {
-      name: 'protien',
-      label: 'Protien Shake',
+      name: 'protein',
+      label: 'Protein Shake',
       content: '🏋️',
       required: true,
     },
@@ -74,7 +65,7 @@ describe('Form Builder - CheckboxFieldGroup', () => {
     const rf = buildRenderForm({
       breakfast: {
         eggs: false,
-        protien: false,
+        protein: false,
         toast: false,
         fruit: false,
       },
@@ -94,7 +85,7 @@ describe('Form Builder - CheckboxFieldGroup', () => {
     const rf = buildRenderForm({
       breakfast: {
         eggs: true,
-        protien: false,
+        protein: false,
         toast: false,
         fruit: false,
       },

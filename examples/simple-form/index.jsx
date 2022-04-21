@@ -33,8 +33,8 @@ const checkboxProps = {
       required: false,
     },
     {
-      name: 'protien',
-      label: 'Protien Shake',
+      name: 'protein',
+      label: 'Protein Shake',
       content: '🏋️',
       required: true,
     },
@@ -66,7 +66,7 @@ const App = () => (
         bar: true,
         breakfast: {
           eggs: true,
-          protien: false,
+          protein: false,
           toast: false,
           fruit: false,
         },
