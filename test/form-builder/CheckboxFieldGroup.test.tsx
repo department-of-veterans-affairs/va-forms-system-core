@@ -81,6 +81,26 @@ describe('Form Builder - CheckboxFieldGroup', () => {
     expect(input.getAttribute('error')).toContain('Please provide a response');
   });
 
+  test('does not render the default "required" validation error message when required is not set', async () => {
+    const rf = buildRenderForm({
+      breakfast: {
+        eggs: false,
+        protein: false,
+        toast: false,
+        fruit: false,
+      },
+    });
+    const { container, getFormProps } = rf(
+      <CheckboxFieldGroup {...testData} required={false} />
+    );
+    const input = getCheckboxGroupContainer(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('breakfast');
+    });
+
+    expect(input.getAttribute('error')).toBeFalsy();
+  });
+
   test('renders initial value', () => {
     const rf = buildRenderForm({
       breakfast: {
