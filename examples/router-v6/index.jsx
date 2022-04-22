@@ -6,6 +6,7 @@ import {
   Page,
   TextField,
   DebuggerView,
+  FormContext
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const FirstChapter = () => (
@@ -23,7 +24,6 @@ const TestPage = () => (
 
     <TextField name="formData.chapter1.foo" label="Fooooo" required />
     <TextField name="formData.chapter1.bar" label="Barrrr" required />
-    <DebuggerView />
   </Page>
 );
 
@@ -32,33 +32,24 @@ const MyForm = () => {
     <div
       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
     >
-      <Formik
-        initialValues={{
-          formData: {
-            chapter1: {
-              foo: '',
-              bar: '',
-            },
-            chapter2: {
-              username: '',
-              termAgreement: false,
-            },
-          },
-          handleUpdate: () => {
-            console.log('subitting');
-          },
-        }}
-      >
-        <Form>
-          <h2>Welcome to your first form</h2>
-          <h3>Please follow the links below to get started on your form</h3>
-          <Link to="chapter-one">Going to Chapter 1</Link> <br />
-          <br />
-          <br />
-          <Outlet />
-          <br />
-        </Form>
-      </Formik>
+      <FormContext.Consumer>
+        {value =>
+          <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+            <Formik initialValues={value.formData} onSubmit={value.handleUpdate}>
+              <Form>
+                <h2>Welcome to your first form</h2>
+                <h3>Please follow the links below to get started on your form</h3>
+                <Link to="chapter-one">Going to Chapter 1</Link> <br />
+                <br />
+                <br />
+                <Outlet />
+                <DebuggerView />
+                <br />
+              </Form>
+            </Formik>
+          </div>
+        }
+      </FormContext.Consumer>
     </div>
   );
 };

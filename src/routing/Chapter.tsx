@@ -9,7 +9,7 @@ import { ChapterProps } from './types';
  */
 export default function Chapter(props: ChapterProps): JSX.Element {
   return (
-    <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+    <div>
       <h1>{props.title}</h1>
 
       {props.children}

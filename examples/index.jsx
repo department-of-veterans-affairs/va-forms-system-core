@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import SimpleApp from './simple-form';
 import ReactRouterV6 from './router-v6';
+import ContextApp from './form-state';
+import { Router } from '@department-of-veterans-affairs/va-forms-system-core';
 import {
   MultiPageApp,
   Chapter,
@@ -34,39 +36,38 @@ const NoMatch = (props) => (
 
 const Main = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<App />} />
-        <Route path="simple-form" element={<SimpleApp />} />
-        <Route path="multipage-form" element={<MultiPageApp />}>
-          <Route path="chapter-one" element={<Chapter />}>
-            <Route index element={<Page1 />} />
-            <Route path="page-one" element={<Page1 />} />
-            <Route path="page-two" element={<Page2 />} />
-            <Route
-              path="*"
-              element={<NoMatch name="No Routes for Chapter 1" />}
-            />
-          </Route>
-          <Route path="chapter-two" element={<Chapter />}>
-            <Route index element={<Page3 />} />
-            <Route path="page-three" element={<Page3 />} />
-            <Route path="page-four" element={<Page4 />} />
-            <Route
-              path="*"
-              element={<NoMatch name="No Routes for Chapter 2" />}
-            />
-          </Route>
-          <Route path="chapter-three/*" element={<Pages />} />
+    <Router>
+      <Route index element={<App />} />
+      <Route path="simple-form" element={<SimpleApp />} />
+      <Route path="multipage-form" element={<MultiPageApp />}>
+        <Route path="chapter-one" element={<Chapter />}>
+          <Route index element={<Page1 />} />
+          <Route path="page-one" element={<Page1 />} />
+          <Route path="page-two" element={<Page2 />} />
           <Route
             path="*"
-            element={<NoMatch name="No Routes for Multipage-Form" />}
+            element={<NoMatch name="No Routes for Chapter 1" />}
           />
         </Route>
-        <Route path="router-v6/*" element={<ReactRouterV6 />} />
-        <Route path="*" element={<NoMatch name="No Routes for App" />} />
-      </Routes>
-    </BrowserRouter>
+        <Route path="chapter-two" element={<Chapter />}>
+          <Route index element={<Page3 />} />
+          <Route path="page-three" element={<Page3 />} />
+          <Route path="page-four" element={<Page4 />} />
+          <Route
+            path="*"
+            element={<NoMatch name="No Routes for Chapter 2" />}
+          />
+        </Route>
+        <Route path="chapter-three/*" element={<Pages />} />
+        <Route
+          path="*"
+          element={<NoMatch name="No Routes for Multipage-Form" />}
+        />
+      </Route>
+      <Route path="form-state/*" element={<ContextApp />} />
+      <Route path="router-v6/*" element={<ReactRouterV6 />} />
+      <Route path="*" element={<NoMatch name="No Routes for App" />} />
+    </Router>
   );
 };
 

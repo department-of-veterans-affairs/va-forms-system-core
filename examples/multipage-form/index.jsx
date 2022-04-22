@@ -3,6 +3,7 @@ import {
   TextField,
   CheckboxField,
   DebuggerView,
+  FormContext
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Formik, Form } from 'formik';
 import { Link, Outlet } from 'react-router-dom';
@@ -96,28 +97,23 @@ const MultiPageApp = () => (
       <Link to="chapter-two">Chapter 2</Link> &nbsp;&nbsp;
       <Link to="chapter-three">Chapter 3</Link> &nbsp;&nbsp;
       <br />
-      <Formik
-        initialValues={{
-          formData: {
-            chapter1: {
-              foo: '',
-              bar: '',
-            },
-            chapter2: {
-              username: '',
-              termAgreement: false,
-            },
-          },
-          handleUpdate: () => {
-            console.log('subitting');
-          },
-        }}
-      >
-        <Form>
-          <Outlet />
-          <DebuggerView />
-        </Form>
-      </Formik>
+      <FormContext.Consumer>
+        {
+          value => 
+          <Formik
+            initialValues={{
+              formData: value.formData,
+              handleUpdate: value.handleUpdate,
+            }}
+          >
+            <Form>
+              <Outlet />
+              <DebuggerView />
+            </Form>
+          </Formik>
+        }
+      </FormContext.Consumer>
+      
     </nav>
   </div>
 );
