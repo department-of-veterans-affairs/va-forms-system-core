@@ -28,7 +28,19 @@ const App = () => (
       <Form>
         <RadioGroup 
           label="Label" 
-          name="radioTest" 
+          name="radioTest"
+          required
+          options={
+            [
+              {label: "yes", name: "yes", value: "yes", key: 1}, 
+              {label: "No", name: "no", value: "no", key: 2}
+            ]
+          } >
+        </RadioGroup>
+        <RadioGroup 
+          label="Label" 
+          name="radioTest"
+          required
           options={
             [
               {label: "yes", name: "yes", value: "yes", key: 1}, 
