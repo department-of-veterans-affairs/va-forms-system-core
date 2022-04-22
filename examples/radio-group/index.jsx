@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { Formik, Form } from 'formik';
 
 import {
@@ -39,7 +38,7 @@ const App = () => (
         </RadioGroup>
         <RadioGroup 
           label="Label" 
-          name="radioTest"
+          name="radio-test"
           required
           options={
             [

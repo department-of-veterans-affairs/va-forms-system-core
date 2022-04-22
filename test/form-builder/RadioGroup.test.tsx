@@ -1,10 +1,11 @@
 import React from 'react';
-import { waitFor, fireEvent, screen } from '@testing-library/react';
+import { waitFor, fireEvent, screen, render } from '@testing-library/react';
 
 import {RadioGroup} from '../../src/form-builder/RadioGroup';
 import { buildRenderForm, changeValue } from '../utils';
+import userEvent from '@testing-library/user-event';
 
-const renderForm = buildRenderForm({ radio: false });
+const renderForm = buildRenderForm({ "radio-test": false });
 
 const getInput = (container: HTMLElement) => {
   const input = container.querySelector('va-radio');
@@ -14,7 +15,8 @@ const getInput = (container: HTMLElement) => {
 
   const testComponent = (
     <RadioGroup 
-      name="radio"
+      name="radio-test"
+      class="radio-test-class"
       label="Radio Button"
       options={
         [
@@ -28,7 +30,7 @@ const getInput = (container: HTMLElement) => {
 
   const testComponentErrorMessage = (
     <RadioGroup 
-      name="radio"
+      name="radio-test"
       label="Radio Button"
       options={
         [
@@ -45,21 +47,14 @@ describe('Form Builder - RadioGroup', () => {
     const { container } = renderForm(testComponent);
     const input = getInput(container);
     expect(input.getAttribute('label')).toEqual('Radio Button');
-    expect(input.getAttribute('name')).toEqual('radio');
+    expect(input.getAttribute('name')).toEqual('radio-test');
   });
-
-  // test('selects yes', () => {
-  //   const { container } = renderForm(testComponent);
-  //   const input = getInput(container);
-  //   fireEvent.click(screen.getByText('Yes'))
-  //   expect(input.getAttribute('label')).toEqual('Radio Button');
-  // });
 
   test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(testComponent);
     const input = getInput(container);
     await waitFor(() => {
-      getFormProps().setFieldTouched('radio');
+      getFormProps().setFieldTouched('radio-test');
     });
     expect(input?.getAttribute('error')).toEqual('Please provide a response');
   });
@@ -68,20 +63,17 @@ describe('Form Builder - RadioGroup', () => {
     const { container, getFormProps } = renderForm(testComponentErrorMessage);
     const input = getInput(container);
     await waitFor(() => {
-      getFormProps().setFieldTouched('radio');
+      getFormProps().setFieldTouched('radio-test');
     });
     expect(input?.getAttribute('error')).toEqual(
       "You can't proceed without checking this box"
     );
   });
 
-
-  test('updates the formik state', async () => {
-    const { container, getFormProps } = renderForm(testComponent);
-    const input = getInput(container);
-    await changeValue(input, true);
-    fireEvent.click(screen.getByText('Yes'))
-
-    expect(getFormProps().values).toEqual({ radio: checked });
+  test('renders initial value', () => {
+    const { container } = renderForm(testComponent);
+    const vaRadioGroup = container.querySelector('va-radio') as HTMLElement;
+    expect(vaRadioGroup?.getAttribute('value')).toBe("false");
   });
+
 });
