@@ -75,5 +75,4 @@ describe('Form Builder - RadioGroup', () => {
     const vaRadioGroup = container.querySelector('va-radio') as HTMLElement;
     expect(vaRadioGroup?.getAttribute('value')).toBe("false");
   });
-
 });

@@ -36,17 +36,6 @@ const App = () => (
             ]
           } >
         </RadioGroup>
-        <RadioGroup 
-          label="Label" 
-          name="radio-test"
-          required
-          options={
-            [
-              {label: "yes", name: "yes", value: "yes", key: 1}, 
-              {label: "No", name: "no", value: "no", key: 2}
-            ]
-          } >
-        </RadioGroup>
         <DebuggerView />
       </Form>
     </Formik>
