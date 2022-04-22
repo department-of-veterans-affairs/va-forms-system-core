@@ -3,9 +3,12 @@
  *
  * @beta
  */
+import { Page } from './index';
+
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
+  optionalHandleUpdate?: () => void;
 }
 
 /**
@@ -25,6 +28,36 @@ export interface Routable {
  */
 export interface PageProps {
   children: JSX.Element[];
+  title: string;
+  path: string;
+}
+
+/**
+ * The type for the FormData to define the flexible data object
+ *
+ * @beta
+ */
+export interface IFormData {
+  [prop: string]: unknown;
+}
+
+/**
+ * The type for the FormContext to manage state between Chapters and Pages
+ *
+ * @beta
+ */
+export interface IFormContextType {
+  formData: IFormData;
+  handleUpdate?: (data:Record<string, unknown>) => void;
+}
+
+/**
+ * The properties for the Chapter React component
+ *
+ * @beta
+ */
+export interface ChapterProps {
+  children: typeof Page[];
   title: string;
   path: string;
 }
