@@ -1,10 +1,10 @@
+import Page from './Page';
+
 /**
  * The properties for the Router React component
  *
  * @beta
  */
-import { Page } from './index';
-
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
@@ -57,7 +57,7 @@ export interface IFormContextType {
  * @beta
  */
 export interface ChapterProps {
-  children: typeof Page[];
+  children: Array<any>;
   title: string;
   path: string;
 }

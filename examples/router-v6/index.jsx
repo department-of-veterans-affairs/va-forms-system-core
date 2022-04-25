@@ -1,41 +1,15 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Chapter,
   Page,
-  TextField,
   DebuggerView,
-  FormContext
+  FormContext,
+  TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-const Chapters = () => (
-  <>
-   <Link to="1">
-      <button type="button">Chapter 1!</button>
-    </Link>
-    <Link to="2">
-      <button type="button">Chapter 2!</button>
-    </Link>
-
-    <Outlet />
-  </>
-);
-
-const Pages = () => (
-  <>
-   <Link to="1">
-      <button type="button">Page 1!</button>
-    </Link>
-    <Link to="2">
-      <button type="button">Page 2!</button>
-    </Link>
-
-    <Outlet />
-  </>
-);
-
-const RouterV6Form = () => {
+const ReactRouterV6 = () => {
   return (
     <div
       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
@@ -47,13 +21,33 @@ const RouterV6Form = () => {
               <Form>
                 <h2>Welcome to your first form</h2>
                 <h3>Please follow the links below to get started on your form</h3>
-                <Link to="chapters">
-                  <button type="button">Start Form!</button>
-                </Link>
-                <br />
+
+                <Link to="alone-page">Link to Alone Page</Link>
+                
+                <Page path="alone-page" title="Alone Page" >
+                  <h2>Alone Page for fun</h2>
+                </Page>
+                
+                <Chapter path="chapter-one" title="Chapter One" >
+                  <h3>Chapter 1</h3>
+                  <Page path="page-one" title="Chapter 1 Page 1">
+                    <h4>Page 1</h4>
+
+                    <TextField name="formData.foo" label="Fill in for Foo" required />
+                  </Page>
+                  <Page path="page-two" title="Chapter 1 Page 2">
+                    <h4>Page 2</h4>
+                  </Page>
+                  <Page path="page-three" title="Chapter 1 Page 3">
+                    <h4>Page 3</h4>
+                  </Page>
+                  <Page path="page-four" title="Chapter 1 Page 4">
+                    <h4>Page 4</h4>
+                    <button>Submit</button>
+                  </Page>
+                </Chapter>
                 <br />
                 <DebuggerView />
-                <br />
               </Form>
             </Formik>
           </div>
@@ -62,23 +56,5 @@ const RouterV6Form = () => {
     </div>
   );
 };
-
-const ReactRouterV6 = () => (
-  <Routes>
-    <Route path="" element={<RouterV6Form />} />
-    <Route path="chapters" element={<Chapters />}>
-      <Route path=":chapterId" element={ <Chapter /> } >
-        <Route path="pages" element={<Pages /> }>
-          <Route path=":pageId" element={ <Page /> } />
-        </Route>
-      </Route>
-    </Route>
-  </Routes>
-
-  // <Routes>
-  //   <Route path="" element={<RouterV6Form />} />
-  //   <Route path="chapter/*" element={ <Chapter title="Chapter 1" /> } />
-  // </Routes>
-);
 
 export default ReactRouterV6;
