@@ -9,25 +9,33 @@ import {
   FormContext
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-const FirstChapter = () => (
+const Chapters = () => (
   <>
-    <Chapter path="chapter-one" title="First Chapter Router V6">
-      <Link to="page-one">Going to Page 1</Link> <br />
-    </Chapter>
-    <br />
+   <Link to="1">
+      <button type="button">Chapter 1!</button>
+    </Link>
+    <Link to="2">
+      <button type="button">Chapter 2!</button>
+    </Link>
+
+    <Outlet />
   </>
 );
 
-const TestPage = () => (
-  <Page path="page-one" title="Page One First Chapter">
-    <h1>Example form</h1>
+const Pages = () => (
+  <>
+   <Link to="1">
+      <button type="button">Page 1!</button>
+    </Link>
+    <Link to="2">
+      <button type="button">Page 2!</button>
+    </Link>
 
-    <TextField name="formData.chapter1.foo" label="Fooooo" required />
-    <TextField name="formData.chapter1.bar" label="Barrrr" required />
-  </Page>
+    <Outlet />
+  </>
 );
 
-const MyForm = () => {
+const RouterV6Form = () => {
   return (
     <div
       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
@@ -39,10 +47,11 @@ const MyForm = () => {
               <Form>
                 <h2>Welcome to your first form</h2>
                 <h3>Please follow the links below to get started on your form</h3>
-                <Link to="chapter-one">Going to Chapter 1</Link> <br />
+                <Link to="chapters">
+                  <button type="button">Start Form!</button>
+                </Link>
                 <br />
                 <br />
-                <Outlet />
                 <DebuggerView />
                 <br />
               </Form>
@@ -56,12 +65,20 @@ const MyForm = () => {
 
 const ReactRouterV6 = () => (
   <Routes>
-    <Route path="" element={<MyForm />}>
-      <Route path="chapter-one" element={<FirstChapter />}>
-        <Route path="page-one" element={<TestPage />} />
+    <Route path="" element={<RouterV6Form />} />
+    <Route path="chapters" element={<Chapters />}>
+      <Route path=":chapterId" element={ <Chapter /> } >
+        <Route path="pages" element={<Pages /> }>
+          <Route path=":pageId" element={ <Page /> } />
+        </Route>
       </Route>
     </Route>
   </Routes>
+
+  // <Routes>
+  //   <Route path="" element={<RouterV6Form />} />
+  //   <Route path="chapter/*" element={ <Chapter title="Chapter 1" /> } />
+  // </Routes>
 );
 
 export default ReactRouterV6;
