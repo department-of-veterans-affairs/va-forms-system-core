@@ -1,5 +1,3 @@
-import Page from './Page';
-
 /**
  * The properties for the Router React component
  *
@@ -8,7 +6,6 @@ import Page from './Page';
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
-  optionalHandleUpdate?: () => void;
 }
 
 /**

@@ -12,35 +12,15 @@ import { Formik, Form } from 'formik';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 
-const FirstChapter = () => (
-  <>
-    <Chapter title="Welcome to the First Chapter" path="chapter-one">
-      <Link to="page-one"> Page 1</Link> &nbsp; &nbsp;
-      <Link to="page-two"> Page 2 </Link>
-    </Chapter>
-  </>
-
-)
-
-const FirstPage = () => (
-  <Page title="Page Number 1">
-    <TextField name="formData.foo" label="Foo Example Field" required />
-    <TextField name="formData.bar" label="Bar Example Field" required />
-  </Page>
-)
-
-const SecondPage = () => (
-  <Page title="Page Number 2">
-    <TextField name="formData.fiz" label="Fiz Example Field" required />
-    <TextField name="formData.buz" label="Buz Example Field" required />
-
-    
-    <Link to="/"> Back To Home Page </Link>
-  </Page>
-)
-
-const FormTemplate = () => (
-  <>
+const FormStateApp = () => (
+  <div
+    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+  >
+    <h1>Welcome to React Router V6 Form Example</h1>
+    <div>
+      The links below will help you navigate through the 2 chapters and 4
+      pages of this form
+    </div>
      <FormContext.Consumer>
         {value =>
           <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
@@ -48,13 +28,19 @@ const FormTemplate = () => (
               <Form>
                 <h2>Welcome to your first form</h2>
                 <h3>Please follow the links below to get started on your form</h3>
-                <Link to="chapter-one">Going to Chapter 1</Link> <br />
+                
                 <br />
-                <br />
-                <Outlet />
-                <button type="submit">
-                  Push My Button
-                </button>
+                <Chapter path="chapter-one" title="Chapter 1">
+                  <Page path="page-one" title="Chapter 1 - Page 1">
+                    <TextField name="formData.foo" label="Foo Example Field" required />
+                    <TextField name="formData.bar" label="Bar Example Field" required />
+                  </Page>
+                  <Page path="page-two" title="Chapter 1 - Page 2">
+                    <TextField name="formData.fiz" label="Fiz Example Field" required />
+                    <TextField name="formData.buz" label="Buz Example Field" required />
+                  </Page>
+                </Chapter>
+                {/* <Outlet /> */}
                 <DebuggerView />
                 <br />
               </Form>
@@ -62,23 +48,23 @@ const FormTemplate = () => (
           </div>
         }
       </FormContext.Consumer>
-  </>
+  </div>
 );
 
-const ContextApp = () => {
+// const ContextApp = () => {
 
-  return (
-    <Routes>
-      <Route path="" element={ <FormTemplate /> }>
-        <Route path="chapter-one" element={ <FirstChapter /> } >
-          <Route index element={<FirstPage />} />
-          <Route path="page-one" element={ <FirstPage /> } />
-          <Route path="page-two" element={ <SecondPage /> } />
-          <Route path="*" element={<h1>No Matching Routes for Chapter</h1>} />
-        </Route>
-      </Route>
-    </Routes>
-  );
-};
+//   return (
+//     <Routes>
+//       <Route path="" element={ <FormTemplate /> }>
+//         <Route path="chapter-one" element={ <FirstChapter /> } >
+//           <Route index element={<FirstPage />} />
+//           <Route path="page-one" element={ <FirstPage /> } />
+//           <Route path="page-two" element={ <SecondPage /> } />
+//           <Route path="*" element={<h1>No Matching Routes for Chapter</h1>} />
+//         </Route>
+//       </Route>
+//     </Routes>
+//   );
+// };
 
-export default ContextApp;
+export default FormStateApp;
