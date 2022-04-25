@@ -6,13 +6,30 @@
 
 /// <reference types="react" />
 
+import { Context } from 'react';
 import { FieldHookConfig } from 'formik';
 import { default as React_2 } from 'react';
+import { SwitchProps } from 'react-router-dom';
+
+// @beta
+export interface ChapterProps {
+    // (undocumented)
+    children: typeof Page[];
+    // (undocumented)
+    path: string;
+    // (undocumented)
+    title: string;
+}
 
 // Warning: (ae-forgotten-export) The symbol "CheckboxProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
 export const CheckboxField: (props: CheckboxProps) => JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "CheckboxGroupProps" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export const CheckboxFieldGroup: (props: CheckboxGroupProps) => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "DateProps" needs to be exported by the entry point index.d.ts
 //
@@ -21,6 +38,25 @@ export const DateField: (props: DateProps) => JSX.Element;
 
 // @public
 export const DebuggerView: () => JSX.Element;
+
+// Warning: (ae-incompatible-release-tags) The symbol "FormContext" is marked as @public, but its signature references "IFormContextType" which is marked as @beta
+//
+// @public (undocumented)
+export const FormContext: Context<IFormContextType>;
+
+// @beta
+export interface IFormContextType {
+    // (undocumented)
+    formData: IFormData;
+    // (undocumented)
+    handleUpdate?: (data: Record<string, unknown>) => void;
+}
+
+// @beta
+export interface IFormData {
+    // (undocumented)
+    [prop: string]: unknown;
+}
 
 // @beta
 export function Page(props: PageProps): JSX.Element;
@@ -46,24 +82,27 @@ export interface Routable {
     path: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "RouterAndSwitchProps" needs to be exported by the entry point index.d.ts
+//
 // @beta
-export function Router(props: RouterProps): JSX.Element;
+export function Router(props: RouterAndSwitchProps): JSX.Element;
 
-// @beta
+// @public (undocumented)
 export interface RouterProps {
     // (undocumented)
     basename: string;
+    // Warning: (ae-incompatible-release-tags) The symbol "children" is marked as @public, but its signature references "Routable" which is marked as @beta
+    //
     // (undocumented)
     children: Routable | Array<Routable>;
+    // (undocumented)
+    optionalHandleUpdate?: () => void;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
 export const SelectField: (props: SelectProps) => JSX.Element;
-
-// @public
-export const TestField: () => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "FieldProps" needs to be exported by the entry point index.d.ts
 //

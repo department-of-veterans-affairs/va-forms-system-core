@@ -1,9 +1,8 @@
 import React from 'react';
-import { waitFor, fireEvent, screen, render } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
-import {RadioGroup} from '../../src/form-builder/RadioGroup';
-import { buildRenderForm, changeValue } from '../utils';
-import userEvent from '@testing-library/user-event';
+import { RadioGroup } from '../../src/form-builder/RadioGroup';
+import { buildRenderForm } from '../utils';
 
 const renderForm = buildRenderForm({ "radio-test": false });
 

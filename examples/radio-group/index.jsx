@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form } from 'formik';
-
 import {
   RadioGroup,
-  RadioItem,
   DebuggerView,
 } from '@department-of-veterans-affairs/va-forms-system-core';
-
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 
@@ -15,9 +12,7 @@ import { defineCustomElements } from '@department-of-veterans-affairs/component-
 void defineCustomElements();
 
 const App = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
+  <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Example radio group</h1>
     <Formik initialValues={
       { 
@@ -26,13 +21,13 @@ const App = () => (
       }}>
       <Form>
         <RadioGroup 
-          label="Label" 
-          name="radioTest"
+          label='Label' 
+          name='radioTest'
           required
           options={
             [
-              {label: "yes", name: "yes", value: "yes", key: 1}, 
-              {label: "No", name: "no", value: "no", key: 2}
+              {label: 'yes', name: 'yes', value: 'yes', key: 1}, 
+              {label: 'No', name: 'no', value: 'no', key: 2}
             ]
           } >
         </RadioGroup>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { FieldProps } from './types';
+import React, { ReactElement } from 'react';
+import { RadioGroupProps, RadioItemProps } from './types';
 import {
   VaRadio,
   VaRadioOption,
@@ -7,20 +7,7 @@ import {
 import { useField, FieldHookConfig } from 'formik';
 import { chainValidations, required } from '../utils/validation';
 
-type RadioGroupProps = FieldProps<string> & {
-  name: string;
-  options: React.ReactElement<RadioItemProps>[];
-  onChange: (v: string) => void;
-};
 
-export type RadioItemProps = {
-  'aria-describedby': string;
-  checked: boolean;
-  label: string;
-  name: string;
-  value: string;
-  radioOptionSelected: () => void;
-};
 
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const options = props.options;
@@ -47,9 +34,9 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       error={(meta.touched && meta.error) || undefined}
       onRadioOptionSelected={handleRadioSelected}
     >
-      {options.map((option) => (
-        <VaRadioOption {...option} key={option.key} />
-      ))}
+      {options.map((option: ReactElement<RadioItemProps>, index: number) => {
+           <VaRadioOption {...option} key={`${field.name}-${index}`} />
+      })}
     </VaRadio>
   );
 }
