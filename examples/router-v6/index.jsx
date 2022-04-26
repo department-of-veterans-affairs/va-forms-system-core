@@ -9,14 +9,16 @@ import {
   TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
+import '@department-of-veterans-affairs/component-library/dist/main.css';
+import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+void defineCustomElements();
+
 const ReactRouterV6 = () => {
   return (
-    <div
-      style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-    >
+    <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
       <FormContext.Consumer>
         {value =>
-          <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
+          <div>
             <Formik initialValues={value.formData} onSubmit={value.handleUpdate}>
               <Form>
                 <h2>Welcome to your first form</h2>

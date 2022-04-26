@@ -10,9 +10,7 @@ import {
 import { Formik, Form } from 'formik';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
-
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
-
 void defineCustomElements();
 
 const MultiPageApp = () => (
