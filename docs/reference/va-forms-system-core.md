@@ -32,6 +32,7 @@
 |  [DateField](./va-forms-system-core.datefield.md) | Field value format: M-D-YYYY<!-- -->TODO: Convert the Date component into a web component and use it here. |
 |  [DebuggerView](./va-forms-system-core.debuggerview.md) | Display the Formik state |
 |  [FormContext](./va-forms-system-core.formcontext.md) |  |
+|  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
 
