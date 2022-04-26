@@ -63,17 +63,6 @@ const SimpleApp = () => (
     >
       <Form>
         <CheckboxField name="bar" label="Do you have pets?" required />
-        <RadioGroup 
-          label='Label' 
-          name='radioTest'
-          required
-          options={
-            [
-              {label: 'yes', name: 'yes', value: 'yes', key: 1}, 
-              {label: 'No', name: 'no', value: 'no', key: 2}
-            ]
-          } >
-        </RadioGroup>
         <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
         <button type="submit" className="btn">

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Outlet } from 'react-router-dom';
 import { Router } from '@department-of-veterans-affairs/va-forms-system-core';
 import SimpleApp from './simple-form';
 import ReactRouterV6 from './router-v6';
@@ -21,6 +21,8 @@ const App = () => (
       <Link to="/form-state">Form State</Link> <br />
       <Link to="/router-v6">React Router V6</Link> <br />
     </nav>
+
+    <Outlet />
   </div>
 );
 
@@ -35,12 +37,14 @@ const Main = () => {
   return (
     <Router>
       <Route index element={<App />} />
-      <Route path="simple-form" element={<SimpleApp />} />
-      <Route path="multipage-form/*" element={<MultiPageApp />} />
-      <Route path="radio-group" element={<RadioGroupApp />} />
-      <Route path="form-state/*" element={<FormStateApp />} />
-      <Route path="router-v6/*" element={<ReactRouterV6 />} />
-      <Route path="*" element={<NoMatch name="No Routes for App" />} />
+      <Route path="/" element={ <App /> }>
+        <Route path="simple-form" element={<SimpleApp />} />
+        <Route path="multipage-form/*" element={<MultiPageApp />} />
+        <Route path="radio-group" element={<RadioGroupApp />} />
+        <Route path="form-state/*" element={<FormStateApp />} />
+        <Route path="router-v6/*" element={<ReactRouterV6 />} />
+        <Route path="*" element={<NoMatch name="No Routes for App" />} />
+      </Route>
     </Router>
   );
 };
