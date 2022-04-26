@@ -38,6 +38,11 @@ export const DateField: (props: DateProps) => JSX.Element;
 // @public
 export const DebuggerView: () => JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "EmailProps" needs to be exported by the entry point index.d.ts
+//
+// @beta
+export const EmailField: (props: EmailProps) => JSX.Element;
+
 // Warning: (ae-incompatible-release-tags) The symbol "FormContext" is marked as @public, but its signature references "IFormContextType" which is marked as @beta
 //
 // @public (undocumented)
