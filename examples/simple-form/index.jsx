@@ -80,7 +80,7 @@ const App = () => (
           {' '}
           submit
         </button>
-
+        <FullNameField />
         <DebuggerView />
       </Form>
     </Formik>
