@@ -8,10 +8,12 @@ import MultiPageApp from './multipage-form';
 import FormStateApp from './form-state';
 import RadioGroupApp from './radio-group';
 
+import '@department-of-veterans-affairs/component-library/dist/main.css';
+import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+void defineCustomElements();
+
 const App = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
+  <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
       <Link to="/simple-form">Simple Form</Link> <br />
       <Link to="/multipage-form">Multipage Form</Link> <br />
@@ -21,6 +23,7 @@ const App = () => (
     </nav>
   </div>
 );
+
 
 const NoMatch = (props) => (
   <main style={{ padding: '1rem' }}>

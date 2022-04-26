@@ -9,9 +9,9 @@ import {
   TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-import '@department-of-veterans-affairs/component-library/dist/main.css';
-import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
-void defineCustomElements();
+// import '@department-of-veterans-affairs/component-library/dist/main.css';
+// import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+// void defineCustomElements();
 
 const ReactRouterV6 = () => {
   return (

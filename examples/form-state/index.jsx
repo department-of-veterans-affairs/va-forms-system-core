@@ -8,9 +8,9 @@ import {
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Formik, Form } from 'formik';
 
-import '@department-of-veterans-affairs/component-library/dist/main.css';
-import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
-void defineCustomElements();
+// import '@department-of-veterans-affairs/component-library/dist/main.css';
+// import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+// void defineCustomElements();
 
 const FormStateApp = () => (
   <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
