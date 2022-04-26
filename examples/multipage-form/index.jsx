@@ -4,20 +4,19 @@ import {
   DebuggerView,
   FormContext,
   Chapter,
-  Page
+  Page,
+  EmailField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Formik, Form } from 'formik';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
+
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
 const MultiPageApp = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
+  <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Welcome to React Router V6 Form Example</h1>
     <div>
       The links below will help you navigate through the 2 chapters and 4
@@ -43,6 +42,7 @@ const MultiPageApp = () => (
                     label="Enter your FOO data"
                     required
                   />
+                  <EmailField label="Email" name="email" required/>
                 </div>
               </Page>
               <Page path="page-two" title="Chapter 1 - Page 2">
