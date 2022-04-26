@@ -7,6 +7,7 @@ import {
   DateField,
   DebuggerView,
   TextField,
+  FullNameField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
@@ -25,6 +26,7 @@ const App = () => (
         <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />
         <DateField name="baz" required />
+        <FullNameField />
         <DebuggerView />
       </Form>
     </Formik>

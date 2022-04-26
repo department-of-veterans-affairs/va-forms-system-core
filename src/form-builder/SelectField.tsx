@@ -8,7 +8,7 @@ import { VaSelect } from '@department-of-veterans-affairs/component-library/dist
 
 type SelectProps = FieldProps<string> & {
   onVaSelect: (e: CustomEvent) => void;
-  children: HTMLOptionElement[];
+  children: HTMLOptionElement[] | unknown;
 };
 
 const SelectField = (props: SelectProps): JSX.Element => {
