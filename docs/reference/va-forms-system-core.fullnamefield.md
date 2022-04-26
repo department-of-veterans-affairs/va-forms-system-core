@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-FullNameField: (props: FieldProps<string>) => JSX.Element
+FullNameField: (props: FullNameProps) => JSX.Element
 ```

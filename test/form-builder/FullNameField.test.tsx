@@ -61,8 +61,16 @@ describe('Form Builder - FullNameField', () => {
   });
 
   test('updates the formik state', async () => {
-    const rf = buildRenderForm(testData);
-    const { container, getFormProps } = rf(<FullNameField name='' label='' />);
+    const veteranTestData = {
+      veteranFullName: {
+        firstName: 'Mark',
+        middleName: 'W',
+        lastName: 'Webb',
+        suffix: 'Sr'
+      }
+    }
+    const rf = buildRenderForm(veteranTestData);
+    const { container, getFormProps } = rf(<FullNameField name='' label='' fieldName='veteranFullName'/>);
     const { firstNameInput, middleNameInput, lastNameInput, suffixSelect } = getInputs(container);
 
     await changeValue(firstNameInput, 'Tony')
@@ -71,7 +79,7 @@ describe('Form Builder - FullNameField', () => {
     await changeValue(suffixSelect, 'Jr', 'vaSelect')
 
     expect(getFormProps().values).toEqual({
-      fullName: {
+      veteranFullName: {
         firstName: 'Tony',
         middleName: 'H',
         lastName: 'Stark',

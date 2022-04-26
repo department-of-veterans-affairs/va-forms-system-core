@@ -74,7 +74,7 @@ const App = () => (
         <CheckboxField name="bar" label="Do you have pets?" required />
         <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
-        <FullNameField name='' label=''/>
+        <FullNameField />
         <button type="submit" className="btn">
           {' '}
           submit

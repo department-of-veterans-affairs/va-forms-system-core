@@ -43,10 +43,10 @@ export const DebuggerView: () => JSX.Element;
 // @public (undocumented)
 export const FormContext: Context<IFormContextType>;
 
-// Warning: (ae-forgotten-export) The symbol "FieldProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "FullNameProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export const FullNameField: (props: FieldProps<string>) => JSX.Element;
+export const FullNameField: (props: FullNameProps) => JSX.Element;
 
 // @beta
 export interface IFormContextType {
@@ -108,6 +108,8 @@ export interface RouterProps {
 // @public (undocumented)
 export const SelectField: (props: SelectProps) => JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "FieldProps" needs to be exported by the entry point index.d.ts
+//
 // @public (undocumented)
 export const TextField: (props: FieldProps<string>) => JSX.Element;
 
