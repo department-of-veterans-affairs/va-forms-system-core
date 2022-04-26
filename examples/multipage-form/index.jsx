@@ -7,7 +7,6 @@ import {
   Page
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
@@ -24,9 +23,6 @@ const MultiPageApp = () => (
       The links below will help you navigate through the 2 chapters and 4
       pages of this form
     </div>
-    {/* <Link to="chapter-one">Chapter 1</Link> &nbsp;&nbsp;
-    <Link to="chapter-two">Chapter 2</Link> &nbsp;&nbsp;
-    <br /> */}
     <FormContext.Consumer>
       {
         value => 

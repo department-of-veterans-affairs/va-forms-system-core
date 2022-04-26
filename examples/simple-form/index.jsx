@@ -3,7 +3,6 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import {
   CheckboxField,
-  DateField,
   DebuggerView,
   TextField,
 } from '@department-of-veterans-affairs/va-forms-system-core';
@@ -56,9 +55,7 @@ const checkboxProps = {
 void defineCustomElements();
 
 const SimpleApp = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
+  <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Example form</h1>
     <Formik
       initialValues={{
@@ -74,7 +71,6 @@ const SimpleApp = () => (
       <Form>
         <CheckboxField name="bar" label="Do you have pets?" required />
         <TextField name="foo" label="Example" required />
-        {/* <DateField name="baz" required /> */}
         <CheckboxFieldGroup {...checkboxProps} />
         <button type="submit" className="btn">
           {' '}
