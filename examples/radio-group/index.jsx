@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Formik, Form } from 'formik';
 import {
   RadioGroup,
@@ -11,7 +10,7 @@ import { defineCustomElements } from '@department-of-veterans-affairs/component-
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
-const App = () => (
+const RadioGroupApp = () => (
   <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Example radio group</h1>
     <Formik initialValues={
@@ -37,4 +36,4 @@ const App = () => (
   </div>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default RadioGroupApp;

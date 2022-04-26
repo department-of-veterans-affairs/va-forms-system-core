@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Route } from 'react-router-dom';
+import { Router } from '@department-of-veterans-affairs/va-forms-system-core';
 import SimpleApp from './simple-form';
 import ReactRouterV6 from './router-v6';
 import MultiPageApp from './multipage-form';
 import FormStateApp from './form-state';
-import { Router } from '@department-of-veterans-affairs/va-forms-system-core';
+import RadioGroupApp from './radio-group';
 
 const App = () => (
   <div
@@ -33,7 +34,7 @@ const Main = () => {
       <Route index element={<App />} />
       <Route path="simple-form" element={<SimpleApp />} />
       <Route path="multipage-form/*" element={<MultiPageApp />} />
-      <Route path="radio-group/*" element={<MultiPageApp />} />
+      <Route path="radio-group" element={<RadioGroupApp />} />
       <Route path="form-state/*" element={<FormStateApp />} />
       <Route path="router-v6/*" element={<ReactRouterV6 />} />
       <Route path="*" element={<NoMatch name="No Routes for App" />} />

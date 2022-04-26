@@ -40,6 +40,11 @@ export const DateField: (props: DateProps) => JSX.Element;
 // @public
 export const DebuggerView: () => JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "EmailProps" needs to be exported by the entry point index.d.ts
+//
+// @beta
+export const EmailField: (props: EmailProps) => JSX.Element;
+
 // Warning: (ae-incompatible-release-tags) The symbol "FormContext" is marked as @public, but its signature references "IFormContextType" which is marked as @beta
 //
 // @public (undocumented)
@@ -72,6 +77,11 @@ export interface PageProps {
     title: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "RadioGroupProps" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function RadioGroup(props: RadioGroupProps): JSX.Element;
+
 // @beta
 export interface Routable {
     // (undocumented)
@@ -87,8 +97,6 @@ export interface RouterProps {
     basename: string;
     // (undocumented)
     children: Routable | Array<Routable>;
-    // (undocumented)
-    optionalHandleUpdate?: () => void;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
