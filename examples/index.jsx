@@ -15,11 +15,11 @@ void defineCustomElements();
 const App = () => (
   <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
-      <Link to="/simple-form">Simple Form</Link> <br />
-      <Link to="/multipage-form">Multipage Form</Link> <br />
-      <Link to="/radio-group">Radio Group</Link> <br />
-      <Link to="/form-state">Form State</Link> <br />
-      <Link to="/router-v6">React Router V6</Link> <br />
+      <Link to="/simple-form"><button type="button">Simple Form</button></Link>
+      <Link to="/multipage-form"><button type="button">Multipage Form</button></Link>
+      <Link to="/radio-group"><button type="button">Radio Group</button></Link>
+      <Link to="/form-state"><button type="button">Form State</button></Link>
+      <Link to="/router-v6"><button type="button">React Router V6</button></Link>
     </nav>
 
     <Outlet />
