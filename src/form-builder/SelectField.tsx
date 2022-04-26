@@ -7,7 +7,7 @@ import { chainValidations, required } from '../utils/validation';
 import { VaSelect } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 type SelectProps = FieldProps<string> & {
-  onVaSelect: (e: CustomEvent) => void;
+  onVaSelect?: (e: CustomEvent) => void;
   children: HTMLOptionElement[] | unknown;
 };
 

@@ -27,7 +27,7 @@ const getInputs = (container: HTMLElement) => {
 
 describe('Form Builder - FullNameField', () => {
   test('renders', () => {
-    const { container } = renderForm(<FullNameField name='' label='' />)
+    const { container } = renderForm(<FullNameField name={''} label={''} />)
     const { firstNameInput, middleNameInput, lastNameInput, suffixSelect } = getInputs(container);
 
     expect(firstNameInput.getAttribute('label')).toEqual('Your first Name');

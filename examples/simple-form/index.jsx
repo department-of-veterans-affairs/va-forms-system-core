@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Form, Formik } from 'formik';
 import {
   CheckboxField,
-  DateField,
   DebuggerView,
   TextField,
   FullNameField
@@ -74,13 +73,12 @@ const App = () => (
       <Form>
         <CheckboxField name="bar" label="Do you have pets?" required />
         <TextField name="foo" label="Example" required />
-        {/* <DateField name="baz" required /> */}
         <CheckboxFieldGroup {...checkboxProps} />
+        <FullNameField name='' label=''/>
         <button type="submit" className="btn">
           {' '}
           submit
         </button>
-        <FullNameField />
         <DebuggerView />
       </Form>
     </Formik>
