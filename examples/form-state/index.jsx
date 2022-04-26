@@ -28,7 +28,7 @@ const FormStateApp = () => (
               <Form>
                 <h2>Welcome to your first form</h2>
                 <h3>Please follow the links below to get started on your form</h3>
-                
+
                 <br />
                 <Chapter path="chapter-one" title="Chapter 1">
                   <Page path="page-one" title="Chapter 1 - Page 1">
@@ -40,7 +40,6 @@ const FormStateApp = () => (
                     <TextField name="formData.buz" label="Buz Example Field" required />
                   </Page>
                 </Chapter>
-                {/* <Outlet /> */}
                 <DebuggerView />
                 <br />
               </Form>
@@ -50,21 +49,5 @@ const FormStateApp = () => (
       </FormContext.Consumer>
   </div>
 );
-
-// const ContextApp = () => {
-
-//   return (
-//     <Routes>
-//       <Route path="" element={ <FormTemplate /> }>
-//         <Route path="chapter-one" element={ <FirstChapter /> } >
-//           <Route index element={<FirstPage />} />
-//           <Route path="page-one" element={ <FirstPage /> } />
-//           <Route path="page-two" element={ <SecondPage /> } />
-//           <Route path="*" element={<h1>No Matching Routes for Chapter</h1>} />
-//         </Route>
-//       </Route>
-//     </Routes>
-//   );
-// };
 
 export default FormStateApp;
