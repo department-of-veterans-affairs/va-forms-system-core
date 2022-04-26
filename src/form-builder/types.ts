@@ -17,6 +17,12 @@ export type CheckboxProps = FieldProps<string> & {
   value?: boolean;
 };
 
+export type RadioGroupProps = FieldProps<string> & {
+  name: string;
+  options: React.ReactElement<RadioItemProps>[];
+  onChange: (v: string) => void;
+};
+
 export type RadioItemProps = {
   'aria-describedby': string;
   checked: boolean;
