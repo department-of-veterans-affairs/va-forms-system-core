@@ -13,6 +13,12 @@ const App = () => (
       <li>
         <a href="multipage-form">Multipage form</a>
       </li>
+      <li>
+        <a href="radio-group">Radio group</a>
+      </li>
+      <li>
+        <a href="form-state">Form State</a>
+      </li>
     </ul>
   </div>
 );
