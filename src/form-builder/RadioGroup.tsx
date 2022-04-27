@@ -7,8 +7,6 @@ import {
 import { useField, FieldHookConfig } from 'formik';
 import { chainValidations, required } from '../utils/validation';
 
-
-
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const options = props.options;
   const withValidation = {
@@ -33,9 +31,12 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       {...field}
       error={(meta.touched && meta.error) || undefined}
       onRadioOptionSelected={handleRadioSelected}
+      onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        helpers.setValue(event.detail.value);
+      }}
     >
       {options.map((option: ReactElement<RadioItemProps>, index: number) => {
-           return <VaRadioOption {...option} key={`${field.name}-${index}`} />
+        return <VaRadioOption {...option} key={`${field.name}-${index}`} />;
       })}
     </VaRadio>
   );
