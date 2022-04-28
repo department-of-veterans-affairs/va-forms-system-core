@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes } from 'react-router-dom';
-import { useFormikContext, Formik, Form } from 'formik';
-import { RouterProps, IFormData } from './types';
+import { Formik } from 'formik';
+import { RouterProps } from './types';
 
 /**
  * Manages form pages as routes
