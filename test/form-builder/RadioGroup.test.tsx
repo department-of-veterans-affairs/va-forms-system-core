@@ -1,5 +1,6 @@
 import React from 'react';
-import { waitFor } from '@testing-library/react';
+import { fireEvent, getByTestId, waitFor, screen, getByText } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 
 import { RadioGroup } from '../../src/form-builder/RadioGroup';
 import { buildRenderForm } from '../utils';
@@ -16,7 +17,7 @@ const getInput = (container: HTMLElement) => {
     <RadioGroup 
       name="radio-test"
       class="radio-test-class"
-      label="Radio Button"
+      label="Radio Group"
       options={
         [
           {label: "Yes", name: "yes", value: "yes", key: 1}, 
@@ -30,7 +31,7 @@ const getInput = (container: HTMLElement) => {
   const testComponentErrorMessage = (
     <RadioGroup 
       name="radio-test"
-      label="Radio Button"
+      label="Radio Group"
       options={
         [
           {label: "Yes", name: "yes", value: "yes", key: 1}, 
@@ -45,7 +46,7 @@ describe('Form Builder - RadioGroup', () => {
   test('renders', () => {
     const { container } = renderForm(testComponent);
     const input = getInput(container);
-    expect(input.getAttribute('label')).toEqual('Radio Button');
+    expect(input.getAttribute('label')).toEqual('Radio Group');
     expect(input.getAttribute('name')).toEqual('radio-test');
   });
 
@@ -75,13 +76,45 @@ describe('Form Builder - RadioGroup', () => {
     expect(vaRadioGroup?.getAttribute('value')).toBe("false");
   });
 
-  test('renders ', async () => {
-    const { container, getFormProps } = renderForm(testComponent);
+  test('selects options', async () => {
+    const { container } = renderForm(testComponent);
     const input = getInput(container);
-    await waitFor(() => {
-      getFormProps().setFieldTouched('radioTest-0');
-    });
-    expect(input.getAttribute('aria-checked')).toEqual('true');
-  });
+    // await waitFor(() => {
+    //   getFormProps().setFieldTouched('radioTest-0');
+    // });
+    // expect(input.getAttribute('value')).toEqual('yes');
 
+
+    // await waitFor(() => {
+    //   fireEvent(
+    //NOTE this one found the item but didn't click it bc if you change the test ID it can't find it
+    //     getByTestId(container, 'radio-test-0'),
+    //     new MouseEvent('click', {
+    //       bubbles: true,
+    //       cancelable: true,
+    //     }),
+    //   )
+    // });
+    // console.log(input)
+    // expect(input.getAttribute('value')).toEqual('yes');
+
+    // userEvent.selectOptions(
+    //   // NOTE roles are hidden
+    //   screen.getByRole('radiogroup'),
+    //   screen.getByRole('option', { name: 'yes' }),
+    // )
+
+  //   userEvent.selectOptions(
+  //     screen.getByTestId('radio-test-0'),
+  //   //NOTE this is a promise and doesn't work with user events
+  //     screen.findByLabelText('Radio Group', {value: "yes"})
+  // });
+
+  await waitFor(() => {
+    getByTestId(container, 'radio-test-0').focus();
+    fireEvent.click(container, 'radio-test-0');
+  });
+  console.log(input);
+  expect(input.getAttribute('value')).toEqual('yes');
+  })
 });
