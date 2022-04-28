@@ -6,6 +6,7 @@
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
+  formData: IFormData;
 }
 
 /**
@@ -27,6 +28,7 @@ export interface PageProps {
   children: JSX.Element[];
   title: string;
   path: string;
+  nextPage: string;
 }
 
 /**
@@ -36,16 +38,6 @@ export interface PageProps {
  */
 export interface IFormData {
   [prop: string]: unknown;
-}
-
-/**
- * The type for the FormContext to manage state between Chapters and Pages
- *
- * @beta
- */
-export interface IFormContextType {
-  formData: IFormData;
-  handleUpdate?: (data: Record<string, unknown>) => void;
 }
 
 /**

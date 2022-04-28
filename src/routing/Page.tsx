@@ -1,6 +1,7 @@
 import React from 'react';
-import { PageProps } from './types';
-import { Routes, Route } from 'react-router-dom';
+import { useFormikContext, Form, Formik } from 'formik';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { PageProps, IFormData } from './types';
 
 /**
  * Renders the page contents
@@ -8,11 +9,28 @@ import { Routes, Route } from 'react-router-dom';
  * @beta
  */
 export default function Page(props: PageProps): JSX.Element {
+  const { values, submitForm } = useFormikContext();
+  const formValues = values as IFormData;
+
+  let navigate = useNavigate();
+
   return (
     <div>
-      <Routes>
-        <Route path={props.path} element={props.children} />
-      </Routes>
+      <h2>{props.title}</h2>
+      <Form>
+        {props.children}
+        <button
+          className="btn"
+          onClick={(event) => {
+            event.preventDefault();
+            submitForm();
+            navigate(`${props.nextPage}`);
+          }}
+        >
+          {' '}
+          Next
+        </button>
+      </Form>
     </div>
   );
 }
