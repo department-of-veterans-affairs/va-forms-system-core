@@ -5,7 +5,8 @@ import {
   CheckboxField,
   DebuggerView,
   TextField,
-  CheckboxFieldGroup
+  CheckboxFieldGroup,
+  FullNameField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const checkboxProps = {
@@ -65,11 +66,11 @@ const SimpleApp = () => (
         <CheckboxField name="bar" label="Do you have pets?" required />
         <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
+        <FullNameField />
         <button type="submit" className="btn">
           {' '}
           submit
         </button>
-
         <DebuggerView />
       </Form>
     </Formik>
