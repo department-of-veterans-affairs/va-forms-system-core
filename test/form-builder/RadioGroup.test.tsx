@@ -74,4 +74,14 @@ describe('Form Builder - RadioGroup', () => {
     const vaRadioGroup = container.querySelector('va-radio') as HTMLElement;
     expect(vaRadioGroup?.getAttribute('value')).toBe("false");
   });
+
+  test('renders ', async () => {
+    const { container, getFormProps } = renderForm(testComponent);
+    const input = getInput(container);
+    await waitFor(() => {
+      getFormProps().setFieldTouched('radioTest-0');
+    });
+    expect(input.getAttribute('aria-checked')).toEqual('true');
+  });
+
 });
