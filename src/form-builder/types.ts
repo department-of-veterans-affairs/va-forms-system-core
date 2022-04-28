@@ -36,11 +36,22 @@ export type CheckboxGroupProps = FieldProps<string> & {
   options: CheckboxProps[];
 };
 
+/**
+ *
+ * @remarks
+ * The `name` prop must be passed in FullNameField component as it is used as object name.
+ * @example
+ * Here's a simple example:
+ * ```
+ * // <FullNameField name="fullName">
+ * {
+ *    fullName: {
+ *      // fields
+ *    }
+ * }
+ * ```
+ * 
+*/
 export type FullNameProps = FieldProps<string> & {
-  /**
-   * @defaultValue
-   * The default is `fullName` unless {@link FullNameProps.fieldName}
-   * is passed with custom name.
-   */
-  fieldName?: string | undefined;
+  name: string;
 }
