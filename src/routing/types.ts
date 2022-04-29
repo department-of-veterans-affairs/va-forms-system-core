@@ -9,6 +9,10 @@ export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
   optionalHandleUpdate?: () => void;
+  formMeta?: {
+    title: string;
+    subtitle?: string;
+  };
 }
 
 /**

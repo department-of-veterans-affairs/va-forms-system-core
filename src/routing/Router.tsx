@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { RouterProps } from './types';
+import React, { useContext, useState } from 'react';
+import { PageProps, Routable, RouterProps } from './types';
 import { BrowserRouter, Switch, SwitchProps } from 'react-router-dom';
 import { FormContext } from './FormContext';
+import FormTitle from './FormTitle';
 
 export type RouterAndSwitchProps = RouterProps & SwitchProps;
 
@@ -25,6 +26,12 @@ export default function Router(props: RouterAndSwitchProps): JSX.Element {
         handleUpdate: updateFormData,
       }}
     >
+      {props?.formMeta?.title && (
+        <FormTitle
+          title={props.formMeta.title}
+          subTitle={props.formMeta?.subtitle}
+        />
+      )}
       <BrowserRouter basename={props.basename}>
         <Switch>{props.children}</Switch>
       </BrowserRouter>
