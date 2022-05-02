@@ -1,5 +1,6 @@
 import { FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
+import { range } from 'lodash';
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -89,4 +90,45 @@ export const isValidEmail = <T>(
   return isValid
     ? ''
     : 'Please enter an email address using this format: X@X.com';
+};
+
+/**
+ * Conditions for valid SSN from the original 1010ez pdf form:
+ * '123456789' is not a valid SSN
+ * A value where the first 3 digits are 0 is not a valid SSN
+ * A value where the 4th and 5th digits are 0 is not a valid SSN
+ * A value where the last 4 digits are 0 is not a valid SSN
+ * A value with 3 digits, an optional -, 2 digits, an optional -, and 4 digits is a valid SSN
+ * 9 of the same digits (e.g., '111111111') is not a valid SSN
+ */
+export const isValidSSN = <T>(
+  ssnString: T,
+  props: FieldProps<T>
+): ValidationFunctionResult<T> => {
+  if (typeof ssnString !== 'string') {
+    return 'Error: ssnString is not the correct type'; // This shouldn't happen
+  }
+
+  if (
+    ssnString === '123456789' ||
+    ssnString === '123-45-6789' ||
+    /^0{3}-?\d{2}-?\d{4}$/.test(ssnString) ||
+    /^\d{3}-?0{2}-?\d{4}$/.test(ssnString) ||
+    /^\d{3}-?\d{2}-?0{4}$/.test(ssnString)
+  ) {
+    return '';
+  }
+
+  const noBadSameDigitNumber = range(0, 10).every((i) => {
+    const sameDigitRegex = new RegExp(`${i}{3}-?${i}{2}-?${i}{4}`);
+    return !sameDigitRegex.test(ssnString);
+  });
+
+  if (!noBadSameDigitNumber) {
+    return 'Invalid SSN';
+  }
+
+  const isValid =
+    /^\d{9}$/.test(ssnString) || /^\d{3}-\d{2}-\d{4}$/.test(ssnString);
+  return isValid ? '' : 'Invalid SSN';
 };

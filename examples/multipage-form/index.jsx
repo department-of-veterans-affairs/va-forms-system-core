@@ -15,6 +15,7 @@ import { Link, Switch } from 'react-router-dom';
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 import Chapter from '@department-of-veterans-affairs/va-forms-system-core/routing/Chapter';
+import SSNField from "@department-of-veterans-affairs/va-forms-system-core/form-builder/SSNField";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
@@ -41,6 +42,7 @@ const App = () => (
 
         <Chapter title="Chapter One" path="/chapter-one">
           <Page title="Page One" path="/page-one">
+            <SSNField label="SSN" name="ssn"/>
             <TextField name="foo" label="Example" required />
             <EmailField label="Email" name="email" />
             <DebuggerView />
