@@ -16,6 +16,9 @@ export default function FormRouter(props: RouterProps): JSX.Element {
 
   return (
     <BrowserRouter basename={props.basename}>
+      {props?.title && (
+        <FormTitle title={props.title} subTitle={props?.subtitle} />
+      )}
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -24,12 +27,9 @@ export default function FormRouter(props: RouterProps): JSX.Element {
           actions.setSubmitting(true);
         }}
       >
-        {props?.title && (
-          <FormTitle title={props.title} subTitle={props?.subtitle} />
-        )}
         <Routes>{props.children}</Routes>
-        <FormFooter />
       </Formik>
+      <FormFooter />
     </BrowserRouter>
   );
 }

@@ -1,8 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { Route } from 'react-router-dom'
 
-import Router from '../../src/routing/Router';
+import FormRouter from '../../src/routing/Router';
 import FormFooter from '../../src/routing/FormFooter';
+import { Page, TextField } from '../../src';
+
 
 describe('FormTitle', () => {
 
@@ -17,8 +20,8 @@ describe('FormTitle', () => {
 
   test('Renders footer from router', () => {
     const { container } = render(
-      <Router basename="hello" title="hello world">
-      </Router>
+      <FormRouter basename="" title="hello world" formData={{firstName: ''}}>
+      </FormRouter>
     );
 
     const footerContainer = container.querySelector('.help-footer-box');

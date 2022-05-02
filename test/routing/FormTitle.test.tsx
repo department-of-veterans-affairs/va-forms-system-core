@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Router from '../../src/routing/Router';
+import FormRouter from '../../src/routing/Router';
 import FormTitle from '../../src/routing/FormTitle';
 
 describe('FormTitle', () => {
@@ -27,9 +27,10 @@ describe('FormTitle', () => {
   });
 
   test('Form title inherits properties from router', () => {
+
     const { container } = render(
-      <Router basename="hello" {...{title: "hello world"}}>
-      </Router>
+      <FormRouter basename="" title="hello world" formData={{firstName: ''}}>
+      </FormRouter>
     );
 
     const titleText = container.querySelector('h1')?.innerHTML;
@@ -38,8 +39,12 @@ describe('FormTitle', () => {
 
   test('Form title inherits properties from router', () => {
     const { container } = render(
-    <Router basename="hello" {...{title: "hello world", subtitle: "subtitle"}}>
-    </Router>);
+    <FormRouter basename="" {...{
+      title: "hello world",
+      subtitle: "subtitle",
+      formData: {firstName: ''}
+    }}>
+    </FormRouter>);
 
     const titleText = container.querySelector('.va-form-subtitle')?.innerHTML;
     expect(titleText).toContain("subtitle");
