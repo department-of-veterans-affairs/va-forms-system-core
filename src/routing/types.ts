@@ -8,11 +8,9 @@ import { Page } from './index';
 export interface RouterProps {
   children: Routable | Array<Routable>;
   basename: string;
+  title: string;
+  subtitle?: string;
   optionalHandleUpdate?: () => void;
-  formMeta?: {
-    title: string;
-    subtitle?: string;
-  };
 }
 
 /**

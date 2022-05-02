@@ -15,12 +15,19 @@ import { Link, Switch } from 'react-router-dom';
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 import Chapter from '@department-of-veterans-affairs/va-forms-system-core/routing/Chapter';
+import { RouterProps } from '../../src/routing/types';
+
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 void defineCustomElements();
 
+const formMeta = {
+  title: "Hello World",
+  subtitle: "hello world Subtitle",
+}
+
 const App = () => (
-  <Router basename="multipage-form">
+  <Router basename="multipage-form" {...formMeta}>
     <>
       <div className="vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column">
         <Link to="/intro-page">Intro Page</Link>
