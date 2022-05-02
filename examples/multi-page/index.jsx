@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
-import { FormRouter, DebuggerView } from '@department-of-veterans-affairs/va-forms-system-core';
+import { FormRouter } from '@department-of-veterans-affairs/va-forms-system-core';
+import FormIntroductionPage from './intro-page';
 import PersonalInformationPage from './page-one';
 import ContactInformationPage from './page-two';
 
@@ -16,8 +17,9 @@ const FormApp = (props) => {
     return (
         <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
             <FormRouter basename={props.basename} formData={props.initialValues}>
-                <Route index element={<PersonalInformationPage />} />
-                <Route path="/page-two" element={<ContactInformationPage />} />
+                <Route index element={<FormIntroductionPage />} />
+                <Route path="/page-one" element={ <PersonalInformationPage /> } />
+                <Route path="/page-two" element={ <ContactInformationPage /> } />
                 <Route path="*" element={<NoMatch name="No Routes for App" />} />
             </FormRouter>
         </div>

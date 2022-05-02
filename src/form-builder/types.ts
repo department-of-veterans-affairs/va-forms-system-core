@@ -36,6 +36,11 @@ export type CheckboxGroupProps = FieldProps<string> & {
   options: CheckboxProps[];
 };
 
+export interface FormTitleProps {
+  title: string;
+  subTitle?: string;
+}
+
 /**
  *
  * @remarks
@@ -50,6 +55,6 @@ export type CheckboxGroupProps = FieldProps<string> & {
  *    }
  * }
  * ```
- * 
-*/
-export type FullNameProps = FieldProps<string>
+ *
+ */
+export type FullNameProps = FieldProps<string>;
