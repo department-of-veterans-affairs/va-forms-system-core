@@ -1,16 +1,20 @@
 import React from 'react';
 import { VaProcessList } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-import { FormTitleProps } from './types';
+import FormTitle from './FormTitle';
+// import OMBInfo from '@department-of-veterans-affairs/component-library/OMBInfo';
 
-const FormTitle = (props: FormTitleProps) => (
-  <div className="schemaform-title">
-    <h1>{props.title}</h1>
-    {props.subTitle && (
-      <div className="schemaform-subtitle">{props.subTitle}</div>
-    )}
-  </div>
-);
-
+/**
+ * Introduction Page Component
+ *
+ * Introduction page for the Burials form using these Web Components:
+ *
+ * VaProcessList
+ * FormTitle
+ * SaveInProgressIntro
+ * OMBInfo
+ *
+ * @returns React.Component
+ */
 const IntroductionPage = (): JSX.Element => {
   return (
     <div className="schemaform-intro">

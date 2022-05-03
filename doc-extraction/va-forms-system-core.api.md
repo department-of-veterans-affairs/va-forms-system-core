@@ -58,7 +58,7 @@ export interface IFormData {
     [prop: string]: unknown;
 }
 
-// @public (undocumented)
+// @public
 export const IntroductionPage: () => JSX.Element;
 
 // @beta

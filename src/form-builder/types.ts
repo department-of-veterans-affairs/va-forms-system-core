@@ -36,6 +36,16 @@ export type CheckboxGroupProps = FieldProps<string> & {
   options: CheckboxProps[];
 };
 
+/**
+ * FormTitle properties
+ *
+ * @example
+ * ```
+ * {
+ *    title: 'My Example Title'
+ *    subTitle: 'I once had an example subTitle'
+ * }
+ */
 export interface FormTitleProps {
   title: string;
   subTitle?: string;

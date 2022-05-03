@@ -33,7 +33,7 @@
 |  [DebuggerView](./va-forms-system-core.debuggerview.md) | Display the Formik state |
 |  [EmailField](./va-forms-system-core.emailfield.md) | <b><i>(BETA)</i></b> Renders the EmailField component |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
-|  [IntroductionPage](./va-forms-system-core.introductionpage.md) |  |
+|  [IntroductionPage](./va-forms-system-core.introductionpage.md) | Introduction Page Component<!-- -->Introduction page for the Burials form using these Web Components:<!-- -->VaProcessList FormTitle SaveInProgressIntro OMBInfo |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
 

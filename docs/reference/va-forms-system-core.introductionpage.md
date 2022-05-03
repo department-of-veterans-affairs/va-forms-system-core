@@ -4,6 +4,12 @@
 
 ## IntroductionPage variable
 
+Introduction Page Component
+
+Introduction page for the Burials form using these Web Components:
+
+VaProcessList FormTitle SaveInProgressIntro OMBInfo
+
 <b>Signature:</b>
 
 ```typescript
