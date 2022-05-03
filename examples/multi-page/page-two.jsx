@@ -15,7 +15,6 @@ export default function ContactInformationPage() {
         <TextField name="streetThree" label="Street line 3" />
         <TextField name="state" label="State" />
         <TextField name="zipcode" label="Zip code" />
-        <Link to="/">Back</Link>
       </Page>
       <DebuggerView />
     </>

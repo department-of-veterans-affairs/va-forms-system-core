@@ -18,6 +18,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [ChapterProps](./va-forms-system-core.chapterprops.md) | <b><i>(BETA)</i></b> The properties for the Chapter React component |
+|  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
 |  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
 |  [PageProps](./va-forms-system-core.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
 |  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
@@ -34,6 +35,7 @@
 |  [EmailField](./va-forms-system-core.emailfield.md) | <b><i>(BETA)</i></b> Renders the EmailField component |
 |  [FormTitle](./va-forms-system-core.formtitle.md) | Form Title component<!-- -->Simple wrapper around a Form Title and subTitle using VA styles |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
+|  [IntroductionPage](./va-forms-system-core.introductionpage.md) |  |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) |  |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
