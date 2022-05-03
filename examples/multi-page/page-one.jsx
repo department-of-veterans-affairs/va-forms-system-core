@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import {
     TextField,
     EmailField,
-    Page, 
+    Page,
+    PhoneField,
     DebuggerView
   } from '@department-of-veterans-affairs/va-forms-system-core';
 
@@ -14,6 +15,7 @@ export default function PersonalInformationPage() {
                 <TextField name="firstName" label="First name"/>
                 <TextField name="lastName" label="Last name"/>
                 <EmailField name="email" label="Email" />
+                <PhoneField name="phone" label="Phone"/>
                 <DebuggerView />
             </Page>
         </>
