@@ -1,7 +1,7 @@
 import React from 'react';
 import { VaProcessList } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import OMBInfo from './OMBInfo';
 import FormTitle from './FormTitle';
-// import OMBInfo from '@department-of-veterans-affairs/component-library/OMBInfo';
 
 /**
  * Introduction Page Component
@@ -20,13 +20,6 @@ const IntroductionPage = (): JSX.Element => {
     <div className="schemaform-intro">
       <FormTitle title="Apply for burial benefits" />
       <p>Equal to VA Form 21P-530 (Application for Burial Benefits).</p>
-      {/* <SaveInProgressIntro
-            headingLevel={2}
-            prefillEnabled={route.formConfig.prefillEnabled}
-            pageList={route.pageList}
-            downtime={route.formConfig.downtime}
-            startText="Start the Burial Benefits Application"
-        /> */}
       <h2 className="vads-u-font-size--h4">
         Follow the steps below to apply for burial benefits.
       </h2>
@@ -119,16 +112,8 @@ const IntroductionPage = (): JSX.Element => {
           </p>
         </li>
       </VaProcessList>
-      {/* <SaveInProgressIntro
-            buttonOnly
-            prefillEnabled={route.formConfig.prefillEnabled}
-            pageList={route.pageList}
-            startText="Start the Burial Benefits Application"
-            downtime={route.formConfig.downtime}
-        /> */}
       <div className="omb-info--container" style={{ paddingLeft: '0px' }}>
-        {/* <OMBInfo resBurden={15} ombNumber="2900-0003" expDate="04/30/2020" /> */}
-        <h3>This is where the OMBInfo should be</h3>
+        <OMBInfo resBurden={15} ombNumber="2900-0003" expDate="04/30/2020" />
       </div>
     </div>
   );
