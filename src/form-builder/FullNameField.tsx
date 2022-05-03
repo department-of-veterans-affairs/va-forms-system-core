@@ -6,29 +6,32 @@ import SelectField from './SelectField';
 import TextField from './TextField';
 
 const FullNameField = (props: FullNameProps): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const fieldName = props.fieldName ? props.fieldName : 'fullName';
+  const fieldName = props.name;
 
   return (
     <>
       <TextField
-        id="firstName"
+        id={`${fieldName}FirstName`}
         name={`${fieldName}.firstName`}
         label="Your first name"
         required
       />
       <TextField
-        id="middleName"
+        id={`${fieldName}MiddleName`}
         name={`${fieldName}.middleName`}
         label="Your middle name"
       />
       <TextField
-        id="lastName"
+        id={`${fieldName}LastName`}
         name={`${fieldName}.lastName`}
         label="Your last name"
         required
       />
-      <SelectField id="suffix" name={`${fieldName}.suffix`} label="Suffix">
+      <SelectField
+        id={`${fieldName}Suffix`}
+        name={`${fieldName}.suffix`}
+        label="Suffix"
+      >
         {Suffixes.map((suffix, idx) => (
           <option key={`${idx}-${suffix}`}>{suffix}</option>
         ))}

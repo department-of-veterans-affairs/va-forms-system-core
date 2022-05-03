@@ -1,21 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { Form, Formik } from 'formik';
 import {
   CheckboxField,
-  RadioGroup,
-  DateField,
   DebuggerView,
   TextField,
-  FullNameField,
-  EmailField,
+  CheckboxFieldGroup,
+  FullNameField
 } from '@department-of-veterans-affairs/va-forms-system-core';
-
-import CheckboxFieldGroup from '../../src/form-builder/CheckboxFieldGroup';
-
-import '@department-of-veterans-affairs/component-library/dist/main.css';
-import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
 
 const checkboxProps = {
   label: 'Military Service Details',
@@ -76,33 +68,7 @@ const checkboxProps = {
   ],
 };
 
-const radioGroupProps = {
-  label: "Preferred contact method", 
-  name: "contactMethod",
-  required: true,
-  options: [
-    {
-      label: 'Email',
-      name: 'email', 
-      value: 'email',
-    },
-    {
-      label: 'Phone',
-      name: 'phone',
-      value: 'phone',
-    },
-    {
-      label: 'Mail',
-      name: 'mail',
-      value: 'mail',
-    }
-  ]
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-void defineCustomElements();
-
-const App = () => (
+const SimpleApp = () => (
   <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Example form</h1>
     <Formik
@@ -123,14 +89,10 @@ const App = () => (
       }}
     >
       <Form>
-        <FullNameField fieldName="veteranFullName" required/>
-        <br />
-        <EmailField label="Email" name="email" required/>
-        <br />
-        <RadioGroup {...radioGroupProps} />
-        <br />
+        <CheckboxField name="bar" label="Do you have pets?" required />
+        <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
-        <br />
+        <FullNameField name="fullName" label="fullName"/>
         <button type="submit" className="btn">
           {' '}
           submit
@@ -141,4 +103,4 @@ const App = () => (
   </div>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default SimpleApp;
