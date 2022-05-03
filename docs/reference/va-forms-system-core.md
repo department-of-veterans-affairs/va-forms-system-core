@@ -32,8 +32,9 @@
 |  [DateField](./va-forms-system-core.datefield.md) | Field value format: M-D-YYYY<!-- -->TODO: Convert the Date component into a web component and use it here. |
 |  [DebuggerView](./va-forms-system-core.debuggerview.md) | Display the Formik state |
 |  [EmailField](./va-forms-system-core.emailfield.md) | <b><i>(BETA)</i></b> Renders the EmailField component |
+|  [FormTitle](./va-forms-system-core.formtitle.md) | Form Title component<!-- -->Simple wrapper around a Form Title and subTitle using VA styles |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
-|  [IntroductionPage](./va-forms-system-core.introductionpage.md) | Introduction Page Component<!-- -->Introduction page for the Burials form using these Web Components:<!-- -->VaProcessList FormTitle SaveInProgressIntro OMBInfo |
+|  [OMBInfo](./va-forms-system-core.ombinfo.md) |  |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
 

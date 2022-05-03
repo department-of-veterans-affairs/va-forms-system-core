@@ -47,6 +47,11 @@ export const EmailField: (props: EmailProps) => JSX.Element;
 // @beta
 export function FormRouter(props: RouterProps): JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "FormTitleProps" needs to be exported by the entry point index.d.ts
+//
+// @public
+export const FormTitle: (props: FormTitleProps) => JSX.Element;
+
 // Warning: (ae-forgotten-export) The symbol "FullNameProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
@@ -58,8 +63,10 @@ export interface IFormData {
     [prop: string]: unknown;
 }
 
-// @public
-export const IntroductionPage: () => JSX.Element;
+// Warning: (ae-forgotten-export) The symbol "OMBInfoProps" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
 
 // @beta
 export function Page(props: PageProps): JSX.Element;

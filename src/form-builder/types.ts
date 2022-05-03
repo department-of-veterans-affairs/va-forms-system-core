@@ -43,7 +43,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
  * ```
  * {
  *    title: 'My Example Title'
- *    subTitle: 'I once had an example subTitle'
+ *    subTitle: 'My Example Sub Title for more information'
  * }
  */
 export interface FormTitleProps {
@@ -51,12 +51,21 @@ export interface FormTitleProps {
   subTitle?: string;
 }
 
+/**
+ * OMBInfo properties
+ *
+ * @example
+ * ```
+ * {
+ *    expDate: 'My Example Title' required
+ *    resBurden: 1
+ *    ombNumber: '123-ABC'
+ * }
+ */
 export interface OMBInfoProps {
   resBurden?: number;
-  benefitType?: string;
   ombNumber?: string;
   expDate: string;
-  children?: JSX.Element[];
 }
 
 /**
