@@ -10,11 +10,9 @@ import { FormTitleProps } from './types';
  * @returns React.Component
  */
 const FormTitle = (props: FormTitleProps) => (
-  <div className="schemaform-title">
+  <div className="va-form-title">
     <h1>{props.title}</h1>
-    {props.subTitle && (
-      <div className="schemaform-subtitle">{props.subTitle}</div>
-    )}
+    {props.subTitle && <div className="va-form-subtitle">{props.subTitle}</div>}
   </div>
 );
 

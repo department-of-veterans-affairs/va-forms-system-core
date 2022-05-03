@@ -111,6 +111,10 @@ export interface RouterProps {
     children: Routable | Array<Routable>;
     // (undocumented)
     formData: IFormData;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title: string;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
