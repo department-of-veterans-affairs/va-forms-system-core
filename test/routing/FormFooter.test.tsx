@@ -7,7 +7,7 @@ import FormFooter from '../../src/routing/FormFooter';
 import { Page, TextField } from '../../src';
 
 
-describe('FormTitle', () => {
+describe('FormFooter', () => {
 
   test('Renders footer', () => {
     const { container } = render(
