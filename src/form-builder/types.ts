@@ -41,6 +41,14 @@ export interface FormTitleProps {
   subTitle?: string;
 }
 
+export interface OMBInfoProps {
+  resBurden?: number;
+  benefitType?: string;
+  ombNumber?: string;
+  expDate: string;
+  children?: JSX.Element[];
+}
+
 /**
  *
  * @remarks
