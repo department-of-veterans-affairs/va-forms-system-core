@@ -48,7 +48,7 @@ export interface IFormData {
  * @beta
  */
 export interface ChapterProps {
-  children: Array<any>;
+  children: Array<any> | any;
   title: string;
   path: string;
 }

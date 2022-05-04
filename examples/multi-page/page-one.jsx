@@ -10,7 +10,7 @@ import {
 export default function PersonalInformationPage() {
     return (
         <>
-            <Page title="Personal Information" nextPage="page-two">
+            <Page title="Personal Information" nextPage="chapter-one">
                 <TextField name="firstName" label="First name"/>
                 <TextField name="lastName" label="Last name"/>
                 <EmailField name="email" label="Email" />

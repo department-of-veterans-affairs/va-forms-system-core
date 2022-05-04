@@ -1,5 +1,11 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  createRoutesFromChildren,
+} from 'react-router-dom';
 import { ChapterProps } from './types';
 
 /**
@@ -8,20 +14,19 @@ import { ChapterProps } from './types';
  * @beta
  */
 export default function Chapter(props: ChapterProps): JSX.Element {
-  const listOfPages = props.children.filter((child) =>
-    String(child.type).includes('Page')
-  );
+  const listOfPages = Array.isArray(props.children)
+    ? props.children
+    : [props.children];
+  // const getRoutes = () => listOfPages.length > 0 ? listOfPages.map((page) => {
+  //   return page.props.path
+  // }) : [];
+  // const routes = getRoutes();
+  const childRoutes = createRoutesFromChildren(props.children);
+  // const getLocation = useLocation();
 
   return (
     <div>
-      {listOfPages.map((page) => (
-        <Link to={`${props.path}/${page.props.path}`} key={page.props.path}>
-          <button type="button">{page.props.title}</button>
-        </Link>
-      ))}
-      <Routes>
-        <Route path={`${props.path}/*`} element={props.children} />
-      </Routes>
+      <h1> Chapter title </h1>
     </div>
   );
 }
