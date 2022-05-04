@@ -4,8 +4,19 @@
 
 ## OMBInfo variable
 
+OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden.
+
 <b>Signature:</b>
 
 ```typescript
 OMBInfo: (props: OMBInfoProps) => JSX.Element
 ```
+
+## Example
+
+Here's a simple example:
+
+```javascript
+<OMBInfo ombNumber="123-ABC" expDate="01/01/1001" resBurden={1} />;
+```
+

@@ -3,6 +3,18 @@ import FormTitle from './FormTitle';
 import { OMBInfo } from '../form-builder';
 import { VaProcessList } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
+/**
+ * IntroductionPage component current copy of the original Burials introduction page
+ * this will need to be updated to be more dynamic after demo.
+ * 
+ * @example
+ * Here is a simple example:
+ * ```javascript
+ * <IntroductionPage />
+ * ```
+ *
+ * @returns React.Component
+ */
 const IntroductionPage = () => {
   return (
     <div className="schemaform-intro">

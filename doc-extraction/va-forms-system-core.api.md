@@ -44,6 +44,9 @@ export const DebuggerView: () => JSX.Element;
 // @beta
 export const EmailField: (props: EmailProps) => JSX.Element;
 
+// @public (undocumented)
+export function FormFooter(): JSX.Element;
+
 // @beta
 export function FormRouter(props: RouterProps): JSX.Element;
 
@@ -69,12 +72,12 @@ export interface IFormData {
     [prop: string]: unknown;
 }
 
-// @public (undocumented)
+// @public
 export const IntroductionPage: () => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "OMBInfoProps" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
 
 // @beta

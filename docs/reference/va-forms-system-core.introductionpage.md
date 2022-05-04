@@ -4,8 +4,19 @@
 
 ## IntroductionPage variable
 
+IntroductionPage component current copy of the original Burials introduction page this will need to be updated to be more dynamic after demo.
+
 <b>Signature:</b>
 
 ```typescript
 IntroductionPage: () => JSX.Element
 ```
+
+## Example
+
+Here is a simple example:
+
+```javascript
+<IntroductionPage />
+```
+

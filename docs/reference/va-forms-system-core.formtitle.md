@@ -4,12 +4,19 @@
 
 ## FormTitle variable
 
-Form Title component
-
-Simple wrapper around a Form Title and subTitle using VA styles
+Form Title component is a simple wrapper around a Form Title and subTitle using VA styles
 
 <b>Signature:</b>
 
 ```typescript
 FormTitle: (props: FormTitleProps) => JSX.Element
 ```
+
+## Example
+
+Here's a simple example:
+
+```javascript
+<FormTitle title="My Title" subTitle="Example sub title text" />;
+```
+

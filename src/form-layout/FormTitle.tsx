@@ -2,11 +2,17 @@ import React from 'react';
 import { FormTitleProps } from './types';
 
 /**
- * Form Title component
+ * Form Title component is a simple wrapper 
+ * around a Form Title and subTitle using VA styles
  *
- * Simple wrapper around a Form Title and subTitle using VA styles
- *
- * @param props FormTitleProps
+ * @param {FormTitleProps} props
+ * 
+ * @example
+ * Here's a simple example:
+ * ```javascript
+ * <FormTitle title="My Title" subTitle="Example sub title text" />;
+ * ```
+ * 
  * @returns React.Component
  */
 const FormTitle = (props: FormTitleProps) => (

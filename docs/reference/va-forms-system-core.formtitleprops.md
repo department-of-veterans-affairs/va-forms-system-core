@@ -14,7 +14,13 @@ export interface FormTitleProps
 
 ## Example
 
-\`\`\` { title: 'My Example Title' subTitle: 'My Example Sub Title for more information' }
+
+```json
+{
+   title: 'My Example Title',
+   subTitle: 'My Example Sub Title for more information'
+}
+```
 
 ## Properties
 

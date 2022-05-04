@@ -1,6 +1,20 @@
 import React from 'react';
 import { OMBInfoProps } from './types';
 
+/**
+ * OMBInfo component is a simple form building component that displays the
+ * VA OMB number from your form, expDate, and resBurden.
+ *
+ * @param {OMBInfoProps} props
+ * 
+ * @example
+ * Here's a simple example:
+ * ```javascript
+ * <OMBInfo ombNumber="123-ABC" expDate="01/01/1001" resBurden={1} />
+ * ```
+ * 
+ * @returns React.Component
+ */
 const OMBInfo = (props: OMBInfoProps): JSX.Element => {
   const { resBurden, ombNumber, expDate } = props;
 
