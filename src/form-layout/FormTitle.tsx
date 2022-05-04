@@ -9,7 +9,7 @@ import { FormTitleProps } from './types';
  * 
  * @example
  * Here's a simple example:
- * ```javascript
+ * ```typescript
  * <FormTitle title="My Title" subTitle="Example sub title text" />;
  * ```
  * 

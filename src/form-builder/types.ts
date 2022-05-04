@@ -46,6 +46,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
  *    resBurden: 1
  *    ombNumber: '123-ABC'
  * }
+ * ```
  */
 export interface OMBInfoProps {
   resBurden?: number;

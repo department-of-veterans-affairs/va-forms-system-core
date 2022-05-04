@@ -16,7 +16,7 @@ IntroductionPage: () => JSX.Element
 
 Here is a simple example:
 
-```javascript
+```typescript
 <IntroductionPage />
 ```
 

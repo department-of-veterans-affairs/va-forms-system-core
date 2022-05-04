@@ -9,7 +9,7 @@ import { VaProcessList } from '@department-of-veterans-affairs/component-library
  * 
  * @example
  * Here is a simple example:
- * ```javascript
+ * ```typescript
  * <IntroductionPage />
  * ```
  *

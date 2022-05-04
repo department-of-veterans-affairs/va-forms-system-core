@@ -14,7 +14,14 @@ export interface OMBInfoProps
 
 ## Example
 
-\`\`\` { expDate: 'My Example Title' required resBurden: 1 ombNumber: '123-ABC' }
+
+```
+{
+   expDate: 'My Example Title' required
+   resBurden: 1
+   ombNumber: '123-ABC'
+}
+```
 
 ## Properties
 

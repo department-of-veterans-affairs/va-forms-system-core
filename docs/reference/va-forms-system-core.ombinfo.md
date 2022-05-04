@@ -16,7 +16,7 @@ OMBInfo: (props: OMBInfoProps) => JSX.Element
 
 Here's a simple example:
 
-```javascript
+```typescript
 <OMBInfo ombNumber="123-ABC" expDate="01/01/1001" resBurden={1} />
 ```
 

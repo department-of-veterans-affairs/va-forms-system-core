@@ -16,7 +16,7 @@ FormTitle: (props: FormTitleProps) => JSX.Element
 
 Here's a simple example:
 
-```javascript
+```typescript
 <FormTitle title="My Title" subTitle="Example sub title text" />;
 ```
 
