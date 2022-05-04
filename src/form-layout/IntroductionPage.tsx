@@ -6,9 +6,10 @@ import { VaProcessList } from '@department-of-veterans-affairs/component-library
 /**
  * IntroductionPage component current copy of the original Burials introduction page
  * this will need to be updated to be more dynamic after demo.
- * 
+ *
  * @example
  * Here is a simple example:
+ *
  * ```typescript
  * <IntroductionPage />
  * ```
