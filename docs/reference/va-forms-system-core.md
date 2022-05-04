@@ -21,6 +21,7 @@
 |  [ChapterProps](./va-forms-system-core.chapterprops.md) | <b><i>(BETA)</i></b> The properties for the Chapter React component |
 |  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
 |  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
+|  [OMBInfoProps](./va-forms-system-core.ombinfoprops.md) | OMBInfo properties |
 |  [PageProps](./va-forms-system-core.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
 |  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
 |  [RouterProps](./va-forms-system-core.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
@@ -40,4 +41,15 @@
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [CheckboxGroupProps](./va-forms-system-core.checkboxgroupprops.md) |  |
+|  [CheckboxProps](./va-forms-system-core.checkboxprops.md) |  |
+|  [FieldProps](./va-forms-system-core.fieldprops.md) |  |
+|  [FullNameProps](./va-forms-system-core.fullnameprops.md) |  |
+|  [RadioGroupProps](./va-forms-system-core.radiogroupprops.md) |  |
+|  [RadioItemProps](./va-forms-system-core.radioitemprops.md) |  |
 

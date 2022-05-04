@@ -8,3 +8,4 @@ export { default as FormTitle } from '../form-layout/FormTitle';
 export { default as OMBInfo } from './OMBInfo';
 export { RadioGroup } from './RadioGroup';
 export { default as FullNameField } from './FullNameField';
+export * from './types';

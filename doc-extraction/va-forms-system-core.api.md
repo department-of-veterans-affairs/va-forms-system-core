@@ -21,15 +21,24 @@ export interface ChapterProps {
     title: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CheckboxProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const CheckboxField: (props: CheckboxProps) => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "CheckboxGroupProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const CheckboxFieldGroup: (props: CheckboxGroupProps) => JSX.Element;
+
+// @public (undocumented)
+export type CheckboxGroupProps = FieldProps<string> & {
+    options: CheckboxProps[];
+};
+
+// @public (undocumented)
+export type CheckboxProps = FieldProps<string> & {
+    checked?: boolean;
+    content?: string;
+    onValueChange?: any;
+    value?: boolean;
+};
 
 // Warning: (ae-forgotten-export) The symbol "DateProps" needs to be exported by the entry point index.d.ts
 //
@@ -43,6 +52,13 @@ export const DebuggerView: () => JSX.Element;
 //
 // @beta
 export const EmailField: (props: EmailProps) => JSX.Element;
+
+// @public (undocumented)
+export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
+    label: string;
+    id?: string;
+    required?: boolean | string;
+};
 
 // @public (undocumented)
 export function FormFooter(): JSX.Element;
@@ -61,10 +77,11 @@ export interface FormTitleProps {
     title: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "FullNameProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const FullNameField: (props: FullNameProps) => JSX.Element;
+
+// @public (undocumented)
+export type FullNameProps = FieldProps<string>;
 
 // @beta
 export interface IFormData {
@@ -75,10 +92,18 @@ export interface IFormData {
 // @public
 export const IntroductionPage: () => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "OMBInfoProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
+
+// @public
+export interface OMBInfoProps {
+    // (undocumented)
+    expDate: string;
+    // (undocumented)
+    ombNumber?: string;
+    // (undocumented)
+    resBurden?: number;
+}
 
 // @beta
 export function Page(props: PageProps): JSX.Element;
@@ -95,10 +120,25 @@ export interface PageProps {
     title: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "RadioGroupProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export function RadioGroup(props: RadioGroupProps): JSX.Element;
+
+// @public (undocumented)
+export type RadioGroupProps = FieldProps<string> & {
+    name: string;
+    options: React.ReactElement<RadioItemProps>[];
+    onChange: (v: string) => void;
+};
+
+// @public (undocumented)
+export type RadioItemProps = {
+    'aria-describedby': string;
+    checked: boolean;
+    label: string;
+    name: string;
+    value: string;
+    onRadioOptionSelected: () => void;
+};
 
 // @beta
 export interface Routable {
@@ -125,8 +165,6 @@ export interface RouterProps {
 // @public (undocumented)
 export const SelectField: (props: SelectProps) => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "FieldProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const TextField: (props: FieldProps<string>) => JSX.Element;
 
