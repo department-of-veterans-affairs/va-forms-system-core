@@ -3,7 +3,8 @@ import {
   TextField,
   EmailField,
   Page,
-  DebuggerView
+  DebuggerView,
+  SSNField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function PersonalInformationPage() {
@@ -13,6 +14,7 @@ export default function PersonalInformationPage() {
         <TextField name="firstName" label="First name" />
         <TextField name="lastName" label="Last name" />
         <EmailField name="email" label="Email" />
+        <SSNField name="ssn" label="Social Security Number" />
       </Page>
       <DebuggerView />
     </>

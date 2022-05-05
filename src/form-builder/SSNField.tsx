@@ -33,9 +33,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
   };
 
   const onBlur = (event: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
     const { value } = event.target;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
     const ssnString: string = value.replaceAll('-', '');
     helpers.setValue(ssnString);
     helpers.setTouched(true);
