@@ -90,3 +90,25 @@ export const isValidEmail = <T>(
     ? ''
     : 'Please enter an email address using this format: X@X.com';
 };
+
+export const isValidPhone = <T>(
+  phoneString: T,
+  props: FieldProps<T>
+): ValidationFunctionResult<T> => {
+  if (typeof phoneString !== 'string') {
+    return 'Error: Phone is not the correct type'; 
+  }
+  function isValidPhone(value: string) {
+    // Strip spaces, dashes, and parens
+    const stripped = value.replace(/[^\d]/g, '');
+    // Count number of digits
+    return /^\d{10}$/.test(stripped);
+  }
+
+  const isValid =
+    (!props.required && !phoneString) || isValidPhone(phoneString);
+
+  return isValid
+    ? ''
+    : 'Please enter a valid 10-digit phone number';
+};

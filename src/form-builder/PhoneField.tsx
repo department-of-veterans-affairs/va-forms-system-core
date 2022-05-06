@@ -2,32 +2,36 @@ import React from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
-import { chainValidations, required } from '../utils/validation';
-import { VaTextInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { chainValidations, isValidPhone, required } from '../utils/validation';
+import TextField from './TextField';
 
-const PhoneField = (props: FieldProps<string>): JSX.Element => {
+export type PhoneProps = FieldProps<string>;
+
+/**
+ * Renders the PhoneField component
+ *
+ * @beta
+ */
+
+const PhoneField = (props: PhoneProps): JSX.Element => {
   const withValidation = {
     ...props,
-    validate: chainValidations(props, [required]),
+    validate: chainValidations(props, [required, isValidPhone]),
   };
-  const [field, meta] = useField(withValidation as FieldHookConfig<string>);
+  const [field, meta, helpers] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
-
+  console.log('field.val', field.value)
+  const value = field.value;
   return (
-    <VaTextInput
-      type="tel"
-      inputmode="tel"
+    <TextField
       id={id}
-      label={props.label}
-      required={!!props.required}
-      onVaChange={field.onChange}
-      error={(meta.touched && meta.error) || undefined}
-    //   autocomplete={}
-    //   maxlength={}
-      {...field}
-
+      {...props}
+      onChange={field.onChange}
+      value={value}
+      required={props.required}
+      onBlur={() => helpers.setTouched(true)}
     />
   );
 };
 
-export default PhoneField;
+export default PhoneField;  
