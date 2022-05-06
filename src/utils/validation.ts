@@ -95,18 +95,19 @@ export const isValidPhone = <T>(
   phoneString: T,
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
+  console.log('typeof', typeof phoneString, 'phonestring', phoneString, 'T o F', typeof phoneString !== 'string' )
   if (typeof phoneString !== 'string') {
-    return 'Error: Phone is not the correct type'; 
+    return 'Error: Phone is not the correct type'; // This shouldn't happen
   }
-  function isValidPhone(value: string) {
+  function validPhone(value: string) {
     // Strip spaces, dashes, and parens
-    const stripped = value.replace(/[^\d]/g, '');
+    const stripped = value.replace(/[^\d]/g,'');
     // Count number of digits
     return /^\d{10}$/.test(stripped);
   }
 
   const isValid =
-    (!props.required && !phoneString) || isValidPhone(phoneString);
+    (!props.required && !phoneString) || validPhone(phoneString);
 
   return isValid
     ? ''

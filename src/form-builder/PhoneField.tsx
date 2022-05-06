@@ -1,6 +1,5 @@
 import React from 'react';
 import { useField, FieldHookConfig } from 'formik';
-
 import { FieldProps } from './types';
 import { chainValidations, isValidPhone, required } from '../utils/validation';
 import TextField from './TextField';
@@ -20,7 +19,7 @@ const PhoneField = (props: PhoneProps): JSX.Element => {
   };
   const [field, meta, helpers] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
-  console.log('field.val', field.value)
+  // console.log('field.val', field.value)
   const value = field.value;
   return (
     <TextField
@@ -28,7 +27,7 @@ const PhoneField = (props: PhoneProps): JSX.Element => {
       {...props}
       onChange={field.onChange}
       value={value}
-      required={props.required}
+      required=
       onBlur={() => helpers.setTouched(true)}
     />
   );
