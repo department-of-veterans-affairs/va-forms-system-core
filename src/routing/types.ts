@@ -31,7 +31,6 @@ export interface PageProps {
   title: string;
   path: string;
   nextPage: string;
-  prevPage?: string;
 }
 
 /**

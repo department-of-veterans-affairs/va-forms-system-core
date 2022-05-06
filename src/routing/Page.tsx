@@ -19,21 +19,6 @@ export default function Page(props: PageProps): JSX.Element {
       <h2>{props.title}</h2>
       <Form>
         {props.children}
-
-        {props.prevPage && (
-          <button
-            className="btn"
-            onClick={(event) => {
-              event.preventDefault();
-              submitForm();
-              navigate(`/${props.prevPage}`);
-            }}
-          >
-            {' '}
-            Previous
-          </button>
-        )}
-
         <button
           className="btn"
           onClick={(event) => {
