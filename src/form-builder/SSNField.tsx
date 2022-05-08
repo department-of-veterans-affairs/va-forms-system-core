@@ -23,6 +23,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
     withValidation as FieldHookConfig<string>
   );
   const id = props.id || props.name;
+
   const [ssn, setSSN] = useState('');
 
   const onFocus = () => {
@@ -63,8 +64,10 @@ const SSNField = (props: SSNProps): JSX.Element => {
       {...props}
       value={ssn}
       required
+      maxlength={11}
       onFocus={onFocus}
       onVaBlur={onBlur}
+      error={(meta.touched && meta.error) || undefined}
     />
   );
 };

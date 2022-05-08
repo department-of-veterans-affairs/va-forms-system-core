@@ -1,6 +1,6 @@
+import { range } from 'lodash';
 import { FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
-import { range } from 'lodash';
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -106,17 +106,27 @@ export const isValidSSN = <T>(
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (typeof ssnString !== 'string') {
-    return 'Error: ssnString is not the correct type'; // This shouldn't happen
+    return 'Error: ssnString is not the correct type.'; // This shouldn't happen
+  }
+
+  if (ssnString === '') {
+    return 'Please enter a Social Security number.';
   }
 
   if (
     ssnString === '123456789' ||
     ssnString === '123-45-6789' ||
+    ssnString === '123 45 6789'
+  ) {
+    return 'Error: Social Security number can not be consecutive numbers.';
+  }
+
+  if (
     /^0{3}-?\d{2}-?\d{4}$/.test(ssnString) ||
     /^\d{3}-?0{2}-?\d{4}$/.test(ssnString) ||
     /^\d{3}-?\d{2}-?0{4}$/.test(ssnString)
   ) {
-    return '';
+    return 'Error: Social Security number can not contain all zeros in any section.';
   }
 
   const noBadSameDigitNumber = range(0, 10).every((i) => {
@@ -125,10 +135,13 @@ export const isValidSSN = <T>(
   });
 
   if (!noBadSameDigitNumber) {
-    return 'Invalid SSN';
+    return 'Error: Social Security number can not contain all the same digits.';
   }
 
   const isValid =
     /^\d{9}$/.test(ssnString) || /^\d{3}-\d{2}-\d{4}$/.test(ssnString);
-  return isValid ? '' : 'Invalid SSN';
+
+  return isValid
+    ? ''
+    : 'Please enter a valid 9 digit Social Security number (dashes allowed)';
 };
