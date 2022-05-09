@@ -15,7 +15,7 @@ const NoMatch = (props) => (
 const FormIntroductionPageChapter = () => {
   return (
     <>
-      <Page title="Chapter Form" nextPage="chapter-one">
+      <Page title="Chapter Form" nextPage="/chapter-one">
         <p> Chapter Form </p>
       </Page>
     </>
@@ -25,7 +25,7 @@ const FormIntroductionPageChapter = () => {
 const ChapterOne = (props) => (
   <>
     <h2> Chapter One</h2>
-    <Link to="page-one">PageOne</Link>
+    <Link to="/chapter-one/page-one">PageOne</Link>
 
     <Chapter>
       <p>Custom UI content that can go inside chapter 1</p>
@@ -34,13 +34,13 @@ const ChapterOne = (props) => (
 );
 
 const ChapterOnePageOne = (props) => (
-  <Page nextPage="../page-two">
+  <Page nextPage="/chapter-one/page-two">
     <p>chapter one, page one</p>
   </Page>
 );
 
 const ChapterOnePageTwo = (props) => (
-  <Page nextPage="../../chapter-two">
+  <Page nextPage="/chapter-two">
     <p>chapter one, page two</p>
   </Page>
 );
@@ -48,7 +48,7 @@ const ChapterOnePageTwo = (props) => (
 const ChapterTwo = (props) => (
   <>
     <h2> Chapter Two</h2>
-    <Link to="page-one">PageOne</Link>
+    <Link to="/chapter-two/page-one">PageOne</Link>
 
     <Chapter>
       <p>Custom UI content that can go inside chapter 2</p>
@@ -57,13 +57,13 @@ const ChapterTwo = (props) => (
 );
 
 const ChapterTwoPageOne = (props) => (
-  <Page nextPage="../page-two">
+  <Page nextPage="/chapter-two/page-two">
     <p>chapter two, page one</p>
   </Page>
 )
 
 const ChapterTwoPageTwo = (props) => (
-  <Page nextPage="../../">
+  <Page nextPage="/">
     <p>chapter two, page two</p>
   </Page>
 )

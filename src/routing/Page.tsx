@@ -24,7 +24,7 @@ export default function Page(props: PageProps): JSX.Element {
           onClick={(event) => {
             event.preventDefault();
             submitForm();
-            navigate(`/${props.nextPage}`);
+            navigate(`${props.nextPage}`);
           }}
         >
           {' '}
