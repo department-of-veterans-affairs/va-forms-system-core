@@ -33,7 +33,7 @@ describe('Form Builder - PhoneField', () => {
   });
 
   test('it renders a custom "required" validation error message', async () => {
-    const customValidationMsg = 'Please enter a valid phone number';
+    const customValidationMsg = 'Please enter a 10-digit phone number (with or without dashes)';
     const { container, getFormProps } = renderForm(
       <PhoneField name="phone" label="Phone" required={customValidationMsg}/>
     );
@@ -52,7 +52,7 @@ describe('Form Builder - PhoneField', () => {
     await waitFor(() => getFormProps().setFieldTouched('phone'));
 
     expect(input?.getAttribute('error')).toEqual(
-      'Please enter a valid 10-digit phone number'
+      'Please enter a 10-digit phone number (with or without dashes)'
     );
   });
 

@@ -19,7 +19,6 @@ const PhoneField = (props: PhoneProps): JSX.Element => {
   };
   const [field, meta, helpers] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
-  console.log('field.val', field.value)
   const value = field.value;
 
   return (
