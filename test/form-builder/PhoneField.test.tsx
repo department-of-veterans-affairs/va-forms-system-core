@@ -21,7 +21,6 @@ describe('Form Builder - PhoneField', () => {
     expect(input.getAttribute('label')).toEqual('Phone');
     expect(input.getAttribute('name')).toEqual('phone');
   });
-////
   test('it renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
       <PhoneField name="phone" label="Phone" required/>
@@ -30,12 +29,10 @@ describe('Form Builder - PhoneField', () => {
     await waitFor(() => {
       getFormProps().setFieldTouched('phone');
     });
-//Getting Error: Phone is not the correct type, which shouldn't happen at all
     expect(input.getAttribute('error')).toEqual('Please provide a response');
   });
 
   test('it renders a custom "required" validation error message', async () => {
-//Check this error message    
     const customValidationMsg = 'Please enter a valid phone number';
     const { container, getFormProps } = renderForm(
       <PhoneField name="phone" label="Phone" required={customValidationMsg}/>
