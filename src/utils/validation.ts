@@ -109,5 +109,5 @@ export const isValidPhone = <T>(
   console.log(isValid);
   return isValid
     ? ''
-    : 'Please enter a valid 10-digit phone number';
+    : 'Please enter a 10-digit phone number (with or without dashes)';
 };
