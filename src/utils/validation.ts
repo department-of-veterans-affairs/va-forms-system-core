@@ -95,11 +95,6 @@ export const isValidPhone = <T>(
   phoneString: T,
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
-  // console.log(
-  //   'typeof', typeof phoneString, 
-  //   'phonestring', phoneString, 
-  //   'T o F', typeof phoneString !== 'string'
-  //   )
   if (typeof phoneString !== 'string') {
     return 'Error: Phone is not the correct type'; // This shouldn't happen
   }
