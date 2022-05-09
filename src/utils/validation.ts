@@ -109,39 +109,28 @@ export const isValidSSN = <T>(
     return 'Error: ssnString is not the correct type.'; // This shouldn't happen
   }
 
-  if (ssnString === '') {
-    return 'Please enter a Social Security number.';
-  }
-
-  if (
-    ssnString === '123456789' ||
-    ssnString === '123-45-6789' ||
-    ssnString === '123 45 6789'
-  ) {
-    return 'Error: Social Security number can not be consecutive numbers.';
-  }
-
-  if (
-    /^0{3}-?\d{2}-?\d{4}$/.test(ssnString) ||
-    /^\d{3}-?0{2}-?\d{4}$/.test(ssnString) ||
-    /^\d{3}-?\d{2}-?0{4}$/.test(ssnString)
-  ) {
-    return 'Error: Social Security number can not contain all zeros in any section.';
-  }
-
   const noBadSameDigitNumber = range(0, 10).every((i) => {
     const sameDigitRegex = new RegExp(`${i}{3}-?${i}{2}-?${i}{4}`);
     return !sameDigitRegex.test(ssnString);
   });
 
-  if (!noBadSameDigitNumber) {
+  if (!props.required && !ssnString) {
+    return '';
+  } else if (ssnString === '123456789' || ssnString === '123-45-6789') {
+    return 'Error: Social Security number can not be consecutive numbers.';
+  } else if (
+    /^0{3}-?\d{2}-?\d{4}$/.test(ssnString) ||
+    /^\d{3}-?0{2}-?\d{4}$/.test(ssnString) ||
+    /^\d{3}-?\d{2}-?0{4}$/.test(ssnString)
+  ) {
+    return 'Error: Social Security number can not contain all zeros in any section.';
+  } else if (!noBadSameDigitNumber) {
     return 'Error: Social Security number can not contain all the same digits.';
+  } else if (/^\d{3}-\d{2}-\d{4}$/.test(ssnString)) {
+    return '';
+  } else if (!/^\d{9}$/.test(ssnString)) {
+    return 'Please enter a valid 9 digit Social Security number (dashes allowed)';
+  } else {
+    return '';
   }
-
-  const isValid =
-    /^\d{9}$/.test(ssnString) || /^\d{3}-\d{2}-\d{4}$/.test(ssnString);
-
-  return isValid
-    ? ''
-    : 'Please enter a valid 9 digit Social Security number (dashes allowed)';
 };

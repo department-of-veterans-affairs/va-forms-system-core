@@ -54,16 +54,14 @@ const SSNField = (props: SSNProps): JSX.Element => {
       ].join('-');
     }
 
-    helpers.setError(isValidSSN(field.value, props) as string);
     setSSN(maskedSSNString);
   };
 
   return (
     <VaTextInput
-      id={id}
       {...props}
+      id={id}
       value={ssn}
-      required
       maxlength={11}
       onFocus={onFocus}
       onVaBlur={onBlur}
