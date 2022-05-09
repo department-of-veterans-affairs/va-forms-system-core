@@ -35,12 +35,11 @@
 |  [DateField](./va-forms-system-core.datefield.md) | Field value format: M-D-YYYY<!-- -->TODO: Convert the Date component into a web component and use it here. |
 |  [DebuggerView](./va-forms-system-core.debuggerview.md) | Display the Formik state |
 |  [EmailField](./va-forms-system-core.emailfield.md) | <b><i>(BETA)</i></b> Renders the EmailField component |
-|  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
-|  [PhoneField](./va-forms-system-core.phonefield.md) |  |
 |  [FormTitle](./va-forms-system-core.formtitle.md) | Form Title component is a simple wrapper around a Form Title and subTitle using VA styles |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
 |  [IntroductionPage](./va-forms-system-core.introductionpage.md) | IntroductionPage component current copy of the original Burials introduction page this will need to be updated to be more dynamic after demo. |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
+|  [PhoneField](./va-forms-system-core.phonefield.md) | <b><i>(BETA)</i></b> Renders the PhoneField component |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
 

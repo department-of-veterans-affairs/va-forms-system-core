@@ -53,8 +53,6 @@ export const DebuggerView: () => JSX.Element;
 // @beta
 export const EmailField: (props: EmailProps) => JSX.Element;
 
-// @beta
-export function FormRouter(props: RouterProps): JSX.Element;
 // @public (undocumented)
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
     label: string;
@@ -122,13 +120,11 @@ export interface PageProps {
     title: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "FieldProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "PhoneProps" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const PhoneField: (props: FieldProps<string>) => JSX.Element;
+// @beta
+export const PhoneField: (props: PhoneProps) => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "RadioGroupProps" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export function RadioGroup(props: RadioGroupProps): JSX.Element;
 
@@ -163,6 +159,10 @@ export interface RouterProps {
     children: Routable | Array<Routable>;
     // (undocumented)
     formData: IFormData;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title: string;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts

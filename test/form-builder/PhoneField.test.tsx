@@ -24,7 +24,7 @@ describe('Form Builder - PhoneField', () => {
 ////
   test('it renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <PhoneField name="phone" label="Phone" />
+      <PhoneField name="phone" label="Phone" required/>
     );
     const input = getInput(container);
     await waitFor(() => {
@@ -38,7 +38,7 @@ describe('Form Builder - PhoneField', () => {
 //Check this error message    
     const customValidationMsg = 'Please enter a valid phone number';
     const { container, getFormProps } = renderForm(
-      <PhoneField name="phone" label="Phone" />
+      <PhoneField name="phone" label="Phone" required={customValidationMsg}/>
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));
@@ -49,7 +49,7 @@ describe('Form Builder - PhoneField', () => {
   test('it shows the correct error message for an invalid phone format', async () => {
     const rf = buildRenderForm({ phone: '(972)837' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" />
+      <PhoneField name="phone" label="Phone" required/>
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));
@@ -84,7 +84,7 @@ describe('Form Builder - PhoneField', () => {
   test('it shows an error message for an empty phone if field is required', async () => {
     const rf = buildRenderForm({ phone: '' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" />
+      <PhoneField name="phone" label="Phone" required/>
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));
@@ -95,7 +95,7 @@ describe('Form Builder - PhoneField', () => {
   test('it sets the field as touched on blur', async () => {
     const rf = buildRenderForm({ phone: '' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" />
+      <PhoneField name="phone" label="Phone" required/>
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));

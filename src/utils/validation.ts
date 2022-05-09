@@ -95,7 +95,11 @@ export const isValidPhone = <T>(
   phoneString: T,
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
-  console.log('typeof', typeof phoneString, 'phonestring', phoneString, 'T o F', typeof phoneString !== 'string' )
+  // console.log(
+  //   'typeof', typeof phoneString, 
+  //   'phonestring', phoneString, 
+  //   'T o F', typeof phoneString !== 'string'
+  //   )
   if (typeof phoneString !== 'string') {
     return 'Error: Phone is not the correct type'; // This shouldn't happen
   }
@@ -105,10 +109,9 @@ export const isValidPhone = <T>(
     // Count number of digits
     return /^\d{10}$/.test(stripped);
   }
-
   const isValid =
     (!props.required && !phoneString) || validPhone(phoneString);
-
+  console.log(isValid);
   return isValid
     ? ''
     : 'Please enter a valid 10-digit phone number';
