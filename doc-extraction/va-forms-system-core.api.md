@@ -15,11 +15,9 @@ export function Chapter(props: ChapterProps): JSX.Element;
 // @beta
 export interface ChapterProps {
     // (undocumented)
-    children: Array<any>;
+    children: Array<any> | any;
     // (undocumented)
-    path: string;
-    // (undocumented)
-    title: string;
+    title?: string;
 }
 
 // @public (undocumented)
