@@ -16,7 +16,9 @@ const initialValues = {
   streetTwo: '', 
   streetThree: '', 
   state: '', 
-  zipcode: ''
+  zipcode: '',
+  phone: '',
+  ssn: ''
 };
 
 const Main = () => {
