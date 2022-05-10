@@ -23,6 +23,7 @@ const PhoneField = (props: PhoneProps): JSX.Element => {
 
   return (
     <TextField
+      type='tel'
       id={id}
       {...props}
       onChange={field.onChange}

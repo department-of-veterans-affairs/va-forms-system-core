@@ -107,10 +107,10 @@ export const isValidPhone = <T>(
   }
   const isValid =
     (!props.required && !phoneString) || validPhone(phoneString);
-  console.log(isValid);
   return isValid
     ? ''
     : 'Please enter a 10-digit phone number (with or without dashes)';
+}
 /**
  * Conditions for valid SSN from the original 1010ez pdf form:
  * '123456789' is not a valid SSN
