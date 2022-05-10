@@ -1,10 +1,13 @@
+import { ReactElement } from 'react';
+import { RouteProps } from 'react-router-dom';
+
 /**
  * The properties for the Router React component
  *
  * @beta
  */
 export interface RouterProps {
-  children: Routable | Array<Routable>;
+  children: ReactElement<any, any> | ReactElement<any, any>[];
   basename: string;
   title: string;
   subtitle?: string;
@@ -27,9 +30,9 @@ export interface Routable {
  * @beta
  */
 export interface PageProps {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[] | Element;
   title: string;
-  path: string;
+  path?: string;
   nextPage: string;
 }
 

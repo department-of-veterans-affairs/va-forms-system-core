@@ -6,16 +6,11 @@ import { RouterProps } from './types';
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
 
-/**
- * Manages form pages as routes
- * Parent formik insance is rendered here
- * @beta
- */
-export default function FormRouter(props: RouterProps): JSX.Element {
+export function FormRouterInternal(props: RouterProps): JSX.Element {
   const initialValues = props.formData;
 
   return (
-    <BrowserRouter basename={props.basename}>
+    <>
       {props?.title && (
         <FormTitle title={props.title} subTitle={props?.subtitle} />
       )}
@@ -30,6 +25,19 @@ export default function FormRouter(props: RouterProps): JSX.Element {
         <Routes>{props.children}</Routes>
       </Formik>
       <FormFooter />
+    </>
+  );
+}
+
+/**
+ * Manages form pages as routes
+ * Parent formik insance is rendered here
+ * @beta
+ */
+export default function FormRouter(props: RouterProps): JSX.Element {
+  return (
+    <BrowserRouter basename={props.basename}>
+      <FormRouterInternal {...props} />
     </BrowserRouter>
   );
 }

@@ -1,31 +1,66 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { Link } from 'react-router-dom';
-import FormRouter from '../../src/routing/Router';
+
+import { Link, MemoryRouter, Route, } from 'react-router-dom';
+import FormRouter, { FormRouterInternal } from '../../src/routing/Router';
 import Page from '../../src/routing/Page';
+import { act } from 'react-dom/test-utils';
 
-describe.skip('Routing - Router', () => {
-  test('can switch pages', () => {
-    const { queryByText } = render(
-      <FormRouter>
-        <Page path="/my-page" title="My page">
-          <div>I am a child!</div>
-          <div>Me too!</div>
-        </Page>
+const PageOne = () => (
+  <Page 
+    nextPage="/chapter-one/page-two"
+    title="page one">
+    <p>page one</p>
+  </Page>
+);
 
-        <Page path="/" title="Intro page">
-          <Link to="/my-page">Go to my page</Link>
-        </Page>
-      </FormRouter>
+const PageTwo = () => (
+  <Page 
+    nextPage="/"
+    title="page two"
+    >
+    <p>page two</p>
+  </Page>
+);
+
+const initialValues = {
+  firstName: '', 
+  lastName: '', 
+  email: '', 
+  street: '', 
+  streetTwo: '', 
+  streetThree: '', 
+  state: '', 
+  zipcode: ''
+};
+describe('Routing - Router', () => {
+  test('can display page content', () => {
+    const { queryByText, container } = render(
+      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>
+        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+          <Route index element={<PageOne />} />
+          <Route path="/page-two" element={<PageTwo />} />
+        </FormRouterInternal>
+      </MemoryRouter>
     );
-    expect(queryByText(/Intro page/i)).not.toBeNull();
-    expect(queryByText('My page')).toBeNull();
 
-    userEvent.click(queryByText('Go to my page'));
+    const containerTitleP1 = container.querySelector('h2');
+    expect(containerTitleP1?.innerHTML).toContain('page one');
+  });
 
-    expect(queryByText('My page')).not.toBeNull();
-    expect(queryByText('Intro page')).toBeNull();
+  test('switches page content', () => {
+    const { queryByText, container } = render(
+      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={1}>
+        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+          <Route index element={<PageOne />} />
+          <Route path="/page-two" element={<PageTwo />} />
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+
+    const containerTitleP1 = container.querySelector('h2');
+    expect(containerTitleP1?.innerHTML).toContain('page two');
   });
 });
