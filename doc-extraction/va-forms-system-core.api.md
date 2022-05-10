@@ -7,6 +7,7 @@
 /// <reference types="react" />
 
 import { FieldHookConfig } from 'formik';
+import { ReactElement } from 'react';
 
 // @beta
 export function Chapter(props: ChapterProps): JSX.Element;
@@ -111,11 +112,11 @@ export function Page(props: PageProps): JSX.Element;
 // @beta
 export interface PageProps {
     // (undocumented)
-    children: JSX.Element[];
+    children: JSX.Element | JSX.Element[] | Element;
     // (undocumented)
     nextPage: string;
     // (undocumented)
-    path: string;
+    path?: string;
     // (undocumented)
     title: string;
 }
@@ -151,7 +152,7 @@ export interface RouterProps {
     // (undocumented)
     basename: string;
     // (undocumented)
-    children: Routable | Array<Routable>;
+    children: ReactElement<any, any> | ReactElement<any, any>[];
     // (undocumented)
     formData: IFormData;
     // (undocumented)
