@@ -22,48 +22,44 @@ const FormIntroductionPageChapter = () => {
   )
 }
 
-const ChapterOne = (props) => (
-  <>
-    <h2> Chapter One</h2>
-    <Link to="/chapter-one/page-one">PageOne</Link>
 
-    <Chapter>
-      <p>Custom UI content that can go inside chapter 1</p>
+const ChapterOne = () => (
+  <>
+    <Chapter title="Chapter One">
+      <p>
+        Custom UI content that can go inside chapter 1: 
+        <Link to="/chapter-one/page-one">PageOne</Link>
+      </p>
     </Chapter>
   </>
 );
 
-const ChapterOnePageOne = (props) => (
-  <Page nextPage="/chapter-one/page-two">
+const ChapterOnePageOne = () => (
+  <Page title="Page One" nextPage="/chapter-one/page-two">
     <p>chapter one, page one</p>
   </Page>
 );
 
-const ChapterOnePageTwo = (props) => (
-  <Page nextPage="/chapter-two">
+const ChapterOnePageTwo = () => (
+  <Page title="Page Two" nextPage="/">
     <p>chapter one, page two</p>
   </Page>
 );
 
 const ChapterTwo = (props) => (
-  <>
-    <h2> Chapter Two</h2>
-    <Link to="/chapter-two/page-one">PageOne</Link>
-
-    <Chapter>
-      <p>Custom UI content that can go inside chapter 2</p>
-    </Chapter>
-  </>
+  <Chapter title="Chapter Two">
+    <p>Custom UI content that can go inside chapter 2: <Link to="/chapter-two/page-one">PageOne</Link></p>
+  </Chapter>
 );
 
 const ChapterTwoPageOne = (props) => (
-  <Page nextPage="/chapter-two/page-two">
+  <Page title="Page One" nextPage="/chapter-two/page-two">
     <p>chapter two, page one</p>
   </Page>
 )
 
 const ChapterTwoPageTwo = (props) => (
-  <Page nextPage="/">
+  <Page title="Page Two" nextPage="/">
     <p>chapter two, page two</p>
   </Page>
 )

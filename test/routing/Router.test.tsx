@@ -37,7 +37,7 @@ const initialValues = {
 };
 describe('Routing - Router', () => {
   test('can display page content', () => {
-    const { queryByText, container } = render(
+    const { container } = render(
       <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>
         <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
           <Route index element={<PageOne />} />
@@ -46,12 +46,12 @@ describe('Routing - Router', () => {
       </MemoryRouter>
     );
 
-    const containerTitleP1 = container.querySelector('h2');
+    const containerTitleP1 = container.querySelector('h3');
     expect(containerTitleP1?.innerHTML).toContain('page one');
   });
 
   test('switches page content', () => {
-    const { queryByText, container } = render(
+    const { container } = render(
       <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={1}>
         <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
           <Route index element={<PageOne />} />
@@ -60,7 +60,7 @@ describe('Routing - Router', () => {
       </MemoryRouter>
     );
 
-    const containerTitleP1 = container.querySelector('h2');
+    const containerTitleP1 = container.querySelector('h3');
     expect(containerTitleP1?.innerHTML).toContain('page two');
   });
 });

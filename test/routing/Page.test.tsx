@@ -1,11 +1,8 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 
-import user from '@testing-library/user-event';
-
 import { Link, MemoryRouter, Route, Router } from 'react-router-dom';
 import Page from '../../src/routing/Page';
-import Chapter from '../../src/routing/Chapter';
 import { createMemoryHistory } from 'history';
 import { FormRouterInternal } from '../../src/routing/Router';
 import { act } from 'react-dom/test-utils';
@@ -54,7 +51,7 @@ describe('Routing - Page', () => {
       goLink?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
-    await expect(container.querySelector('h2')?.innerHTML).toContain('page two');
+    await waitFor(() => expect(container.querySelector('h3')?.innerHTML).toContain('page two'));
   });
 
 });
