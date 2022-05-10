@@ -49,7 +49,7 @@ describe('Routing - Chapter', () => {
 
     const { container } = render(
       <MemoryRouter initialEntries={["/chapter-one", "/chapter-one/page-one", "/chapter-one/page-two"]} initialIndex={0}>
-        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+        <FormRouterInternal basename="/" formData={initialValues} title="Chapter Test">
           <Route path="/chapter-one" element={<ChapterOne />} >
             <Route path="page-one" element={<ChapterOnePageOne />} />
             <Route path="page-two" element={<ChapterOnePageTwo />} />
@@ -68,7 +68,7 @@ describe('Routing - Chapter', () => {
   test('it can navigate Pages within Chapters', async() => {
     let { container } = render(
       <MemoryRouter initialEntries={["/chapter-one", "/chapter-one/page-one", "/chapter-one/page-two"]} initialIndex={1}>
-        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+        <FormRouterInternal basename="/" formData={initialValues} title="Chapter Test">
           <Route path="/chapter-one" element={<ChapterOne />} >
             <Route path="page-one" element={<ChapterOnePageOne />} />
             <Route path="page-two" element={<ChapterOnePageTwo />} />
