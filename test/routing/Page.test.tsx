@@ -1,11 +1,32 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 
-import { Link, MemoryRouter, Route, Router } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Router, Routes } from 'react-router-dom';
+import { RouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
-import { createMemoryHistory } from 'history';
-import { FormRouterInternal } from '../../src/routing/Router';
+import Chapter from '../../src/routing/Chapter';
 import { act } from 'react-dom/test-utils';
+import { FormFooter, FormTitle } from '../../src';
+import { Formik } from 'formik';
+
+const FormRouterInternal = (props: RouterProps): JSX.Element => (
+  <>
+    {props?.title && (
+      <FormTitle title={props.title} subTitle={props?.subtitle} />
+    )}
+    <Formik
+      initialValues={props.formData}
+      onSubmit={(values, actions) => {
+        // Here we leverage formik actions to perform validations, submit data, etc.
+        // Also a good candidate for extracting data out of form apps
+        actions.setSubmitting(true);
+      }}
+    >
+      <Routes>{props.children}</Routes>
+    </Formik>
+    <FormFooter />
+  </>
+);
 
 const PageOne = () => (
   <Page 
