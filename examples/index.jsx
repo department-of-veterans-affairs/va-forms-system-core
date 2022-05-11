@@ -25,7 +25,6 @@ const Main = () => {
   return (
     <>
       <FormApp basename="/" initialValues={ initialValues } />
-      <ChapterForm basename="/" initialValues={ initialValues } />
     </>
   )
 }
