@@ -6,3 +6,4 @@ export { default as DateField } from './DateField';
 export { default as EmailField } from './EmailField';
 export { RadioGroup } from './RadioGroup';
 export { default as FullNameField } from './FullNameField';
+export { default as AddressField } from './AddressField';

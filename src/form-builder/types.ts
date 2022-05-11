@@ -13,7 +13,7 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
 export type CheckboxProps = FieldProps<string> & {
   checked?: boolean;
   content?: string;
-  onValueChange?: any;
+  onValueChange?: (e: Event) => void;
   value?: boolean;
 };
 
@@ -43,4 +43,17 @@ export type FullNameProps = FieldProps<string> & {
    * is passed with custom name.
    */
   fieldName?: string | undefined;
+}
+
+export type AddressProps = FieldProps<string>
+
+export interface Address {
+  isMilitaryBaseOutside?: boolean;
+  country: string;
+  streetAddress: string;
+  streetAddressLine2?: string;
+  streetAddressLine3?: string;
+  city: string;
+  state: string;
+  postalCode: string;
 }
