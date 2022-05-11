@@ -1,26 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import FormApp from './multi-page';
 
-const App = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
-    <h1>VA Forms System Core Examples</h1>
-    <ul>
-      <li>
-        <a href="simple-form">Simple form</a>
-      </li>
-      <li>
-        <a href="multipage-form">Multipage form</a>
-      </li>
-      <li>
-        <a href="radio-group">Radio group</a>
-      </li>
-      <li>
-        <a href="form-state">Form State</a>
-      </li>
-    </ul>
-  </div>
-);
+import '@department-of-veterans-affairs/component-library/dist/main.css';
+import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+void defineCustomElements();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const initialValues = {
+  firstName: '', 
+  lastName: '', 
+  email: '', 
+  street: '', 
+  streetTwo: '', 
+  streetThree: '', 
+  state: '', 
+  zipcode: '',
+  phone: '',
+  ssn: ''
+};
+
+const Main = () => {
+  return (
+    <FormApp basename="/" initialValues={ initialValues } />
+  )
+}
+
+ReactDOM.render(<Main />, document.getElementById('root'));
