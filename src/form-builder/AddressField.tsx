@@ -28,6 +28,7 @@ const AddressField = (props: AddressProps): JSX.Element => {
   const initializeFormikState = () => {
     setFieldValue(`${field.name}.isMilitaryBaseOutside`, false);
     setFieldValue(`${field.name}.country`, Countries[0].value);
+    // setFieldValue is async, so it pushes execution at the end
     setTimeout(() => {
       setFieldValue(`${field.name}.state`, States.USA[0].value);
     }, 0);
@@ -39,7 +40,7 @@ const AddressField = (props: AddressProps): JSX.Element => {
       setFieldValue(`${field.name}.city`, MilitaryCities[0].value);
       setFieldValue(`${field.name}.state`, MilitaryStates[0].value);
     } else {
-      if (addressData.country !== 'USA') {
+      if (addressData.country !== CountryUSA[0].value) {
         setFieldValue(`${field.name}.state`, '');
       }
     }
@@ -48,19 +49,22 @@ const AddressField = (props: AddressProps): JSX.Element => {
   const onCountryChange = () => {
     setFieldValue(`${field.name}.state`, undefined);
 
-    if (addressData.country === 'USA') {
+    if (addressData.country === CountryUSA[0].value) {
       setFieldValue(`${field.name}.state`, States.USA[0].value);
     }
   };
 
+  // Initialize few values which id required to render UI
   useEffect(() => {
     initializeFormikState();
   }, []);
 
+  // When 'isMilitaryBaseOutside' value is changed we are updating UI and setting some values
   useEffect(() => {
     isMilitaryBaseOutsideToggle(addressData);
   }, [addressData.isMilitaryBaseOutside]);
 
+  // When 'country' value is changed we are updating UI and setting some values
   useEffect(() => {
     onCountryChange();
   }, [addressData.country]);
@@ -98,7 +102,7 @@ const AddressField = (props: AddressProps): JSX.Element => {
       </SelectField>
 
       <p>
-        U.S. millary bases are considered a domestic address and a part of the
+        U.S. military bases are considered a domestic address and a part of the
         United States.
       </p>
 
@@ -145,7 +149,8 @@ const AddressField = (props: AddressProps): JSX.Element => {
           required
         />
       )}
-      {addressData.isMilitaryBaseOutside && addressData.country === 'USA' ? (
+      {addressData.isMilitaryBaseOutside &&
+      addressData.country === CountryUSA[0].value ? (
         <SelectField
           id={`${field.name}State`}
           name={`${field.name}.state`}
@@ -162,7 +167,7 @@ const AddressField = (props: AddressProps): JSX.Element => {
       ) : (
         <>
           {!addressData.isMilitaryBaseOutside &&
-          addressData.country === 'USA' ? (
+          addressData.country === CountryUSA[0].value ? (
             <SelectField
               id={`${field.name}State`}
               name={`${field.name}.state`}

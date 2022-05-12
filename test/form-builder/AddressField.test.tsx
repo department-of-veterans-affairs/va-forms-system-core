@@ -33,7 +33,7 @@ const getInputs = (container: HTMLElement) => {
   })
 } 
 
-describe('Form Builder - FullNameField', () => {
+describe('Form Builder - AddressField', () => {
   test('renders', async () => {
     const { container } = renderForm(<AddressField name='homeAddress' label=''/>)
     const {

@@ -191,6 +191,7 @@ export const Countries = [
   { value: 'SOM', label: 'Somalia' },
   { value: 'ZAF', label: 'South Africa' },
   { value: 'SGS', label: 'South Georgia and the South Sandwich Islands' }, // not found?
+  { value: 'SSD', label: 'South Sudan' },
   { value: 'ESP', label: 'Spain' },
   { value: 'LKA', label: 'Sri Lanka' },
   { value: 'SDN', label: 'Sudan' },
@@ -229,6 +230,14 @@ export const Countries = [
   { value: 'YEM', label: 'Yemen' },
   { value: 'ZMB', label: 'Zambia' },
   { value: 'ZWE', label: 'Zimbabwe' },
+
+  // Missing countries?
+  // { value: '???', label: 'Curaçao' },
+  // { value: 'IMN', label: 'Isle of Man' },
+  // { value: 'MNE', label: 'Montenegro' },
+  // { value: '???', label: 'Palestine' },
+  // { value: 'BLM', label: 'Saint Barthélemy' },
+  // { value: 'SXM', label: 'Sint Maarten (Dutch part)' },
 ];
 
 export const CountryUSA = [{ value: 'USA', label: 'United States' }];
