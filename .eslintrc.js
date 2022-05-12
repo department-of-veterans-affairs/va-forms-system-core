@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'unused-imports'],
   rules: {
-    'no-unused-vars': 'off',
+    'no-unused-vars': 1,
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
@@ -35,7 +35,6 @@ module.exports = {
       },
     ],
     //typescript-eslint
-    '@typescript-eslint/no-unsafe-any': true,
+    // '@typescript-eslint/no-unsafe-any': true,
   },
-  overrides: [],
 };
