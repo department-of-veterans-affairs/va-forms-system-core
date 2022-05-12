@@ -34,5 +34,8 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
+    //typescript-eslint
+    '@typescript-eslint/no-unsafe-any': true,
   },
+  overrides: [],
 };
