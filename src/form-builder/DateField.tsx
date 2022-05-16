@@ -9,7 +9,7 @@ import {
   required,
 } from '../utils/validation';
 
-import { SimpleDate } from '@department-of-veterans-affairs/component-library/Date';
+import { VaDate } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 export type ComponentLibraryDatePart = {
   value: string;
@@ -77,13 +77,15 @@ const DateField = (props: DateProps): JSX.Element => {
   };
 
   return (
-    <SimpleDate
+    <VaDate
       id={id}
+      required={!!props.required}
       {...props}
-      onValueChange={onChange}
-      date={value}
-      errorMessage={meta.touched && meta.error}
-      onBlur={() => helpers.setTouched(true)}
+      label={props.label}
+      onDateChange={onChange}
+      // value={value}
+      onDateBlur={() => helpers.setTouched(true)}
+      error={(meta.touched && meta.error) || undefined}
     />
   );
 };
