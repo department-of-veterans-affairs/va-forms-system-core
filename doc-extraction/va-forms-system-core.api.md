@@ -7,6 +7,33 @@
 /// <reference types="react" />
 
 import { FieldHookConfig } from 'formik';
+import { ReactElement } from 'react';
+
+// @public (undocumented)
+export interface Address {
+    // (undocumented)
+    city: string;
+    // (undocumented)
+    country: string;
+    // (undocumented)
+    isMilitaryBaseOutside?: boolean;
+    // (undocumented)
+    postalCode: string;
+    // (undocumented)
+    state: string;
+    // (undocumented)
+    streetAddress: string;
+    // (undocumented)
+    streetAddressLine2?: string;
+    // (undocumented)
+    streetAddressLine3?: string;
+}
+
+// @public (undocumented)
+export const AddressField: (props: AddressProps) => JSX.Element;
+
+// @public (undocumented)
+export type AddressProps = FieldProps<string>;
 
 // @beta
 export function Chapter(props: ChapterProps): JSX.Element;
@@ -14,11 +41,9 @@ export function Chapter(props: ChapterProps): JSX.Element;
 // @beta
 export interface ChapterProps {
     // (undocumented)
-    children: Array<any>;
+    children: Array<any> | any;
     // (undocumented)
-    path: string;
-    // (undocumented)
-    title: string;
+    title?: string;
 }
 
 // @public (undocumented)
@@ -36,7 +61,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
 export type CheckboxProps = FieldProps<string> & {
     checked?: boolean;
     content?: string;
-    onValueChange?: any;
+    onValueChange?: (e: Event) => void;
     value?: boolean;
 };
 
@@ -111,14 +136,19 @@ export function Page(props: PageProps): JSX.Element;
 // @beta
 export interface PageProps {
     // (undocumented)
-    children: JSX.Element[];
+    children: JSX.Element | JSX.Element[] | Element;
     // (undocumented)
     nextPage: string;
     // (undocumented)
-    path: string;
+    path?: string;
     // (undocumented)
     title: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "PhoneProps" needs to be exported by the entry point index.d.ts
+//
+// @beta
+export const PhoneField: (props: PhoneProps) => JSX.Element;
 
 // @public (undocumented)
 export function RadioGroup(props: RadioGroupProps): JSX.Element;
@@ -151,7 +181,7 @@ export interface RouterProps {
     // (undocumented)
     basename: string;
     // (undocumented)
-    children: Routable | Array<Routable>;
+    children: ReactElement<any, any> | ReactElement<any, any>[];
     // (undocumented)
     formData: IFormData;
     // (undocumented)
@@ -164,6 +194,11 @@ export interface RouterProps {
 //
 // @public (undocumented)
 export const SelectField: (props: SelectProps) => JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "SSNProps" needs to be exported by the entry point index.d.ts
+//
+// @beta
+export const SSNField: (props: SSNProps) => JSX.Element;
 
 // @public (undocumented)
 export const TextField: (props: FieldProps<string>) => JSX.Element;
