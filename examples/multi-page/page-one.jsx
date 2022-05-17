@@ -11,7 +11,7 @@ import {
 export default function PersonalInformationPage() {
   return (
     <>
-      <Page title="Personal Information" nextPage="page-two">
+      <Page title="Personal Information" nextPage="/page-two">
         <TextField name="firstName" label="First name" required/>
         <TextField name="lastName" label="Last name" required/>
         <EmailField name="email" label="Email" required />

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import React, { ReactElement } from 'react';
+import { createRoutesFromChildren, Link, Outlet } from 'react-router-dom';
 import { ChapterProps } from './types';
 
 /**
