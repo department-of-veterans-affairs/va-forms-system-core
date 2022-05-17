@@ -22,7 +22,7 @@ export default function Page(props: PageProps): JSX.Element {
 
         {props.prevPage && (
           <button
-            className="btn"
+            className="btn prev"
             onClick={(event) => {
               event.preventDefault();
               void submitForm();
@@ -36,7 +36,7 @@ export default function Page(props: PageProps): JSX.Element {
 
         {props.nextPage && (
           <button
-            className="btn"
+            className="btn next"
             onClick={(event) => {
               event.preventDefault();
               void submitForm();
