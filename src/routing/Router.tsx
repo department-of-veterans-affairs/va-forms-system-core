@@ -12,7 +12,7 @@ import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
 
 interface IRouterContext {
-  listOfRoutes?: RouteObject[];
+  listOfRoutes?: string[];
 }
 
 const RouterContextDefaultState = {
@@ -23,6 +23,26 @@ export const RouterContext = React.createContext<IRouterContext>(
   RouterContextDefaultState
 );
 
+const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
+  return routeObjectsArray.reduce<string[]>(
+    (accumulator, current): string[] => {
+      if (current.children) {
+        return [
+          ...accumulator,
+          current?.path ? current.path : '/',
+          ...current.children.map((child) =>
+            child?.path
+              ? (((current?.path as string) + '/' + child.path))
+              : '/'
+          ),
+        ];
+      }
+      return [...accumulator, current?.path ? current.path : '/'];
+    },
+    []
+  );
+};
+
 /**
  * Manages form pages as routes
  * Parent formik insance is rendered here
@@ -30,7 +50,10 @@ export const RouterContext = React.createContext<IRouterContext>(
  */
 export default function FormRouter(props: RouterProps): JSX.Element {
   const initialValues = props.formData;
-  const listOfRoutes = createRoutesFromChildren(props.children);
+  const routeObjects = createRoutesFromChildren(
+    props.children
+  ) ;
+  const listOfRoutes = routeObjectsReducer(routeObjects);
 
   return (
     <RouterContext.Provider value={{ listOfRoutes: listOfRoutes }}>
