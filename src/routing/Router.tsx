@@ -31,9 +31,7 @@ const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
           ...accumulator,
           current?.path ? current.path : '/',
           ...current.children.map((child) =>
-            child?.path
-              ? (((current?.path as string) + '/' + child.path))
-              : '/'
+            child?.path ? (current?.path as string) + '/' + child.path : '/'
           ),
         ];
       }
@@ -50,29 +48,31 @@ const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
  */
 export default function FormRouter(props: RouterProps): JSX.Element {
   const initialValues = props.formData;
-  const routeObjects = createRoutesFromChildren(
-    props.children
-  ) ;
+  const routeObjects = createRoutesFromChildren(props.children);
   const listOfRoutes = routeObjectsReducer(routeObjects);
 
   return (
-    <RouterContext.Provider value={{ listOfRoutes: listOfRoutes }}>
-      <BrowserRouter basename={props.basename}>
-        {props?.title && (
-          <FormTitle title={props.title} subTitle={props?.subtitle} />
-        )}
-        <Formik
-          initialValues={initialValues}
-          onSubmit={(values, actions) => {
-            // Here we leverage formik actions to perform validations, submit data, etc.
-            // Also a good candidate for extracting data out of form apps
-            actions.setSubmitting(true);
-          }}
-        >
-          <Routes>{props.children}</Routes>
-        </Formik>
-        <FormFooter />
-      </BrowserRouter>
-    </RouterContext.Provider>
+    <div className="row">
+      <div className="usa-width-two-thirds medium-8 columns">
+        <RouterContext.Provider value={{ listOfRoutes: listOfRoutes }}>
+          <BrowserRouter basename={props.basename}>
+            {props?.title && (
+              <FormTitle title={props.title} subTitle={props?.subtitle} />
+            )}
+            <Formik
+              initialValues={initialValues}
+              onSubmit={(values, actions) => {
+                // Here we leverage formik actions to perform validations, submit data, etc.
+                // Also a good candidate for extracting data out of form apps
+                actions.setSubmitting(true);
+              }}
+            >
+              <Routes>{props.children}</Routes>
+            </Formik>
+            <FormFooter />
+          </BrowserRouter>
+        </RouterContext.Provider>
+      </div>
+    </div>
   );
 }

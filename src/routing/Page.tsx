@@ -1,6 +1,12 @@
 import React, { useContext } from 'react';
 import { useFormikContext, Form } from 'formik';
-import { useNavigate, Link, useLocation, RouteObject } from 'react-router-dom';
+import {
+  useNavigate,
+  Link,
+  To,
+  useLocation,
+  RouteObject,
+} from 'react-router-dom';
 import { PageProps, IFormData } from './types';
 import { RouterContext } from './Router';
 
@@ -25,18 +31,34 @@ export default function Page(props: PageProps): JSX.Element {
       <h3>{props.title}</h3>
       <Form>
         {props.children}
-        <button
-          className="btn"
-          onClick={(event) => {
-            event.preventDefault();
-            void submitForm();
-            // then submit form has succeeded - add better promise validation here
-            navigate(`${props.nextPage}`);
-          }}
-        >
-          {' '}
-          Next
-        </button>
+
+        {props.prevPage && (
+          <button
+            className="btn prev"
+            onClick={(event) => {
+              event.preventDefault();
+              void submitForm();
+              navigate(props.prevPage as To);
+            }}
+          >
+            {' '}
+            Previous
+          </button>
+        )}
+
+        {props.nextPage && (
+          <button
+            className="btn next"
+            onClick={(event) => {
+              event.preventDefault();
+              void submitForm();
+              navigate(props.nextPage as To);
+            }}
+          >
+            {' '}
+            Next
+          </button>
+        )}
       </Form>
     </div>
   );

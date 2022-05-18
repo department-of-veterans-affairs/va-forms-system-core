@@ -9,6 +9,32 @@
 import { FieldHookConfig } from 'formik';
 import { ReactElement } from 'react';
 
+// @public (undocumented)
+export interface Address {
+    // (undocumented)
+    city: string;
+    // (undocumented)
+    country: string;
+    // (undocumented)
+    isMilitaryBaseOutside?: boolean;
+    // (undocumented)
+    postalCode: string;
+    // (undocumented)
+    state: string;
+    // (undocumented)
+    streetAddress: string;
+    // (undocumented)
+    streetAddressLine2?: string;
+    // (undocumented)
+    streetAddressLine3?: string;
+}
+
+// @public (undocumented)
+export const AddressField: (props: AddressProps) => JSX.Element;
+
+// @public (undocumented)
+export type AddressProps = FieldProps<string>;
+
 // @beta
 export function Chapter(props: ChapterProps): JSX.Element;
 
@@ -35,7 +61,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
 export type CheckboxProps = FieldProps<string> & {
     checked?: boolean;
     content?: string;
-    onValueChange?: any;
+    onValueChange?: (e: Event) => void;
     value?: boolean;
 };
 
@@ -112,9 +138,11 @@ export interface PageProps {
     // (undocumented)
     children: JSX.Element | JSX.Element[] | Element;
     // (undocumented)
-    nextPage: string;
+    nextPage?: string;
     // (undocumented)
     path?: string;
+    // (undocumented)
+    prevPage?: string;
     // (undocumented)
     title: string;
 }
