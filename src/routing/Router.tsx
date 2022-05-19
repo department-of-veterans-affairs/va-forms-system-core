@@ -10,18 +10,7 @@ import { RouterProps } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
-
-interface IRouterContext {
-  listOfRoutes?: string[];
-}
-
-const RouterContextDefaultState = {
-  listOfRoutes: [],
-};
-
-export const RouterContext = React.createContext<IRouterContext>(
-  RouterContextDefaultState
-);
+import { RouterContext } from './RouterContext';
 
 const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
   return routeObjectsArray.reduce<string[]>(
@@ -47,9 +36,9 @@ const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
  * @beta
  */
 export default function FormRouter(props: RouterProps): JSX.Element {
-  const initialValues = props.formData;
-  const routeObjects = createRoutesFromChildren(props.children);
-  const listOfRoutes = routeObjectsReducer(routeObjects);
+  const initialValues = props.formData,
+    routeObjects = createRoutesFromChildren(props.children),
+    listOfRoutes = routeObjectsReducer(routeObjects);
 
   return (
     <div className="row">

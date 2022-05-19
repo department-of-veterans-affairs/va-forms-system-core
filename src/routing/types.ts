@@ -25,6 +25,15 @@ export interface Routable {
 }
 
 /**
+ * Properties for Router Context
+ *
+ * @beta
+ */
+export interface IRouterContext {
+  listOfRoutes?: string[];
+}
+
+/**
  * The properties for the Page React component
  *
  * @beta

@@ -24,8 +24,7 @@ const initialValues = {
 const Main = () => {
   return (
     <>
-      <ChapterForm basename="/" initialValues={ initialValues } />
-      {/* <FormApp basename="/" initialValues={ initialValues } /> */}
+      <FormApp basename="/" initialValues={ initialValues } />
     </>
   )
 }
