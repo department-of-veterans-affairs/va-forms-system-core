@@ -13,7 +13,7 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
 export type CheckboxProps = FieldProps<string> & {
   checked?: boolean;
   content?: string;
-  onValueChange?: any;
+  onValueChange?: (e: Event) => void;
   value?: boolean;
 };
 
@@ -37,6 +37,24 @@ export type CheckboxGroupProps = FieldProps<string> & {
 };
 
 /**
+ * OMBInfo properties
+ *
+ * @example
+ * ```
+ * {
+ *    expDate: 'My Example Title' required
+ *    resBurden: 1
+ *    ombNumber: '123-ABC'
+ * }
+ * ```
+ */
+export interface OMBInfoProps {
+  resBurden?: number;
+  ombNumber?: string;
+  expDate: string;
+}
+
+/**
  *
  * @remarks
  * The `name` prop must be passed in FullNameField component as it is used as object name.
@@ -50,6 +68,19 @@ export type CheckboxGroupProps = FieldProps<string> & {
  *    }
  * }
  * ```
- * 
-*/
-export type FullNameProps = FieldProps<string>
+ *
+ */
+export type FullNameProps = FieldProps<string>;
+
+export type AddressProps = FieldProps<string>;
+
+export interface Address {
+  isMilitaryBaseOutside?: boolean;
+  country: string;
+  streetAddress: string;
+  streetAddressLine2?: string;
+  streetAddressLine3?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+}
