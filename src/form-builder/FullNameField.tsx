@@ -12,18 +12,18 @@ const FullNameField = (props: FullNameProps): JSX.Element => {
     <>
       <TextField
         id={`${fieldName}FirstName`}
-        name={`${fieldName}.firstName`}
+        name={`${fieldName}.first`}
         label="Your first Name"
         required
       />
       <TextField
         id={`${fieldName}MiddleName`}
-        name={`${fieldName}.middleName`}
+        name={`${fieldName}.middle`}
         label="Your middle Name"
       />
       <TextField
         id={`${fieldName}LastName`}
-        name={`${fieldName}.lastName`}
+        name={`${fieldName}.last`}
         label="Your last Name"
         required
       />
