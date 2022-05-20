@@ -14,6 +14,11 @@ export interface RouterProps {
   formData: IFormData;
 }
 
+export interface RouterContextProps {
+  routes: React.ReactElement | React.ReactElement[];
+  children: ReactElement<any, any> | ReactElement<any, any>[];
+}
+
 /**
  * Indicates if a component can be routed using `react-router-dom`. The `path`
  * prop must be present.

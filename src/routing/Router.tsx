@@ -10,25 +10,7 @@ import { RouterProps } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
-import { RouterContext } from './RouterContext';
-
-const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
-  return routeObjectsArray.reduce<string[]>(
-    (accumulator, current): string[] => {
-      if (current.children) {
-        return [
-          ...accumulator,
-          current?.path ? current.path : '/',
-          ...current.children.map((child) =>
-            child?.path ? (current?.path as string) + '/' + child.path : '/'
-          ),
-        ];
-      }
-      return [...accumulator, current?.path ? current.path : '/'];
-    },
-    []
-  );
-};
+import { RouterContext, RouterContextProvider } from './RouterContext';
 
 /**
  * Manages form pages as routes
@@ -36,14 +18,12 @@ const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
  * @beta
  */
 export default function FormRouter(props: RouterProps): JSX.Element {
-  const initialValues = props.formData,
-    routeObjects = createRoutesFromChildren(props.children),
-    listOfRoutes = routeObjectsReducer(routeObjects);
+  const initialValues = props.formData;
 
   return (
     <div className="row">
       <div className="usa-width-two-thirds medium-8 columns">
-        <RouterContext.Provider value={{ listOfRoutes: listOfRoutes }}>
+        <RouterContextProvider routes={props.children}>
           <BrowserRouter basename={props.basename}>
             {props?.title && (
               <FormTitle title={props.title} subTitle={props?.subtitle} />
@@ -60,7 +40,7 @@ export default function FormRouter(props: RouterProps): JSX.Element {
             </Formik>
             <FormFooter />
           </BrowserRouter>
-        </RouterContext.Provider>
+        </RouterContextProvider>
       </div>
     </div>
   );
