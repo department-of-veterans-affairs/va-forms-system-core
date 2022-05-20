@@ -10,5 +10,5 @@
 <b>Signature:</b>
 
 ```typescript
-nextPage: string;
+nextPage?: string;
 ```
