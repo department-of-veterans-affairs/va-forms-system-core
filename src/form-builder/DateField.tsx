@@ -8,7 +8,6 @@ import {
   chainValidations,
   required,
 } from '../utils/validation';
-
 import { VaDate } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 export type ComponentLibraryDatePart = {
@@ -63,17 +62,17 @@ const validDate: ValidationFunction<string> = (value: string) => {
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = {
     ...props,
-    validate: chainValidations(props, [required, validDate]),
+    validate: chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string>
   );
   const id = props.id || props.name;
 
-  const value = dateStringToValue(field.value);
+  const value = field.value;
 
   const onChange = (dateValue: ComponentLibraryDateValue) => {
-    helpers.setValue(dateValueToString(dateValue));
+    console.log(dateValue);
   };
 
   return (
@@ -83,7 +82,7 @@ const DateField = (props: DateProps): JSX.Element => {
       {...props}
       label={props.label}
       onDateChange={onChange}
-      // value={value}
+      date={value}
       onDateBlur={() => helpers.setTouched(true)}
       error={(meta.touched && meta.error) || undefined}
     />
