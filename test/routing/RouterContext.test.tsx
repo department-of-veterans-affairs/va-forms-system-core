@@ -1,8 +1,5 @@
 import { routeObjectsReducer } from "../../src/routing/RouterContext";
 
-
-
-
 describe('Routing - Router Context', () => {
   test('router reducer returns list of routes', () => {
     // Some Dummy Data
