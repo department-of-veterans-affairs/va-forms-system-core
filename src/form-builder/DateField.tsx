@@ -15,6 +15,9 @@ const DateField = (props: DateProps): JSX.Element => {
   );
   const id = props.id || props.name;
 
+  /**
+   * The default date value must be in YYYY-MM-DD format.
+   */
   const value = field.value;
 
   const onChange = (dateValue: CustomEvent) => {
