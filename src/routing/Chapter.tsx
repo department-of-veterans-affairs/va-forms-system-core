@@ -1,10 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
-import {
-  createRoutesFromChildren,
-  Link,
-  Outlet,
-  useLocation,
-} from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { RouterContext } from './RouterContext';
 import { ChapterProps } from './types';
 
