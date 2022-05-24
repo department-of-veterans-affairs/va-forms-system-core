@@ -54,7 +54,7 @@ class JSONSchemaMapper {
   public flattenProperties = (objectToReduce: any) => {
     return Object.entries(objectToReduce).reduce(
       (accumulator, [currentKey, currentValue]) => {
-        return this.appendPropery(accumulator, currentKey, currentValue);
+        return this.appendProperty(accumulator, currentKey, currentValue);
       },
       {}
     );
@@ -104,7 +104,7 @@ class JSONSchemaMapper {
    * @param key
    * @param initialValue
    */
-  appendPropery = (
+  appendProperty = (
     objectToAppendTo: any,
     key: string,
     initialValue: any
