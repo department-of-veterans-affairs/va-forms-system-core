@@ -117,6 +117,12 @@ export interface IFormData {
 // @public
 export const IntroductionPage: () => JSX.Element;
 
+// @beta
+export interface IRouterContext {
+    // (undocumented)
+    listOfRoutes?: string[];
+}
+
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
 
@@ -138,9 +144,11 @@ export interface PageProps {
     // (undocumented)
     children: JSX.Element | JSX.Element[] | Element;
     // (undocumented)
-    nextPage: string;
+    nextPage?: string;
     // (undocumented)
     path?: string;
+    // (undocumented)
+    prevPage?: string;
     // (undocumented)
     title: string;
 }
@@ -174,6 +182,14 @@ export type RadioItemProps = {
 export interface Routable {
     // (undocumented)
     path: string;
+}
+
+// @public (undocumented)
+export interface RouterContextProps {
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+    // (undocumented)
+    routes: React.ReactElement | React.ReactElement[];
 }
 
 // @beta

@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  TextField,
-  EmailField,
-  Page,
-  PhoneField,
-  DebuggerView,
-  SSNField, FullNameField, RadioGroup
-} from '@department-of-veterans-affairs/va-forms-system-core';
+import {DebuggerView, FullNameField, Page, RadioGroup} from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function PersonalInformationPage() {
   return (
     <>
-      <Page title="Step 1 of 6: Claimant Information" nextPage="page-two">
+      <Page title="Step 1 of 6: Claimant Information" nextPage="/page-two" prevPage="/">
         <FullNameField name="claimantFullName"/>
         <RadioGroup
           name="relationship.type"

@@ -14,6 +14,11 @@ export interface RouterProps {
   formData: IFormData;
 }
 
+export interface RouterContextProps {
+  routes: React.ReactElement | React.ReactElement[];
+  children: ReactElement<any, any> | ReactElement<any, any>[];
+}
+
 /**
  * Indicates if a component can be routed using `react-router-dom`. The `path`
  * prop must be present.
@@ -25,6 +30,15 @@ export interface Routable {
 }
 
 /**
+ * Properties for Router Context
+ *
+ * @beta
+ */
+export interface IRouterContext {
+  listOfRoutes?: string[];
+}
+
+/**
  * The properties for the Page React component
  *
  * @beta
@@ -33,7 +47,8 @@ export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
   title: string;
   path?: string;
-  nextPage: string;
+  nextPage?: string;
+  prevPage?: string;
 }
 
 /**

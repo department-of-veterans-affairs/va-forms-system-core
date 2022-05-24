@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
-  TextField,
+  DateField,
+  DebuggerView,
+  FullNameField,
   Page,
-  DebuggerView, FullNameField, RadioGroup, SSNField, DateField,
+  SSNField,
+  TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function ContactInformationPage() {
   return (
     <>
-      <Page title="Step 2 of 6: Claimant Information" nextPage="page-three">
+      <Page title="Step 2 of 6: Claimant Information" nextPage="/" prevPage="/page-one">
         <FullNameField name="veteranFullName"
                        label=""/>
         <SSNField name="veteranSocialSecurityNumber"
