@@ -6,6 +6,8 @@ import { IRouterContext } from './types';
 
 const RouterContextDefaultState = {
   listOfRoutes: [],
+  currentRoute: '',
+  updateRoute: (value: string) => null,
 };
 
 export const RouterContext = React.createContext<IRouterContext>(
@@ -35,7 +37,7 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
     listOfRoutes = routeObjectsReducer(routeObjects);
 
   return (
-    <RouterContext.Provider value={{ listOfRoutes: listOfRoutes }}>
+    <RouterContext.Provider value={{ ...props, listOfRoutes: listOfRoutes }}>
       {props.children}
     </RouterContext.Provider>
   );
