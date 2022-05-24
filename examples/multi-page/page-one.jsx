@@ -1,5 +1,11 @@
 import React from 'react';
-import {DebuggerView, FullNameField, Page, RadioGroup} from '@department-of-veterans-affairs/va-forms-system-core';
+import {
+  DateField,
+  DebuggerView,
+  FullNameField,
+  Page,
+  RadioGroup
+} from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function PersonalInformationPage() {
   return (
@@ -20,6 +26,7 @@ export default function PersonalInformationPage() {
             ]
           }
         />
+        <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
       <DebuggerView />
     </>
