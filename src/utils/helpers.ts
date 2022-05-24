@@ -67,8 +67,8 @@ class JSONSchemaMapper {
    * <reference> is a reference to some preset definition
    */
   getReferencedType = (refString: string): any => {
-    const referencedDefinition: string =
-      /\/([A-Za-z]+)$/.exec(refString)?.[1] || '';
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const referencedDefinition: string = /\/([A-Za-z]+)$/.exec(refString)![1];
     if (referencedDefinition === 'centralMailAddress') {
       return {
         isMilitaryBaseOutside: false,
