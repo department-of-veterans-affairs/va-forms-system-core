@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
+  DateField,
   TextField,
   Page,
   DebuggerView,
@@ -15,6 +16,7 @@ export default function ContactInformationPage() {
         <TextField name="streetThree" label="Street line 3" />
         <TextField name="state" label="State" />
         <TextField name="zipcode" label="Zip code" />
+        <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
       <DebuggerView />
     </>
