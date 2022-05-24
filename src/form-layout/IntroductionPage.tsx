@@ -19,7 +19,7 @@ import { VaProcessList } from '@department-of-veterans-affairs/component-library
 const IntroductionPage = () => {
   return (
     <div className="schemaform-intro">
-      <FormTitle title="Apply for burial benefits" />
+      <FormTitle title="Apply for Burial Benefits" />
       <p>Equal to VA Form 21P-530 (Application for Burial Benefits).</p>
       <h2 className="vads-u-font-size--h4">
         Follow the steps below to apply for burial benefits.
