@@ -20,7 +20,7 @@ export default function Page(props: PageProps): JSX.Element {
 
   const navigate = useNavigate();
 
-  useEffect(() =>
+  useLayoutEffect(() =>
     updateRoute(
       currentLocation.pathname !== '' ? currentLocation.pathname : '/'
     )

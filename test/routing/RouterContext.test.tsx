@@ -57,22 +57,46 @@ describe('Routing - Router Context', () => {
     const routeObjects = [
       {
         index: true,
-        path: undefined
+        path: undefined,
+        element: {
+          props: {
+            title: "Introduction Page"
+          }
+        }
       },
       {
         path: "/about",
+        element: {
+          props: {
+            title: "About"
+          }
+        },
         children: [
           {
-            path: 'plants'
+            path: 'plants',
+            element: {
+              props: {
+                title: "About Plants"
+              }
+            }
           },
         ]
       },
     ]
     // Dummy Data expected result
     const expectedResult = [
-      '/',
-      '/about',
-      '/about/plants'
+      {
+        path: '/',
+        title: "Introduction Page"
+      },
+      {
+        path: '/about',
+        title: "About"
+      },
+      {
+        path: '/about/plants',
+        title: "About Plants"
+      }
     ]
 
     const generatedRoutes = routeObjectsReducer(routeObjects);

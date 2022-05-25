@@ -32,14 +32,33 @@ export interface Routable {
 }
 
 /**
+ * Used for passing a list of routes into Router Context
+ *
+ * @beta
+ */
+export interface RouteInfo {
+  path: string;
+  title: string;
+}
+
+/**
  * Properties for Router Context
  *
  * @beta
  */
 export interface IRouterContext {
-  listOfRoutes: string[];
+  listOfRoutes: RouteInfo[];
   currentRoute: string;
   updateRoute: (value: string) => void;
+}
+
+/**
+ * The properties for the Router to Pass to the Page
+ *
+ * @beta
+ */
+export interface PagePassProps {
+  title: string;
 }
 
 /**

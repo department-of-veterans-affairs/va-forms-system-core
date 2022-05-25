@@ -20,11 +20,9 @@ import { RouterContext, RouterContextProvider } from '../routing/RouterContext';
 const ProgressBar = (props: ProgressBarProps) => {
   const { route } = props;
   const { listOfRoutes, currentRoute } = useContext(RouterContext);
-  let findIndex = listOfRoutes.indexOf(route);
-
-  useEffect(() => {
-    findIndex = listOfRoutes.indexOf(currentRoute);
-  }, [listOfRoutes]);
+  const findIndex = listOfRoutes.indexOf(
+    listOfRoutes.filter((item) => item.path === route)[0]
+  );
 
   return (
     <>

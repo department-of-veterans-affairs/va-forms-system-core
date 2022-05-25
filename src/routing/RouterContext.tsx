@@ -1,8 +1,17 @@
-import React, { ReactElement } from 'react';
+import React, {
+  ReactChild,
+  ReactElement,
+  ReactFragment,
+  useEffect,
+} from 'react';
 import { createRoutesFromChildren, RouteObject } from 'react-router-dom';
-import { RouterContextProps, RouterProps } from './types';
-
-import { IRouterContext } from './types';
+import {
+  IRouterContext,
+  PagePassProps,
+  RouteInfo,
+  RouterContextProps,
+  RouterProps,
+} from './types';
 
 const RouterContextDefaultState = {
   listOfRoutes: [],
@@ -15,18 +24,34 @@ export const RouterContext = React.createContext<IRouterContext>(
 );
 
 export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
-  return routeObjectsArray.reduce<string[]>(
-    (accumulator, current): string[] => {
+  return routeObjectsArray.reduce<RouteInfo[]>(
+    (accumulator, current): RouteInfo[] => {
       if (current.children) {
         return [
           ...accumulator,
-          current?.path ? current.path : '/',
-          ...current.children.map((child) =>
-            child?.path ? (current?.path as string) + '/' + child.path : '/'
-          ),
+          {
+            path: current?.path as string | '/',
+            title: ((current?.element as ReactElement)?.props as PagePassProps)
+              ?.title ,
+          },
+          ...current.children.map((child) => {
+            return {
+              path: child?.path
+                ? (current?.path as string) + '/' + child.path
+                : '/',
+              title: ((child?.element as ReactElement)?.props as PagePassProps)
+                ?.title ,
+            };
+          }),
         ];
       }
-      return [...accumulator, current?.path ? current.path : '/'];
+      return [
+        ...accumulator,
+        {
+          path: current?.path ? current.path : '/',
+          title: '',
+        },
+      ];
     },
     []
   );
