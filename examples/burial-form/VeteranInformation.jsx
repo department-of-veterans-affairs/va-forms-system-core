@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  DebuggerView,
   DateField,
   FullNameField,
   Page,
@@ -14,21 +15,24 @@ export default function VeteranInformation() {
   return (
     <>
       <Page title="Step 2 of 6: Deceased Veteran Information" nextPage="/" prevPage="/claimant-information">
-        <FullNameField name="veteranFullName"
-          label="" />
-        <SSNField name="veteranSocialSecurityNumber"
+        <FullNameField name="veteranFullName" label="Veteran Full Name" />
+        <SSNField 
+          name="veteranSocialSecurityNumber"
           label="Social Security number (must have this or a VA file number)"
           required={state.values.vaFileNumber !== '' ? false : true} />
-        <TextField name="vaFileNumber"
+        <TextField 
+          name="vaFileNumber"
           label="VA file number (must have this or a Social Security number)"
           required={state.values.veteranSocialSecurityNumber !== '' ? false : true} />
-        <DateField name="veteranDateOfBirth"
+        <DateField 
+          name="veteranDateOfBirth"
           label="Date of birth"
           required />
-        <TextField name="placeOfBirth"
+        <TextField 
+          name="placeOfBirth"
           label="Place of birth (city and state or foreign country)" />
       </Page>
-      {/* <DebuggerView /> */}
+      <DebuggerView />
     </>
   )
 }
