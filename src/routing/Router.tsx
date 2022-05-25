@@ -34,11 +34,7 @@ export default function FormRouter(props: RouterProps): JSX.Element {
             {props?.title && (
               <FormTitle title={props.title} subTitle={props?.subtitle} />
             )}
-            <ProgressBar
-              currentStep={1}
-              numberOfSteps={5}
-              currentStepTitle={'Dummy Title'}
-            />
+            <ProgressBar route={route} />
             <Formik
               initialValues={initialValues}
               onSubmit={(values, actions) => {

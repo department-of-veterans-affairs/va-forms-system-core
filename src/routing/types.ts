@@ -37,7 +37,7 @@ export interface Routable {
  * @beta
  */
 export interface IRouterContext {
-  listOfRoutes?: string[];
+  listOfRoutes: string[];
   currentRoute: string;
   updateRoute: (value: string) => void;
 }
@@ -50,7 +50,6 @@ export interface IRouterContext {
 export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
   title: string;
-  path?: string;
   nextPage?: string;
   prevPage?: string;
 }

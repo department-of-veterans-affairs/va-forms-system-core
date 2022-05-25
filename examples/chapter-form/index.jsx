@@ -41,7 +41,7 @@ const ChapterOnePageOne = () => (
 );
 
 const ChapterOnePageTwo = () => (
-  <Page title="Page Two" nextPage="/">
+  <Page title="Page Two" nextPage="/chapter-two">
     <p>chapter one, page two</p>
   </Page>
 );
@@ -71,9 +71,9 @@ const ChapterForm = (props) => {
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
       <FormRouter basename={props.basename} formData={props.initialValues} title="Chapter Example">
         <Route index element={<FormIntroductionPageChapter />} />
-        <Route path="/chapter-one" element={<ChapterOne />} >
-          <Route path="page-one" element={<ChapterOnePageOne />} />
-          <Route path="page-two" element={<ChapterOnePageTwo />} />
+        <Route path="/chapter-one" element={<ChapterOne title="Chapter One" />} >
+          <Route path="page-one" element={<ChapterOnePageOne title="Chapter One Page One" />} />
+          <Route path="page-two" element={<ChapterOnePageTwo title="Chapter One Page Two" />} />
         </Route>
         <Route path="/chapter-two" element={<ChapterTwo />} >
           <Route path="page-one" element={<ChapterTwoPageOne />} />

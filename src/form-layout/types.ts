@@ -15,7 +15,5 @@ export interface FormTitleProps {
 }
 
 export interface ProgressBarProps {
-  currentStepTitle: string;
-  currentStep: number;
-  numberOfSteps: number;
+  route: string;
 }

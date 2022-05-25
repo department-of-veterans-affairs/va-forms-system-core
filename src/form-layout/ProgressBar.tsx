@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { ProgressBarProps } from './types';
-import { VaProgressBar } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { VaSegmentedProgressBar } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { RouterContext, RouterContextProvider } from '../routing/RouterContext';
 
 /**
  * Form Title component is a simple wrapper
@@ -17,11 +18,34 @@ import { VaProgressBar } from '@department-of-veterans-affairs/component-library
  * @returns React.Component
  */
 const ProgressBar = (props: ProgressBarProps) => {
-  const { currentStepTitle, currentStep, numberOfSteps } = props;
+  const { route } = props;
+  const { listOfRoutes, currentRoute } = useContext(RouterContext);
+  let findIndex = listOfRoutes.indexOf(route);
+
+  useEffect(() => {
+    findIndex = listOfRoutes.indexOf(currentRoute);
+  }, [listOfRoutes]);
 
   return (
     <>
-      <VaProgressBar current={currentStep} total={numberOfSteps} />
+      {route}
+      {/* {findIndex} <br/>
+      {listOfRoutes.length} */}
+      <VaSegmentedProgressBar
+        current={findIndex + 1}
+        total={listOfRoutes?.length}
+        toFixed={false}
+      />
+
+      {/* <RouterContext.Consumer>
+      {(value) => {
+
+        return(
+          <VaSegmentedProgressBar current={findIndex + 1} total={listOfRoutes?.length} toFixed={false} />
+        )
+      }}
+      </RouterContext.Consumer>  */}
+
       <div
         className="schemaform-chapter-progress"
         style={{
@@ -34,7 +58,7 @@ const ProgressBar = (props: ProgressBarProps) => {
             id="nav-form-header"
             tabIndex={0}
           >
-            Step {currentStep} of {numberOfSteps}: {currentStepTitle}
+            {/* Step {currentStep} of {numberOfSteps}: {currentStepTitle} */}
           </h2>
         </div>
       </div>
