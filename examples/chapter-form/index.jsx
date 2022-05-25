@@ -22,7 +22,6 @@ const FormIntroductionPageChapter = (props) => {
   )
 }
 
-
 const ChapterOne = (props) => (
   <>
     <Chapter {...props}>

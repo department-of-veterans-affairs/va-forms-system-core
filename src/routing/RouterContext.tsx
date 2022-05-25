@@ -7,7 +7,6 @@ import React, {
 import { createRoutesFromChildren, RouteObject } from 'react-router-dom';
 import {
   IRouterContext,
-  PagePassProps,
   RouteInfo,
   RouterContextProps,
   RouterProps,
@@ -31,16 +30,18 @@ export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
           ...accumulator,
           {
             path: current?.path as string | '/',
-            title: ((current?.element as ReactElement)?.props as PagePassProps)
-              ?.title ,
+            title: (
+              (current?.element as ReactElement)?.props as { title: string }
+            )?.title,
           },
           ...current.children.map((child) => {
             return {
               path: child?.path
                 ? (current?.path as string) + '/' + child.path
                 : '/',
-              title: ((child?.element as ReactElement)?.props as PagePassProps)
-                ?.title ,
+              title: (
+                (child?.element as ReactElement)?.props as { title: string }
+              )?.title,
             };
           }),
         ];

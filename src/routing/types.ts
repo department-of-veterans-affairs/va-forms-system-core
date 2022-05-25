@@ -53,15 +53,6 @@ export interface IRouterContext {
 }
 
 /**
- * The properties for the Router to Pass to the Page
- *
- * @beta
- */
-export interface PagePassProps {
-  title: string;
-}
-
-/**
  * The properties for the Page React component
  *
  * @beta
