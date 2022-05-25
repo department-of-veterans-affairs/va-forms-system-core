@@ -65,10 +65,11 @@ export type CheckboxProps = FieldProps<string> & {
     value?: boolean;
 };
 
-// Warning: (ae-forgotten-export) The symbol "DateProps" needs to be exported by the entry point index.d.ts
-//
-// @public
+// @public (undocumented)
 export const DateField: (props: DateProps) => JSX.Element;
+
+// @public (undocumented)
+export type DateProps = FieldProps<string>;
 
 // @public
 export const DebuggerView: () => JSX.Element;
@@ -116,6 +117,12 @@ export interface IFormData {
 
 // @public
 export const IntroductionPage: () => JSX.Element;
+
+// @beta
+export interface IRouterContext {
+    // (undocumented)
+    listOfRoutes?: string[];
+}
 
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
@@ -176,6 +183,14 @@ export type RadioItemProps = {
 export interface Routable {
     // (undocumented)
     path: string;
+}
+
+// @public (undocumented)
+export interface RouterContextProps {
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+    // (undocumented)
+    routes: React.ReactElement | React.ReactElement[];
 }
 
 // @beta
