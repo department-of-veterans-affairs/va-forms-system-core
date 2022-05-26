@@ -7,10 +7,10 @@ import {
   RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function ClaimantInformation() {
+export default function ClaimantInformation(props) {
   return (
     <>
-      <Page title="Step 1 of 6: Claimant Information" nextPage="/veteran-information" prevPage="/">
+      <Page {...props} nextPage="/veteran-information" prevPage="/">
         <FullNameField name="claimantFullName"/>
         <RadioGroup
           name="relationship.type"

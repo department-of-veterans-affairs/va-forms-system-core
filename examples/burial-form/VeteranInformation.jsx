@@ -7,10 +7,10 @@ import {
   TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function VeteranInformation() {
+export default function VeteranInformation(props) {
   return (
     <>
-      <Page title="Step 2 of 6: Deceased Veteran Information" nextPage="/" prevPage="/claimant-information">
+      <Page {...props} nextPage="/" prevPage="/claimant-information">
         <FullNameField name="veteranFullName"
           label="" />
         <SSNField name="veteranSocialSecurityNumber"
