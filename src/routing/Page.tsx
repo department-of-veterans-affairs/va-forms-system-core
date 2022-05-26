@@ -10,7 +10,7 @@ import { RouterContext } from './RouterContext';
  * @beta
  */
 export default function Page(props: PageProps): JSX.Element {
-  const { values, submitForm } = useFormikContext();
+  const { values } = useFormikContext();
   const formValues = values as IFormData;
   const listOfRoutes = useContext(RouterContext).listOfRoutes;
   const currentLocation = useLocation();
@@ -28,7 +28,6 @@ export default function Page(props: PageProps): JSX.Element {
             className="btn prev"
             onClick={(event) => {
               event.preventDefault();
-              void submitForm();
               navigate(props.prevPage as To);
             }}
           >
@@ -42,7 +41,6 @@ export default function Page(props: PageProps): JSX.Element {
             className="btn next"
             onClick={(event) => {
               event.preventDefault();
-              void submitForm();
               navigate(props.nextPage as To);
             }}
           >
