@@ -25,15 +25,20 @@ export const RouterContext = React.createContext<IRouterContext>(
 export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
   return routeObjectsArray.reduce<RouteInfo[]>(
     (accumulator, current): RouteInfo[] => {
+      let accumulatorItem = [];
+
+      accumulatorItem = [
+        ...accumulator,
+        {
+          path: current?.path ? current.path : '/',
+          title: (
+            (current?.element as ReactElement)?.props as { title: string }
+          )?.title,
+        },
+      ];
       if (current.children) {
-        return [
-          ...accumulator,
-          {
-            path: current?.path as string | '/',
-            title: (
-              (current?.element as ReactElement)?.props as { title: string }
-            )?.title,
-          },
+        accumulatorItem = [
+          ...accumulatorItem,
           ...current.children.map((child) => {
             return {
               path: child?.path
@@ -46,13 +51,7 @@ export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
           }),
         ];
       }
-      return [
-        ...accumulator,
-        {
-          path: current?.path ? current.path : '/',
-          title: '',
-        },
-      ];
+      return accumulatorItem;
     },
     []
   );

@@ -1,8 +1,10 @@
+import React from 'react';
+
 import { routeObjectsReducer, RouterContext, RouterContextProvider } from "../../src/routing/RouterContext";
 import { Formik } from "formik";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Page, RouterProps } from "../../src";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useState } from "react";
 import { update } from "lodash";
 import RouterProgress from "../../src/routing/RouterProgress";
@@ -41,7 +43,7 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
     <RouterContextProvider
       routes={props.children}
       currentRoute={"/page-two"}
-      updateRoute={(value:string) => {return null}}>
+      updateRoute={(value:string) => {return undefined}}>
 
       <RouterProgress route={"/page-two"} />
       <Formik
@@ -110,7 +112,7 @@ describe('Routing - Router Context', () => {
     expect(generatedRoutes).toEqual(expectedResult);
   });
 
-  test('Router Context passes correct information to the progress bar', () => {
+  test('Router Context passes correct information to the progress bar', async() => {
     const routes = ["/", "/page-two"];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={1}>
@@ -119,14 +121,17 @@ describe('Routing - Router Context', () => {
           formData={initialValues}
           title="Page Test"
           >
-          <Route index element={<PageOne />} />
-          <Route path="/page-two" element={<PageTwo />} />
+          <Route index element={<PageOne title="Page One" />} />
+          <Route path="/page-two" element={<PageTwo title="Page Two" />} />
         </FormRouterInternal>
       </MemoryRouter>
     );
 
-    const containerStepTitleP1 = container.querySelector('h2.vads-u-font-size--h4');
-    expect(containerStepTitleP1?.innerHTML).toContain('Step 1 of 2: Introduction Page');
+    await waitFor(() => 
+      expect(
+        container.querySelector('h2.vads-u-font-size--h4')
+        ?.innerHTML).toContain('Step 2 of 2: Page Two')
+      );
   })
 
 });
