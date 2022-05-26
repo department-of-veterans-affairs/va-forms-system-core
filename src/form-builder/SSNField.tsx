@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldHookConfig, useField, useFormikContext } from 'formik';
+import { FieldHookConfig, useField } from 'formik';
 
 import { FieldProps } from './types';
 import { chainValidations, isValidSSN, required } from '../utils/validation';
@@ -15,8 +15,6 @@ export type SSNProps = FieldProps<string>;
 const SSNField = (props: SSNProps): JSX.Element => {
   // Note: In this component, the Formik variable "field.value" holds the raw SSN value,
   // while the useState variable "ssn" controls the view and will render the masked SSN to the page
-  // const state = useFormikContext();
-
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required, isValidSSN]),
