@@ -8,25 +8,30 @@ import Chapter from '../../src/routing/Chapter';
 import { act } from 'react-dom/test-utils';
 import { FormFooter, FormTitle } from '../../src';
 import { Formik } from 'formik';
+import { RouterContextProvider } from '../../src/routing/RouterContext';
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => (
-  <>
-    {props?.title && (
-      <FormTitle title={props.title} subTitle={props?.subtitle} />
-    )}
-    <Formik
-      initialValues={props.formData}
-      onSubmit={(values, actions) => {
-        // Here we leverage formik actions to perform validations, submit data, etc.
-        // Also a good candidate for extracting data out of form apps
-        actions.setSubmitting(true);
-      }}
-    >
-      <Routes>{props.children}</Routes>
-    </Formik>
-    <FormFooter />
-  </>
-);
+const FormRouterInternal = (props: RouterProps): JSX.Element => {
+  const initialValues = props.formData;
+
+  return (
+    <RouterContextProvider
+      routes={props.children}
+      currentRoute={"/page-two"}
+      updateRoute={(value:string) => {return undefined}}>
+
+      <Formik
+        initialValues={props.formData}
+        onSubmit={(values, actions) => {
+          // Here we leverage formik actions to perform validations, submit data, etc.
+          // Also a good candidate for extracting data out of form apps
+          actions.setSubmitting(true);
+        }}
+      >
+        <Routes>{props.children}</Routes>
+      </Formik>
+    </RouterContextProvider>
+  )
+};
 
 const PageOne = () => (
   <Page 
@@ -55,7 +60,7 @@ const initialValues = {
   state: '', 
   zipcode: ''
 };
-describe.skip('Routing - Router', () => {
+describe('Routing - Router', () => {
   test('can display page content', () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>

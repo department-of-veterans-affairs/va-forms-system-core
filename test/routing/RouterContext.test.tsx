@@ -9,20 +9,21 @@ import { useState } from "react";
 import { update } from "lodash";
 import RouterProgress from "../../src/routing/RouterProgress";
 
-const PageOne = () => (
+const PageOne = (props: {title: string}) => (
   <Page 
-    nextPage="/chapter-one/page-two"
-    title="page one">
+    {...props}
+    nextPage="/page-two">
     <p>page one</p>
   </Page>
 );
-const PageTwo = () => (
+
+const PageTwo = (props: {title: string}) => (
   <Page 
-    nextPage="/"
-    title="page two"
-    >
-    <p>page two</p>
-  </Page>
+  {...props}
+  nextPage="/"
+  >
+  <p>page two</p>
+</Page>
 );
 
 const initialValues = {

@@ -8,6 +8,7 @@ import Chapter from '../../src/routing/Chapter';
 import { act } from 'react-dom/test-utils';
 import { FormFooter, FormTitle } from '../../src';
 import { Formik } from 'formik';
+import { RouterContextProvider } from '../../src/routing/RouterContext';
 
 const ChapterOne = (props: {title: string}) => (
   <>
@@ -32,24 +33,28 @@ const ChapterOnePageTwo = (props: {title: string}) => (
   </Page>
 );
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => (
-  <>
-    {props?.title && (
-      <FormTitle title={props.title} subTitle={props?.subtitle} />
-    )}
-    <Formik
-      initialValues={props.formData}
-      onSubmit={(values, actions) => {
-        // Here we leverage formik actions to perform validations, submit data, etc.
-        // Also a good candidate for extracting data out of form apps
-        actions.setSubmitting(true);
-      }}
-    >
-      <Routes>{props.children}</Routes>
-    </Formik>
-    <FormFooter />
-  </>
-);
+const FormRouterInternal = (props: RouterProps): JSX.Element => {
+    const initialValues = props.formData;
+
+  return (
+    <RouterContextProvider
+      routes={props.children}
+      currentRoute={"/page-two"}
+      updateRoute={(value:string) => {return undefined}}>
+
+      <Formik
+        initialValues={props.formData}
+        onSubmit={(values, actions) => {
+          // Here we leverage formik actions to perform validations, submit data, etc.
+          // Also a good candidate for extracting data out of form apps
+          actions.setSubmitting(true);
+        }}
+      >
+        <Routes>{props.children}</Routes>
+      </Formik>
+    </RouterContextProvider>
+  )
+};
 
 const initialValues = {
   firstName: '', 
