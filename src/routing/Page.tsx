@@ -14,16 +14,14 @@ export default function Page(props: PageProps): JSX.Element {
   const formValues = values as IFormData;
   const { listOfRoutes, updateRoute } = useContext(RouterContext);
   const currentLocation = useLocation();
-
-  // const history = useHistory();
-  // updateRoute(currentLocation.pathname);
-
   const navigate = useNavigate();
 
-  useLayoutEffect(() =>
-    updateRoute(
-      currentLocation.pathname !== '' ? currentLocation.pathname : '/'
-    )
+  useEffect(
+    () =>
+      updateRoute(
+        currentLocation.pathname !== '' ? currentLocation.pathname : '/'
+      ),
+    [currentLocation]
   );
 
   return (

@@ -11,10 +11,13 @@ import { ChapterProps } from './types';
 export default function Chapter(props: ChapterProps): JSX.Element {
   const { listOfRoutes, updateRoute } = useContext(RouterContext);
   const currentLocation = useLocation();
-  useEffect(() =>
-    updateRoute(
-      currentLocation.pathname !== '' ? currentLocation.pathname : '/'
-    )
+
+  useEffect(
+    () =>
+      updateRoute(
+        currentLocation.pathname !== '' ? currentLocation.pathname : '/'
+      ),
+    [currentLocation]
   );
 
   return (

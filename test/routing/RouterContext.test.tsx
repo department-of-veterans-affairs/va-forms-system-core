@@ -5,8 +5,6 @@ import { Formik } from "formik";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Page, RouterProps } from "../../src";
 import { render, waitFor } from "@testing-library/react";
-import { useState } from "react";
-import { update } from "lodash";
 import RouterProgress from "../../src/routing/RouterProgress";
 
 const PageOne = (props: {title: string}) => (
