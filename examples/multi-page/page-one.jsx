@@ -8,10 +8,10 @@ import {
   SSNField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function PersonalInformationPage() {
+export default function PersonalInformationPage(props) {
   return (
     <>
-      <Page title="Personal Information" nextPage="/page-two" prevPage="/">
+      <Page {...props} prevPage="/" nextPage="/page-two">
         <TextField name="firstName" label="First name" />
         <TextField name="lastName" label="Last name" />
         <EmailField name="email" label="Email" />

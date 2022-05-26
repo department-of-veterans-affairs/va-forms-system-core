@@ -9,9 +9,9 @@ import { act } from 'react-dom/test-utils';
 import { FormFooter, FormTitle } from '../../src';
 import { Formik } from 'formik';
 
-const ChapterOne = () => (
+const ChapterOne = (props: {title: string}) => (
   <>
-    <Chapter title="Chapter One">
+    <Chapter {...props}>
       <p>
         Custom UI content that can go inside chapter 1: 
         <Link to="/chapter-one/page-one">PageOne</Link>
@@ -20,14 +20,14 @@ const ChapterOne = () => (
   </>
 );
 
-const ChapterOnePageOne = () => (
-  <Page title="Page One" nextPage="/chapter-one/page-two">
+const ChapterOnePageOne = (props: {title: string}) => (
+  <Page {...props} nextPage="/chapter-one/page-two">
     <p>chapter one, page one</p>
   </Page>
 );
 
-const ChapterOnePageTwo = () => (
-  <Page title="Page Two" nextPage="/">
+const ChapterOnePageTwo = (props: {title: string}) => (
+  <Page  {...props} nextPage="/">
     <p>chapter one, page two</p>
   </Page>
 );
@@ -68,9 +68,9 @@ describe('Routing - Chapter', () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/chapter-one", "/chapter-one/page-one", "/chapter-one/page-two"]} initialIndex={0}>
         <FormRouterInternal basename="/" formData={initialValues} title="Chapter Test">
-          <Route path="/chapter-one" element={<ChapterOne />} >
-            <Route path="page-one" element={<ChapterOnePageOne />} />
-            <Route path="page-two" element={<ChapterOnePageTwo />} />
+          <Route path="/chapter-one" element={<ChapterOne title="Chapter One" />} >
+            <Route path="page-one" element={<ChapterOnePageOne title="Chapter One Page One"  />} />
+            <Route path="page-two" element={<ChapterOnePageTwo title="Chapter One Page Two"  />} />
           </Route>
         </FormRouterInternal>
       </MemoryRouter>
@@ -87,9 +87,9 @@ describe('Routing - Chapter', () => {
     let { container } = render(
       <MemoryRouter initialEntries={["/chapter-one", "/chapter-one/page-one", "/chapter-one/page-two"]} initialIndex={1}>
         <FormRouterInternal basename="/" formData={initialValues} title="Chapter Test">
-          <Route path="/chapter-one" element={<ChapterOne />} >
-            <Route path="page-one" element={<ChapterOnePageOne />} />
-            <Route path="page-two" element={<ChapterOnePageTwo />} />
+          <Route path="/chapter-one" element={<ChapterOne title="Chapter One" />} >
+            <Route path="page-one" element={<ChapterOnePageOne title="Chapter One Page One" />} />
+            <Route path="page-two" element={<ChapterOnePageTwo title="Chapter One Page Two" />} />
           </Route>
         </FormRouterInternal>
       </MemoryRouter>

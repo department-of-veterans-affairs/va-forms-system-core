@@ -6,10 +6,10 @@ import {
   DebuggerView,
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function ContactInformationPage() {
+export default function ContactInformationPage(props) {
   return (
     <>
-      <Page title="Address Information" nextPage="/" prevPage="/page-one">
+      <Page {...props} nextPage="/" prevPage="/page-one">
         <TextField name="street" label="Street line 1" />
         <TextField name="streetTwo" label="Street line 2" />
         <TextField name="streetThree" label="Street line 3" />

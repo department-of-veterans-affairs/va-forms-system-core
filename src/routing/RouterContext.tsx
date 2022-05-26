@@ -1,16 +1,6 @@
-import React, {
-  ReactChild,
-  ReactElement,
-  ReactFragment,
-  useEffect,
-} from 'react';
+import React, { ReactElement } from 'react';
 import { createRoutesFromChildren, RouteObject } from 'react-router-dom';
-import {
-  IRouterContext,
-  RouteInfo,
-  RouterContextProps,
-  RouterProps,
-} from './types';
+import { IRouterContext, RouteInfo, RouterContextProps } from './types';
 
 const RouterContextDefaultState = {
   listOfRoutes: [],
@@ -25,10 +15,12 @@ export const RouterContext = React.createContext<IRouterContext>(
 export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
   return routeObjectsArray.reduce<RouteInfo[]>(
     (accumulator, current): RouteInfo[] => {
-      let accumulatorItem = [];
+      let accumulatorItem: RouteInfo[] = [...accumulator];
+
+      if (current.path === '*') return accumulatorItem;
 
       accumulatorItem = [
-        ...accumulator,
+        ...accumulatorItem,
         {
           path: current?.path ? current.path : '/',
           title: (

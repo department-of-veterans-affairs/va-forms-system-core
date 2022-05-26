@@ -55,7 +55,7 @@ const initialValues = {
   state: '', 
   zipcode: ''
 };
-describe('Routing - Router', () => {
+describe.skip('Routing - Router', () => {
   test('can display page content', () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>

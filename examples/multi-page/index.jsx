@@ -17,9 +17,9 @@ const FormApp = (props) => {
   return (
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
       <FormRouter basename={props.basename} formData={props.initialValues} title="Burials Example">
-        <Route index element={<FormIntroductionPage />} />
-        <Route path="/page-one" element={<PersonalInformationPage />} />
-        <Route path="/page-two" element={<ContactInformationPage />} />
+        <Route index element={<FormIntroductionPage title="Introduction Page" />} />
+        <Route path="/page-one" element={<PersonalInformationPage title="Personal Information" />} />
+        <Route path="/page-two" element={<ContactInformationPage title="Contact Information" />} />
         <Route path="*" element={<NoMatch name="No Routes for App" />} />
       </FormRouter>
     </div>
