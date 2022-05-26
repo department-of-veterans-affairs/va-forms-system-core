@@ -34,11 +34,7 @@ const ProgressBar = (props: ProgressBarProps) => {
         }}
       >
         <div className="nav-header nav-header-schemaform">
-          <h2
-            className="vads-u-font-size--h4"
-            id="nav-form-header"
-            tabIndex={0}
-          >
+          <h2 className="vads-u-font-size--h4" id="nav-form-header">
             Step {currentStep} of {numberOfSteps}: {stepTitle}
           </h2>
         </div>
