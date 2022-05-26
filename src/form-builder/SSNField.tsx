@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldHookConfig, useField } from 'formik';
+import { FieldHookConfig, useField, useFormikContext } from 'formik';
 
 import { FieldProps } from './types';
 import { chainValidations, isValidSSN, required } from '../utils/validation';
@@ -15,6 +15,8 @@ export type SSNProps = FieldProps<string>;
 const SSNField = (props: SSNProps): JSX.Element => {
   // Note: In this component, the Formik variable "field.value" holds the raw SSN value,
   // while the useState variable "ssn" controls the view and will render the masked SSN to the page
+  // const state = useFormikContext();
+
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required, isValidSSN]),
@@ -34,27 +36,29 @@ const SSNField = (props: SSNProps): JSX.Element => {
   };
 
   const onBlur = (event: Event) => {
-    const { value } = event.target as HTMLTextAreaElement;
-    const ssnString: string = value.replaceAll('-', '');
-    helpers.setValue(ssnString);
-    helpers.setTouched(true);
+    setTimeout(() => {
+      const { value } = event.target as HTMLTextAreaElement;
+      const ssnString: string = value.replaceAll('-', '');
+      helpers.setValue(ssnString);
+      helpers.setTouched(true);
 
-    let maskedSSNString = '';
+      let maskedSSNString = '';
 
-    if (ssnString.length) {
-      const strippedSSN = ssnString.replace(/[- ]/g, '');
-      const maskedSSN = strippedSSN.replace(/^\d{1,5}/, (digit) =>
-        digit.replace(/\d/g, '●')
-      );
+      if (ssnString.length) {
+        const strippedSSN = ssnString.replace(/[- ]/g, '');
+        const maskedSSN = strippedSSN.replace(/^\d{1,5}/, (digit) =>
+          digit.replace(/\d/g, '●')
+        );
 
-      maskedSSNString = [
-        [...maskedSSN].splice(0, 3).join(''),
-        [...maskedSSN].splice(3, 2).join(''),
-        [...maskedSSN].splice(5).join(''),
-      ].join('-');
-    }
+        maskedSSNString = [
+          [...maskedSSN].splice(0, 3).join(''),
+          [...maskedSSN].splice(3, 2).join(''),
+          [...maskedSSN].splice(5).join(''),
+        ].join('-');
+      }
 
-    setSSN(maskedSSNString);
+      setSSN(maskedSSNString);
+    }, 0);
   };
 
   return (
