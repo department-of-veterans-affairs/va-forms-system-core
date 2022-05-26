@@ -18,32 +18,15 @@ import { RouterContext, RouterContextProvider } from '../routing/RouterContext';
  * @returns React.Component
  */
 const ProgressBar = (props: ProgressBarProps) => {
-  const { route } = props;
-  const { listOfRoutes, currentRoute } = useContext(RouterContext);
-  const findIndex = listOfRoutes.indexOf(
-    listOfRoutes.filter((item) => item.path === route)[0]
-  );
+  const { numberOfSteps, currentStep, stepTitle } = props;
 
   return (
     <>
-      {route}
-      {/* {findIndex} <br/>
-      {listOfRoutes.length} */}
       <VaSegmentedProgressBar
-        current={findIndex + 1}
-        total={listOfRoutes?.length}
+        current={currentStep}
+        total={numberOfSteps}
         toFixed={false}
       />
-
-      {/* <RouterContext.Consumer>
-      {(value) => {
-
-        return(
-          <VaSegmentedProgressBar current={findIndex + 1} total={listOfRoutes?.length} toFixed={false} />
-        )
-      }}
-      </RouterContext.Consumer>  */}
-
       <div
         className="schemaform-chapter-progress"
         style={{
@@ -56,7 +39,7 @@ const ProgressBar = (props: ProgressBarProps) => {
             id="nav-form-header"
             tabIndex={0}
           >
-            {/* Step {currentStep} of {numberOfSteps}: {currentStepTitle} */}
+            Step {currentStep} of {numberOfSteps}: {stepTitle}
           </h2>
         </div>
       </div>

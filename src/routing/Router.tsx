@@ -12,6 +12,7 @@ import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
 import { RouterContext, RouterContextProvider } from './RouterContext';
 import ProgressBar from '../form-layout/ProgressBar';
+import RouterProgress from './RouterProgress';
 
 /**
  * Manages form pages as routes
@@ -20,21 +21,19 @@ import ProgressBar from '../form-layout/ProgressBar';
  */
 export default function FormRouter(props: RouterProps): JSX.Element {
   const initialValues = props.formData;
-  const [route, updateRoute] = useState('');
+  const [route, updateRoute] = useState('/');
 
   return (
     <div className="row">
       <div className="usa-width-two-thirds medium-8 columns">
-        <RouterContextProvider
-          routes={props.children}
-          currentRoute={route}
-          updateRoute={updateRoute}
-        >
-          <BrowserRouter basename={props.basename}>
-            {props?.title && (
-              <FormTitle title={props.title} subTitle={props?.subtitle} />
-            )}
-            <ProgressBar route={route} />
+        <BrowserRouter basename={props.basename}>
+          <RouterContextProvider
+            routes={props.children}
+            currentRoute={route}
+            updateRoute={updateRoute}
+          >
+            <FormTitle title={props.title} subTitle={props?.subtitle} />
+            <RouterProgress route={route} />
             <Formik
               initialValues={initialValues}
               onSubmit={(values, actions) => {
@@ -46,8 +45,8 @@ export default function FormRouter(props: RouterProps): JSX.Element {
               <Routes>{props.children}</Routes>
             </Formik>
             <FormFooter />
-          </BrowserRouter>
-        </RouterContextProvider>
+          </RouterContextProvider>
+        </BrowserRouter>
       </div>
     </div>
   );

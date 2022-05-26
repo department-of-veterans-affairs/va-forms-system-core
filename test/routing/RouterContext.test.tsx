@@ -5,6 +5,7 @@ import { Page, RouterProps } from "../../src";
 import { render } from "@testing-library/react";
 import { useState } from "react";
 import { update } from "lodash";
+import RouterProgress from "../../src/routing/RouterProgress";
 
 const PageOne = () => (
   <Page 
@@ -35,20 +36,26 @@ const initialValues = {
 
 const FormRouterInternal = (props: RouterProps): JSX.Element => {
   const initialValues = props.formData;
-  const [route, updateRoute] = useState('');
 
-  return (<RouterContextProvider routes={props.children} currentRoute={route} updateRoute={updateRoute}>
-    <Formik
-      initialValues={props.formData}
-      onSubmit={(values, actions) => {
-        // Here we leverage formik actions to perform validations, submit data, etc.
-        // Also a good candidate for extracting data out of form apps
-        actions.setSubmitting(true);
-      }}
-    >
-      <Routes>{props.children}</Routes>
-    </Formik>
-  </RouterContextProvider>)
+  return (
+    <RouterContextProvider
+      routes={props.children}
+      currentRoute={"/page-two"}
+      updateRoute={(value:string) => {return null}}>
+
+      <RouterProgress route={"/page-two"} />
+      <Formik
+        initialValues={props.formData}
+        onSubmit={(values, actions) => {
+          // Here we leverage formik actions to perform validations, submit data, etc.
+          // Also a good candidate for extracting data out of form apps
+          actions.setSubmitting(true);
+        }}
+      >
+        <Routes>{props.children}</Routes>
+      </Formik>
+    </RouterContextProvider>
+  )
 };
 
 describe('Routing - Router Context', () => {
@@ -104,9 +111,14 @@ describe('Routing - Router Context', () => {
   });
 
   test('Router Context passes correct information to the progress bar', () => {
+    const routes = ["/", "/page-two"];
     const { container } = render(
-      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>
-        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+      <MemoryRouter initialEntries={routes} initialIndex={1}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          title="Page Test"
+          >
           <Route index element={<PageOne />} />
           <Route path="/page-two" element={<PageTwo />} />
         </FormRouterInternal>

@@ -6,7 +6,7 @@ describe('Progress Bar', () => {
 
   test('Displays current step name', () => {
     const { container } = render(
-      <ProgressBar route={"/"} />
+      <ProgressBar currentStep={0} numberOfSteps={5} stepTitle={"Dummy Title"}/>
     );
 
     const titleText = container.querySelector('h2')?.innerHTML;
