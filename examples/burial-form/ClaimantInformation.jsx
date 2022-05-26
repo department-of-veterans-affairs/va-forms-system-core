@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   DateField,
   DebuggerView,
@@ -8,6 +8,14 @@ import {
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function ClaimantInformation() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+  
   return (
     <>
       <Page title="Step 1 of 6: Claimant Information" nextPage="/veteran-information" prevPage="/">

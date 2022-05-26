@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   DebuggerView,
   DateField,
@@ -10,6 +10,14 @@ import {
 import { useFormikContext } from 'formik';
 
 export default function VeteranInformation() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+
   const state = useFormikContext();
 
   return (
