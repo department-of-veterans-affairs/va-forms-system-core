@@ -1,16 +1,11 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  createRoutesFromChildren,
-  RouteObject,
-  Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import { Formik } from 'formik';
 import { RouterProps } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
-import { RouterContext, RouterContextProvider } from './RouterContext';
+import { RouterContextProvider } from './RouterContext';
 
 /**
  * Manages form pages as routes
@@ -30,10 +25,11 @@ export default function FormRouter(props: RouterProps): JSX.Element {
             )}
             <Formik
               initialValues={initialValues}
-              onSubmit={(values, actions) => {
-                // Here we leverage formik actions to perform validations, submit data, etc.
-                // Also a good candidate for extracting data out of form apps
-                actions.setSubmitting(true);
+              onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  setSubmitting(false);
+                }, 400);
               }}
             >
               <Routes>{props.children}</Routes>

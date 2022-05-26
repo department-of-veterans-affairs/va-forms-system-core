@@ -28,7 +28,7 @@ export default function ClaimantInformation() {
         />
         <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
-      {/* <DebuggerView /> */}
+      <DebuggerView />
     </>
   )
 }
