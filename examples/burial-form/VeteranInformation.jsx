@@ -16,19 +16,40 @@ export default function VeteranInformation() {
     <>
       <Page title="Step 2 of 6: Deceased Veteran Information" nextPage="/" prevPage="/claimant-information">
         <FullNameField name="veteranFullName" label="Veteran Full Name" />
-        <SSNField 
-          name="veteranSocialSecurityNumber"
-          label="Social Security number (must have this or a VA file number)"
-          required={state.values.vaFileNumber !== '' ? false : true} />
-        <TextField 
-          name="vaFileNumber"
-          label="VA file number (must have this or a Social Security number)"
-          required={state.values.veteranSocialSecurityNumber !== '' ? false : true} />
-        <DateField 
+
+        {
+          state.values.vaFileNumber ?
+            (
+              <SSNField
+                name="veteranSocialSecurityNumber"
+                label="Social Security number (must have this or a VA file number)" />
+            ) :
+            (
+              <SSNField
+                name="veteranSocialSecurityNumber"
+                label="Social Security number (must have this or a VA file number)"
+                required />
+            )
+        }
+        {
+          state.values.veteranSocialSecurityNumber ?
+            (
+              <TextField
+                name="vaFileNumber"
+                label="VA file number (must have this or a Social Security number)" />
+            ) :
+            (
+              <TextField
+                name="vaFileNumber"
+                label="VA file number (must have this or a Social Security number)"
+                required />
+            )
+        }
+        <DateField
           name="veteranDateOfBirth"
           label="Date of birth"
           required />
-        <TextField 
+        <TextField
           name="placeOfBirth"
           label="Place of birth (city and state or foreign country)" />
       </Page>
