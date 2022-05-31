@@ -360,7 +360,13 @@ const schema = {
             "items": {
                 "type": "object",
                 "properties": {
-                    "dateRange": {
+                    // "dateRange": {
+                    //     "$ref": "#/definitions/dateRange"
+                    // },
+                    "startDate": {
+                        "$ref": "#/definitions/dateRange"
+                    },
+                    "endDate": {
                         "$ref": "#/definitions/dateRange"
                     },
                     "serviceBranch": {
