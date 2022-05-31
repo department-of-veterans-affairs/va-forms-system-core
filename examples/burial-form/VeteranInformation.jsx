@@ -10,7 +10,7 @@ import {
 export default function VeteranInformation() {
   return (
     <>
-      <Page title="Step 2 of 6: Deceased Veteran Information" nextPage="/" prevPage="/claimant-information">
+      <Page title="Step 2 of 6: Deceased Veteran Information" nextPage="/submit" prevPage="/claimant-information">
         <FullNameField name="veteranFullName"
           label="" />
         <SSNField name="veteranSocialSecurityNumber"
