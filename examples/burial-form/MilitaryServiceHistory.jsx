@@ -5,6 +5,7 @@ import {
   TextField,
   DebuggerView
 } from '@department-of-veterans-affairs/va-forms-system-core';
+import { useFormikContext } from 'formik';
 
 export default function MilitaryServiceHistory(props) {
   useEffect(() => {
@@ -14,6 +15,14 @@ export default function MilitaryServiceHistory(props) {
       behavior: "smooth"
     });
   });
+
+  const state = useFormikContext();
+
+  const isBeforeStartDate = (value) => {
+    if (state.values.toursOfDuty[0].startDate.from >= value && value.length === 10) {
+      return "End of service must be after start of service";
+    }
+  };
 
   return (
     <>
@@ -25,21 +34,25 @@ export default function MilitaryServiceHistory(props) {
           </span>
         </div>
         <h3>Service Periods</h3>
-        <DateField name="toursOfDuty.items.properties.startDate"
+        <DateField name="toursOfDuty[0].startDate.from"
           label="Service start date" />
-        <DateField name="toursOfDuty.items.properties.endDate"
-          label="Service end date" />
-        <TextField name="toursOfDuty.items.properties.serviceBranch"
+        <DateField name="toursOfDuty[0].endDate.to"
+          label="Service end date" validate={isBeforeStartDate} />
+        <TextField name="toursOfDuty[0].serviceBranch"
           label="Branch of service" />
-        <TextField name="toursOfDuty.items.properties.rank"
+        <TextField name="toursOfDuty[0].rank"
           label="Rank" />
-        <TextField name="toursOfDuty.items.properties.serviceNumber"
+        <TextField name="toursOfDuty[0].serviceNumber"
           label="Service number" />
-        <TextField name="toursOfDuty.items.properties.placeOfEntry"
+        <TextField name="toursOfDuty[0].placeOfEntry"
           label="Place of entry" />
-        <TextField name="toursOfDuty.items.properties.placeOfSeparation"
+        <TextField name="toursOfDuty[0].placeOfSeparation"
           label="Place of separation" />
-        <button type="button" className="usa-button-secondary va-growable-add-btn usa-button-disabled" disabled>Add another Service Period</button>
+        <button type="button"
+          className="usa-button-secondary va-growable-add-btn usa-button-disabled"
+          disabled>
+          Add another Service Period
+        </button>
         <br />
       </Page>
       <DebuggerView />
