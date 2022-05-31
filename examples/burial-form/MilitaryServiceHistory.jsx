@@ -19,7 +19,7 @@ export default function MilitaryServiceHistory(props) {
   const state = useFormikContext();
 
   const isBeforeStartDate = (value) => {
-    if (state.values.toursOfDuty[0].startDate.from >= value && value.length === 10) {
+    if (state.values.toursOfDuty[0].dateRange.from >= value && value.length === 10) {
       return "End of service must be after start of service";
     }
   };
@@ -34,9 +34,9 @@ export default function MilitaryServiceHistory(props) {
           </span>
         </div>
         <h3>Service Periods</h3>
-        <DateField name="toursOfDuty[0].startDate.from"
+        <DateField name="toursOfDuty[0].dateRange.from"
           label="Service start date" />
-        <DateField name="toursOfDuty[0].endDate.to"
+        <DateField name="toursOfDuty[0].dateRange.to"
           label="Service end date" validate={isBeforeStartDate} />
         <TextField name="toursOfDuty[0].serviceBranch"
           label="Branch of service" />
