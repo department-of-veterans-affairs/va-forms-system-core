@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { RouterContext } from './RouterContext';
 import { ChapterProps } from './types';
