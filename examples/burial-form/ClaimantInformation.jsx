@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   DateField,
   DebuggerView,
@@ -7,7 +7,15 @@ import {
   RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function ClaimantInformation(props) {
+export default function ClaimantInformation() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+  
   return (
     <>
       <Page {...props} nextPage="/veteran-information" prevPage="/">
@@ -28,7 +36,7 @@ export default function ClaimantInformation(props) {
         />
         <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
-      {/* <DebuggerView /> */}
+      <DebuggerView />
     </>
   )
 }

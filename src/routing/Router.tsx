@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter,
-  createRoutesFromChildren,
-  RouteObject,
-  Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import { Formik } from 'formik';
 import { RouterProps } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
-import { RouterContext, RouterContextProvider } from './RouterContext';
-import ProgressBar from '../form-layout/ProgressBar';
+import { RouterContextProvider } from './RouterContext';
 import RouterProgress from './RouterProgress';
 
 /**
