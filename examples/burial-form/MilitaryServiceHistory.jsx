@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import {
   DateField,
   Page,
-  TextField,
-  DebuggerView
+  TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 
@@ -55,7 +54,6 @@ export default function MilitaryServiceHistory(props) {
         </button>
         <br />
       </Page>
-      <DebuggerView />
     </>
   )
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  DebuggerView,
   DateField,
   FullNameField,
   Page,
@@ -54,7 +53,6 @@ export default function VeteranInformation(props) {
           name="placeOfBirth"
           label="Place of birth (city and state or foreign country)" />
       </Page>
-      <DebuggerView />
     </>
   )
 }

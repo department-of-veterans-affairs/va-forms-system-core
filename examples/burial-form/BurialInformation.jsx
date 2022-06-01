@@ -1,26 +1,41 @@
 import React from 'react';
-import { Page, DateField, RadioGroup } from '@department-of-veterans-affairs/va-forms-system-core';
+import { Page, DateField, TextField, RadioGroup } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
+import { isBeforeDate } from './utils';
 
 const LOCATIONS = [
-    {label: "VA medical center", name:"vaMedicalCenter"},
-    {label: "State Veterans home", name:"stateVeteransHome"},
-    {label: "Nursing home under VA contract", name:"nursingHome"},
-    {label: "Other", name:"other"},
+    {label: "VA medical center", value:"vaMedicalCenter", key:1},
+    {label: "State Veterans home", value:"stateVeteransHome", key:2},
+    {label: "Nursing home under VA contract", value:"nursingHome", key:3},
+    {label: "Other", value:"other", key:4},
 ]
+
+const VALIDATION_STRING = 'Date of burial must be on or after the date of death';
 
 export default function BurialInformation(props) {
     const state = useFormikContext();
 
+    const validator = () => isBeforeDate(state.values.burialDate, state.values.deathDate, VALIDATION_STRING);
+
     return (
         <Page {...props} nextPage="/military-history/service-periods" prevPage="/veteran-information">
             <DateField name="deathDate" label="Date of death" required />
-            <DateField name="burialDate" label="Date of burial (includes cremation or internment)" required />
+            <DateField 
+                name="burialDate" 
+                label="Date of burial (includes cremation or internment)" 
+                required 
+                validate={validator} 
+            />
             <RadioGroup 
-                name="locationOfDeath" 
+                name="locationOfDeath.location" 
                 label="Where did the Veteran’s death occur?" 
                 required 
                 options={LOCATIONS} />
+            {
+                state.values.locationOfDeath.location === "other" && (
+                    <TextField name="locationOfDeath.other" label="Please specify"/>
+                )
+            }
         </Page>
     )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {
   DateField,
-  DebuggerView,
   FullNameField,
   Page,
   RadioGroup
@@ -35,7 +34,6 @@ export default function ClaimantInformation(props) {
           }
         />
       </Page>
-      <DebuggerView />
     </>
   )
 }
