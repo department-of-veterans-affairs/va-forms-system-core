@@ -15,7 +15,7 @@ export default function ClaimantInformation(props) {
   
   return (
     <>
-      <Page {...props} nextPage="/" prevPage="/">
+      <Page {...props} nextPage="/" prevPage="/military-history/service-periods">
         <TextField required name="placeOfRemains" label="Place of burial or deceased Veteran’s remains" />
         <RadioGroup
           name="federalCemetery"
