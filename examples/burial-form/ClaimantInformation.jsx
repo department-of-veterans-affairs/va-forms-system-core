@@ -34,7 +34,6 @@ export default function ClaimantInformation(props) {
             ]
           }
         />
-        <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
       <DebuggerView />
     </>
