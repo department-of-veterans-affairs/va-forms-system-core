@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useFormikContext, Form } from 'formik';
 import { useNavigate, To, useLocation } from 'react-router-dom';
 import { PageProps, IFormData } from './types';
@@ -10,12 +10,19 @@ import { RouterContext } from './RouterContext';
  * @beta
  */
 export default function Page(props: PageProps): JSX.Element {
-  const { values, submitForm } = useFormikContext();
+  const { values } = useFormikContext();
   const formValues = values as IFormData;
-  const listOfRoutes = useContext(RouterContext).listOfRoutes;
+  const { listOfRoutes, updateRoute } = useContext(RouterContext);
   const currentLocation = useLocation();
-
   const navigate = useNavigate();
+
+  useEffect(
+    () =>
+      updateRoute(
+        currentLocation.pathname !== '' ? currentLocation.pathname : '/'
+      ),
+    [currentLocation]
+  );
 
   return (
     <div>
