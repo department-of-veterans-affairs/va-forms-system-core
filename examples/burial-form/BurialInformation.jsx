@@ -15,8 +15,6 @@ const VALIDATION_STRING = 'Date of burial must be on or after the date of death'
 export default function BurialInformation(props) {
     const state = useFormikContext();
 
-    const validator = () => isBeforeDate(state.values.burialDate, state.values.deathDate, VALIDATION_STRING);
-
     return (
         <Page {...props} nextPage="/military-history/service-periods" prevPage="/veteran-information">
             <DateField name="deathDate" label="Date of death" required />
@@ -24,7 +22,7 @@ export default function BurialInformation(props) {
                 name="burialDate" 
                 label="Date of burial (includes cremation or internment)" 
                 required 
-                validate={validator} 
+                validate={isBeforeDate(state.values.burialDate, state.values.deathDate, VALIDATION_STRING)} 
             />
             <RadioGroup 
                 name="locationOfDeath.location" 
@@ -33,7 +31,12 @@ export default function BurialInformation(props) {
                 options={LOCATIONS} />
             {
                 state.values.locationOfDeath.location === "other" && (
-                    <TextField name="locationOfDeath.other" label="Please specify"/>
+                    <TextField 
+                        className="vads-u-border-color--primary-alt-light vads-u-border-left--4px vads-u-padding-left--2 vads-u-padding-y--0p5 vads-u-margin-left--neg2p5" 
+                        name="locationOfDeath.other" 
+                        label="Please specify"
+                        required={state.values.locationOfDeath.location === 'other'}    
+                    />
                 )
             }
         </Page>
