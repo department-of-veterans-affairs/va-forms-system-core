@@ -5,6 +5,7 @@ import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
 import BurialInformation from './BurialInformation';
+import BurialAllowance from './BurialAllowance';
 import MilitaryServiceHistory from './MilitaryServiceHistory';
 
 const NoMatch = (props) => (
@@ -24,6 +25,7 @@ const BurialApp = (props) => {
         <Route path="/veteran-information" element={<VeteranInformation title="Deceased Veteran Information" />} />
         <Route path="/veteran-information/burial" element={<BurialInformation title="Deceased Veteran Information" />} />
         <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
+        <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Benefits Selection" />} />
         <Route path="*" element={<NoMatch name="No Routes for App" />} />
       </FormRouter>
     </div>
