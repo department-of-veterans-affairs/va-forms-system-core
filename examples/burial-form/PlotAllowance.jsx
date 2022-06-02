@@ -14,7 +14,7 @@ export default function PlotAllowance(props) {
   const formikContext = useFormikContext()
   
   return (
-    <div class="vads-u-margin-x--1p5">
+    <div className="vads-u-margin-x--1p5">
       <Page {...props} nextPage="/" prevPage="/military-history/service-periods">
         <TextField required name="placeOfRemains" label="Place of burial or deceased Veteran’s remains" />
         <div className={'vads-u-padding-y--1p5 form-expanding-group' + (formikContext?.values?.federalCemetery === "false" && ' form-expanding-group-open')}>
