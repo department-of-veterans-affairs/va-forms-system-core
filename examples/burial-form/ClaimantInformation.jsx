@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import {
   FullNameField,
   Page,
-  RadioGroup,
-  DebuggerView
+  RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function ClaimantInformation(props) {
@@ -19,7 +18,7 @@ export default function ClaimantInformation(props) {
     <>
       <Page {...props} nextPage="/veteran-information" prevPage="/">
         <p>
-          You aren't required to fill in all fields, but we can review your application faster if you provide more information.
+          You aren’t required to fill in all fields, but we can review your application faster if you provide more information.
         </p>
         <FullNameField name="claimantFullName"/>
         <RadioGroup
@@ -36,7 +35,6 @@ export default function ClaimantInformation(props) {
             ]
           }
         />
-        <DebuggerView />
       </Page>
     </>
   )
