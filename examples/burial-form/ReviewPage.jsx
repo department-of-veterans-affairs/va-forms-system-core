@@ -30,7 +30,7 @@ export default function ReviewPage(props) {
             }
           },
           "relationship": {
-            label: "Relationship",
+            label: "Relationship to deceased Veteran",
             value: state.values.relationship,
           }
         }
@@ -104,17 +104,17 @@ export default function ReviewPage(props) {
               "dateRange": {
                 value: {
                   "from": {
-                    label: "From",
+                    label: "Service start date",
                     value: state.values?.toursOfDuty[0]?.dateRange.from
                   },
                   "to": {
-                    label: "To",
+                    label: "Service end date",
                     value: state.values?.toursOfDuty[0]?.dateRange.to
                   }
                 }
               },
               "serviceBranch": {
-                label: "Service Branch",
+                label: "Branch of service",
                 value: state.values?.toursOfDuty[0]?.serviceBranch
               },
               "rank": {
@@ -122,15 +122,15 @@ export default function ReviewPage(props) {
                 value: state.values?.toursOfDuty[0]?.rank
               },
               "serviceNumber": {
-                label: "Service Number",
+                label: "Service number",
                 value: state.values?.toursOfDuty[0]?.serviceNumber
               },
               "placeOfEntry": {
-                label: "Place of Entry",
+                label: "Place of entry",
                 value: state.values?.toursOfDuty[0]?.placeOfEntry
               },
               "placeOfSeparation": {
-                label: "Place of Separation",
+                label: "Place of separation",
                 value: state.values?.toursOfDuty[0]?.placeOfSeparation
               }
             }
