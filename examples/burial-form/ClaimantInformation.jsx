@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import {
   FullNameField,
   Page,
-  RadioGroup
+  RadioGroup,
+  DebuggerView
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function ClaimantInformation(props) {
@@ -35,6 +36,7 @@ export default function ClaimantInformation(props) {
             ]
           }
         />
+        <DebuggerView />
       </Page>
     </>
   )
