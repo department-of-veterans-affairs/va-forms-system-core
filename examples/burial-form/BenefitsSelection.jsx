@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Page,
   CheckboxFieldGroup,
-  DebuggerView,
   TextField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
@@ -58,7 +57,6 @@ export default function BenefitsSelection(props) {
             </div>
           )
         }
-        <DebuggerView />
       </Page>
     </>
   )
