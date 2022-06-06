@@ -16,7 +16,7 @@ export default function ClaimantInformation(props) {
   
   return (
     <>
-      <Page {...props} nextPage="/review-and-submit" prevPage="/">
+      <Page {...props} nextPage="/veteran-information" prevPage="/">
         <p>
           You aren’t required to fill in all fields, but we can review your application faster if you provide more information.
         </p>

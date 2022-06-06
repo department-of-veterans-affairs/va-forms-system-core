@@ -14,7 +14,7 @@ const transformFieldValue = (key, field) => {
   if (field.value === 'false') {
     return 'No';
   }
-  if (["from", "to"].indexOf(key) > -1) {
+  if (["from", "to", "veteranDateOfBirth", "deathDate", "burialDate"].indexOf(key) > -1) {
     const date = new Date(field.value);
     return date.toLocaleDateString("en-US", { day: 'numeric', month: 'long', year: 'numeric' });
   }

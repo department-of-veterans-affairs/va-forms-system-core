@@ -33,6 +33,7 @@ const BurialApp = (props) => {
         <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
         <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Burial allowance" />} />
         <Route path="/benefits/plot-allowance" element={<PlotAllowance title="Benefits Selection" />} />
+        <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />
         <Route path="*" element={<NoMatch name="No Routes for App" />} />
       </FormRouter>
     </div>
