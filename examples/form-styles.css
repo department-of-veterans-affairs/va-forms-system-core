@@ -1,3 +1,45 @@
 .schemaform-expandUnder-indent{
   margin-left: 29px;
 }
+
+
+/* Review Page */
+.review-page--page-navigation dl dd {
+  font-size: 16px;
+  color: #004795;
+  text-decoration: none solid rgb(0, 71, 149);
+  line-height: 24px;
+}
+
+
+.review-page--page-heading {
+  
+}
+
+.review-page--page-heading--text {
+  font-size: 20px;
+  color: #003e73;
+  text-decoration: none solid rgb(0, 62, 115);
+  line-height: 26px;
+}
+
+.review-page--page-heading--link {
+  text-align: right;
+  align-self: flex-end;
+}
+
+.review-page--page-info--label-text {
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  font-weight: normal;
+  color: #5b616b;
+  line-height: 24px;
+}
+
+.review-page--page-info--value-text {
+  font-family: Source Sans Pro;
+  font-size: 18px;
+  color: #323a45;
+  line-height: 24px;
+}
+

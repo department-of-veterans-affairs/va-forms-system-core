@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  DebuggerView
+} from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { Page } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Link } from 'react-router-dom';
@@ -14,14 +17,19 @@ const bufferFields = (fields, rank = 0) => {
 
 const recurseField = (key, field, rank = 0) => {
   if (!(!!field.value)) return;
-  const fieldLabel = field.label && <label>{field.label}:</label>
+  const fieldLabel = field.label && <label className='review-page--page-info--label-text'>{field.label}:</label>
 
   if ((typeof field.value) === 'object') {
     rank++;
-    return (<div key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank)}</div>)
+    return (<div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank)}</div>)
   }
   else {
-    return (<div key={`level-${rank}-field-${key}`}> <strong>{fieldLabel}</strong> <span className={'field-value' + (rank > 0 && ` field-value-level-${rank}`)}>{field.value}</span></div>);
+    return (
+      <div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> 
+        {fieldLabel} 
+        <span className={'review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}>{field.value}</span>
+      </div>
+    );
   }
 }
 
@@ -189,63 +197,63 @@ export default function ReviewPage(props) {
       //     }
       //   }
       // },
-      // {
-      //   title: 'Benefits Selection',
-      //   id: 'benefits-selection',
-      //   pageUrl: '/benefits/selection',
-      //   fields: {
-      //     "burialAllowance": {
-      //       label: "Burial Allowance",
-      //       value: state?.values?.burialAllowance
-      //     },
-      //     "plotAllowance": {
-      //       label: "Plot or interment allowance",
-      //       value: state?.values?.plotAllowance
-      //     },
-      //     "transportation": {
-      //       label: "Transportation expenses",
-      //       value: state?.values?.transportation
-      //     },
-      //     "amountIncurred": {
-      //       label: "Amount Incurred",
-      //       value: state?.values?.amountIncurred
-      //     }
-      //   },
-      // },
-      // {
-      //   title: 'Benefits Selection: Type of Burial Allowance',
-      //   id: 'benefits-burial-allowance',
-      //   pageUrl: '/benefits/burial-allowance',
-      //   fields: {
-      //     "burialAllowanceRequested": {
-      //       label: "Type of Burial allowance requested",
-      //       value: state?.values?.burialAllowanceRequested
-      //     }
-      //   },
-      // },
-      // {
-      //   title: 'Benefits Selection: Plot or interment allowance',
-      //   id: 'benefits-plot-allowance',
-      //   pageUrl: '/benefits/plot-allowance',
-      //   fields: {
-      //     "placeOfRemains": {
-      //       label: "Place of burial or deceased Veteran’s remains",
-      //       value: state?.values?.placeOfRemains
-      //     },
-      //     "federalCemetery": {
-      //       label: "Was the Veteran buried in a national cemetary, or one owned by the federal government?",
-      //       value: state?.values?.federalCemetery
-      //     },
-      //     "govtContributions": {
-      //       label: "Amount of government or employer contribution",
-      //       value: state?.values?.govtContributions
-      //     },
-      //     "amountGovtContribution": {
-      //       label: "Amount of government or employer contribution",
-      //       value: state?.values?.amountGovtContribution
-      //     }
-      //   },
-      // },
+      {
+        title: 'Benefits Selection',
+        id: 'benefits-selection',
+        pageUrl: '/benefits/selection',
+        fields: {
+          "burialAllowance": {
+            label: "Burial Allowance",
+            value: state?.values?.burialAllowance
+          },
+          "plotAllowance": {
+            label: "Plot or interment allowance",
+            value: state?.values?.plotAllowance
+          },
+          "transportation": {
+            label: "Transportation expenses",
+            value: state?.values?.transportation
+          },
+          "amountIncurred": {
+            label: "Transportation amount incurred",
+            value: state?.values?.amountIncurred
+          }
+        },
+      },
+      {
+        title: 'Benefits Selection: Type of Burial Allowance',
+        id: 'benefits-burial-allowance',
+        pageUrl: '/benefits/burial-allowance',
+        fields: {
+          "burialAllowanceRequested": {
+            label: "Type of Burial allowance requested",
+            value: state?.values?.burialAllowanceRequested
+          }
+        },
+      },
+      {
+        title: 'Benefits Selection: Plot or interment allowance',
+        id: 'benefits-plot-allowance',
+        pageUrl: '/benefits/plot-allowance',
+        fields: {
+          "placeOfRemains": {
+            label: "Place of burial or deceased Veteran’s remains",
+            value: state?.values?.placeOfRemains
+          },
+          "federalCemetery": {
+            label: "Was the Veteran buried in a national cemetary, or one owned by the federal government?",
+            value: state?.values?.federalCemetery
+          },
+          "govtContributions": {
+            label: "Amount of government or employer contribution",
+            value: state?.values?.govtContributions
+          },
+          "amountGovtContribution": {
+            label: "Amount of government or employer contribution",
+            value: state?.values?.amountGovtContribution
+          }
+        },
+      },
       // {
       //   title: 'Claimant Contact Information',
       //   id: 'claimant-contact-information',
@@ -297,24 +305,27 @@ export default function ReviewPage(props) {
   return (
     <>
       <Page {...props}>
-        <nav>
-          <ul>
+        <nav className="review-page--page-navigation">
+          <dl>
             { pageData.pages.map(page => {
               return (
-                <li key={page.id}>
+                <dd role="definition" key={page.id}>
+                  <i aria-hidden="true" className="fas fa-arrow-down"></i>
                   <Link to={'#' + page.id}>{page.title}</Link>
-                </li>
+                </dd>
               );
             })}
-          </ul>
+          </dl>
         </nav>
 
         { pageData.pages.map(page => (
-          <div id={page.id} key={page.id}>
-            <h3>{page.title}</h3>
-            <Link to={page.pageUrl}>edit</Link>
+          <div id={page.id} key={page.id} className="review-page--page-info">
+            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
+              <h3 className='review-page--page-heading--text'>{page.title}</h3>
+              <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+            </div>
+
             {bufferFields(page.fields)}
-            <br/>
           </div>
         )) }
 

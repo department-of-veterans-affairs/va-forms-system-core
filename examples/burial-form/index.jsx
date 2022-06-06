@@ -9,6 +9,7 @@ import MilitaryServiceHistory from './MilitaryServiceHistory';
 import PlotAllowance from './PlotAllowance';
 import BurialAllowance from "./BurialAllowance";
 import BenefitsSelection from './BenefitsSelection';
+import ReviewPage from './ReviewPage';
 
 const NoMatch = (props) => (
   <main style={{ padding: '1rem' }}>
@@ -24,6 +25,8 @@ const BurialApp = (props) => {
       <FormRouter basename={props.basename} formData={props.initialValues} title="Burials Example">
         <Route index element={<BurialIntroduction title="Introduction Page" />} />
         <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />
+        <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />
+
         <Route path="/veteran-information" element={<VeteranInformation title="Deceased Veteran Information" />} />
         <Route path="/veteran-information/burial" element={<BurialInformation title="Deceased Veteran Information" />} />
         <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
