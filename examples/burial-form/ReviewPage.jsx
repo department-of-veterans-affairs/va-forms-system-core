@@ -7,9 +7,26 @@ import { Page } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
+const transformFieldValue = (key, field) => {
+  if ( field.value === 'true' ) {
+    return 'Yes';
+  }
+  if (field.value === 'false') {
+    return 'No';
+  }
+  if (["from", "to"].indexOf(key) > -1) {
+    const date = new Date(field.value);
+    return date.toLocaleDateString("en-US", { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  if (["amountIncurred", "amountGovtContribution"].indexOf(key) > -1) {
+    return "$" + field.value
+  }
+  return field.value;
+}
 
+const bufferFields = (fields, rank) => {
+  rank = rank || 0;
 
-const bufferFields = (fields, rank = 0) => {
   let buffer = [];
   for (const [key, field] of Object.entries(fields)) { 
     buffer.push(recurseField(key, field, rank));
@@ -17,23 +34,25 @@ const bufferFields = (fields, rank = 0) => {
   return buffer;
 }
 
-const recurseField = (key, field, rank = 0) => {
+const recurseField = (key, field, rank) => {
+  rank = rank || 0;
   if (!(!!field.value)) return;
   const fieldLabel = field.label && <label className='vads-u-margin-top--1 review-page--page-info--label-text'>{field.label}:</label>
 
   if ((typeof field.value) === 'object') {
-    rank++;
-    return (<div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank)}</div>)
+    return (<div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank++)}</div>)
   }
   else {
     return (
       <div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> 
         {fieldLabel} 
-        <span className={'vads-u-font-size--md review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}>{field.value}</span>
+        <span className={'vads-u-font-size--md review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}> { transformFieldValue(key, field) }</span>
       </div>
     );
   }
 }
+
+
 
 export default function ReviewPage(props) {
   const state = useFormikContext();
@@ -246,8 +265,12 @@ export default function ReviewPage(props) {
             label: "Was the Veteran buried in a national cemetary, or one owned by the federal government?",
             value: state?.values?.federalCemetery
           },
+          "stateCemetery":{
+            label: "Was the Veteran buried in a state veteran’s cemetary?",
+            value: state?.values?.stateCemetery
+          },
           "govtContributions": {
-            label: "Amount of government or employer contribution",
+            label: "Did a federal/state government or the Veteran’s employer contribute to the burial?  (Not including employer life insurance)",
             value: state?.values?.govtContributions
           },
           "amountGovtContribution": {
@@ -306,22 +329,21 @@ export default function ReviewPage(props) {
 
   return (
     <>
-      <Page {...props}>
-        <article>
-          <VaOnThisPage></VaOnThisPage>
+      <article>
+        <h1>Review Your Application</h1>
+        <VaOnThisPage></VaOnThisPage>
 
-          { pageData.pages.map(page => (
-            <section id={page.id} key={page.id} className="review-page--page-info">
-              <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
-                <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-                <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
-              </div>
+        { pageData.pages.map(page => (
+          <section id={page.id} key={page.id} className="review-page--page-info">
+            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
+              <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
+              <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+            </div>
 
-              {bufferFields(page.fields)}
-            </section>
-          )) }
-        </article>
-      </Page>
+            {bufferFields(page.fields)}
+          </section>
+        )) }
+      </article>
       <DebuggerView />
     </>
   )
