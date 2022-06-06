@@ -5,6 +5,8 @@ import {
 import { useFormikContext } from 'formik';
 import { Page } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Link } from 'react-router-dom';
+import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+
 
 
 const bufferFields = (fields, rank = 0) => {
@@ -17,7 +19,7 @@ const bufferFields = (fields, rank = 0) => {
 
 const recurseField = (key, field, rank = 0) => {
   if (!(!!field.value)) return;
-  const fieldLabel = field.label && <label className='review-page--page-info--label-text'>{field.label}:</label>
+  const fieldLabel = field.label && <label className='vads-u-margin-top--1 review-page--page-info--label-text'>{field.label}:</label>
 
   if ((typeof field.value) === 'object') {
     rank++;
@@ -27,7 +29,7 @@ const recurseField = (key, field, rank = 0) => {
     return (
       <div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> 
         {fieldLabel} 
-        <span className={'review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}>{field.value}</span>
+        <span className={'vads-u-font-size--md review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}>{field.value}</span>
       </div>
     );
   }
@@ -305,30 +307,20 @@ export default function ReviewPage(props) {
   return (
     <>
       <Page {...props}>
-        <nav className="review-page--page-navigation">
-          <dl>
-            { pageData.pages.map(page => {
-              return (
-                <dd role="definition" key={page.id}>
-                  <i aria-hidden="true" className="fas fa-arrow-down"></i>
-                  <Link to={'#' + page.id}>{page.title}</Link>
-                </dd>
-              );
-            })}
-          </dl>
-        </nav>
+        <article>
+          <VaOnThisPage></VaOnThisPage>
 
-        { pageData.pages.map(page => (
-          <div id={page.id} key={page.id} className="review-page--page-info">
-            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
-              <h3 className='review-page--page-heading--text'>{page.title}</h3>
-              <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
-            </div>
+          { pageData.pages.map(page => (
+            <section id={page.id} key={page.id} className="review-page--page-info">
+              <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
+                <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
+                <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+              </div>
 
-            {bufferFields(page.fields)}
-          </div>
-        )) }
-
+              {bufferFields(page.fields)}
+            </section>
+          )) }
+        </article>
       </Page>
       <DebuggerView />
     </>
