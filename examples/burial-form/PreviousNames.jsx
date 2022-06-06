@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import {
-  DebuggerView,
   FullNameField,
   Page,
   RadioGroup
@@ -20,42 +19,44 @@ export default function PreviousNames(props) {
   const { values, setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    if (values?.previousNames && values?.veteranServedUnderAnotherName?.type === 'false') {
+    if (values?.previousNames && values?.veteranServedUnderAnotherName === 'false') {
       setFieldValue(`previousNames`, [])
     }
-  }, [values?.veteranServedUnderAnotherName?.type]);
+  }, [values?.veteranServedUnderAnotherName]);
   
   return (
     <>
       <Page {...props} prevPage="/military-history/service-periods" nextPage="/benefits/selection">
-        <RadioGroup
-          name="veteranServedUnderAnotherName.type"
-          label="Did the Veteran serve under another name?"
-          required
-          options={
-            [
-              {label: "Yes", value: true, key: 1},
-              {label: "No", value: false, key: 2},
-            ]
+        <div className={values?.veteranServedUnderAnotherName === "true" ? `${ExpandingGroupClass}` : ''}>
+          <RadioGroup
+            name="veteranServedUnderAnotherName"
+            label="Did the Veteran serve under another name?"
+            onRadioOptionSelected={!!values.veteranServedUnderAnotherName}
+            required
+            options={
+              [
+                {label: "Yes", value: true, key: 1},
+                {label: "No", value: false, key: 2},
+              ]
+            }
+          />
+          {
+            values?.veteranServedUnderAnotherName === "true"
+            ? (
+              <>
+                <FullNameField name="previousNames[0]"/>
+                <button
+                  className="btn usa-button usa-button-disabled">
+                  Add another name
+                </button>
+              </>
+            )
+            : (
+              null
+            )
           }
-        />
-        {
-          values?.veteranServedUnderAnotherName?.type === "true"
-          ? (
-            <div className={ExpandingGroupClass}>
-              <FullNameField name="previousNames[0]"/>
-              <button
-                className="btn usa-button usa-button-disabled">
-                Add another name
-              </button>
-            </div>
-          )
-          : (
-            null
-          )
-        }
+        </div>
       </Page>
-      <DebuggerView />
     </>
   )
 }
