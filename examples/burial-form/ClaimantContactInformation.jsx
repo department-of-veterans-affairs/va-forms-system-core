@@ -1,7 +1,12 @@
 import React from 'react';
-import {AddressField, EmailField, Page, TextField} from '@department-of-veterans-affairs/va-forms-system-core';
+import {
+  AddressField,
+  EmailField,
+  Page,
+  PhoneField,
+  TextField
+} from '@department-of-veterans-affairs/va-forms-system-core';
 import {useFormikContext} from "formik";
-import PhoneField from "@department-of-veterans-affairs/va-forms-system-core/form-builder/PhoneField";
 
 export default function ClaimantContactInformation(props) {
   const formikContext = useFormikContext();
