@@ -6,8 +6,6 @@ import PhoneField from "@department-of-veterans-affairs/va-forms-system-core/for
 export default function ClaimantContactInformation(props) {
   const formikContext = useFormikContext();
 
-  formikContext?.values?.relationship?.isEntity = true;
-
   return (
     <>
       <Page {...props} nextPage="/review-and-submit" prevPage="/benefits/plot-allowance">
