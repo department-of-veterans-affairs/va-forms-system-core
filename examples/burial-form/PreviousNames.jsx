@@ -12,7 +12,7 @@ export default function PreviousNames(props) {
   const { values, setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    if (values?.previousNames && values?.veteranServedUnderAnotherName === 'false') {
+    if (values?.previousNames && !values?.veteranServedUnderAnotherName) {
       setFieldValue(`previousNames`, [])
     }
   }, [values?.veteranServedUnderAnotherName]);
@@ -20,7 +20,7 @@ export default function PreviousNames(props) {
   return (
     <>
       <Page {...props} prevPage="/military-history/service-periods" nextPage="/benefits/selection">
-        <div className={values?.veteranServedUnderAnotherName === "true" ? `${ExpandingGroupClass}` : ''}>
+        <div className={values?.veteranServedUnderAnotherName ? `${ExpandingGroupClass}` : ''}>
           <RadioGroup
             name="veteranServedUnderAnotherName"
             label="Did the Veteran serve under another name?"
@@ -34,7 +34,7 @@ export default function PreviousNames(props) {
             }
           />
           {
-            values?.veteranServedUnderAnotherName === "true"
+            values?.veteranServedUnderAnotherName
             ? (
               <>
                 <FullNameField name="previousNames[0]"/>
