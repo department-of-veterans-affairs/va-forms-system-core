@@ -24,9 +24,7 @@ const transformFieldValue = (key, field) => {
   return field.value;
 }
 
-const bufferFields = (fields, rank) => {
-  rank = rank || 0;
-
+const bufferFields = (fields, rank = 0) => {
   let buffer = [];
   for (const [key, field] of Object.entries(fields)) { 
     buffer.push(recurseField(key, field, rank));
@@ -34,13 +32,12 @@ const bufferFields = (fields, rank) => {
   return buffer;
 }
 
-const recurseField = (key, field, rank) => {
-  rank = rank || 0;
+const recurseField = (key, field, rank = 0) => {
   if (field.value === "" | field.value === 0 | field.value === null | field.value === undefined) return;
   const fieldLabel = field.label && <label className='vads-u-margin-top--1 review-page--page-info--label-text'>{field.label}:</label>
 
   if ((typeof field.value) === 'object') {
-    return (<div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank++)}</div>)
+    return (<div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> {bufferFields(field.value, rank+1)}</div>)
   }
   else {
     return (
