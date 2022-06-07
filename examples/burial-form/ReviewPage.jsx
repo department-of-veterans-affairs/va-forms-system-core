@@ -3,6 +3,13 @@ import { useFormikContext } from 'formik';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
+/**
+ * Transforms fields value into value that is more readable
+ * @param {boolean | object | string} field object value
+ * @param {string} key object key name
+ *
+ * @beta
+ */
 const transformFieldValue = (key, field) => {
   if ( field.value === 'true' | field.value === true ) {
     return 'Yes';
@@ -20,6 +27,14 @@ const transformFieldValue = (key, field) => {
   return field.value;
 }
 
+/**
+ * Loops through field objects and adds JSX to a buffer
+ * to be rendered later
+ * @param {objects} fields object value
+ * @param {number} rank level number of recursion
+ *
+ * @beta
+ */
 const bufferFields = (fields, rank = 0) => {
   let buffer = [];
   for (const [key, field] of Object.entries(fields)) { 
@@ -28,6 +43,15 @@ const bufferFields = (fields, rank = 0) => {
   return buffer;
 }
 
+/**
+ * Recurses through field and either returns value or
+ * uses bufferField to loop through object value
+ * @param {string} key object key name
+ * @param {boolean | object | string} field object value
+ * @param {number} rank level number of recursion
+ *
+ * @beta
+ */
 const recurseField = (key, field, rank = 0) => {
   if (field.value === "" | field.value === 0 | field.value === null | field.value === undefined) return;
   const fieldLabel = field.label && <label className='vads-u-margin-top--1 review-page--page-info--label-text'>{field.label}:</label>
