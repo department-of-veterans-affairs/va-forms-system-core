@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {
   TextField,
   DateField,
-  DebuggerView,
   FullNameField,
   Page,
   RadioGroup
@@ -67,7 +66,6 @@ export default function PlotAllowance(props) {
           )}
         </div>
       </Page>
-      <DebuggerView />
     </div>
   )
 }
