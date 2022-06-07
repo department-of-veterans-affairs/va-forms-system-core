@@ -58,8 +58,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
           e.detail.value === 'false' ||
           typeof e.detail.value === 'boolean'
         ) {
-          const val = stringToBoolean(e.detail.value);
-          setFieldValue(field.name, val);
+          setFieldValue(field.name, stringToBoolean(e.detail.value));
         } else {
           helpers.setValue(e.detail.value);
         }
