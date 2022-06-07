@@ -18,5 +18,6 @@
 
 .review-page--page-info--value-text {
   color: var(--color-gray-dark);
+  font-size: 18px;
 }
 

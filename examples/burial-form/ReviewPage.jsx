@@ -43,13 +43,11 @@ const recurseField = (key, field, rank = 0) => {
     return (
       <div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> 
         {fieldLabel} 
-        <span className={'vads-u-font-size--md review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}> { transformFieldValue(key, field) }</span>
+        <span className={'review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}> { transformFieldValue(key, field) }</span>
       </div>
     );
   }
 }
-
-
 
 export default function ReviewPage(props) {
   const state = useFormikContext();
