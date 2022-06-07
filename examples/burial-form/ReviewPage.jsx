@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 const transformFieldValue = (key, field) => {
-  if ( field.value === 'true' ) {
+  if ( field.value === 'true' | field.value === true ) {
     return 'Yes';
   }
-  if (field.value === 'false') {
+  if (field.value === 'false' | field.value === false ) {
     return 'No';
   }
   if (["from", "to", "veteranDateOfBirth", "deathDate", "burialDate"].indexOf(key) > -1) {
@@ -36,7 +36,7 @@ const bufferFields = (fields, rank) => {
 
 const recurseField = (key, field, rank) => {
   rank = rank || 0;
-  if (!(!!field.value)) return;
+  if (field.value === "" | field.value === 0 | field.value === null | field.value === undefined) return;
   const fieldLabel = field.label && <label className='vads-u-margin-top--1 review-page--page-info--label-text'>{field.label}:</label>
 
   if ((typeof field.value) === 'object') {
@@ -225,15 +225,15 @@ export default function ReviewPage(props) {
         fields: {
           "burialAllowance": {
             label: "Burial Allowance",
-            value: state?.values?.burialAllowance
+            value: state?.values?.benefitsSelection?.burialAllowance
           },
           "plotAllowance": {
             label: "Plot or interment allowance",
-            value: state?.values?.plotAllowance
+            value: state?.values?.benefitsSelection?.plotAllowance
           },
           "transportation": {
             label: "Transportation expenses",
-            value: state?.values?.transportation
+            value: state?.values?.benefitsSelection?.transportation
           },
           "amountIncurred": {
             label: "Transportation amount incurred",
