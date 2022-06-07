@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  DebuggerView
-} from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
-import { Page } from '@department-of-veterans-affairs/va-forms-system-core';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
@@ -19,7 +15,7 @@ const transformFieldValue = (key, field) => {
     return date.toLocaleDateString("en-US", { day: 'numeric', month: 'long', year: 'numeric' });
   }
   if (["amountIncurred", "amountGovtContribution"].indexOf(key) > -1) {
-    return "$" + field.value
+    return `$${field.value}`;
   }
   return field.value;
 }
@@ -43,7 +39,7 @@ const recurseField = (key, field, rank = 0) => {
     return (
       <div className={`level-${rank}-field-${key}`} key={`level-${rank}-field-${key}`}> 
         {fieldLabel} 
-        <span className={'review-page--page-info--value-text field-value' + (rank > 0 && ` field-value-level-${rank}`)}> { transformFieldValue(key, field) }</span>
+        <span className={`review-page--page-info--value-text field-value ${(rank > 0 && ` field-value-level-${rank}`)}`}> { transformFieldValue(key, field) }</span>
       </div>
     );
   }
@@ -325,7 +321,7 @@ export default function ReviewPage(props) {
   return (
     <>
       <article>
-        <h1>Review Your Application</h1>
+        <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
 
         { pageData.pages.map(page => (
@@ -339,7 +335,6 @@ export default function ReviewPage(props) {
           </section>
         )) }
       </article>
-      <DebuggerView />
     </>
   )
 }
