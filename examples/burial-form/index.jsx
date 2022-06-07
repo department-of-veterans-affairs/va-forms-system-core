@@ -1,13 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
-import { FormRouter } from '@department-of-veterans-affairs/va-forms-system-core';
+import {Route} from 'react-router-dom'
+import {FormRouter} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
 import BurialInformation from './BurialInformation';
 import MilitaryServiceHistory from './MilitaryServiceHistory';
+import PreviousNames from './PreviousNames';
 import PlotAllowance from './PlotAllowance';
 import BurialAllowance from "./BurialAllowance";
+import BenefitsSelection from './BenefitsSelection';
 import ClaimantContactInformation from "./ClaimantContactInformation";
 
 const NoMatch = (props) => (
@@ -27,6 +29,8 @@ const BurialApp = (props) => {
         <Route path="/veteran-information" element={<VeteranInformation title="Deceased Veteran Information" />} />
         <Route path="/veteran-information/burial" element={<BurialInformation title="Deceased Veteran Information" />} />
         <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
+        <Route path="/military-history/previous-names" element={<PreviousNames title="Military history" />} />
+        <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
         <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Burial allowance" />} />
         <Route path="/benefits/plot-allowance" element={<PlotAllowance title="Benefits Selection" />} />
         <Route path="/claimant-contact-information" element={<ClaimantContactInformation title="Claimant contact information" />} />
