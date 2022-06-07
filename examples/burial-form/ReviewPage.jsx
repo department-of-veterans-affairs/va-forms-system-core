@@ -334,7 +334,7 @@ export default function ReviewPage(props) {
           <section id={page.id} key={page.id} className="review-page--page-info">
             <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
               <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-              <Link to={page.pageUrl} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+              <Link to={page.pageUrl+'?edit=true'} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
             </div>
 
             {bufferFields(page.fields)}

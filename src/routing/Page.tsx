@@ -1,8 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { useFormikContext, Form } from 'formik';
-import { useNavigate, To, useLocation } from 'react-router-dom';
+import {
+  useNavigate,
+  To,
+  useLocation,
+  useSearchParams,
+} from 'react-router-dom';
 import { PageProps, IFormData } from './types';
 import { RouterContext } from './RouterContext';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders the page contents
@@ -15,6 +21,8 @@ export default function Page(props: PageProps): JSX.Element {
   const { listOfRoutes, updateRoute } = useContext(RouterContext);
   const currentLocation = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const editPage = searchParams.get('edit');
 
   useEffect(
     () =>
@@ -27,6 +35,17 @@ export default function Page(props: PageProps): JSX.Element {
   return (
     <div>
       <h3>{props.title}</h3>
+      {editPage && (
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            navigate('/review-and-submit' as To);
+          }}
+          className="btn next"
+        >
+          &#171; Back to Review page
+        </button>
+      )}
       <Form>
         {props.children}
 
