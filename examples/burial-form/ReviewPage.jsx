@@ -191,30 +191,30 @@ export default function ReviewPage(props) {
           }
         }
       },
-      // {
-      //   title: 'Military Service History: Previous Names',
-      //   id: 'military-history-previous-names',
-      //   pageUrl: '/military-history/previous-names',
-      //   fields: {
-      //     "previousNames" : {
-      //       label: "Did the Veteran serve under another name?", 
-      //       value: {
-      //         first: {
-      //           label: "First",
-      //           value: state.values?.previousNames?.first
-      //         },
-      //         middle: {
-      //           label: "Middle",
-      //           value: state.values?.previousNames?.middle
-      //         },
-      //         last: {
-      //           label: "Last",
-      //           value: state.values?.previousNames?.last
-      //         }
-      //       }
-      //     }
-      //   }
-      // },
+      {
+        title: 'Military Service History: Previous Names',
+        id: 'military-history-previous-names',
+        pageUrl: '/military-history/previous-names',
+        fields: {
+          "previousNames" : {
+            label: "Did the Veteran serve under another name?", 
+            value: {
+              first: {
+                label: "First",
+                value: state.values?.previousNames[0]?.first
+              },
+              middle: {
+                label: "Middle",
+                value: state.values?.previousNames[0]?.middle
+              },
+              last: {
+                label: "Last",
+                value: state.values?.previousNames[0]?.last
+              }
+            }
+          }
+        }
+      },
       {
         title: 'Benefits Selection',
         id: 'benefits-selection',
