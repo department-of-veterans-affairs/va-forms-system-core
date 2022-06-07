@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   TextField,
-  DateField,
-  FullNameField,
   Page,
   RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
@@ -16,7 +14,7 @@ export default function PlotAllowance(props) {
     <div className="vads-u-margin-x--1p5">
       <Page {...props} nextPage="/claimant-contact-information" prevPage="/benefits/burial-allowance">
         <TextField required name="placeOfRemains" label="Place of burial or deceased Veteran’s remains" />
-        <div className={'vads-u-padding-y--1p5 form-expanding-group' + (!formikContext?.values?.federalCemetery && ' form-expanding-group-open')}>
+        <div className={'vads-u-padding-y--1p5 form-expanding-group' + (formikContext?.values?.federalCemetery === false && ' form-expanding-group-open')}>
           <RadioGroup
             name="federalCemetery"
             label="Was the Veteran buried in a national cemetary, or one owned by the federal government?"
@@ -28,7 +26,7 @@ export default function PlotAllowance(props) {
               ]
             }
           />
-          { !formikContext?.values?.federalCemetery && (
+          { formikContext?.values?.federalCemetery === false && (
             <div className='vads-u-padding-y--1p5'>
               <RadioGroup
                 name="stateCemetery"

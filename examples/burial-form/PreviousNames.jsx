@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   FullNameField,
   Page,
-  RadioGroup
+  RadioGroup,
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { ExpandingGroupClass } from '../Constant';
@@ -12,7 +12,7 @@ export default function PreviousNames(props) {
   const { values, setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    if (values?.previousNames && !values?.veteranServedUnderAnotherName) {
+    if (values?.previousNames && values?.veteranServedUnderAnotherName === false) {
       setFieldValue(`previousNames`, [])
     }
   }, [values?.veteranServedUnderAnotherName]);
