@@ -303,21 +303,27 @@ export default function ReviewPage(props) {
             label: "Claimant Address",
             value: {
               "street": {
+                label: "Street",
                 value: state?.values?.claimantAddress?.street,
               },
               "street2": {
+                label: "Street 2",
                 value: state?.values?.claimantAddress?.street2,
               },
               "city": {
+                label: "City",
                 value: state?.values?.claimantAddress?.city,
               },
               "country": {
+                label: "Country",
                 value: state?.values?.claimantAddress?.country,
               },
               "state": {
+                label: "State",
                 value: state?.values?.claimantAddress?.state,
               },
               "postalCode": {
+                label: "Postal Code",
                 value: state?.values?.claimantAddress?.postalCode,
               }
             }
