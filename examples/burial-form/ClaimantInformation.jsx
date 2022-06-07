@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  DateField,
-  DebuggerView,
   FullNameField,
   Page,
   RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-export default function ClaimantInformation() {
+export default function ClaimantInformation(props) {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+  
   return (
     <>
-      <Page title="Step 1 of 6: Claimant Information" nextPage="/veteran-information" prevPage="/">
+      <Page {...props} nextPage="/veteran-information" prevPage="/">
+        <p>
+          You aren’t required to fill in all fields, but we can review your application faster if you provide more information.
+        </p>
         <FullNameField name="claimantFullName"/>
         <RadioGroup
           name="relationship.type"
@@ -26,9 +35,7 @@ export default function ClaimantInformation() {
             ]
           }
         />
-        <DateField name="dob" label="Date of burial(includes cremation or interment)" required/>
       </Page>
-      {/* <DebuggerView /> */}
     </>
   )
 }

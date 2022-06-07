@@ -1,21 +1,22 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
-import {FormRouter, Page} from '@department-of-veterans-affairs/va-forms-system-core';
+import {Route} from 'react-router-dom'
+import {FormRouter} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
+import BurialInformation from './BurialInformation';
+import MilitaryServiceHistory from './MilitaryServiceHistory';
+import PreviousNames from './PreviousNames';
+import PlotAllowance from './PlotAllowance';
+import BurialAllowance from "./BurialAllowance";
+import BenefitsSelection from './BenefitsSelection';
+import ClaimantContactInformation from "./ClaimantContactInformation";
 
 const NoMatch = (props) => (
   <main style={{ padding: '1rem' }}>
     <p>There is nothing here! {props.name}</p>
   </main>
 );
-
-const SubmitComponent = (props) => (
-  <Page title="Submit page" path="/submit">
-    <button type="submit">Submit</button>
-  </Page>
-)
 
 const mapProps = () => {
 }
@@ -26,10 +27,16 @@ const BurialApp = (props) => {
   return (
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
       <FormRouter basename={props.basename} formData={props.initialValues} title="Burials Example" transformForSubmit={mapProps}>
-        <Route index element={<BurialIntroduction />} />
-        <Route path="/claimant-information" element={<ClaimantInformation />} />
-        <Route path="/veteran-information" element={<VeteranInformation />} />
-        <Route path="/submit" element={< SubmitComponent/>} />
+        <Route index element={<BurialIntroduction title="Introduction Page" />} />
+        <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />
+        <Route path="/veteran-information" element={<VeteranInformation title="Deceased Veteran Information" />} />
+        <Route path="/veteran-information/burial" element={<BurialInformation title="Deceased Veteran Information" />} />
+        <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
+        <Route path="/military-history/previous-names" element={<PreviousNames title="Military history" />} />
+        <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
+        <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Burial allowance" />} />
+        <Route path="/benefits/plot-allowance" element={<PlotAllowance title="Benefits Selection" />} />
+        <Route path="/claimant-contact-information" element={<ClaimantContactInformation title="Claimant contact information" />} />
         <Route path="*" element={<NoMatch name="No Routes for App" />} />
       </FormRouter>
     </div>
