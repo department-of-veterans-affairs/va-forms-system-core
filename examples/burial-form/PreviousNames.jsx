@@ -24,7 +24,6 @@ export default function PreviousNames(props) {
           <RadioGroup
             name="veteranServedUnderAnotherName"
             label="Did the Veteran serve under another name?"
-            onRadioOptionSelected={!!values.veteranServedUnderAnotherName}
             required
             options={
               [
