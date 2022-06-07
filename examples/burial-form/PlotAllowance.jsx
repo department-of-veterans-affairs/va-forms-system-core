@@ -14,7 +14,7 @@ export default function PlotAllowance(props) {
   
   return (
     <div className="vads-u-margin-x--1p5">
-      <Page {...props} nextPage="/review-and-submit" prevPage="/benefits/burial-allowance">
+      <Page {...props} nextPage="/claimant-contact-information" prevPage="/benefits/burial-allowance">
         <TextField required name="placeOfRemains" label="Place of burial or deceased Veteran’s remains" />
         <div className={'vads-u-padding-y--1p5 form-expanding-group' + (formikContext?.values?.federalCemetery === "false" && ' form-expanding-group-open')}>
           <RadioGroup
