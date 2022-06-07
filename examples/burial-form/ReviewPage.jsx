@@ -270,40 +270,40 @@ export default function ReviewPage(props) {
           }
         },
       },
-      // {
-      //   title: 'Claimant Contact Information',
-      //   id: 'claimant-contact-information',
-      //   pageUrl: '/claimant-contact-information',
-      //   fields: {
-      //     "claimantAddress": {
-      //       label: "Claimant Address",
-      //       value: {
-      //         "street": {
-      //           value: state?.values?.claimantAddress?.street,
-      //         },
-      //         "street2": {
-      //           value: state?.values?.claimantAddress?.street2,
-      //         },
-      //         "city": {
-      //           value: state?.values?.claimantAddress?.city,
-      //         },
-      //         "country": {
-      //           value: state?.values?.claimantAddress?.country,
-      //         },
-      //         "state": {
-      //           value: state?.values?.claimantAddress?.state,
-      //         },
-      //         "postalCode": {
-      //           value: state?.values?.claimantAddress?.postalCode,
-      //         }
-      //       }
-      //     },
-      //     "claimantPhone": {
-      //       label: "Claimant Phone Number",
-      //       value: state?.values?.claimantPhone,
-      //     }
-      //   },
-      // },
+      {
+        title: 'Claimant Contact Information',
+        id: 'claimant-contact-information',
+        pageUrl: '/claimant-contact-information',
+        fields: {
+          "claimantAddress": {
+            label: "Claimant Address",
+            value: {
+              "street": {
+                value: state?.values?.claimantAddress?.street,
+              },
+              "street2": {
+                value: state?.values?.claimantAddress?.street2,
+              },
+              "city": {
+                value: state?.values?.claimantAddress?.city,
+              },
+              "country": {
+                value: state?.values?.claimantAddress?.country,
+              },
+              "state": {
+                value: state?.values?.claimantAddress?.state,
+              },
+              "postalCode": {
+                value: state?.values?.claimantAddress?.postalCode,
+              }
+            }
+          },
+          "claimantPhone": {
+            label: "Claimant Phone Number",
+            value: state?.values?.claimantPhone,
+          }
+        },
+      },
       // {
       //   title: "Additional information",
       //   id: 'additional-information',
