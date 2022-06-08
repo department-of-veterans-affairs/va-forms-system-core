@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
-import {FormRouter} from '@department-of-veterans-affairs/va-forms-system-core';
+import {FormRouter, Page} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
@@ -19,7 +19,7 @@ const NoMatch = (props) => (
   </main>
 );
 
-const mapProps = () => {
+const mapProps = (values, actions) => {
 }
 
 const BurialApp = (props) => {
