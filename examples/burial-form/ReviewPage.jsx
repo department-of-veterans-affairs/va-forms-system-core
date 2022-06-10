@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
 
 /**
  * Transforms fields value into value that is more readable
@@ -349,7 +350,7 @@ export default function ReviewPage(props) {
   }
 
   return (
-    <>
+    <Page {...props} nextPage="/confirmation">
       <article>
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
@@ -365,6 +366,6 @@ export default function ReviewPage(props) {
           </section>
         )) }
       </article>
-    </>
+    </Page>
   )
 }
