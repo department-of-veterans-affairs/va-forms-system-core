@@ -16,7 +16,6 @@ export default function RouterProgress(props: { route: string }): JSX.Element {
     stepTitle = routesWithProgressBar[findIndex]?.title,
     numberOfSteps = routesWithProgressBar.length | 0;
 
-  console.log(routesWithProgressBar, findIndex, currentIndex, stepTitle, numberOfSteps);
   return findIndex > -1
          ? (
            <ProgressBar
