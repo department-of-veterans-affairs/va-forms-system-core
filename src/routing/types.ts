@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
-import { RouteProps } from 'react-router-dom';
+import { FormikProps } from 'formik';
+import { ReactElement, Ref } from 'react';
 
 /**
  * The properties for the Router React component
@@ -39,6 +39,8 @@ export interface Routable {
 export interface RouteInfo {
   path: string;
   title: string;
+  conditional?: boolean;
+  isShown?: boolean | null;
 }
 
 /**
@@ -50,8 +52,8 @@ export interface IRouterContext {
   listOfRoutes: RouteInfo[];
   currentRoute: string;
   updateRoute: (value: string) => void;
+  // updateListOfRoutes: (value: RouteInfo[]) => void;
 }
-
 /**
  * The properties for the Page React component
  *

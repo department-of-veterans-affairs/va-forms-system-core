@@ -21,25 +21,25 @@ export default function FormRouter(props: RouterProps): JSX.Element {
     <div className="row">
       <div className="usa-width-two-thirds medium-8 columns">
         <BrowserRouter basename={props.basename}>
-          <RouterContextProvider
-            routes={props.children}
-            currentRoute={route}
-            updateRoute={updateRoute}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={(values, actions) => {
+              // Here we leverage formik actions to perform validations, submit data, etc.
+              // Also a good candidate for extracting data out of form apps
+              actions.setSubmitting(true);
+            }}
           >
-            <FormTitle title={props.title} subTitle={props?.subtitle} />
-            <RouterProgress route={route} />
-            <Formik
-              initialValues={initialValues}
-              onSubmit={(values, actions) => {
-                // Here we leverage formik actions to perform validations, submit data, etc.
-                // Also a good candidate for extracting data out of form apps
-                actions.setSubmitting(true);
-              }}
+            <RouterContextProvider
+              routes={props.children}
+              currentRoute={route}
+              updateRoute={updateRoute}
             >
+              <FormTitle title={props.title} subTitle={props?.subtitle} />
+              <RouterProgress route={route} />
               <Routes>{props.children}</Routes>
-            </Formik>
-            <FormFooter />
-          </RouterContextProvider>
+              <FormFooter />
+            </RouterContextProvider>
+          </Formik>
         </BrowserRouter>
       </div>
     </div>
