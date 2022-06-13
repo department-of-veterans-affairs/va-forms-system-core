@@ -34,9 +34,11 @@ export default function BurialAllowance(props) {
 
   useEffect(() => {
     if (values.burialAllowanceRequested === 'nonService') {
-      setFieldValue('burialAllowanceRequestedLabel', "Non-service-connected death");
-    } else {
-      setFieldValue('burialAllowanceRequestedLabel', "Service-connected death");
+      setFieldValue('burialAllowanceRequestedLabel', 'Non-service-connected death');
+    } else if (values.burialAllowanceRequested === 'service') {
+      setFieldValue('burialAllowanceRequestedLabel', 'Service-connected death');
+    } else if (values.burialAllowanceRequested === 'vaMC') {
+      setFieldValue('burialAllowanceRequestedLabel', 'VA medical center death');
     }
   },[values.burialAllowanceRequested])
 
