@@ -133,7 +133,7 @@ export default function ReviewPage(props) {
             }
           },
           "veteranSocialSecurityNumber": {
-            label: "Social Security",
+            label: "Social Security number",
             value: state.values?.veteranSocialSecurityNumber
           },
           "vaFileNumber": {
@@ -279,7 +279,7 @@ export default function ReviewPage(props) {
         fields: {
           "burialAllowanceRequested": {
             label: "Type of burial allowance requested",
-            value: state?.values?.burialAllowanceRequested
+            value: state?.values?.burialAllowanceRequestedLabel
           }
         },
       },
