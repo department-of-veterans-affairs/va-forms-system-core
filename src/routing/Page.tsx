@@ -14,31 +14,39 @@ const validatePage = (
   state: FormikContextType<unknown>
 ) => {
   const requiredChildren = getChildrenFields(children);
-  const formikStateFields = getFormikStateFields(state);
-
-  console.log(formikStateFields);
+  const formikStateKeys = getFormikStateKeys(state);
 
   if (requiredChildren.length > 0) {
     requiredChildren.forEach((childField) => {
-      if (typeof childField.props === 'object') {
-        Object.entries(childField.props).map(([key, value]) => {
-          console.log(key, value);
-        });
-      }
+      Object.entries(childField.props).map(([key, value]) => {
+        const strippedValue = String(value).split('.')[0];
+        if (key === 'name' || key === 'id') {
+          if (formikStateKeys.indexOf(strippedValue) > -1) {
+            console.log(state.errors);
+            return false;
+          }
+        }
+      });
     });
+  } else {
+    console.log('When does this happen');
+    return true;
   }
-
-  return true;
 };
 
-const getFormikStateFields = (state: FormikContextType<unknown>) => {
+const getFormikStateKeys = (state: FormikContextType<unknown>) => {
+  const stateKeys: string[] = [];
   Object.entries(state).find(([key, value]) => {
     if (key === 'values') {
       if (typeof value === 'object') {
-        return Object.keys(value);
+        Object.keys(value).map((v) => {
+          stateKeys.push(v);
+        });
       }
     }
   });
+
+  return stateKeys;
 };
 
 const getChildrenFields = (children: JSX.Element[]) => {
@@ -121,7 +129,9 @@ export default function Page(props: PageProps): JSX.Element {
                 state
               );
 
-              navigate(props.nextPage as To);
+              if (isValid) {
+                navigate(props.nextPage as To);
+              }
             }}
           >
             Next <i className="fas fa-angle-double-right"></i>
