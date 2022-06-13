@@ -293,11 +293,11 @@ export default function ReviewPage(props) {
             value: state?.values?.placeOfRemains
           },
           "federalCemetery": {
-            label: "Was the Veteran buried in a national cemetary, or one owned by the federal government?",
+            label: "Was the Veteran buried in a national cemetery, or one owned by the federal government?",
             value: state?.values?.federalCemetery
           },
           "stateCemetery":{
-            label: "Was the Veteran buried in a state Veteran’s cemetary?",
+            label: "Was the Veteran buried in a state Veteran’s cemetery?",
             value: state?.values?.stateCemetery
           },
           "govtContributions": {
