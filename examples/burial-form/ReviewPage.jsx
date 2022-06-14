@@ -24,6 +24,9 @@ const transformFieldValue = (key, field) => {
   if (["amountIncurred", "amountGovtContribution"].indexOf(key) > -1) {
     return `$${field.value}`;
   }
+  if (["claimantPhone"].indexOf(key) > -1) {
+    return `${field.value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')}`;
+  }
   return field.value;
 }
 
