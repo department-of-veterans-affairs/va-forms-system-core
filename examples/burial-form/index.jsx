@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {Navigate, Route, useLocation} from 'react-router-dom'
-import {FormRouter, RouterContext} from '@department-of-veterans-affairs/va-forms-system-core';
+import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
@@ -14,37 +14,14 @@ import ClaimantContactInformation from "./ClaimantContactInformation";
 import ReviewPage from './ReviewPage';
 import { useField } from 'formik';
 
+
 const NoMatch = (props) => (
   <main style={{ padding: '1rem' }}>
     <p>There is nothing here! {props.name}</p>
   </main>
 );
 
-const RequireConditionalProperty = (props) => {
-  const { listOfRoutes } = useContext(RouterContext),
-        currentLocation = useLocation(),
-        findIndex = listOfRoutes.indexOf(
-          listOfRoutes.filter((item) => item.path === currentLocation.pathname)[0]
-        ),
-        condition = props?.condition || null,
-        field = condition ? useField(condition) : null;
 
-  let matchNext;
-  let i = findIndex >= 0 ? findIndex : 0;
-
-  while (i >= findIndex && i < listOfRoutes.length) {
-    if (!listOfRoutes[i].conditional || listOfRoutes[i].isShown) {
-      matchNext = listOfRoutes[i];
-      break;
-    }
-    i++;
-  }
-  const getViableIndex = listOfRoutes.indexOf(matchNext);
-
-  return (field && field[0].value === true)
-  // use next in list of routes
-  ? props.children : <Navigate to={listOfRoutes[getViableIndex].path}/>;
-}
 
 const mapProps = (values, actions) => {
 }
@@ -68,14 +45,14 @@ const BurialApp = (props) => {
         <Route path="/military-history/previous-names" element={<PreviousNames title="Military history" />} />
         <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
         <Route path="/benefits/burial-allowance" element={
-          <RequireConditionalProperty type="conditional" condition={'benefitsSelection.burialAllowance'}>
+          <ConditionalRoute type="conditional" condition={'benefitsSelection.burialAllowance'}>
             <BurialAllowance title="Benefits Selection: Burial Allowance" />
-          </RequireConditionalProperty>}
+          </ConditionalRoute>}
         />
         <Route path="/benefits/plot-allowance" element={
-          <RequireConditionalProperty type="conditional" condition={'benefitsSelection.plotAllowance'}>
+          <ConditionalRoute type="conditional" condition={'benefitsSelection.plotAllowance'}>
             <PlotAllowance title="Benefits Selection" />
-          </RequireConditionalProperty>}
+          </ConditionalRoute>}
         />
         <Route path="/claimant-contact-information" element={<ClaimantContactInformation title="Claimant contact information" />} />
         <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />

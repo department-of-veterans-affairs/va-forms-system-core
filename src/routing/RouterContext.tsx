@@ -74,6 +74,23 @@ export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
   );
 };
 
+export const getPreviousPage = (routes: RouteInfo[], currentPath: string) => {
+  const findIndex = routes.indexOf(
+    routes.filter((item) => item.path === currentPath)[0]
+  );
+
+  let matchNext;
+  let i = findIndex >= 0 ? findIndex : 0;
+  while (i < findIndex && i >= 0) {
+    if (!routes[i].conditional || routes[i].isShown) {
+      matchNext = routes[i];
+      break;
+    }
+    i--;
+  }
+  return matchNext;
+};
+
 export function RouterContextProvider(props: RouterContextProps): JSX.Element {
   const routeObjects = createRoutesFromChildren(props.routes),
     listOfRoutes = routeObjectsReducer(routeObjects);
