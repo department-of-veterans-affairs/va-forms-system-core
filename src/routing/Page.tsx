@@ -36,7 +36,7 @@ export default function Page(props: PageProps): JSX.Element {
         )}
         {previousRoute && (
           <button
-            className="btn usa-button-secondary prev"
+            className="btn usa-button-primary prev"
             onClick={(event) => {
               event.preventDefault();
               navigate(previousRoute as To);
@@ -48,7 +48,7 @@ export default function Page(props: PageProps): JSX.Element {
 
         {nextRoute && (
           <button
-            className="btn usa-button-secondary next"
+            className="btn usa-button-primary next"
             onClick={(event) => {
               event.preventDefault();
               navigate(nextRoute as To);
