@@ -1,11 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Form, FormikContextType, useFormikContext } from 'formik';
-import {
-  useNavigate,
-  To,
-  useLocation,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, To, useSearchParams } from 'react-router-dom';
 import { IFormData, PageProps } from './types';
 import { RouterContext } from './RouterContext';
 
@@ -66,20 +61,11 @@ const getRequiredChildren = (children: JSX.Element[]) => {
  * @beta
  */
 export default function Page(props: PageProps): JSX.Element {
-  const state = useFormikContext();
-  const { updateRoute } = useContext(RouterContext);
-  const currentLocation = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const editPage = searchParams.get('edit');
-
-  useEffect(
-    () =>
-      updateRoute(
-        currentLocation.pathname !== '' ? currentLocation.pathname : '/'
-      ),
-    [currentLocation]
-  );
+  const { nextRoute, previousRoute } = useContext(RouterContext);
+  const state = useFormikContext();
 
   return (
     <div>
@@ -100,19 +86,19 @@ export default function Page(props: PageProps): JSX.Element {
             </button>
           </div>
         )}
-        {props.prevPage && (
+        {previousRoute && (
           <button
-            className="btn usa-button-secondary prev"
+            className="btn usa-button-primary prev"
             onClick={(event) => {
               event.preventDefault();
-              navigate(props.prevPage as To);
+              navigate(previousRoute as To);
             }}
           >
             <i className="fas fa-angle-double-left"></i> Previous
           </button>
         )}
 
-        {props.nextPage && (
+        {nextRoute && (
           <button
             className="btn usa-button-primary next"
             onClick={(event) => {
@@ -122,7 +108,7 @@ export default function Page(props: PageProps): JSX.Element {
               );
 
               if (isValid) {
-                navigate(props.nextPage as To);
+                navigate(nextRoute as To);
               }
             }}
           >
