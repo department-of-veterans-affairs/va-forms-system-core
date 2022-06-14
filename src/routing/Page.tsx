@@ -8,36 +8,72 @@ const validatePage = (
   children: JSX.Element[],
   state: FormikContextType<unknown>
 ): boolean => {
-  const requiredChildren = getRequiredChildren(children);
-  const values = state.values as IFormData;
+  let isValid = true;
 
+  const values = state.values as IFormData;
+  const requiredChildren = getRequiredChildren(children);
+  const requiredChildFields = getRequiredFormikFieldNames(requiredChildren);
+
+  requiredChildFields.map((fieldName) => {
+    isValid = isFieldEmptyOrErrored(fieldName, values, state);
+  });
+
+  return isValid;
+};
+
+const isFieldEmptyOrErrored = (
+  fieldName: string,
+  values: IFormData,
+  state: FormikContextType<unknown>
+): boolean => {
   let isValid = false;
 
-  if (requiredChildren.length > 0) {
-    requiredChildren.forEach((childField) => {
-      const childFieldName = childField.props.name;
+  const splitFieldNameList = fieldName.split('.');
 
-      const formikStateFieldValue = Object.entries(values).find(
-        ([key, value]) => {
-          if (key === childFieldName.split('.')[0]) {
-            if (typeof value === 'object') {
-              Object.entries(value as IFormData).find((v) => console.log(v));
+  if (splitFieldNameList.length > 1) {
+    console.log(fieldName);
 
-              //NEEDS TO SET THE CORRECT BOOLEAN BASED ON EMPTY REQUIRED VALUE
-              isValid = false;
-            }
-          }
+    const field = values[`${splitFieldNameList[0]}`] as IFormData;
+    console.log(field);
+
+    Object.entries(field).map(([key, value]) => {
+      if (key === splitFieldNameList[1]) {
+        if (typeof value === 'string' && value !== '' && state.errors !== {}) {
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      );
-
-      console.log(formikStateFieldValue);
+      }
     });
+  } else {
+    const fieldValue = values[`${splitFieldNameList[0]}`];
+    if (
+      typeof fieldValue === 'string' &&
+      fieldValue !== '' &&
+      state.errors !== {}
+    ) {
+      isValid = true;
+    } else {
+      isValid = false;
+    }
   }
 
   return isValid;
 };
 
-const getRequiredChildren = (children: JSX.Element[]) => {
+const getRequiredFormikFieldNames = (children: JSX.Element[]): string[] => {
+  const requiredChildFields: string[] = [];
+
+  if (children.length > 0) {
+    children.map((childField) => {
+      requiredChildFields.push(childField.props.name);
+    });
+  }
+
+  return requiredChildFields;
+};
+
+const getRequiredChildren = (children: JSX.Element[]): JSX.Element[] => {
   const requiredChildFields: JSX.Element[] = [];
 
   if (children.length > 0) {
@@ -88,7 +124,7 @@ export default function Page(props: PageProps): JSX.Element {
         )}
         {previousRoute && (
           <button
-            className="btn usa-button-primary prev"
+            className="btn usa-button-secondary prev"
             onClick={(event) => {
               event.preventDefault();
               navigate(previousRoute as To);
