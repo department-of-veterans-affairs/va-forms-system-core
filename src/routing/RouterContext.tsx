@@ -1,5 +1,5 @@
 import { useField, useFormikContext } from 'formik';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import {
   createRoutesFromChildren,
   RouteObject,
@@ -18,7 +18,8 @@ const RouterContextDefaultState = {
   ],
   currentRoute: '',
   updateRoute: (value: string) => null,
-  // updateListOfRoutes: (value: RouteInfo[]) => {},
+  previousRoute: '',
+  nextRoute: '',
 };
 
 export const RouterContext = React.createContext<IRouterContext>(
@@ -74,19 +75,36 @@ export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
   );
 };
 
-export const getPreviousPage = (routes: RouteInfo[], currentPath: string) => {
+export const getPreviousRoute = (routes: RouteInfo[], currentPath: string) => {
   const findIndex = routes.indexOf(
     routes.filter((item) => item.path === currentPath)[0]
   );
 
-  let matchNext;
-  let i = findIndex >= 0 ? findIndex : 0;
+  let matchNext = routes[0];
+  let i = findIndex >= 0 ? findIndex - 1 : 0;
   while (i < findIndex && i >= 0) {
-    if (!routes[i].conditional || routes[i].isShown) {
+    if (!routes[i].conditional || routes[i].isShown === true) {
       matchNext = routes[i];
       break;
     }
     i--;
+  }
+  return matchNext;
+};
+
+export const getNextRoute = (routes: RouteInfo[], currentPath: string) => {
+  const findIndex = routes.indexOf(
+    routes.filter((item) => item.path === currentPath)[0]
+  );
+  let matchNext: RouteInfo = routes[0];
+  let i = findIndex >= 0 ? findIndex + 1 : 0;
+
+  while (i >= findIndex && i < routes.length) {
+    if (!routes[i].conditional || routes[i].isShown) {
+      matchNext = routes[i];
+      break;
+    }
+    i++;
   }
   return matchNext;
 };
@@ -97,6 +115,11 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
 
   const [route, updateRoute] = useState('/');
   const currentLocation = useLocation();
+  const previousRoute = getPreviousRoute(
+    listOfRoutes,
+    currentLocation.pathname
+  );
+  const nextRoute = getNextRoute(listOfRoutes, currentLocation.pathname);
 
   useEffect(() => {
     return updateRoute(
@@ -110,6 +133,8 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
         ...props,
         listOfRoutes: listOfRoutes,
         currentRoute: route,
+        previousRoute: previousRoute?.path,
+        nextRoute: nextRoute?.path,
       }}
     >
       {props.children}

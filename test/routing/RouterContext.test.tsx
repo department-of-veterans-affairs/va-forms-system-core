@@ -93,7 +93,7 @@ describe('Routing - Router Context', () => {
           <Route index element={<PageOne title="Page One" />} />
           <Route path="/page-two" element={<PageTwo title="Page Two" />} />
           <Route path="/page-two-conditional" element={
-            <ConditionalRoute type="conditional" condition={'conditional'}>
+            <ConditionalRoute title="Page Two" type="conditional" condition={'conditional'}>
               <PageTwo title="Page Two" />
             </ConditionalRoute>
           } />

@@ -53,6 +53,8 @@ export interface RouteInfo {
 export interface IRouterContext {
   listOfRoutes: RouteInfo[];
   currentRoute: string;
+  previousRoute: string;
+  nextRoute: string;
   // updateRoute: (value: string) => void;
   // updateListOfRoutes: (value: RouteInfo[]) => void;
 }
