@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { routeObjectsReducer, RouterContext, RouterContextProvider } from "../../src/routing/RouterContext";
+import { getNextRoute, getPreviousRoute, routeObjectsReducer, RouterContext, RouterContextProvider } from "../../src/routing/RouterContext";
 import { Formik } from "formik";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { ConditionalRoute, Page, RouterProps } from "../../src";
@@ -59,6 +59,62 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
 };
 
 describe('Routing - Router Context', () => {
+
+  test('NextRoute function returns next viable route', () => {
+    const routes = [
+      {
+        path: '/',
+        title: "Introduction Page",
+        conditional: false,
+        isShown: null
+      },
+      {
+        path: '/about',
+        title: "About",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about-plants',
+        title: "About Plants",
+        conditional: true,
+        isShown: true
+      }
+    ]
+    const nextRoute = getNextRoute(routes, '/');
+    expect(nextRoute.path).toEqual('/about-plants');
+  });
+
+  test('PrevRoute function returns previous viable route', () => {
+    const routes = [
+      {
+        path: '/',
+        title: "Introduction Page",
+        conditional: false,
+        isShown: null
+      },
+      {
+        path: '/about-animals',
+        title: "About Animals",
+        conditional: true,
+        isShown: true
+      },
+      {
+        path: '/about',
+        title: "About",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about-plants',
+        title: "About Plants",
+        conditional: true,
+        isShown: true
+      }
+    ]
+    const nextRoute = getPreviousRoute(routes, '/about-plants');
+    expect(nextRoute.path).toEqual('/about-animals');
+  });
 
   test('Router Context passes correct route information to the progress bar', async() => {
     const routes = ["/", "/page-two"];

@@ -96,7 +96,7 @@ describe('Routing - Chapter', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.btn');
+      const goLink = container.querySelector('button.next');
       goLink?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
 
