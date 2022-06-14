@@ -22,7 +22,7 @@ export default function ClaimantInformation(props) {
   useEffect(() => {
     if (values.relationship.type !== "Other") {
       setFieldValue('relationship.other', '')
-      setFieldValue('claimingAsFirm', false)
+      setFieldValue('claimingAsFirm', undefined)
     }
   }, [values.relationship.type])
 
