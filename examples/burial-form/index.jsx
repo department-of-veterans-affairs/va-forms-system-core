@@ -35,7 +35,7 @@ const BurialApp = (props) => {
         <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
         <Route path="/military-history/previous-names" element={<PreviousNames title="Military history" />} />
         <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
-        <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Burial allowance" />} />
+        <Route path="/benefits/burial-allowance" element={<BurialAllowance title="Burial Selection" />} />
         <Route path="/benefits/plot-allowance" element={<PlotAllowance title="Benefits Selection" />} />
         <Route path="/claimant-contact-information" element={<ClaimantContactInformation title="Claimant contact information" />} />
         <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />

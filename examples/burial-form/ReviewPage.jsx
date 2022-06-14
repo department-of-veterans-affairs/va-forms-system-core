@@ -294,7 +294,7 @@ export default function ReviewPage(props) {
         },
       },
       {
-        title: 'Benefits Selection: Plot or interment allowance',
+        title: 'Benefits Selection: Plot or Interment Allowance',
         id: 'benefits-plot-allowance',
         pageUrl: '/benefits/plot-allowance',
         fields: {
