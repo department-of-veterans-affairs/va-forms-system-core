@@ -8,6 +8,7 @@
 
 ```typescript
 export declare function ConditionalRoute(props: {
+    title: string;
     condition: string;
     type: string;
     children: ReactElement<any, any>;
@@ -18,7 +19,7 @@ export declare function ConditionalRoute(props: {
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | { condition: string; type: string; children: ReactElement&lt;any, any&gt;; } |  |
+|  props | { title: string; condition: string; type: string; children: ReactElement&lt;any, any&gt;; } |  |
 
 <b>Returns:</b>
 

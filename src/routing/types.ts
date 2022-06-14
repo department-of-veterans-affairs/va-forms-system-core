@@ -53,8 +53,8 @@ export interface RouteInfo {
 export interface IRouterContext {
   listOfRoutes: RouteInfo[];
   currentRoute: string;
-  previousRoute: string;
-  nextRoute: string;
+  previousRoute: string | null;
+  nextRoute: string | null;
 }
 /**
  * The properties for the Page React component

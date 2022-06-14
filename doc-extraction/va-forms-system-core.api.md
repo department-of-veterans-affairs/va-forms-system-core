@@ -70,6 +70,7 @@ export type CheckboxProps = FieldProps<string> & {
 
 // @public (undocumented)
 export function ConditionalRoute(props: {
+    title: string;
     condition: string;
     type: string;
     children: ReactElement<any, any>;
@@ -134,6 +135,10 @@ export interface IRouterContext {
     currentRoute: string;
     // (undocumented)
     listOfRoutes: RouteInfo[];
+    // (undocumented)
+    nextRoute: string | null;
+    // (undocumented)
+    previousRoute: string | null;
 }
 
 // @public
@@ -156,10 +161,6 @@ export function Page(props: PageProps): JSX.Element;
 export interface PageProps {
     // (undocumented)
     children: JSX.Element | JSX.Element[] | Element;
-    // (undocumented)
-    nextPage?: string;
-    // (undocumented)
-    prevPage?: string;
     // (undocumented)
     title: string;
 }

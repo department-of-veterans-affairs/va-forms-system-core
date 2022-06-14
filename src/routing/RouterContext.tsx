@@ -133,8 +133,8 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
         ...props,
         listOfRoutes: listOfRoutes,
         currentRoute: route,
-        previousRoute: previousRoute?.path,
-        nextRoute: nextRoute?.path,
+        previousRoute: previousRoute?.path ? previousRoute?.path : null,
+        nextRoute: nextRoute?.path ? nextRoute?.path : null,
       }}
     >
       {props.children}

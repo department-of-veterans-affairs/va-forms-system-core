@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import { ReactElement, useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, To, useLocation } from 'react-router-dom';
 import { getNextRoute, RouterContext } from './RouterContext';
 import { RouteInfo } from './types';
 
@@ -21,6 +21,6 @@ export function ConditionalRoute(props: {
     // use next in list of routes
     props.children
   ) : (
-    <Navigate to={matchNextRoute.path} />
+    <Navigate to={matchNextRoute?.path ? matchNextRoute?.path : ('/' as To)} />
   );
 }
