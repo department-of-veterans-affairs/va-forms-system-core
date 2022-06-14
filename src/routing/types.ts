@@ -21,8 +21,6 @@ export interface RouterProps {
 export interface RouterContextProps {
   routes: React.ReactElement | React.ReactElement[];
   children: ReactElement<any, any> | ReactElement<any, any>[];
-  currentRoute: string;
-  updateRoute: (value: string) => void;
 }
 
 /**
@@ -55,7 +53,7 @@ export interface RouteInfo {
 export interface IRouterContext {
   listOfRoutes: RouteInfo[];
   currentRoute: string;
-  updateRoute: (value: string) => void;
+  // updateRoute: (value: string) => void;
   // updateListOfRoutes: (value: RouteInfo[]) => void;
 }
 /**

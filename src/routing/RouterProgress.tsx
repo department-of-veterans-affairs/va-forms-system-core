@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ProgressBar from '../form-layout/ProgressBar';
 import { RouterContext } from './RouterContext';
 
-export default function RouterProgress(props: { route: string }): JSX.Element {
+export default function RouterProgress(): JSX.Element {
   const { currentRoute, listOfRoutes } = useContext(RouterContext),
     viableListOfRoutes = listOfRoutes.filter(
       (item) => !item.conditional || item.isShown

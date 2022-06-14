@@ -34,7 +34,7 @@ export const routeObjectsReducer = (routeObjectsArray: RouteObject[]) => {
           ?.type === 'conditional';
       const condition = (
         (current?.element as ReactElement)?.props as { condition: string }
-      )?.condition ;
+      )?.condition;
       const field = condition ? useField(condition) : null;
 
       if (current.path === '*') return accumulatorItem;
@@ -78,8 +78,23 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
   const routeObjects = createRoutesFromChildren(props.routes),
     listOfRoutes = routeObjectsReducer(routeObjects);
 
+  const [route, updateRoute] = useState('/');
+  const currentLocation = useLocation();
+
+  useEffect(() => {
+    return updateRoute(
+      currentLocation.pathname !== '' ? currentLocation.pathname : '/'
+    );
+  }, [currentLocation]);
+
   return (
-    <RouterContext.Provider value={{ ...props, listOfRoutes: listOfRoutes }}>
+    <RouterContext.Provider
+      value={{
+        ...props,
+        listOfRoutes: listOfRoutes,
+        currentRoute: route,
+      }}
+    >
       {props.children}
     </RouterContext.Provider>
   );

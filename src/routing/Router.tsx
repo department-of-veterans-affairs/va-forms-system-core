@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
 import { RouterProps } from './types';
 
@@ -33,13 +33,9 @@ export default function FormRouter(props: RouterProps): JSX.Element {
               actions.setSubmitting(true);
             }}
           >
-            <RouterContextProvider
-              routes={props.children}
-              currentRoute={route}
-              updateRoute={updateRoute}
-            >
+            <RouterContextProvider routes={props.children}>
               <FormTitle title={props.title} subTitle={props?.subtitle} />
-              <RouterProgress route={route} />
+              <RouterProgress />
               <Routes>{props.children}</Routes>
               <FormFooter />
             </RouterContextProvider>
