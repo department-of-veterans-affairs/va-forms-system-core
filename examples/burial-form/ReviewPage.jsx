@@ -350,7 +350,7 @@ export default function ReviewPage(props) {
   }
 
   return (
-    <Page {...props} nextPage="/confirmation">
+    <Page {...props} prevPage="/claimant-contact-information" nextPage="/confirmation">
       <article>
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
