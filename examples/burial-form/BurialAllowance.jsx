@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Page, RadioGroup, TextField, DebuggerView } from '@department-of-veterans-affairs/va-forms-system-core';
+import { Page, RadioGroup, TextField } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext} from "formik";
 
 export default function BurialAllowance(props) {
@@ -101,7 +101,6 @@ export default function BurialAllowance(props) {
           </div>
         )}
       </Page>
-      <DebuggerView />
     </>
   )
 }
