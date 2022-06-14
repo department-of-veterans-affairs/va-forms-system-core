@@ -17,7 +17,7 @@ export default function PlotAllowance(props) {
         <div className={'vads-u-padding-y--1p5 form-expanding-group' + (formikContext?.values?.federalCemetery === false && ' form-expanding-group-open')}>
           <RadioGroup
             name="federalCemetery"
-            label="Was the Veteran buried in a national cemetary, or one owned by the federal government?"
+            label="Was the Veteran buried in a national cemetery, or one owned by the federal government?"
             required
             options={
               [
@@ -30,7 +30,7 @@ export default function PlotAllowance(props) {
             <div className='vads-u-padding-y--1p5'>
               <RadioGroup
                 name="stateCemetery"
-                label="Was the Veteran buried in a state veteran’s cemetary?"
+                label="Was the Veteran buried in a state Veteran’s cemetery?"
                 required
                 options={
                   [
