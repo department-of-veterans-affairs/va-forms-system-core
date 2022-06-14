@@ -216,7 +216,7 @@ describe('Routing - Router Context', () => {
   });
 
   test('Router Context passes correct route information to the progress bar', async() => {
-    const routes = ["/", "/page-two"];
+    const routes = ["/", "/page-one", "/page-two"];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={1}>
         <FormRouterInternal
@@ -233,7 +233,7 @@ describe('Routing - Router Context', () => {
 
     await waitFor(() => expect(
       container.querySelector('h2.vads-u-font-size--h4')
-      ?.innerHTML).toContain('Step 2 of 2: Page Two')
+      ?.innerHTML).toContain('Step 1 of 2: Page One')
     );
   })
 
@@ -246,11 +246,12 @@ describe('Routing - Router Context', () => {
           formData={initialValues}
           title="Page Test"
           >
-          <Route index element={<PageOne title="Page One" />} />
+          {/* Progress bar skips '/' */}
+          <Route index element={<PageOne title="Page One" />} /> 
           <Route path="/page-two" element={<PageTwo title="Page Two" />} />
           <Route path="/page-two-conditional" element={
-            <ConditionalRoute title="Page Two" type="conditional" condition={'conditional'}>
-              <PageTwo title="Page Two" />
+            <ConditionalRoute title="Page Two Conditional" type="conditional" condition={'conditional'}>
+              <PageTwo title="Page Two Conditional" />
             </ConditionalRoute>
           } />
         </FormRouterInternal>
@@ -259,14 +260,14 @@ describe('Routing - Router Context', () => {
 
     await waitFor(() => expect(
       container.querySelector('h2.vads-u-font-size--h4')
-      ?.innerHTML).toContain('Step 2 of 3: Page Two')
+      ?.innerHTML).toContain('Step 1 of 2: Page Two')
     );
   })
 
   test('Landing on enabled Conditional Route Renders child element', async() => {
     const routes = ["/", "/page-two", "/page-two-conditional"];
     const { container } = render(
-      <MemoryRouter initialEntries={routes} initialIndex={3}>
+      <MemoryRouter initialEntries={routes} initialIndex={2}>
         <FormRouterInternal
           basename="/"
           formData={initialValues}
@@ -285,7 +286,7 @@ describe('Routing - Router Context', () => {
 
     await waitFor(() => expect(
       container.querySelector('h2.vads-u-font-size--h4')
-      ?.innerHTML).toContain('Step 3 of 3: Page Two Conditional')
+      ?.innerHTML).toContain('Step 2 of 2: Page Two Conditional')
     );
   });
 
@@ -321,7 +322,7 @@ describe('Routing - Router Context', () => {
 
     await waitFor(() => expect(
       container.querySelector('h2.vads-u-font-size--h4')
-      ?.innerHTML).toContain('Step 2 of 2: Page Three')
+      ?.innerHTML).toContain('Step 1 of 1: Page Three')
     );
   });
 });
