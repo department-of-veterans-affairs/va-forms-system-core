@@ -357,6 +357,10 @@ export default function ReviewPage(props) {
               }
             }
           },
+          "claimantEmail": {
+            label: "Claimant Email",
+            value: state?.values?.claimantEmail,
+          },
           "claimantPhone": {
             label: "Claimant Phone Number",
             value: state?.values?.claimantPhone,
