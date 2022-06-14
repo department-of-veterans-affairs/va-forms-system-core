@@ -7,8 +7,15 @@ import { ConditionalRoute, Page, RouterProps } from "../../src";
 import { render, waitFor } from "@testing-library/react";
 import RouterProgress from "../../src/routing/RouterProgress";
 
-const PageOne = (props: {title: string}) => (
+const IntroPage = (props: {title: string}) => (
   <Page 
+    {...props}>
+    <p>page one</p>
+  </Page>
+);
+
+const PageOne = (props: {title: string}) => (
+  <Page
     {...props}>
     <p>page one</p>
   </Page>
@@ -217,7 +224,8 @@ describe('Routing - Router Context', () => {
           formData={initialValues}
           title="Page Test"
           >
-          <Route index element={<PageOne title="Page One" />} />
+          <Route index element={<IntroPage title="Intro Page" />} />
+          <Route path="/page-one" element={<PageOne title="Page One" />} />
           <Route path="/page-two" element={<PageTwo title="Page Two" />} />
         </FormRouterInternal>
       </MemoryRouter>
