@@ -80,6 +80,7 @@ export default function ReviewPage(props) {
         title: 'Claimant information',
         id: 'claimant-information',
         pageUrl: '/claimant-information',
+        isShown: true,
         fields: {
           "fullName": {
             value: {
@@ -119,6 +120,7 @@ export default function ReviewPage(props) {
         title: 'Deceased Veteran Information',
         id: 'veteran-information',
         pageUrl: '/veteran-information',
+        isShown: true,
         fields: {
           "veteranFullName": {
             label: "Veteran Name",
@@ -163,6 +165,7 @@ export default function ReviewPage(props) {
         title: 'Deceased Veteran Information: Death and Burial',
         id: 'veteran-information-burial',
         pageUrl: '/veteran-information/burial',
+        isShown: true,
         fields: {
           "deathDate": {
             label: "Date of death",
@@ -188,6 +191,7 @@ export default function ReviewPage(props) {
         title: 'Military Service History',
         id: 'military-history-service-periods',
         pageUrl: '/military-history/service-periods',
+        isShown: true,
         fields: {
           "toursOfDuty": {
             value: {
@@ -231,6 +235,7 @@ export default function ReviewPage(props) {
         title: 'Military Service History: Previous Names',
         id: 'military-history-previous-names',
         pageUrl: '/military-history/previous-names',
+        isShown: true,
         fields: {
           "veteranServedUnderAnotherName": {
             label: "Did the Veteran serve under another name?",
@@ -263,6 +268,7 @@ export default function ReviewPage(props) {
         title: 'Benefits Selection',
         id: 'benefits-selection',
         pageUrl: '/benefits/selection',
+        isShown: true,
         fields: {
           "burialAllowance": {
             label: "Burial allowance",
@@ -286,6 +292,7 @@ export default function ReviewPage(props) {
         title: 'Benefits Selection: Type of Burial Allowance',
         id: 'benefits-burial-allowance',
         pageUrl: '/benefits/burial-allowance',
+        isShown: state?.values?.benefitsSelection?.burialAllowance === true,
         fields: {
           "burialAllowanceRequested": {
             label: "Type of burial allowance requested",
@@ -298,6 +305,7 @@ export default function ReviewPage(props) {
         title: 'Benefits Selection: Plot or interment allowance',
         id: 'benefits-plot-allowance',
         pageUrl: '/benefits/plot-allowance',
+        isShown: state?.values?.benefitsSelection?.plotAllowance === true,
         fields: {
           "placeOfRemains": {
             label: "Place of burial or deceased Veteran’s remains",
@@ -325,6 +333,7 @@ export default function ReviewPage(props) {
         title: 'Claimant Contact Information',
         id: 'claimant-contact-information',
         pageUrl: '/claimant-contact-information',
+        isShown: true,
         fields: {
           "claimantAddress": {
             label: "Claimant Address",
@@ -376,12 +385,12 @@ export default function ReviewPage(props) {
   }
 
   return (
-    <Page {...props} prevPage="/claimant-contact-information" nextPage="/confirmation">
+    <Page {...props}>
       <article>
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
 
-        { pageData.pages.map(page => (
+        { pageData.pages.map(page => { if (page.isShown) return (
           <section id={page.id} key={page.id} className="review-page--page-info">
             <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
               <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
@@ -390,7 +399,8 @@ export default function ReviewPage(props) {
 
             {bufferFields(page.fields)}
           </section>
-        )) }
+        )}
+        ) }
       </article>
     </Page>
   )
