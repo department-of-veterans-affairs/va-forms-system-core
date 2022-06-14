@@ -9,8 +9,7 @@ import RouterProgress from "../../src/routing/RouterProgress";
 
 const PageOne = (props: {title: string}) => (
   <Page 
-    {...props}
-    nextPage="/page-two">
+    {...props}>
     <p>page one</p>
   </Page>
 );
@@ -18,7 +17,6 @@ const PageOne = (props: {title: string}) => (
 const PageTwo = (props: {title: string}) => (
   <Page 
   {...props}
-  nextPage="/"
   >
   <p>page two</p>
 </Page>
@@ -33,7 +31,8 @@ const initialValues = {
   streetThree: '', 
   state: '', 
   zipcode: '',
-  conditional: true
+  conditional: true,
+  conditionalFalse: false
 };
 
 const FormRouterInternal = (props: RouterProps): JSX.Element => {
@@ -82,7 +81,7 @@ describe('Routing - Router Context', () => {
       }
     ]
     const nextRoute = getNextRoute(routes, '/');
-    expect(nextRoute.path).toEqual('/about-plants');
+    expect(nextRoute?.path).toEqual('/about-plants');
   });
 
   test('PrevRoute function returns previous viable route', () => {
@@ -113,7 +112,100 @@ describe('Routing - Router Context', () => {
       }
     ]
     const nextRoute = getPreviousRoute(routes, '/about-plants');
-    expect(nextRoute.path).toEqual('/about-animals');
+    expect(nextRoute?.path).toEqual('/about-animals');
+  });
+
+  test('First route previous route function returns null', () => {
+    const routes = [
+      {
+        path: '/',
+        title: "Introduction Page",
+        conditional: false,
+        isShown: null
+      },
+      {
+        path: '/about-animals',
+        title: "About Animals",
+        conditional: true,
+        isShown: true
+      },
+      {
+        path: '/about',
+        title: "About",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about-plants',
+        title: "About Plants",
+        conditional: true,
+        isShown: true
+      }
+    ]
+    const previousRoute = getPreviousRoute(routes, '/');
+    expect(previousRoute).toBe(null);
+  });
+
+  test('Last route next route function returns null', () => {
+    const routes = [
+      {
+        path: '/',
+        title: "Introduction Page",
+        conditional: false,
+        isShown: null
+      },
+      {
+        path: '/about-animals',
+        title: "About Animals",
+        conditional: true,
+        isShown: true
+      },
+      {
+        path: '/about',
+        title: "About",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about-plants',
+        title: "About Plants",
+        conditional: true,
+        isShown: true
+      }
+    ]
+    const nextRoute = getNextRoute(routes, '/about-plants');
+    expect(nextRoute).toBe(null);
+  });
+
+  test('Landing on disabled route should return next viable route', () => {
+    const routes = [
+      {
+        path: '/',
+        title: "Introduction Page",
+        conditional: false,
+        isShown: null
+      },
+      {
+        path: '/about-animals',
+        title: "About Animals",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about',
+        title: "About",
+        conditional: true,
+        isShown: false
+      },
+      {
+        path: '/about-plants',
+        title: "About Plants",
+        conditional: true,
+        isShown: true
+      }
+    ]
+    const nextRoute = getNextRoute(routes, '/about-animals');
+    expect(nextRoute?.path).toBe('/about-plants');
   });
 
   test('Router Context passes correct route information to the progress bar', async() => {
@@ -138,7 +230,7 @@ describe('Routing - Router Context', () => {
   })
 
   test('Router Context passes correct conditional route information to the progress bar', async() => {
-    const routes = ["/", "/page-two"];
+    const routes = ["/", "/page-two", "/page-two-conditional"];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={1}>
         <FormRouterInternal
@@ -162,4 +254,66 @@ describe('Routing - Router Context', () => {
       ?.innerHTML).toContain('Step 2 of 3: Page Two')
     );
   })
+
+  test('Landing on enabled Conditional Route Renders child element', async() => {
+    const routes = ["/", "/page-two", "/page-two-conditional"];
+    const { container } = render(
+      <MemoryRouter initialEntries={routes} initialIndex={3}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          title="Page Test"
+          >
+          <Route index element={<PageOne title="Page One" />} />
+          <Route path="/page-two" element={<PageTwo title="Page Two" />} />
+          <Route path="/page-two-conditional" element={
+            <ConditionalRoute title="Page Two Conditional" type="conditional" condition={'conditional'}>
+              <PageTwo title="Page Two Conditional" />
+            </ConditionalRoute>
+          } />
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+
+    await waitFor(() => expect(
+      container.querySelector('h2.vads-u-font-size--h4')
+      ?.innerHTML).toContain('Step 3 of 3: Page Two Conditional')
+    );
+  });
+
+  test('Landing on disabled Conditional Route Renders next viable route', async() => {
+    const routes = [
+      "/",
+      "/page-two-conditional",
+      "/page-two-point-five-conditional",
+      "/page-three"
+    ];
+    const { container } = render(
+      <MemoryRouter initialEntries={routes} initialIndex={2}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          title="Page Test"
+          >
+          <Route index element={<PageOne title="Page One" />} />
+          <Route path="/page-two-conditional" element={
+            <ConditionalRoute title="Page Two Conditional" type="conditional" condition={'conditionalFalse'}>
+              <PageTwo title="Page Two Conditional" />
+            </ConditionalRoute>
+          } />
+           <Route path="/page-two-point-five-conditional" element={
+            <ConditionalRoute title="Page Two Point Five Conditional" type="conditional" condition={'conditionalFalse'}>
+              <PageTwo title="Page Two Point Five Conditional" />
+            </ConditionalRoute>
+          } />
+          <Route path="/page-three" element={<PageTwo title="Page Three" />} />
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+
+    await waitFor(() => expect(
+      container.querySelector('h2.vads-u-font-size--h4')
+      ?.innerHTML).toContain('Step 2 of 2: Page Three')
+    );
+  });
 });

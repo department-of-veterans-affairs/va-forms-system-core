@@ -22,13 +22,13 @@ const ChapterOne = (props: {title: string}) => (
 );
 
 const ChapterOnePageOne = (props: {title: string}) => (
-  <Page {...props} nextPage="/chapter-one/page-two">
+  <Page {...props}>
     <p>chapter one, page one</p>
   </Page>
 );
 
 const ChapterOnePageTwo = (props: {title: string}) => (
-  <Page  {...props} nextPage="/">
+  <Page  {...props}>
     <p>chapter one, page two</p>
   </Page>
 );

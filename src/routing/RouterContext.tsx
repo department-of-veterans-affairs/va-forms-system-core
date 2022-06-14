@@ -80,7 +80,7 @@ export const getPreviousRoute = (routes: RouteInfo[], currentPath: string) => {
     routes.filter((item) => item.path === currentPath)[0]
   );
 
-  let matchNext = routes[0];
+  let matchNext: RouteInfo | null = null;
   let i = findIndex >= 0 ? findIndex - 1 : 0;
   while (i < findIndex && i >= 0) {
     if (!routes[i].conditional || routes[i].isShown === true) {
@@ -96,7 +96,7 @@ export const getNextRoute = (routes: RouteInfo[], currentPath: string) => {
   const findIndex = routes.indexOf(
     routes.filter((item) => item.path === currentPath)[0]
   );
-  let matchNext: RouteInfo = routes[0];
+  let matchNext: RouteInfo | null = null;
   let i = findIndex >= 0 ? findIndex + 1 : 0;
 
   while (i >= findIndex && i < routes.length) {

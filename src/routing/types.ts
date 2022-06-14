@@ -55,8 +55,6 @@ export interface IRouterContext {
   currentRoute: string;
   previousRoute: string;
   nextRoute: string;
-  // updateRoute: (value: string) => void;
-  // updateListOfRoutes: (value: RouteInfo[]) => void;
 }
 /**
  * The properties for the Page React component
@@ -66,8 +64,6 @@ export interface IRouterContext {
 export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
   title: string;
-  nextPage?: string;
-  prevPage?: string;
 }
 
 /**

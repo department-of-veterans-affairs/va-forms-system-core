@@ -30,16 +30,14 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
 };
 
 const PageOne = () => (
-  <Page 
-    nextPage="/page-two"
+  <Page
     title="page one">
     <p>page one</p>
   </Page>
 );
 
 const PageTwo = () => (
-  <Page 
-    prevPage="/"
+  <Page
     title="page two"
     >
     <p>page two</p>
