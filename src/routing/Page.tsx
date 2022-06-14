@@ -6,50 +6,43 @@ import {
   useLocation,
   useSearchParams,
 } from 'react-router-dom';
-import { PageProps } from './types';
+import { IFormData, PageProps } from './types';
 import { RouterContext } from './RouterContext';
 
 const validatePage = (
   children: JSX.Element[],
   state: FormikContextType<unknown>
-) => {
-  const requiredChildren = getChildrenFields(children);
-  const formikStateKeys = getFormikStateKeys(state);
+): boolean => {
+  const requiredChildren = getRequiredChildren(children);
+  const values = state.values as IFormData;
+
+  let isValid = false;
 
   if (requiredChildren.length > 0) {
     requiredChildren.forEach((childField) => {
-      Object.entries(childField.props).map(([key, value]) => {
-        const strippedValue = String(value).split('.')[0];
-        if (key === 'name' || key === 'id') {
-          if (formikStateKeys.indexOf(strippedValue) > -1) {
-            console.log(state.errors);
-            return false;
+      const childFieldName = childField.props.name;
+
+      const formikStateFieldValue = Object.entries(values).find(
+        ([key, value]) => {
+          if (key === childFieldName.split('.')[0]) {
+            if (typeof value === 'object') {
+              Object.entries(value as IFormData).find((v) => console.log(v));
+
+              //NEEDS TO SET THE CORRECT BOOLEAN BASED ON EMPTY REQUIRED VALUE
+              isValid = false;
+            }
           }
         }
-      });
+      );
+
+      console.log(formikStateFieldValue);
     });
-  } else {
-    console.log('When does this happen');
-    return true;
   }
+
+  return isValid;
 };
 
-const getFormikStateKeys = (state: FormikContextType<unknown>) => {
-  const stateKeys: string[] = [];
-  Object.entries(state).find(([key, value]) => {
-    if (key === 'values') {
-      if (typeof value === 'object') {
-        Object.keys(value).map((v) => {
-          stateKeys.push(v);
-        });
-      }
-    }
-  });
-
-  return stateKeys;
-};
-
-const getChildrenFields = (children: JSX.Element[]) => {
+const getRequiredChildren = (children: JSX.Element[]) => {
   const requiredChildFields: JSX.Element[] = [];
 
   if (children.length > 0) {
@@ -74,7 +67,6 @@ const getChildrenFields = (children: JSX.Element[]) => {
  */
 export default function Page(props: PageProps): JSX.Element {
   const state = useFormikContext();
-
   const { updateRoute } = useContext(RouterContext);
   const currentLocation = useLocation();
   const navigate = useNavigate();
