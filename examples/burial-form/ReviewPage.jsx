@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
 
 /**
  * Transforms fields value into value that is more readable
@@ -103,6 +104,14 @@ export default function ReviewPage(props) {
           "relationship": {
             label: "Relationship to the Veteran",
             value: state.values?.relationship?.type
+          },
+          "relationship.other": {
+            label: "If other, please specify",
+            value: state.values?.relationship.other
+          },
+          "claimingAsFirm": {
+            label: "Claiming as a firm, corporation or state agency",
+            value: state.values?.claimingAsFirm
           }
         }
       },
@@ -133,7 +142,7 @@ export default function ReviewPage(props) {
             }
           },
           "veteranSocialSecurityNumber": {
-            label: "Social Security",
+            label: "Social Security number",
             value: state.values?.veteranSocialSecurityNumber
           },
           "vaFileNumber": {
@@ -165,7 +174,8 @@ export default function ReviewPage(props) {
           },
           "locationOfDeath.location": {
             label: "Where did the Veteran's death occur?",
-            value: state.values?.locationOfDeath.location
+            // Label of option is set in BurialInformation component instead of value
+            value: state.values?.locationOfDeath.locationLabel
           },
           "locationOfDeath.other": {
             label: "If other, please specify",
@@ -279,7 +289,8 @@ export default function ReviewPage(props) {
         fields: {
           "burialAllowanceRequested": {
             label: "Type of burial allowance requested",
-            value: state?.values?.burialAllowanceRequested
+            // Label of option is set in BurialAllowance component instead of value
+            value: state?.values?.burialAllowanceRequestedLabel
           }
         },
       },
@@ -365,7 +376,7 @@ export default function ReviewPage(props) {
   }
 
   return (
-    <>
+    <Page {...props} prevPage="/claimant-contact-information" nextPage="/confirmation">
       <article>
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
@@ -381,6 +392,6 @@ export default function ReviewPage(props) {
           </section>
         )) }
       </article>
-    </>
+    </Page>
   )
 }
