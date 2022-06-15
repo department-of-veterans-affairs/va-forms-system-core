@@ -80,6 +80,8 @@ const getRequiredFormikFieldNames = (children: JSX.Element[]): string[] => {
 const getRequiredChildren = (children: JSX.Element[]): JSX.Element[] => {
   const requiredChildFields: JSX.Element[] = [];
 
+  console.log(children);
+
   if (children.length > 0) {
     children.forEach((child) => {
       if (typeof child.props === 'object') {
