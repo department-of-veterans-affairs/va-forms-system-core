@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useFormikContext } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
 
@@ -70,8 +70,34 @@ const recurseField = (key, field, rank = 0) => {
   }
 }
 
+/**
+ * Anchor scroller
+ * @param {string} location hash location
+ *
+ * @beta
+ */
+const scrollToSection = (location) => {
+  // Get the '#' id from the location 
+  const id  = (
+    location && location.hash
+  ) ? location.hash : null;
+   if (id) {
+      const element = document.querySelector(id);
+      // If element present, scroll me to that part 
+      if (element) {
+        element.scrollIntoView();
+      } else {
+        // If element not present, scroll me to the top
+        window.scrollTo(0, 0);
+      }
+    }
+  }
+
 export default function ReviewPage(props) {
   const state = useFormikContext();
+  const location = useLocation();
+
+  useLayoutEffect(() => scrollToSection(location), [location])
 
   // mockup some data to review formik context
   const pageData = {
@@ -394,7 +420,7 @@ export default function ReviewPage(props) {
           <section id={page.id} key={page.id} className="review-page--page-info">
             <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
               <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-              <Link to={page.pageUrl+'?edit=true'} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+              <Link to={page.pageUrl+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
             </div>
 
             {bufferFields(page.fields)}
