@@ -30,15 +30,19 @@ const isFieldEmptyOrErrored = (
 
   const splitFieldNameList = fieldName.split('.');
 
+  const field = values[`${splitFieldNameList[0]}`] as IFormData;
+  console.log(field);
+  console.log(typeof field);
+
   if (splitFieldNameList.length > 1) {
-    console.log(fieldName);
-
     const field = values[`${splitFieldNameList[0]}`] as IFormData;
-    console.log(field);
-
     Object.entries(field).map(([key, value]) => {
       if (key === splitFieldNameList[1]) {
-        if (typeof value === 'string' && value !== '' && state.errors !== {}) {
+        if (
+          (typeof value === 'string' || typeof value === 'boolean') &&
+          value !== '' &&
+          state.errors !== {}
+        ) {
           isValid = true;
         } else {
           isValid = false;
@@ -48,7 +52,7 @@ const isFieldEmptyOrErrored = (
   } else {
     const fieldValue = values[`${splitFieldNameList[0]}`];
     if (
-      typeof fieldValue === 'string' &&
+      (typeof fieldValue === 'string' || typeof fieldValue === 'boolean') &&
       fieldValue !== '' &&
       state.errors !== {}
     ) {
