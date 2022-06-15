@@ -49,7 +49,7 @@ const getChildrenFields = (children: JSX.Element[]) => {
 
   if (children.length > 0) {
     children.forEach((child) => {
-      if (typeof child.props === 'object') {
+      if (child && typeof child.props === 'object') {
         const childPropsKeys = Object.keys(child.props);
 
         if (childPropsKeys.indexOf('required') > -1) {
@@ -110,15 +110,11 @@ export default function Page(props: PageProps): JSX.Element {
           <button
             className="btn usa-button-primary next"
             onClick={(event) => {
-              const isValid = validatePage(
-                props.children as JSX.Element[],
-                state
-              );
-
-              if (isValid) {
+              if (Object.keys(state?.errors).length === 0) {
                 navigate(nextRoute as To);
               }
             }}
+            type="submit"
           >
             Next <i className="fas fa-angle-double-right"></i>
           </button>
