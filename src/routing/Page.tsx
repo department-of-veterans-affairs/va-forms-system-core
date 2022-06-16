@@ -110,9 +110,10 @@ export default function Page(props: PageProps): JSX.Element {
           <button
             className="btn usa-button-primary next"
             onClick={(event) => {
-              if (Object.keys(state?.errors).length === 0) {
-                navigate(nextRoute as To);
-              }
+              navigate(nextRoute as To);
+
+              // if (Object.keys(state?.errors).length === 0) {
+              // }
             }}
             type="submit"
           >
