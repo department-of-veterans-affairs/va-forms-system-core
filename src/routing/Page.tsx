@@ -13,6 +13,8 @@ export default function Page(props: PageProps): JSX.Element {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const editPage = searchParams.get('edit');
+  const sourceAnchor = searchParams.get('source');
+
   const { nextRoute, previousRoute } = useContext(RouterContext);
 
   return (
@@ -26,7 +28,11 @@ export default function Page(props: PageProps): JSX.Element {
             <button
               onClick={(event) => {
                 event.preventDefault();
-                navigate('/review-and-submit' as To);
+                navigate(
+                  `/review-and-submit${
+                    sourceAnchor ? `#${sourceAnchor}` : ''
+                  }` as To
+                );
               }}
               className="btn next"
             >
@@ -36,7 +42,7 @@ export default function Page(props: PageProps): JSX.Element {
         )}
         {previousRoute && (
           <button
-            className="btn usa-button-primary prev"
+            className="btn usa-button-secondary prev"
             onClick={(event) => {
               event.preventDefault();
               navigate(previousRoute as To);

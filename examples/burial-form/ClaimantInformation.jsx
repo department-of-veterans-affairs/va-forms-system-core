@@ -20,9 +20,18 @@ export default function ClaimantInformation(props) {
   ]
 
   useEffect(() => {
-    if (values.relationship.type !== "Other") {
+    if (values.relationship.type !== 'Other') {
       setFieldValue('relationship.other', '')
       setFieldValue('claimingAsFirm', undefined)
+      // Burial Allowance field depends on relationship value is equals to 'Other'
+      // Remove benefitsUnclaimedRemains field when relationship is not 'Other
+      setFieldValue('benefitsUnclaimedRemains', undefined);
+    }
+
+    if (values.relationship.type !== 'Spouse') {
+      // Burial Allowance field depends on relationship value is equals to 'Spouse'
+      // Remove previouslyReceivedAllowance field when relationship is not 'Spouse
+      setFieldValue('previouslyReceivedAllowance', undefined);
     }
   }, [values.relationship.type])
 
@@ -33,7 +42,7 @@ export default function ClaimantInformation(props) {
         <p>
           You aren’t required to fill in all fields, but we can review your application faster if you provide more information.
         </p>
-        <FullNameField name="claimantFullName"/>
+        <FullNameField name="claimantFullName" label="your"/>
         <div className={values.relationship.type === "Other" ? `${ExpandingGroupClass}` : ''}>
           <RadioGroup
             name="relationship.type"
