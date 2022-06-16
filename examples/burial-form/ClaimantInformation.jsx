@@ -20,7 +20,7 @@ export default function ClaimantInformation(props) {
   ]
 
   useEffect(() => {
-    if (values.relationship.type !== "Other") {
+    if (values.relationship.type !== 'Other') {
       setFieldValue('relationship.other', '')
       setFieldValue('claimingAsFirm', undefined)
       // Burial Allowance field depends on relationship value is equals to 'Other'
