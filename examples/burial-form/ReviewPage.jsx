@@ -1,8 +1,9 @@
-import React, { useEffect, useLayoutEffect } from 'react';
-import { useFormikContext } from 'formik';
-import { Link, useLocation } from 'react-router-dom';
-import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import React, {useLayoutEffect} from 'react';
+import {useFormikContext} from 'formik';
+import {Link, useLocation} from 'react-router-dom';
+import {VaOnThisPage} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
+import {parseDate} from "@department-of-veterans-affairs/va-forms-system-core/utils/helpers";
 
 /**
  * Transforms fields value into value that is more readable
@@ -19,7 +20,7 @@ const transformFieldValue = (key, field) => {
     return 'No';
   }
   if (["from", "to", "veteranDateOfBirth", "deathDate", "burialDate"].indexOf(key) > -1) {
-    const date = new Date(field.value);
+    const date = parseDate(field.value);
     return date.toLocaleDateString("en-US", { day: 'numeric', month: 'long', year: 'numeric' });
   }
   if (["amountIncurred", "amountGovtContribution"].indexOf(key) > -1) {
