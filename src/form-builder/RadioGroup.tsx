@@ -16,15 +16,14 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string>
   );
+  const { value: selectedValue } = field;
 
   const handleRadioSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.stopPropagation();
     helpers.setValue(event.target.value);
   };
-  const { setFieldValue } = useFormikContext();
   const id = props.id || props.name;
 
-  const stringToBoolean = (value: string) => {
+  const filterValue = (value: string) => {
     switch (value.toLowerCase().trim()) {
       case 'true':
       case 'yes':
@@ -36,7 +35,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       case null:
         return false;
       default:
-        return Boolean(value);
+        return value;
     }
   };
 
@@ -48,28 +47,34 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       options={options}
       {...field}
       error={(meta.touched && meta.error) || undefined}
-      onRadioOptionSelected={handleRadioSelected}
-      onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        // Typed this as an event when passing into the function for safety, but event does not have property 'detail' on it.
-        const e: any = event;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (
-          e.detail.value === 'true' ||
-          e.detail.value === 'false' ||
-          typeof e.detail.value === 'boolean'
-        ) {
-          setFieldValue(field.name, stringToBoolean(e.detail.value));
-        } else {
-          helpers.setValue(e.detail.value);
-        }
+      onVaValueChange={(e: CustomEvent) => {
+        // console.log(e);
+
+        helpers.setTouched(true);
+        helpers.setValue(e.detail.value);
       }}
+      // onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+      //   // // Typed this as an event when passing into the function for safety, but event does not have property 'detail' on it.
+      //   // const e: any = event;
+      //   // // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      //   // if (
+      //   //   e.detail.value === 'true' ||
+      //   //   e.detail.value === 'false' ||
+      //   //   typeof e.detail.value === 'boolean'
+      //   // ) {
+      //   //   setFieldValue(field.name, stringToBoolean(e.detail.value));
+      //   // } else {
+      //   //   helpers.setValue(e.detail.value);
+      //   // }
+      //   helpers.setValue(event.detail.value);
+      // }}
     >
       {options.map((option: any, index: number) => {
         return (
           <VaRadioOption
             data-testid={`${field.name}-${index}`}
             {...option}
-            checked={field.value === option.value}
+            name={field.name}
             key={`${field.name}-${index}`}
           />
         );

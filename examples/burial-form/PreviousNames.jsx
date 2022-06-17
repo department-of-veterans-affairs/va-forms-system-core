@@ -4,7 +4,7 @@ import {
   Page,
   RadioGroup,
 } from '@department-of-veterans-affairs/va-forms-system-core';
-import { useFormikContext } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import { ExpandingGroupClass } from '../Constant';
 
 export default function PreviousNames(props) {
@@ -32,6 +32,18 @@ export default function PreviousNames(props) {
               ]
             }
           />
+          {/* <div role="group" aria-labelledby="my-radio-group">
+            <label>Did the Veteran serve under another name?</label>
+            <label>
+              <Field type="radio" name="veteranServedUnderAnotherName" value="true" />
+              Yes
+            </label>
+            <label>
+              <Field type="radio" name="veteranServedUnderAnotherName" value="false"/>
+              No
+            </label>
+            <div>Picked: {values.picked}</div>
+          </div> */}
           {
             values?.veteranServedUnderAnotherName
             ? (

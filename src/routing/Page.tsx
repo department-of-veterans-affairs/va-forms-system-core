@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { Form, FormikContextType, useFormikContext } from 'formik';
+import { Form, FormikContextType, useField, useFormikContext } from 'formik';
 import { useNavigate, To, useSearchParams } from 'react-router-dom';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
+import { forEach, isArray } from 'lodash';
 
 const validatePage = (
-  children: JSX.Element[],
+  children: Element[],
   state: FormikContextType<unknown>
 ) => {
   const requiredChildren = getChildrenFields(children);
@@ -44,7 +45,19 @@ const getFormikStateKeys = (state: FormikContextType<unknown>) => {
   return stateKeys;
 };
 
-const getChildrenFields = (children: JSX.Element[]) => {
+const getChildrenType = (childElement: JSX.Element) => {
+  const { props } = childElement;
+
+  if (props?.type?.name === 'RadioGroup') {
+    // does it have a name? then its probably a form element
+  }
+  return null;
+};
+
+const getChildrenFields = (
+  children: (Element | JSX.Element)[],
+  buffer: JSX.Element[] = []
+) => {
   const requiredChildFields: JSX.Element[] = [];
 
   if (children.length > 0) {
@@ -78,7 +91,23 @@ export default function Page(props: PageProps): JSX.Element {
   return (
     <div>
       <h3>{props.title}</h3>
-      <Form>
+      <Form
+        onSubmit={(e) => {
+          console.log(state.touched['veteranServedUnderAnotherName']);
+          if (!state.touched['veteranServedUnderAnotherName'] ) {
+            state.setTouched({
+              ...state.touched,
+              veteranServedUnderAnotherName: true,
+            });
+          } else if (
+            state.isSubmitting === false &&
+            Object.keys(state?.errors).length === 0
+          ) {
+            navigate(nextRoute as To);
+          }
+          e?.preventDefault();
+        }}
+      >
         {props.children}
 
         {editPage && (
@@ -109,13 +138,31 @@ export default function Page(props: PageProps): JSX.Element {
         {nextRoute && (
           <button
             className="btn usa-button-primary next"
+            disabled={state.isSubmitting}
+            type="submit"
             onClick={(event) => {
-              navigate(nextRoute as To);
-
+              // const startingBuffer: (Element | JSX.Element)[] = isArray(props.children)? props.children : [props.children];
+              // const fields = getChildrenFields(startingBuffer);
+              // let fieldNames: string[] = [];
+              // fields.forEach(field => {
+              //   if (Object.keys(field).length > 0) {
+              //     fieldNames = [...fieldNames, field.props.name]
+              //   }
+              // });
+              // fieldNames.forEach(fieldName => {
+              //   const fieldP = state.getFieldProps(fieldName);
+              //   state.setFieldTouched(fieldName);
+              // });
+              // if (Object.keys(state?.errors).length === 0) {
+              // }
+              // state.setTouched(true);
+              // const setTouched = state.setTouched({
+              //   'veteranServedUnderAnotherName': true},
+              //   true
+              // );
               // if (Object.keys(state?.errors).length === 0) {
               // }
             }}
-            type="submit"
           >
             Next <i className="fas fa-angle-double-right"></i>
           </button>

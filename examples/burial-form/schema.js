@@ -479,6 +479,9 @@ const schema = {
         },
         "transportationReceipts": {
             "$ref": "#/definitions/files"
+        },
+        "veteranServedUnderAnotherName": {
+            "type": "boolean"
         }
     },
     "required": [
