@@ -40,7 +40,7 @@ export default function Page(props: PageProps): JSX.Element {
             </button>
           </div>
         )}
-        {previousRoute && (
+        {previousRoute && !props.hidePreviousButton && (
           <button
             className="btn usa-button-secondary prev"
             onClick={(event) => {
@@ -48,7 +48,7 @@ export default function Page(props: PageProps): JSX.Element {
               navigate(previousRoute as To);
             }}
           >
-            <i className="fas fa-angle-double-left"></i> Previous
+            <i className="fas fa-angle-double-left"/> Previous
           </button>
         )}
 
@@ -60,7 +60,7 @@ export default function Page(props: PageProps): JSX.Element {
               navigate(nextRoute as To);
             }}
           >
-            Next <i className="fas fa-angle-double-right"></i>
+            {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'} <i className="fas fa-angle-double-right"/>
           </button>
         )}
       </Form>
