@@ -156,3 +156,16 @@ export const transformJSONSchema = (schema: any) => {
 export const CapitalizeFirstLetter = (value: string): string => {
   return value.trim().charAt(0).toUpperCase() + value.trim().slice(1);
 };
+
+/**
+ * A function that converts a string to camelCase
+ *
+ * @param string
+ */
+export const camelize = (string: string) => {
+  return string
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    })
+    .replace(/\s+/g, '');
+};

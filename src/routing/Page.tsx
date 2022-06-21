@@ -3,6 +3,7 @@ import { Form } from 'formik';
 import { useNavigate, To, useSearchParams } from 'react-router-dom';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
+import { camelize } from '../utils/helpers';
 
 /**
  * Renders the page contents
@@ -20,7 +21,7 @@ export default function Page(props: PageProps): JSX.Element {
   return (
     <div>
       <h3>{props.title}</h3>
-      <Form>
+      <Form name={camelize(props.title)}>
         {props.children}
 
         {editPage && (
