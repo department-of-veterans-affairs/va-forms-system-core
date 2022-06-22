@@ -44,8 +44,6 @@ export const required = <T>(
         : getMessage('required.default');
     return errorMessage;
   }
-
-  return props.validate ? props.validate(value) : undefined;
 };
 
 export const requiredValue = <T>(
@@ -59,8 +57,6 @@ export const requiredValue = <T>(
         : getMessage('required.default');
     return errorMessage;
   }
-
-  return props.validate ? props.validate(value) : undefined;
 };
 
 /**

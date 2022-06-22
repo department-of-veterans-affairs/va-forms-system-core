@@ -23,7 +23,6 @@ export default function FormRouter(props: RouterProps): JSX.Element {
         <BrowserRouter basename={props.basename}>
           <Formik
             initialValues={initialValues}
-            validateOnChange={true}
             onSubmit={(values, actions) => {
               // This is where data is transformed if a custom transformForSubmit function is provided.
               // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function

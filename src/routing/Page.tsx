@@ -1,12 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { Form, FormikContextType, useField, useFormikContext } from 'formik';
+import {
+  Form,
+  FormikContextType,
+  FormikTouched,
+  FormikValues,
+  useField,
+  useFormikContext,
+} from 'formik';
 import { useNavigate, To, useSearchParams } from 'react-router-dom';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
 import { forEach, isArray } from 'lodash';
 
 const validatePage = (
-  children: Element[],
+  children: (JSX.Element | Element)[],
   state: FormikContextType<unknown>
 ) => {
   const requiredChildren = getChildrenFields(children);
@@ -55,18 +62,22 @@ const getChildrenType = (childElement: JSX.Element) => {
 };
 
 const getChildrenFields = (
-  children: (Element | JSX.Element)[],
+  children: (JSX.Element | Element)[],
   buffer: JSX.Element[] = []
 ) => {
   const requiredChildFields: JSX.Element[] = [];
 
   if (children.length > 0) {
     children.forEach((child) => {
-      if (child && typeof child.props === 'object') {
-        const childPropsKeys = Object.keys(child.props);
+      if (
+        (child as JSX.Element) &&
+        (child as JSX.Element).props &&
+        typeof (child as JSX.Element)?.props === 'object'
+      ) {
+        const childPropsKeys = Object.keys((child as JSX.Element).props);
 
         if (childPropsKeys.indexOf('required') > -1) {
-          requiredChildFields.push(child);
+          requiredChildFields.push(child as JSX.Element);
         }
       }
     });
@@ -93,8 +104,10 @@ export default function Page(props: PageProps): JSX.Element {
       <h3>{props.title}</h3>
       <Form
         onSubmit={(e) => {
-          console.log(state.touched['veteranServedUnderAnotherName']);
-          if (!state.touched['veteranServedUnderAnotherName'] ) {
+          /// console.log(state.touched?['veteranServedUnderAnotherName']);
+          // getChildrenFields(props.children as (JSX.Element | Element)[]);
+          const touchedFields = state.touched as FormikValues;
+          if (!touchedFields?.veteranServedUnderAnotherName) {
             state.setTouched({
               ...state.touched,
               veteranServedUnderAnotherName: true,
@@ -140,29 +153,6 @@ export default function Page(props: PageProps): JSX.Element {
             className="btn usa-button-primary next"
             disabled={state.isSubmitting}
             type="submit"
-            onClick={(event) => {
-              // const startingBuffer: (Element | JSX.Element)[] = isArray(props.children)? props.children : [props.children];
-              // const fields = getChildrenFields(startingBuffer);
-              // let fieldNames: string[] = [];
-              // fields.forEach(field => {
-              //   if (Object.keys(field).length > 0) {
-              //     fieldNames = [...fieldNames, field.props.name]
-              //   }
-              // });
-              // fieldNames.forEach(fieldName => {
-              //   const fieldP = state.getFieldProps(fieldName);
-              //   state.setFieldTouched(fieldName);
-              // });
-              // if (Object.keys(state?.errors).length === 0) {
-              // }
-              // state.setTouched(true);
-              // const setTouched = state.setTouched({
-              //   'veteranServedUnderAnotherName': true},
-              //   true
-              // );
-              // if (Object.keys(state?.errors).length === 0) {
-              // }
-            }}
           >
             Next <i className="fas fa-angle-double-right"></i>
           </button>

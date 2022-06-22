@@ -92,7 +92,7 @@ class JSONSchemaMapper {
       case 'boolean':
         return null;
       default:
-        return '';
+        return null;
     }
   };
 
@@ -133,7 +133,7 @@ class JSONSchemaMapper {
           updatedValue = null;
           break;
         default:
-          updatedValue = '';
+          updatedValue = null;
           break;
       }
     }
