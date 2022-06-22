@@ -21,7 +21,9 @@ export default function Page(props: PageProps): JSX.Element {
     <div>
       <h3>{props.title}</h3>
       <Form>
-        {props.children}
+        <div className="vads-u-margin-y--2">
+          {props.children}
+        </div>
 
         {editPage && (
           <div>
