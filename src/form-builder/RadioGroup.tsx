@@ -36,7 +36,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       case null:
         return false;
       default:
-        return Boolean(value);
+        return value;
     }
   };
 
@@ -48,20 +48,11 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       options={options}
       {...field}
       error={(meta.touched && meta.error) || undefined}
-      onRadioOptionSelected={handleRadioSelected}
       onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {
         // Typed this as an event when passing into the function for safety, but event does not have property 'detail' on it.
         const e: any = event;
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (
-          e.detail.value === 'true' ||
-          e.detail.value === 'false' ||
-          typeof e.detail.value === 'boolean'
-        ) {
-          setFieldValue(field.name, stringToBoolean(e.detail.value));
-        } else {
-          helpers.setValue(e.detail.value);
-        }
+        helpers.setValue(e.detail.value);
       }}
     >
       {options.map((option: any, index: number) => {
@@ -69,7 +60,9 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
           <VaRadioOption
             data-testid={`${field.name}-${index}`}
             {...option}
-            checked={field.value === option.value}
+            checked={
+              (field?.value && stringToBoolean(field?.value)) === option.value
+            }
             key={`${field.name}-${index}`}
           />
         );
