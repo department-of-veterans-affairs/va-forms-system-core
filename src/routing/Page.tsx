@@ -26,7 +26,9 @@ export default function Page(props: PageProps): JSX.Element {
     <div>
       <h3>{props.title}</h3>
       <Form>
-        {props.children}
+        <div className="vads-u-margin-y--2">
+          {props.children}
+        </div>
 
         {editPage && (
           <div>
@@ -45,7 +47,7 @@ export default function Page(props: PageProps): JSX.Element {
             </button>
           </div>
         )}
-        {previousRoute && (
+        {previousRoute && !props.hidePreviousButton && (
           <button
             className="btn usa-button-secondary prev"
             onClick={(event) => {
@@ -53,7 +55,7 @@ export default function Page(props: PageProps): JSX.Element {
               navigate(previousRoute as To);
             }}
           >
-            <i className="fas fa-angle-double-left"></i> Previous
+            <i className="fas fa-angle-double-left"/> Previous
           </button>
         )}
 
@@ -69,7 +71,7 @@ export default function Page(props: PageProps): JSX.Element {
               }
             }}
           >
-            Next <i className="fas fa-angle-double-right"></i>
+            {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'} <i className="fas fa-angle-double-right"/>
           </button>
         )}
       </Form>
