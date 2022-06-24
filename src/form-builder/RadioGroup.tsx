@@ -47,6 +47,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       required={!!props.required}
       options={options}
       {...field}
+      onBlur={() => helpers.setTouched(true)}
       error={(meta.touched && meta.error) || undefined}
       onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {
         // Typed this as an event when passing into the function for safety, but event does not have property 'detail' on it.
@@ -59,6 +60,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
         return (
           <VaRadioOption
             data-testid={`${field.name}-${index}`}
+            onBlur={() => helpers.setTouched(true)}
             {...option}
             checked={
               (field?.value && stringToBoolean(field?.value)) === option.value

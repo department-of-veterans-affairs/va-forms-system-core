@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Form } from 'formik';
+import { Form, useFormikContext } from 'formik';
 import { useNavigate, To, useSearchParams } from 'react-router-dom';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
@@ -14,16 +14,15 @@ export default function Page(props: PageProps): JSX.Element {
   const [searchParams] = useSearchParams();
   const editPage = searchParams.get('edit');
   const sourceAnchor = searchParams.get('source');
+  const state = useFormikContext();
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
 
   return (
     <div>
       <h3>{props.title}</h3>
-      <Form>
-        <div className="vads-u-margin-y--2">
-          {props.children}
-        </div>
+      <form onSubmit={state.handleSubmit}>
+        <div className="vads-u-margin-y--2">{props.children}</div>
 
         {editPage && (
           <div>
@@ -50,22 +49,28 @@ export default function Page(props: PageProps): JSX.Element {
               navigate(previousRoute as To);
             }}
           >
-            <i className="fas fa-angle-double-left"/> Previous
+            <i className="fas fa-angle-double-left" /> Previous
           </button>
         )}
 
         {nextRoute && (
           <button
             className="btn usa-button-primary next"
-            onClick={(event) => {
-              event.preventDefault();
-              navigate(nextRoute as To);
+            onClick={async (event) => {
+              const validate = await state.validateForm();
+              const validateKeys = Object.keys(validate);
+
+              if (validateKeys.length === 0) {
+                navigate(nextRoute as To);
+              }
+              console.log(state.touched);
             }}
           >
-            {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'} <i className="fas fa-angle-double-right"/>
+            {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'}{' '}
+            <i className="fas fa-angle-double-right" />
           </button>
         )}
-      </Form>
+      </form>
     </div>
   );
 }
