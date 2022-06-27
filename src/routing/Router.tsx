@@ -39,13 +39,15 @@ export default function FormRouter(props: RouterProps): JSX.Element {
           <Formik
             initialValues={initialValues}
             onSubmit={(values, actions) => {
+              // if not the last page:
+              actions.setTouched({}); // resetting fields
+              actions.setSubmitting(false); // resetting fields
+              // else: final submission
               // This is where data is transformed if a custom transformForSubmit function is provided.
               // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
               if (props.transformForSubmit) {
                 props.transformForSubmit(values, actions);
               }
-              actions.setTouched({}); // resetting fields
-              actions.setSubmitting(false); // resetting fields
             }}
           >
             <form>
