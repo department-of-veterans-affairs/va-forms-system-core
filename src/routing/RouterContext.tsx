@@ -112,6 +112,7 @@ export const getNextRoute = (routes: RouteInfo[], currentPath: string) => {
 export function RouterContextProvider(props: RouterContextProps): JSX.Element {
   const routeObjects = createRoutesFromChildren(props.routes),
     listOfRoutes = routeObjectsReducer(routeObjects);
+  const context = useFormikContext();
 
   const [route, updateRoute] = useState('/');
   const currentLocation = useLocation();
@@ -121,13 +122,11 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
   );
   const nextRoute = getNextRoute(listOfRoutes, currentLocation.pathname);
 
-  useEffect(
-    () =>
-      updateRoute(
-        currentLocation.pathname !== '' ? currentLocation.pathname : '/'
-      ),
-    [currentLocation]
-  );
+  useEffect(() => {
+    updateRoute(
+      currentLocation.pathname !== '' ? currentLocation.pathname : '/'
+    );
+  }, [currentLocation]);
 
   return (
     <RouterContext.Provider

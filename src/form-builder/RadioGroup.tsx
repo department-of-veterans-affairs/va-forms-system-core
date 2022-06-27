@@ -16,12 +16,6 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string>
   );
-
-  const handleRadioSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.stopPropagation();
-    helpers.setValue(event.target.value);
-  };
-  const { setFieldValue } = useFormikContext();
   const id = props.id || props.name;
 
   const stringToBoolean = (value: string) => {
