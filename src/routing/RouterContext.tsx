@@ -126,6 +126,13 @@ export function RouterContextProvider(props: RouterContextProps): JSX.Element {
     updateRoute(
       currentLocation.pathname !== '' ? currentLocation.pathname : '/'
     );
+
+    // Reset the form on route change.
+    // This could be used in a different component
+    // but was used here because it's related to routing.
+    context.setErrors({});
+    context.setTouched({}); // resetting fields
+    context.setSubmitting(false); // resetting fields
   }, [currentLocation]);
 
   return (

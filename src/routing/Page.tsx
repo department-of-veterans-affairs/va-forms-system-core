@@ -1,6 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
-import { useNavigate, To, useSearchParams } from 'react-router-dom';
+import {
+  useNavigate,
+  To,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
 
@@ -27,7 +32,6 @@ export default function Page(props: PageProps): JSX.Element {
         <div>
           <button
             onClick={(event) => {
-              event.preventDefault();
               navigate(
                 `/review-and-submit${
                   sourceAnchor ? `#${sourceAnchor}` : ''
@@ -43,8 +47,7 @@ export default function Page(props: PageProps): JSX.Element {
       {previousRoute && !props.hidePreviousButton && (
         <button
           className="btn usa-button-secondary prev"
-          onClick={(event) => {
-            event.preventDefault();
+          onClick={() => {
             navigate(previousRoute as To);
           }}
         >
@@ -57,7 +60,6 @@ export default function Page(props: PageProps): JSX.Element {
           className="btn usa-button-primary next"
           onClick={(event) => {
             state.handleSubmit();
-            // event?.preventDefault();
             navigate(nextRoute as To);
           }}
           type="submit"
