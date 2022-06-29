@@ -20,8 +20,18 @@ export default function Page(props: PageProps): JSX.Element {
   const editPage = searchParams.get('edit');
   const sourceAnchor = searchParams.get('source');
   const state = useFormikContext();
+  const currentLocation = useLocation();
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
+
+  useEffect(() => {
+    // Reset the form on route change.
+    // This could be used in a different component
+    // but was used here because it's related to routing.
+    state.setErrors({});
+    state.setTouched({}); // resetting fields
+    state.setSubmitting(false); // resetting fields
+  }, [currentLocation]);
 
   return (
     <div>
