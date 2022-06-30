@@ -3,6 +3,7 @@ import {
   FullNameField,
   Page,
   RadioGroup,
+  DebuggerView
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { ExpandingGroupClass } from '../Constant';
@@ -12,7 +13,7 @@ export default function PreviousNames(props) {
   const { values, setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    if (values?.previousNames && values?.veteranServedUnderAnotherName === false) {
+    if (values?.previousNames && values?.veteranServedUnderAnotherName === "false") {
       setFieldValue(`previousNames`, [])
     }
   }, [values?.veteranServedUnderAnotherName]);
@@ -20,7 +21,7 @@ export default function PreviousNames(props) {
   return (
     <>
       <Page {...props}>
-        <div className={values?.veteranServedUnderAnotherName ? `${ExpandingGroupClass}` : ''}>
+        <div className={values?.veteranServedUnderAnotherName === "true" ? `${ExpandingGroupClass}` : ''}>
           <RadioGroup
             name="veteranServedUnderAnotherName"
             label="Did the Veteran serve under another name?"
@@ -33,7 +34,7 @@ export default function PreviousNames(props) {
             }
           />
           {
-            values?.veteranServedUnderAnotherName
+            values?.veteranServedUnderAnotherName === "true"
             ? (
               <>
                 <FullNameField name="previousNames[0]"/>
@@ -49,6 +50,7 @@ export default function PreviousNames(props) {
           }
         </div>
       </Page>
+      <DebuggerView />
     </>
   )
 }
