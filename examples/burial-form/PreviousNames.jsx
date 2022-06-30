@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import {
   FullNameField,
   Page,
-  RadioGroup,
-  DebuggerView
+  RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { ExpandingGroupClass } from '../Constant';
@@ -50,7 +49,6 @@ export default function PreviousNames(props) {
           }
         </div>
       </Page>
-      <DebuggerView />
     </>
   )
 }
