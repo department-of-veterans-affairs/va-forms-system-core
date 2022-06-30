@@ -30,8 +30,8 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
             key={`va-checkbox-field-${field.name}-${index}`}
             {...option}
             required={false}
-            name={`${field.name}.${option.name}`}
-          ></CheckboxField>
+            name={option.name}
+          />
         ))}
       </VaCheckboxGroup>
     </>
