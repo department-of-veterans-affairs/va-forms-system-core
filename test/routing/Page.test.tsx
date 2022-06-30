@@ -1,33 +1,93 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, waitFor } from '@testing-library/react';
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Router, Routes } from 'react-router-dom';
+import { RouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
+import Chapter from '../../src/routing/Chapter';
+import { act } from 'react-dom/test-utils';
+import { FormFooter, FormTitle } from '../../src';
+import { Formik } from 'formik';
+import { RouterContextProvider } from '../../src/routing/RouterContext';
+
+const FormRouterInternal = (props: RouterProps): JSX.Element => {
+  const initialValues = props.formData;
+
+  return (
+      <Formik
+        initialValues={props.formData}
+        onSubmit={(values, actions) => {
+          // Here we leverage formik actions to perform validations, submit data, etc.
+          // Also a good candidate for extracting data out of form apps
+          actions.setSubmitting(true);
+        }}
+      >
+      <RouterContextProvider routes={props.children}>
+        <Routes>{props.children}</Routes>
+      </RouterContextProvider>
+    </Formik>
+  )
+};
+
+const PageOne = () => (
+  <Page
+    title="page one">
+    <p>page one</p>
+  </Page>
+);
+
+const PageTwo = () => (
+  <Page
+    title="page two"
+    >
+    <p>page two</p>
+  </Page>
+);
+
+const initialValues = {
+  firstName: '', 
+  lastName: '', 
+  email: '', 
+  street: '', 
+  streetTwo: '', 
+  streetThree: '', 
+  state: '', 
+  zipcode: ''
+};
 
 describe('Routing - Page', () => {
-  test('is navigable', () => {
-    const { queryByText } = render(
-      <BrowserRouter>
-        <Switch>
-          <Page path="/my-page" title="My page">
-            <div>I am a child!</div>
-            <div>Me too!</div>
-          </Page>
 
-          <Route path="/">
-            <h1>Intro page</h1>
-            <Link to="my-page">Go to my page</Link>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+  test('switches page content', async() => {
+    const { container } = render(
+      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>
+        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+          <Route index element={<PageOne />} />
+          <Route path="/page-two" element={<PageTwo />} />
+        </FormRouterInternal>
+      </MemoryRouter>
     );
-    expect(queryByText(/Intro page/i)).not.toBeNull();
-    expect(queryByText('My page')).toBeNull();
+    act(() => {
+      const goLink = container.querySelector('button.next');
+      goLink?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
 
-    userEvent.click(queryByText('Go to my page'));
+    await waitFor(() => expect(container.querySelector('h3')?.innerHTML).toContain('page two'));
+  });
 
-    expect(queryByText('My page')).not.toBeNull();
-    expect(queryByText('Intro page')).toBeNull();
+  test('switches page content to go back a page', async() => {
+    const { container } = render(
+      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={1}>
+        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+          <Route index element={<PageOne />} />
+          <Route path="/page-two" element={<PageTwo />} />
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      const goLink = container.querySelector('button.prev');
+      goLink?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    await waitFor(() => expect(container.querySelector('h3')?.innerHTML).toContain('page one'));
   });
 });

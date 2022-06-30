@@ -1,34 +1,106 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import {
-  TextField,
   CheckboxField,
-  DateField,
   DebuggerView,
+  TextField,
+  CheckboxFieldGroup,
+  FullNameField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
-import '@department-of-veterans-affairs/component-library/dist/main.css';
-import { defineCustomElements } from '@department-of-veterans-affairs/component-library';
+const checkboxProps = {
+  label: 'Military Service Details',
+  name: 'serviceStatus',
+  id: '12',
+  /**
+   * If `required` is true, the default message will be used. If `required` is a
+   * string, it will be used as the error message.
+   */
+  required: true,
+  values: {},
+  options: [
+    {
+      name: 'purpleHeartRecipient',
+      label: 'Purple Heart award recipient',
+      required: false,
+    },
+    {
+      name: 'isFormerPow',
+      label: 'Former Prisoner of War',
+      required: false,
+    },
+    {
+      name: 'postNov111998Combat',
+      label: 'Served in combat theater of operations after November 11, 1998',
+      required: false,
+    },
+    {
+      name: 'disabledInLineOfDuty',
+      label: 'Discharged or retired from the military for a disability incurred in the line of duty',
+      required: false,
+    },
+    {
+      name: 'sawAsiaCombat',
+      label: 'Served in Southwest Asia during the Gulf War between August 2, 1990, and Nov 11, 1998',
+      required: false,
+    },
+    {
+      name: 'vietnamService',
+      label: 'Served in Vietnam between January 9, 1962, and May 7, 1975',
+      required: false,
+    },
+    {
+      name: 'exposedToRadiation',
+      label: 'Exposed to radiation while in the military',
+      required: false,
+    },
+    {
+      name: 'radiumTreatments',
+      label: 'Received nose/throat radium treatments while in the military',
+      required: false,
+    },
+    {
+      name: 'campLejeune',
+      label: 'Received nose/throat radium treatments while in the military',
+      required: false,
+    },
+  ],
+};
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-void defineCustomElements();
-
-const App = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
+const SimpleApp = () => (
+  <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
     <h1>Example form</h1>
-    <Formik initialValues={{ foo: '', bar: true, baz: '' }}>
+    <Formik
+      initialValues={{
+        email: "",
+        serviceStatus: {
+          purpleHeartRecipient: false,
+          isFormerPow: false,
+          postNov111998Combat: false,
+          disabledInLineOfDuty: false,
+          sawAsiaCombat: false,
+          vietnamService: false,
+          exposedToRadiation: false,
+          radiumTreatments: false,
+          campLejeune: false,
+        },
+        contactMethod: null,
+      }}
+    >
       <Form>
-        <TextField name="foo" label="Example" required />
         <CheckboxField name="bar" label="Do you have pets?" required />
-        <DateField name="baz" required />
+        <TextField name="foo" label="Example" required />
+        <CheckboxFieldGroup {...checkboxProps} />
+        <FullNameField name="fullName" label="fullName"/>
+        <button type="submit" className="btn">
+          {' '}
+          submit
+        </button>
         <DebuggerView />
       </Form>
     </Formik>
   </div>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default SimpleApp;

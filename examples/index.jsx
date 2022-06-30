@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import BurialApp from './burial-form';
 
-const App = () => (
-  <div
-    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}
-  >
-    <h1>VA Forms System Core Examples</h1>
-    <ul>
-      <li>
-        <a href="simple-form">Simple form</a>
-      </li>
-      <li>
-        <a href="multipage-form">Multipage form</a>
-      </li>
-    </ul>
-  </div>
-);
+import '@department-of-veterans-affairs/component-library/dist/main.css';
+import './form-styles.css';
+import {defineCustomElements} from '@department-of-veterans-affairs/component-library';
+import schema from './burial-form/schema';
+import {transformJSONSchema} from "@department-of-veterans-affairs/va-forms-system-core/utils/helpers";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+void defineCustomElements();
+
+const schemaKeys = transformJSONSchema(schema);
+
+const Main = () => {
+  return (
+    <>
+      <BurialApp basename="/" initialValues={schemaKeys} />
+    </>
+  )
+}
+
+ReactDOM.render(<Main/>, document.getElementById('root'));
