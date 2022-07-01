@@ -69,11 +69,15 @@ export default function Page(props: PageProps): JSX.Element {
         <button
           className="btn usa-button-primary next"
           onClick={(event) => {
-            state.handleSubmit();
-            navigate(nextRoute as To);
+            if (Object.keys(state.errors).length > 0) {
+              state.handleSubmit();
+              event.preventDefault();
+            } else {
+              state.handleSubmit();
+              navigate(nextRoute as To);
+            }
           }}
           type="submit"
-          disabled={Object.keys(state.errors).length > 0}
         >
           {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'}{' '}
           <i className="fas fa-angle-double-right" />
