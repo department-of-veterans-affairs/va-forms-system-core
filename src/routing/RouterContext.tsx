@@ -1,4 +1,4 @@
-import { useField, useFormikContext } from 'formik';
+import { useField } from 'formik';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import {
   createRoutesFromChildren,
@@ -112,7 +112,6 @@ export const getNextRoute = (routes: RouteInfo[], currentPath: string) => {
 export function RouterContextProvider(props: RouterContextProps): JSX.Element {
   const routeObjects = createRoutesFromChildren(props.routes),
     listOfRoutes = routeObjectsReducer(routeObjects);
-  const context = useFormikContext();
 
   const [route, updateRoute] = useState('/');
   const currentLocation = useLocation();
