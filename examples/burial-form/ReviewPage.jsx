@@ -4,6 +4,7 @@ import {Link, useLocation} from 'react-router-dom';
 import {VaOnThisPage} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
 import {parseDate} from "@department-of-veterans-affairs/va-forms-system-core/utils/helpers";
+import { getRadioLabel } from './utils'
 
 /**
  * Transforms fields value into value that is more readable
@@ -134,7 +135,7 @@ export default function ReviewPage(props) {
           },
           "relationship": {
             label: "Relationship to the Veteran",
-            value: state.values?.relationship?.type
+            value: getRadioLabel(state.values?.relationship?.type)
           },
           "relationship.other": {
             label: "If other, please specify",

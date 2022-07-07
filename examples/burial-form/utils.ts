@@ -1,4 +1,5 @@
 import { isBefore } from 'date-fns';
+import { RadioLabels } from './data';
 
 export const isBeforeDate = (
   dateOne: Date,
@@ -23,3 +24,7 @@ export const stringToBoolean = (value: string): boolean => {
       return Boolean(value);
   }
 };
+
+export const getRadioLabel = (objectKey: string): string => {
+  return RadioLabels[objectKey as keyof typeof RadioLabels]
+}
