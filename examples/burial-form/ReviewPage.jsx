@@ -208,8 +208,7 @@ export default function ReviewPage(props) {
           },
           "locationOfDeath.location": {
             label: "Where did the Veteran's death occur?",
-            // Label of option is set in BurialInformation component instead of value
-            value: state.values?.locationOfDeath.locationLabel
+            value: getRadioLabel(state.values?.locationOfDeath?.location)
           },
           "locationOfDeath.other": {
             label: "If other, please specify",
@@ -327,8 +326,9 @@ export default function ReviewPage(props) {
         fields: {
           "burialAllowanceRequested": {
             label: "Type of burial allowance requested",
-            // Label of option is set in BurialAllowance component instead of value
-            value: state?.values?.burialAllowanceRequestedLabel
+            value: getRadioLabel(state?.values?.burialAllowanceRequested)
+            // // Label of option is set in BurialAllowance component instead of value
+            // value: state?.values?.burialAllowanceRequestedLabel
           },
           "previouslyReceivedAllowance": {
             label: "Did you previously receive a VA burial allowance?",
