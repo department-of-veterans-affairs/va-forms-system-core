@@ -45,7 +45,7 @@ describe('Form Builder - DateField', () => {
     expect(input.getAttribute('error')).toEqual('Please provide a response');
   });
 
-  test.skip('updates the formik state', async () => {
+  test('updates the formik state', async () => {
     const rf = buildRenderForm({ dateOfBirth: '2022-05-20' });
     const { container, getFormProps } = rf(
       <DateField name="dateOfBirth" label="Date of Birth" />

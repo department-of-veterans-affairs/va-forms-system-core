@@ -73,12 +73,13 @@ describe('Form Builder - TextField', () => {
     expect(spy).toBeCalled();
   });
 
-  test.skip('updates the formik state', async () => {
+  test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
     const { container, getFormProps } = rf(
       <TextField name="thing" label="The Thing" />
     );
     const input = getInput(container);
+
     await changeValue(input, 'asdf');
     expect(getFormProps().values).toEqual({ thing: 'asdf' });
   });
