@@ -1,5 +1,5 @@
 import { isBefore } from 'date-fns';
-import { RadioLabels } from './data';
+import { RadioLabels } from './constants';
 
 export const isBeforeDate = (
   dateOne: Date,
@@ -25,6 +25,12 @@ export const stringToBoolean = (value: string): boolean => {
   }
 };
 
-export const getRadioLabel = (objectKey: string): string => {
-  return RadioLabels[objectKey as keyof typeof RadioLabels]
+/**
+ * 
+ * To show a readable label on review page we extract label based on the value.
+ * This method returns the label from value stored in formik.
+ * 
+ * */
+export const getRadioLabel = (value: string): string => {
+  return RadioLabels[value as keyof typeof RadioLabels]
 }
