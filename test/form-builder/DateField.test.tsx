@@ -51,7 +51,7 @@ describe('Form Builder - DateField', () => {
       <DateField name="dateOfBirth" label="Date of Birth" />
     );
     const input = getInput(container);
-    await changeValue(input, '2021-08-28');
+    await changeValue(input, '2021-08-28', 'dateChange');
     expect(getFormProps().values).toEqual({ dateOfBirth: '2021-08-28' });
   });
 });

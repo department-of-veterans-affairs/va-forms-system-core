@@ -84,9 +84,9 @@ describe('Form Builder - FullNameField', () => {
     const { firstNameInput, middleNameInput, lastNameInput, suffixSelect } =
       getInputs(container);
 
-    await changeValue(firstNameInput, 'Tony');
-    await changeValue(middleNameInput, 'H');
-    await changeValue(lastNameInput, 'Stark');
+    await changeValue(firstNameInput, 'Tony', 'input');
+    await changeValue(middleNameInput, 'H', 'input');
+    await changeValue(lastNameInput, 'Stark', 'input');
     await changeValue(suffixSelect, 'Jr', 'vaSelect');
 
     expect(getFormProps().values).toEqual({

@@ -31,7 +31,7 @@ const getInputs = (container: HTMLElement) => {
     stateInput: container.querySelector('#homeAddressState') as HTMLElement,
     postalCodeInput: container.querySelector('#homeAddressPostalCode') as HTMLElement
   })
-} 
+}
 
 describe('Form Builder - AddressField', () => {
   test('renders', async () => {
@@ -72,7 +72,7 @@ describe('Form Builder - AddressField', () => {
       stateInput,
       postalCodeInput
     } = getInputs(container);
-    
+
     await waitFor(() => {
       expect(isMilitaryBaseOutsideInput.getAttribute('value')).toEqual('false');
       expect(countryInput.getAttribute('value')).toEqual('USA');
@@ -128,12 +128,12 @@ describe('Form Builder - AddressField', () => {
       postalCodeInput
     } = getInputs(container);
 
-    await changeValue(streetAddressInput, '015 The another st')
-    await changeValue(streetAddressLine2Input, 'Behind bank')
-    await changeValue(streetAddressLine3Input, 'In front of shop')
-    await changeValue(cityInput, 'Panama')
+    await changeValue(streetAddressInput, '015 The another st', 'input')
+    await changeValue(streetAddressLine2Input, 'Behind bank', 'input')
+    await changeValue(streetAddressLine3Input, 'In front of shop', 'input')
+    await changeValue(cityInput, 'Panama', 'input')
     await changeValue(stateInput, 'IL', 'vaSelect')
-    await changeValue(postalCodeInput, '12345')
+    await changeValue(postalCodeInput, '12345', 'input')
 
     expect(getFormProps().values).toEqual({
       homeAddress: {
@@ -163,7 +163,7 @@ describe('Form Builder - AddressField', () => {
 
     const {stateInput} = getInputs(container);
 
-    await changeValue(stateInput, 'Bahai');
+    await changeValue(stateInput, 'Bahai', 'input');
 
     expect(stateInput.getAttribute('label')).toEqual('State/Province/Region');
     expect(getFormProps().values).toEqual({

@@ -80,7 +80,7 @@ describe('Form Builder - TextField', () => {
     );
     const input = getInput(container);
 
-    await changeValue(input, 'asdf');
+    await changeValue(input, 'asdf', 'input');
     expect(getFormProps().values).toEqual({ thing: 'asdf' });
   });
 });

@@ -1,8 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Formik, FormikProps, FormikConfig } from 'formik';
-import { fireEvent, waitFor } from '@testing-library/react';
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { Formik, FormikConfig, FormikProps } from 'formik';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
@@ -49,10 +47,17 @@ export const changeValue = async (
   value: string | boolean,
   eventName = 'vaChange'
 ): Promise<void> => {
-  const user = userEvent.setup();
-  await user.type(el, value);
+  if (typeof value === 'string') {
+    el.value = value;
+  } else if (typeof value === 'boolean') {
+    (el as HTMLInputElement).checked = value;
+  }
 
   await waitFor(() => {
-    fireEvent(el, new CustomEvent(eventName));
+    if (fireEvent.hasOwnProperty(eventName)) {
+      fireEvent[eventName](el, { value });
+    } else {
+      fireEvent(el, new CustomEvent(eventName));
+    }
   });
 };
