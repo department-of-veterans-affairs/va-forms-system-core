@@ -40,7 +40,7 @@
     "@size-limit/preset-small-lib": "^5.0.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^14.2.0",
+    "@testing-library/user-event": "^13.2.1",
     "@types/express": "^4.17.13",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.171",
