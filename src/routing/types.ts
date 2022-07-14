@@ -45,6 +45,29 @@ export interface RouteInfo {
   isShown?: boolean | null;
 }
 
+export interface FieldObject {
+  name: string;
+  label: string;
+  value: string;
+  children?: FieldObject[];
+}
+
+export interface PageObject {
+  id: string;
+  title: string;
+  path: string;
+  fields: FieldObject[];
+}
+
+export interface IPageContext {
+  listOfPages: PageObject[];
+  setListOfPages: (pages: PageObject[]) => void;
+}
+
+export interface PageContextProps {
+  children: ReactElement<any, any> | ReactElement<any, any>[];
+}
+
 /**
  * Properties for Router Context
  *
@@ -56,6 +79,7 @@ export interface IRouterContext {
   previousRoute: string | null;
   nextRoute: string | null;
 }
+
 /**
  * The properties for the Page React component
  *
