@@ -90,6 +90,7 @@ export interface PageProps {
   title: string;
   hidePreviousButton: boolean;
   nextButtonCustomText?: string;
+  nextButtonDescribedBy?: string;
 }
 
 /**
