@@ -71,8 +71,8 @@ const AddressField = (props: AddressProps): JSX.Element => {
     onCountryChange();
   }, [addressData.country]);
 
-  return (
-    <div id={`${field.name}`}>
+  const component = (
+    <>
       <CheckboxField
         id={`${field.name}IsMilitaryBaseOutside`}
         name={`${field.name}.isMilitaryBaseOutside`}
@@ -201,8 +201,23 @@ const AddressField = (props: AddressProps): JSX.Element => {
         onChange={field.onChange}
         required
       />
-    </div>
+    </>
   );
+
+  let componentWrapper = <div id={`${field.name}`}>{component}</div>;
+
+  // Wrap the component in a fieldset and render the legend if the prop is defined
+  if (props.legend) {
+    componentWrapper = (
+      <fieldset id={`${field.name}`}>
+        <legend className={props.legendClasses}>{props.legend}</legend>
+
+        {component}
+      </fieldset>
+    );
+  }
+
+  return componentWrapper;
 };
 
 export default AddressField;
