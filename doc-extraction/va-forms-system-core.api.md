@@ -36,7 +36,10 @@ export interface Address {
 export const AddressField: (props: AddressProps) => JSX.Element;
 
 // @public (undocumented)
-export type AddressProps = FieldProps<string>;
+export type AddressProps = FieldProps<string> & {
+    legend: string;
+    legendClasses: string;
+};
 
 // @beta
 export function Chapter(props: ChapterProps): JSX.Element;
@@ -118,7 +121,10 @@ export interface FormTitleProps {
 export const FullNameField: (props: FullNameProps) => JSX.Element;
 
 // @public (undocumented)
-export type FullNameProps = FieldProps<string>;
+export type FullNameProps = FieldProps<string> & {
+    legend: string;
+    legendClasses: string;
+};
 
 // @beta
 export interface IFormData {
@@ -165,6 +171,8 @@ export interface PageProps {
     hidePreviousButton: boolean;
     // (undocumented)
     nextButtonCustomText?: string;
+    // (undocumented)
+    nextButtonDescribedBy?: string;
     // (undocumented)
     title: string;
 }
