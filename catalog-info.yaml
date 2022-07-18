@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: va-forms-system-core
+  description: This is the second generation of the forms library, which is the production system most forms are built with inside of vets-website.
+  annotations:
+    github.com/project-slug: department-of-veterans-affairs/va-forms-system-core
+  tags:
+    - javascript
+    - typescript
+    - react
+    - formik
+spec:
+  type: library
+  owner: pst-forms-library
+  lifecycle: production

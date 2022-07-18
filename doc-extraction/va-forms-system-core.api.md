@@ -166,6 +166,8 @@ export interface PageProps {
     // (undocumented)
     nextButtonCustomText?: string;
     // (undocumented)
+    nextButtonDescribedBy?: string;
+    // (undocumented)
     title: string;
 }
 
