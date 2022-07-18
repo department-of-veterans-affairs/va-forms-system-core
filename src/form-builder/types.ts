@@ -71,7 +71,9 @@ export interface OMBInfoProps {
  */
 export type FullNameProps = FieldProps<string>;
 
-export type AddressProps = FieldProps<string>;
+export type AddressProps = FieldProps<string> & {
+  children: JSX.Element;
+};
 
 export interface Address {
   isMilitaryBaseOutside?: boolean;
