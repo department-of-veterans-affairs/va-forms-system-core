@@ -31,14 +31,45 @@ const TYPES = [
   'TextField',
 ];
 
-const matchType = (type: React.JSXElementConstructor<any>) => {
-  if ((type )?.name) {
-    TYPES.forEach((item) => {
-      if ((type ).name === item) return true;
-    });
+const matchType = (elementType: React.JSXElementConstructor<any>) => {
+  let typeMatch = null;
+
+  if (elementType?.name) {
+    for (let i = 0; i < TYPES.length; i++) {
+      if (elementType.name === TYPES[i]) {
+        typeMatch = true;
+        break;
+      }
+    }
   }
-  return null;
+  return typeMatch;
 };
+
+export function createOptionsFromChildren(children: React.ReactNode) {
+  let options: {
+    key: string;
+    label: string;
+  }[] = [];
+
+  React.Children.forEach(children, (element) => {
+    if (!React.isValidElement(element)) {
+      // Ignore non-elements. This allows people to more easily inline
+      // conditionals in their route config.
+      return;
+    }
+
+    if (element.props?.children?.length > 0) {
+      const option = {
+        key: element.key as string,
+        label: element.props.children as string,
+      };
+
+      options = [...options, option];
+    }
+  });
+
+  return options;
+}
 
 export function createFieldDataFromChildren(
   children: React.ReactNode
@@ -76,8 +107,13 @@ export function createFieldDataFromChildren(
       value: '',
     };
 
-    if (element.props.children) {
+    if (
+      element.props.children &&
+      (element.type as JSXElementConstructor<any>)?.name !== 'SelectField'
+    ) {
       field.children = createFieldDataFromChildren(element.props.children);
+    } else if (element.props.children) {
+      field.options = createOptionsFromChildren(element.props.children);
     }
 
     fields.push(field);

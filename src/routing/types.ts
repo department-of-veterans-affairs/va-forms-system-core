@@ -50,6 +50,10 @@ export interface FieldObject {
   label: string;
   value: string;
   children?: FieldObject[];
+  options?: {
+    key: string;
+    label: string;
+  }[];
 }
 
 export interface PageObject {
