@@ -7,7 +7,10 @@
 <b>Signature:</b>
 
 ```typescript
-export declare type AddressProps = FieldProps<string>;
+export declare type AddressProps = FieldProps<string> & {
+    legend: string;
+    legendClasses: string;
+};
 ```
 <b>References:</b> [FieldProps](./va-forms-system-core.fieldprops.md)
 
