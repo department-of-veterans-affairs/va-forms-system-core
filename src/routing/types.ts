@@ -8,7 +8,6 @@ import { FormikHelpers, FormikValues } from 'formik';
  */
 export interface RouterProps {
   children: ReactElement<any, any> | ReactElement<any, any>[];
-  basename: string;
   title: string;
   subtitle?: string;
   transformForSubmit?: (
