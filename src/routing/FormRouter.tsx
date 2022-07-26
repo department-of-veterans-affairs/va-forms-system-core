@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes } from 'react-router-dom';
 import { Formik } from 'formik';
-import { RouterProps } from './types';
+import { FormRouterProps } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
@@ -13,7 +13,7 @@ import RouterProgress from './RouterProgress';
  * Parent formik insance is rendered here
  * @beta
  */
-export default function FormRouter(props: RouterProps): JSX.Element {
+export default function FormRouter(props: FormRouterProps): JSX.Element {
   const initialValues = props.formData;
 
   return (
