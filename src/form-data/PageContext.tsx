@@ -5,9 +5,9 @@ import {
   PageContextProps,
   PageObject,
   FieldObject,
-} from './types';
+} from '../routing/types';
 
-import Page from './Page';
+import Page from '../routing/Page';
 import { update } from 'lodash';
 
 const getPageFields = (children: React.ReactNode): FieldObject[] => {

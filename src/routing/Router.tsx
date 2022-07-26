@@ -7,7 +7,7 @@ import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
 import { RouterContextProvider } from './RouterContext';
 import RouterProgress from './RouterProgress';
-import { PageContextProvider } from './PageContext';
+import { PageContextProvider } from '../form-data/PageContext';
 
 /**
  * Manages form pages as routes

@@ -48,7 +48,7 @@ export interface RouteInfo {
 export interface FieldObject {
   name: string;
   label: string;
-  value: string;
+  value?: boolean | string | undefined | number | null;
   children?: FieldObject[];
   options?: {
     key: string;
@@ -92,7 +92,7 @@ export interface IRouterContext {
 export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
   title: string;
-  hidePreviousButton: boolean;
+  hidePreviousButton?: boolean;
   nextButtonCustomText?: string;
   nextButtonDescribedBy?: string;
 }
