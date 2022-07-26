@@ -1421,33 +1421,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@npm:^10.6.0-1":
-  version: 10.6.0-1
-  resolution: "@department-of-veterans-affairs/component-library@npm:10.6.0-1"
+"@department-of-veterans-affairs/component-library@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@department-of-veterans-affairs/component-library@npm:11.0.0"
   dependencies:
-    "@department-of-veterans-affairs/react-components": 6.1.3
-    "@department-of-veterans-affairs/web-components": 4.5.0-1
+    "@department-of-veterans-affairs/react-components": 7.0.0
+    "@department-of-veterans-affairs/web-components": 4.7.0
     i18next: ^21.6.14
     i18next-browser-languagedetector: ^6.1.4
     react-focus-on: ^3.5.1
-    react-scroll: ^1.7.16
     react-transition-group: ^1.0.0
   peerDependencies:
     "@department-of-veterans-affairs/formation": "*"
     react: ^17
     react-dom: "*"
-  checksum: 5f01494e250a6f20f92e913ae784162545f3fed8695d4cd06dedc28cfda201427a996c46fc5f28ec1a984faeef0bc7c9d5753348d87d66c33e94892198884d34
+  checksum: 42be595b2a5742bf6db78533d785347cb57d5ab3458caa424ae0c0052b9085ce3a305bfde5424b289f4fdc36b58964978cd3e54290c63b3629ba57c4f7ed38ca
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/react-components@npm:6.1.3":
-  version: 6.1.3
-  resolution: "@department-of-veterans-affairs/react-components@npm:6.1.3"
+"@department-of-veterans-affairs/react-components@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@department-of-veterans-affairs/react-components@npm:7.0.0"
   dependencies:
     classnames: ^2.2.6
     prop-types: ^15.6.2
     react-focus-on: ^3.5.1
-    react-scroll: ^1.7.16
     react-transition-group: 1
     recast: ^0.14.4
   peerDependencies:
@@ -1456,7 +1454,7 @@ __metadata:
     i18next-browser-languagedetector: "*"
     react: ^17
     react-dom: "*"
-  checksum: fe89ad27561dde78ad5c6eac6e8a88317cb9c8b34b161a6a4146b548e75e08dfe405c72efcae4e79ae6d0d0c53676ca3927f7cd77cd500d75019f4c6e8bbb5ed
+  checksum: 6165cae9ab4451634d094f77d565d75e3e182d6d6150a8c5e9f4a2c7379b520abf49bd18c021798654c6798f765bad2a64aac648a060bb7616e422b7057acc56
   languageName: node
   linkType: hard
 
@@ -1468,7 +1466,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": ^10.6.0-1
+    "@department-of-veterans-affairs/component-library": ^11.0.0
     "@microsoft/api-documenter": ^7.13.41
     "@microsoft/api-extractor": ^7.18.6
     "@size-limit/preset-small-lib": ^5.0.1
@@ -1518,9 +1516,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@department-of-veterans-affairs/web-components@npm:4.5.0-1":
-  version: 4.5.0-1
-  resolution: "@department-of-veterans-affairs/web-components@npm:4.5.0-1"
+"@department-of-veterans-affairs/web-components@npm:4.7.0":
+  version: 4.7.0
+  resolution: "@department-of-veterans-affairs/web-components@npm:4.7.0"
   dependencies:
     "@stencil/core": ^2.10.0
     aria-hidden: ^1.1.3
@@ -1531,7 +1529,7 @@ __metadata:
     "@department-of-veterans-affairs/formation": ^7.0.1
     i18next: "*"
     i18next-browser-languagedetector: "*"
-  checksum: 6c38bd327fd87366d8040f1bd3c331c5ca291f13005ba32bc24bc0b46b662aa4f60b71e5b823dedd7f8d3a35976307bd64034add009561a340d95556f8be5f3a
+  checksum: 8d4be95c5d32cef24561d6e78c04168e48408559388226857d5a03be0d5545fe20b527a2be1367ba17069c9c213aef37550ce73466e78cfcbf09ce18cdc09649
   languageName: node
   linkType: hard
 
@@ -10730,13 +10728,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash.throttle@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "lodash.throttle@npm:4.1.1"
-  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
-  languageName: node
-  linkType: hard
-
 "lodash.truncate@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.truncate@npm:4.4.2"
@@ -12821,7 +12812,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.6, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.6, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -13147,19 +13138,6 @@ fsevents@^1.2.7:
   peerDependencies:
     react: ">=16.8"
   checksum: 7be673f5e72104be01e6ab274516bdb932efd93305243170690f6560e3bd1035dd1df3d3c9ce1e0f452638a2529f43a1e77dcf0934fc8031c4783da657be13ca
-  languageName: node
-  linkType: hard
-
-"react-scroll@npm:^1.7.16":
-  version: 1.8.7
-  resolution: "react-scroll@npm:1.8.7"
-  dependencies:
-    lodash.throttle: ^4.1.1
-    prop-types: ^15.7.2
-  peerDependencies:
-    react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 37714995f120bcc781e4a445c0e9bd4b7f673674c84e851a96493878fe804799e1ff8ce3ead4c8aa1b5eb3bb039e043ff029607196d269a75c39d9257a372e7f
   languageName: node
   linkType: hard
 

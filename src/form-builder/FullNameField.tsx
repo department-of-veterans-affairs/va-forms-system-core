@@ -17,7 +17,7 @@ const FullNameField = (props: FullNameProps): JSX.Element => {
     lastNameLabel: `${label} last name`,
   };
 
-  return (
+  const component = (
     <ComponentReader fieldName={fieldName}>
       <TextField
         id={`${fieldName}FirstName`}
@@ -47,6 +47,19 @@ const FullNameField = (props: FullNameProps): JSX.Element => {
       </SelectField>
     </ComponentReader>
   );
+
+  // If a legend prop is defined, then wrap the component in a fieldset element and render the legend
+  if (props.legend) {
+    return (
+      <fieldset>
+        <legend className={props.legendClasses}>{props.legend}</legend>
+
+        {component}
+      </fieldset>
+    );
+  }
+
+  return component;
 };
 
 export default FullNameField;

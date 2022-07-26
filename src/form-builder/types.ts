@@ -69,10 +69,15 @@ export interface OMBInfoProps {
  * ```
  *
  */
-export type FullNameProps = FieldProps<string>;
+export type FullNameProps = FieldProps<string> & {
+  legend: string;
+  legendClasses: string;
+};
 
 export type AddressProps = FieldProps<string> & {
   children: JSX.Element;
+  legend: string;
+  legendClasses: string;
 };
 
 export interface Address {

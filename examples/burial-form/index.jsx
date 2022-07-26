@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import {Navigate, Route, useLocation} from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Route} from 'react-router-dom'
 import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
@@ -31,11 +31,11 @@ const BurialApp = (props) => {
 
   return (
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
-      <FormRouter basename={props.basename}
+      <FormRouter
         formData={props.initialValues}
         title="Burials Example"
         transformForSubmit={mapProps}
-        >
+      >
         <Route index element={<BurialIntroduction title="Introduction Page" />} />
         <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />
         <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />

@@ -6,9 +6,8 @@ import { FormikHelpers, FormikValues } from 'formik';
  *
  * @beta
  */
-export interface RouterProps {
+export interface FormRouterProps {
   children: ReactElement<any, any> | ReactElement<any, any>[];
-  basename: string;
   title: string;
   subtitle?: string;
   transformForSubmit?: (

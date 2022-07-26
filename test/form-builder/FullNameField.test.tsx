@@ -33,6 +33,10 @@ const getInputs = (container: HTMLElement) => {
   };
 };
 
+const getLegend = (container: HTMLElement) => {
+  return { legend: container.querySelector('legend') as HTMLElement };
+};
+
 describe('Form Builder - FullNameField', () => {
   test('renders', () => {
     const { container } = renderForm(
@@ -57,6 +61,23 @@ describe('Form Builder - FullNameField', () => {
     expect(middleNameInput.getAttribute('value')).toEqual('W');
     expect(lastNameInput.getAttribute('value')).toEqual('Webb');
     expect(suffixSelect.getAttribute('value')).toEqual('Sr');
+  });
+
+  test('renders a fieldset and legend element with a class', () => {
+    const { container } = renderForm(
+      <FullNameField
+        name="veteranFullName"
+        label="your"
+        legend="test legend"
+        legendClasses="sr-only"
+      />
+    );
+
+    const { legend } = getLegend(container);
+
+    expect(legend.parentElement?.tagName).toEqual('FIELDSET');
+    expect(legend.classList.contains('sr-only')).toBe(true);
+    expect(legend.innerHTML).toEqual('test legend');
   });
 
   test('renders the default "required" validation error message', async () => {
