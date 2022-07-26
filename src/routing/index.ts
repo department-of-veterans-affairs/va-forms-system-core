@@ -1,5 +1,5 @@
 export { default as Page } from './Page';
-export { default as FormRouter } from './Router';
+export { default as FormRouter } from './FormRouter';
 export { RouterContext } from './RouterContext';
 export { ConditionalRoute } from './ConditionalRoute';
 
