@@ -156,6 +156,7 @@ function ComponentReader(props: {
   children: JSX.Element | JSX.Element[] | Element;
 }): JSX.Element {
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const childrenLength = React.Children.count(props.children);
 
   useEffect(() => {
     const listOfPagesCopy = listOfPages;
@@ -173,7 +174,7 @@ function ComponentReader(props: {
     if (listOfPagesCopy.length > 0) {
       setListOfPages(listOfPagesCopy);
     }
-  }, [props.fieldName, props.children]);
+  }, [props.fieldName, childrenLength]);
 
   return <>{props.children}</>;
 }

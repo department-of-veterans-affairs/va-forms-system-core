@@ -30,6 +30,7 @@ export default function Page(props: PageProps): JSX.Element {
   const state = useFormikContext();
   const currentLocation = useLocation();
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const childrenLength = React.Children.count(props.children);
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
 
@@ -68,7 +69,7 @@ export default function Page(props: PageProps): JSX.Element {
       listOfPagesCopy[pageIndex].fields = childItems;
       setListOfPages([...listOfPagesCopy]);
     }
-  }, [currentLocation.pathname, props.children]);
+  }, [currentLocation.pathname, childrenLength]);
 
   return (
     <div>

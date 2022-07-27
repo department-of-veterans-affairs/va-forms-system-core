@@ -10,10 +10,6 @@ import {
 import Page from '../routing/Page';
 import { update } from 'lodash';
 
-const getPageFields = (children: React.ReactNode): FieldObject[] => {
-  return [];
-};
-
 export function createPagesFromChildren(
   children: React.ReactNode,
   url = ''
@@ -32,16 +28,10 @@ export function createPagesFromChildren(
       (element.type as React.JSXElementConstructor<any>)?.name === 'Routes' ||
       (element.type as React.JSXElementConstructor<any>)?.name === 'Route'
     ) {
-      // Transparently support React.Fragment and its children.
-
       pages = [
         ...pages,
         ...createPagesFromChildren(element.props.children, ''),
       ];
-      // pages.push.apply(
-      //   pages,
-
-      // );
       return;
     }
 
@@ -58,7 +48,7 @@ export function createPagesFromChildren(
       title: element.props.title,
       id: '',
       path: '',
-      fields: getPageFields(element),
+      fields: [],
     };
 
     // if (element.props.children) {
