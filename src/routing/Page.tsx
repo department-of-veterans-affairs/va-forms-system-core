@@ -5,7 +5,7 @@ import {
   To,
   useSearchParams,
   useLocation,
-} from 'react-router-dom';
+} from 'react-router-dom-v5-compat';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
 

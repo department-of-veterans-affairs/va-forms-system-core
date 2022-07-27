@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { CompatRouter, Route } from 'react-router-dom-v5-compat'
 import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
@@ -32,6 +33,7 @@ const BurialApp = (props) => {
   return (
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
       <BrowserRouter basename={props.basename}>
+        <CompatRouter>
         <FormRouter
           formData={props.initialValues}
           title="Burials Example"
@@ -59,6 +61,7 @@ const BurialApp = (props) => {
           <Route path="/confirmation" element={<ConfirmationPage title="Claim submitted" />} />
           <Route path="*" element={<NoMatch name="No Routes for App" />} />
         </FormRouter>
+        </CompatRouter>
       </BrowserRouter>
     </div>
   )

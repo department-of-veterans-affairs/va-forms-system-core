@@ -1,6 +1,6 @@
 {
   "name": "@department-of-veterans-affairs/va-forms-system-core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Department of Veterans Affairs Forms System Core.",
   "main": "dist/index.js",
   "module": "dist/va-forms-system-core.cjs.production.min.js",
@@ -27,7 +27,8 @@
     "date-fns": "^2.28.0",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^5.3.0",
+    "react-router-dom-v5-compat": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
