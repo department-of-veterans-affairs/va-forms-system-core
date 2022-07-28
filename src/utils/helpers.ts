@@ -5,7 +5,7 @@
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path
  */
-export const buildPath = (...args: string[]): string => {
+const buildPath = (...args: string[]): string => {
   return args
     .map((part, i) => {
       if (i === 0) {
@@ -24,7 +24,7 @@ export const buildPath = (...args: string[]): string => {
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path with a leading "/"
  */
-export const buildRelativePath = (...args: string[]): string => {
+const buildRelativePath = (...args: string[]): string => {
   const path = buildPath(...args);
 
   return path.startsWith('/') ? path : `/${path}`;
@@ -166,46 +166,4 @@ export const CapitalizeFirstLetter = (value: string): string => {
 export const parseDate = (dateString: string): Date => {
   const [yyyy, mm, dd] = dateString.split('-').map((str) => parseInt(str));
   return new Date(yyyy, mm - 1, dd);
-};
-
-export const StringifyFormReplacer = (key: string, value: any): unknown => {
-  // an object with country is an address
-  if (
-    typeof value?.country !== 'undefined' &&
-    (!value.street || !value.city || (!value.postalCode && !value.zipcode))
-  ) {
-    return undefined;
-  }
-
-  // converting string to boolean
-  if (value === 'false' || value === 'true') {
-    value = value === 'false' ? false : true;
-  }
-
-  // TODO: flaten checkbox values to match existing data model to submit to vets api
-
-  // clean up empty objects, which we have no reason to send
-  if (typeof value === 'object') {
-    const fields = Object.keys(value || {});
-    if (
-      fields.length === 0 ||
-      fields.every(
-        (field) =>
-          value[field] === undefined ||
-          value[field] === '' ||
-          value[field] === ''
-      )
-    ) {
-      return undefined;
-    }
-  }
-
-  // Clean up empty objects in arrays
-  if (Array.isArray(value)) {
-    const newValues = value.filter((v) => !!StringifyFormReplacer(key, v));
-    // If every item in the array is cleared, remove the whole array
-    return newValues.length > 0 ? newValues : undefined;
-  }
-
-  return value;
 };

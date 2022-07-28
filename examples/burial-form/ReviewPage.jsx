@@ -3,7 +3,7 @@ import {useFormikContext} from 'formik';
 import {Link, useLocation} from 'react-router-dom';
 import {VaOnThisPage} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
-import {parseDate} from "@department-of-veterans-affairs/va-forms-system-core/utils/helpers";
+import {parseDate} from "@department-of-veterans-affairs/va-forms-system-core";
 import { getRadioLabel } from './utils'
 
 /**

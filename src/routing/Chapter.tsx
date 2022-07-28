@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom-v5-compat';
 import { ChapterProps } from './types';
 
 /**

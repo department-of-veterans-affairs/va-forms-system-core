@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import { ReactElement, useContext } from 'react';
-import { Navigate, To, useLocation } from 'react-router-dom';
+import { Navigate, To, useLocation } from 'react-router-dom-v5-compat';
 import { getNextRoute, RouterContext } from './RouterContext';
 import { RouteInfo } from './types';
 

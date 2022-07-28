@@ -4,7 +4,7 @@ import {
   createRoutesFromChildren,
   RouteObject,
   useLocation,
-} from 'react-router-dom';
+} from 'react-router-dom-v5-compat';
 import { IRouterContext, RouteInfo, RouterContextProps } from './types';
 
 const RouterContextDefaultState = {
