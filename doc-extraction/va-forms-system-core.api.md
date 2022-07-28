@@ -188,9 +188,6 @@ export interface IRouterContext {
     previousRoute: string | null;
 }
 
-// @public (undocumented)
-export const NumberField: (props: FieldProps<string>) => JSX.Element;
-
 // @public
 export const isValidDate: <T>(dateString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
 
@@ -214,6 +211,9 @@ export const MilitaryStates: {
     label: string;
     value: string;
 }[];
+
+// @public (undocumented)
+export const NumberField: (props: FieldProps<string>) => JSX.Element;
 
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
