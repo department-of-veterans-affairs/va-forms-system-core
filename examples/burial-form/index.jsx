@@ -21,10 +21,6 @@ const NoMatch = (props) => (
 );
 
 
-
-const mapProps = (values, actions) => {
-}
-
 const BurialApp = (props) => {
   // Let users extract and use formData here
   // initialValues would ideally be provided by a json-schema
@@ -34,7 +30,6 @@ const BurialApp = (props) => {
       <FormRouter basename={props.basename}
         formData={props.initialValues}
         title="Burials Example"
-        transformForSubmit={mapProps}
         >
         <Route index element={<BurialIntroduction title="Introduction Page" />} />
         <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />
