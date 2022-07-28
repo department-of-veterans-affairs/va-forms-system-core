@@ -41,6 +41,18 @@ export type AddressProps = FieldProps<string> & {
     legendClasses: string;
 };
 
+// @public
+export const buildPath: (...args: string[]) => string;
+
+// @public
+export const buildRelativePath: (...args: string[]) => string;
+
+// @public (undocumented)
+export const CapitalizeFirstLetter: (value: string) => string;
+
+// @public (undocumented)
+export const chainValidations: <T>(props: FieldProps<T>, validations: ValidationFunction<T>[]) => (value: T) => ValidationFunctionResult<T>;
+
 // @beta
 export function Chapter(props: ChapterProps): JSX.Element;
 
@@ -80,6 +92,18 @@ export function ConditionalRoute(props: {
 }): React_2.ReactElement<any, any>;
 
 // @public (undocumented)
+export const Countries: {
+    value: string;
+    label: string;
+}[];
+
+// @public (undocumented)
+export const CountryUSA: {
+    value: string;
+    label: string;
+}[];
+
+// @public (undocumented)
 export const DateField: (props: DateProps) => JSX.Element;
 
 // @public (undocumented)
@@ -94,6 +118,9 @@ export const DebuggerView: () => JSX.Element;
 export const EmailField: (props: EmailProps) => JSX.Element;
 
 // @public (undocumented)
+export const emailRegex: RegExp;
+
+// @public (undocumented)
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
     label: string;
     id?: string;
@@ -104,7 +131,21 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
 export function FormFooter(): JSX.Element;
 
 // @beta
-export function FormRouter(props: RouterProps): JSX.Element;
+export function FormRouter(props: FormRouterProps): JSX.Element;
+
+// @beta
+export interface FormRouterProps {
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+    // (undocumented)
+    formData: IFormData;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title: string;
+    // (undocumented)
+    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
+}
 
 // @public
 export const FormTitle: (props: FormTitleProps) => JSX.Element;
@@ -126,6 +167,12 @@ export type FullNameProps = FieldProps<string> & {
     legendClasses: string;
 };
 
+// @public (undocumented)
+export const FUTURE_DATE_MESSAGE = "Please provide a valid current or past date";
+
+// @public (undocumented)
+export function getMessage(messagePath: string): string;
+
 // @beta
 export interface IFormData {
     // (undocumented)
@@ -146,6 +193,30 @@ export interface IRouterContext {
     // (undocumented)
     previousRoute: string | null;
 }
+
+// @public
+export const isValidDate: <T>(dateString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public
+export const isValidEmail: <T>(emailString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const isValidPhone: <T>(phoneString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public
+export const isValidSSN: <T>(ssnString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const MilitaryCities: {
+    label: string;
+    value: string;
+}[];
+
+// @public (undocumented)
+export const MilitaryStates: {
+    label: string;
+    value: string;
+}[];
 
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
@@ -176,6 +247,9 @@ export interface PageProps {
     // (undocumented)
     title: string;
 }
+
+// @public
+export const parseDate: (dateString: string) => Date;
 
 // Warning: (ae-forgotten-export) The symbol "PhoneProps" needs to be exported by the entry point index.d.ts
 //
@@ -211,6 +285,12 @@ export type RadioItemProps = {
     onRadioOptionSelected: () => void;
 };
 
+// @public (undocumented)
+export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const requiredValue: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
 // @beta
 export interface Routable {
     // (undocumented)
@@ -242,22 +322,6 @@ export interface RouterContextProps {
     routes: React.ReactElement | React.ReactElement[];
 }
 
-// @beta
-export interface RouterProps {
-    // (undocumented)
-    basename: string;
-    // (undocumented)
-    children: ReactElement<any, any> | ReactElement<any, any>[];
-    // (undocumented)
-    formData: IFormData;
-    // (undocumented)
-    subtitle?: string;
-    // (undocumented)
-    title: string;
-    // (undocumented)
-    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
-}
-
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
@@ -269,7 +333,44 @@ export const SelectField: (props: SelectProps) => JSX.Element;
 export const SSNField: (props: SSNProps) => JSX.Element;
 
 // @public (undocumented)
+export const States: {
+    CAN: {
+        label: string;
+        value: string;
+    }[];
+    MEX: {
+        label: string;
+        value: string;
+    }[];
+    USA: {
+        label: string;
+        value: string;
+    }[];
+};
+
+// @public (undocumented)
+export const States50AndDC: {
+    label: string;
+    value: string;
+}[];
+
+// @public (undocumented)
+export const Suffixes: string[];
+
+// @public (undocumented)
 export const TextField: (props: FieldProps<string>) => JSX.Element;
+
+// @public
+export const transformJSONSchema: (schema: any) => {};
+
+// @public (undocumented)
+export const UsaStates: string[];
+
+// @public (undocumented)
+export type ValidationFunction<T> = (value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export type ValidationFunctionResult<T> = void | undefined | string | Promise<unknown> | T;
 
 // (No @packageDocumentation comment for this package)
 
