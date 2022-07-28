@@ -212,6 +212,9 @@ export const MilitaryStates: {
     value: string;
 }[];
 
+// @public (undocumented)
+export const NumberField: (props: FieldProps<string>) => JSX.Element;
+
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
 

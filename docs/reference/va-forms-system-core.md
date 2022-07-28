@@ -58,6 +58,7 @@
 |  [isValidSSN](./va-forms-system-core.isvalidssn.md) | Conditions for valid SSN from the original 1010ez pdf form: '123456789' is not a valid SSN A value where the first 3 digits are 0 is not a valid SSN A value where the 4th and 5th digits are 0 is not a valid SSN A value where the last 4 digits are 0 is not a valid SSN A value with 3 digits, an optional -, 2 digits, an optional -, and 4 digits is a valid SSN 9 of the same digits (e.g., '111111111') is not a valid SSN |
 |  [MilitaryCities](./va-forms-system-core.militarycities.md) |  |
 |  [MilitaryStates](./va-forms-system-core.militarystates.md) |  |
+|  [NumberField](./va-forms-system-core.numberfield.md) |  |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
 |  [PhoneField](./va-forms-system-core.phonefield.md) | <b><i>(BETA)</i></b> Renders the PhoneField component |
