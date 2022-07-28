@@ -104,7 +104,21 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
 export function FormFooter(): JSX.Element;
 
 // @beta
-export function FormRouter(props: RouterProps): JSX.Element;
+export function FormRouter(props: FormRouterProps): JSX.Element;
+
+// @beta
+export interface FormRouterProps {
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+    // (undocumented)
+    formData: IFormData;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title: string;
+    // (undocumented)
+    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
+}
 
 // @public
 export const FormTitle: (props: FormTitleProps) => JSX.Element;
@@ -146,6 +160,9 @@ export interface IRouterContext {
     // (undocumented)
     previousRoute: string | null;
 }
+
+// @public (undocumented)
+export const NumberField: (props: FieldProps<string>) => JSX.Element;
 
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
@@ -240,22 +257,6 @@ export interface RouterContextProps {
     children: ReactElement<any, any> | ReactElement<any, any>[];
     // (undocumented)
     routes: React.ReactElement | React.ReactElement[];
-}
-
-// @beta
-export interface RouterProps {
-    // (undocumented)
-    basename: string;
-    // (undocumented)
-    children: ReactElement<any, any> | ReactElement<any, any>[];
-    // (undocumented)
-    formData: IFormData;
-    // (undocumented)
-    subtitle?: string;
-    // (undocumented)
-    title: string;
-    // (undocumented)
-    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
 }
 
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts

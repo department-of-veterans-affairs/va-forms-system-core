@@ -21,6 +21,7 @@
 |  --- | --- |
 |  [Address](./va-forms-system-core.address.md) |  |
 |  [ChapterProps](./va-forms-system-core.chapterprops.md) | <b><i>(BETA)</i></b> The properties for the Chapter React component |
+|  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
 |  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
 |  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
 |  [IRouterContext](./va-forms-system-core.iroutercontext.md) | <b><i>(BETA)</i></b> Properties for Router Context |
@@ -30,7 +31,6 @@
 |  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
 |  [RouteInfo](./va-forms-system-core.routeinfo.md) | <b><i>(BETA)</i></b> Used for passing a list of routes into Router Context |
 |  [RouterContextProps](./va-forms-system-core.routercontextprops.md) |  |
-|  [RouterProps](./va-forms-system-core.routerprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
 
 ## Variables
 
@@ -45,6 +45,7 @@
 |  [FormTitle](./va-forms-system-core.formtitle.md) | Form Title component is a simple wrapper around a Form Title and subTitle using VA styles |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
 |  [IntroductionPage](./va-forms-system-core.introductionpage.md) | IntroductionPage component current copy of the original Burials introduction page this will need to be updated to be more dynamic after demo. |
+|  [NumberField](./va-forms-system-core.numberfield.md) |  |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
 |  [PhoneField](./va-forms-system-core.phonefield.md) | <b><i>(BETA)</i></b> Renders the PhoneField component |
 |  [RouterContext](./va-forms-system-core.routercontext.md) |  |
