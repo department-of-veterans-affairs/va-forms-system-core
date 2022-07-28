@@ -38,8 +38,6 @@
 |  Variable | Description |
 |  --- | --- |
 |  [AddressField](./va-forms-system-core.addressfield.md) |  |
-|  [buildPath](./va-forms-system-core.buildpath.md) | Combines multiple, sequential path segments into one normalized path with a single "/" character between the segments. |
-|  [buildRelativePath](./va-forms-system-core.buildrelativepath.md) | Returns the same normalized path as the buildPath function, but the path will always start with a leading "/" character. |
 |  [CapitalizeFirstLetter](./va-forms-system-core.capitalizefirstletter.md) |  |
 |  [chainValidations](./va-forms-system-core.chainvalidations.md) |  |
 |  [CheckboxField](./va-forms-system-core.checkboxfield.md) |  |

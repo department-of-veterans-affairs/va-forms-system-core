@@ -41,12 +41,6 @@ export type AddressProps = FieldProps<string> & {
     legendClasses: string;
 };
 
-// @public
-export const buildPath: (...args: string[]) => string;
-
-// @public
-export const buildRelativePath: (...args: string[]) => string;
-
 // @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
 
