@@ -5,7 +5,7 @@
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path
  */
-export const buildPath = (...args: string[]): string => {
+const buildPath = (...args: string[]): string => {
   return args
     .map((part, i) => {
       if (i === 0) {
@@ -24,7 +24,7 @@ export const buildPath = (...args: string[]): string => {
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path with a leading "/"
  */
-export const buildRelativePath = (...args: string[]): string => {
+const buildRelativePath = (...args: string[]): string => {
   const path = buildPath(...args);
 
   return path.startsWith('/') ? path : `/${path}`;

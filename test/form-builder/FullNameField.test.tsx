@@ -33,6 +33,10 @@ const getInputs = (container: HTMLElement) => {
   };
 };
 
+const getLegend = (container: HTMLElement) => {
+  return { legend: container.querySelector('legend') as HTMLElement };
+};
+
 describe('Form Builder - FullNameField', () => {
   test('renders', () => {
     const { container } = renderForm(
@@ -59,6 +63,23 @@ describe('Form Builder - FullNameField', () => {
     expect(suffixSelect.getAttribute('value')).toEqual('Sr');
   });
 
+  test('renders a fieldset and legend element with a class', () => {
+    const { container } = renderForm(
+      <FullNameField
+        name="veteranFullName"
+        label="your"
+        legend="test legend"
+        legendClasses="sr-only"
+      />
+    );
+
+    const { legend } = getLegend(container);
+
+    expect(legend.parentElement?.tagName).toEqual('FIELDSET');
+    expect(legend.classList.contains('sr-only')).toBe(true);
+    expect(legend.innerHTML).toEqual('test legend');
+  });
+
   test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
       <FullNameField name="veteranFullName" label="" />
@@ -76,7 +97,7 @@ describe('Form Builder - FullNameField', () => {
     expect(lastNameInput.getAttribute('error')).toContain('provide a response');
   });
 
-  test.skip('updates the formik state', async () => {
+  test('updates the formik state', async () => {
     const rf = buildRenderForm(veteranTestData);
     const { container, getFormProps } = rf(
       <FullNameField name="veteranFullName" label="" />
@@ -84,9 +105,9 @@ describe('Form Builder - FullNameField', () => {
     const { firstNameInput, middleNameInput, lastNameInput, suffixSelect } =
       getInputs(container);
 
-    await changeValue(firstNameInput, 'Tony');
-    await changeValue(middleNameInput, 'H');
-    await changeValue(lastNameInput, 'Stark');
+    await changeValue(firstNameInput, 'Tony', 'input');
+    await changeValue(middleNameInput, 'H', 'input');
+    await changeValue(lastNameInput, 'Stark', 'input');
     await changeValue(suffixSelect, 'Jr', 'vaSelect');
 
     expect(getFormProps().values).toEqual({

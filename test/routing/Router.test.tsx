@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
 import { RouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
 import { Formik } from 'formik';
@@ -20,41 +20,42 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
     >
       <RouterContextProvider routes={props.children}>
         <Routes>{props.children}</Routes>
-      </RouterContextProvider>  
+      </RouterContextProvider>
     </Formik>
-  )
+  );
 };
 
 const PageOne = () => (
-  <Page 
-    title="page one">
+  <Page title="page one">
     <p>page one</p>
   </Page>
 );
 
 const PageTwo = () => (
-  <Page
-    title="page two"
-    >
+  <Page title="page two">
     <p>page two</p>
   </Page>
 );
 
 const initialValues = {
-  firstName: '', 
-  lastName: '', 
-  email: '', 
-  street: '', 
-  streetTwo: '', 
-  streetThree: '', 
-  state: '', 
-  zipcode: ''
+  firstName: '',
+  lastName: '',
+  email: '',
+  street: '',
+  streetTwo: '',
+  streetThree: '',
+  state: '',
+  zipcode: '',
 };
 describe('Routing - Router', () => {
   test('can display page content', () => {
     const { container } = render(
-      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={0}>
-        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+      <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          title="Page Test"
+        >
           <Route index element={<PageOne />} />
           <Route path="/page-two" element={<PageTwo />} />
         </FormRouterInternal>
@@ -67,8 +68,12 @@ describe('Routing - Router', () => {
 
   test('switches page content', () => {
     const { container } = render(
-      <MemoryRouter initialEntries={["/", "/page-two"]} initialIndex={1}>
-        <FormRouterInternal basename="/" formData={initialValues} title="Page Test">
+      <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={1}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          title="Page Test"
+        >
           <Route index element={<PageOne />} />
           <Route path="/page-two" element={<PageTwo />} />
         </FormRouterInternal>
