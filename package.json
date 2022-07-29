@@ -7,7 +7,7 @@
   "typings": "dist/index.d.ts",
   "release": {
     "branches": [
-      "master"
+      "main"
     ],
     "plugins": [
       [
