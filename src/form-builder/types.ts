@@ -3,6 +3,7 @@ import { FieldHookConfig } from 'formik';
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
   label: string;
   id?: string;
+  onValueChange?: (e: Event) => void;
   /**
    * If `required` is true, the default message will be used. If `required` is a
    * string, it will be used as the error message.
