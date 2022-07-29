@@ -1485,6 +1485,11 @@ __metadata:
     "@department-of-veterans-affairs/component-library": ^11.0.0
     "@microsoft/api-documenter": ^7.13.41
     "@microsoft/api-extractor": ^7.18.6
+    "@semantic-release/changelog": ^6.0.1
+    "@semantic-release/commit-analyzer": ^9.0.1
+    "@semantic-release/git": ^10.0.1
+    "@semantic-release/npm": ^8.0.3
+    "@semantic-release/release-notes-generator": ^10.0.2
     "@size-limit/preset-small-lib": ^5.0.1
     "@testing-library/jest-dom": ^5.16.4
     "@testing-library/react": ^11.2.7
@@ -2610,7 +2615,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/commit-analyzer@npm:^9.0.2":
+"@semantic-release/changelog@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@semantic-release/changelog@npm:6.0.1"
+  dependencies:
+    "@semantic-release/error": ^3.0.0
+    aggregate-error: ^3.0.0
+    fs-extra: ^9.0.0
+    lodash: ^4.17.4
+  peerDependencies:
+    semantic-release: ">=18.0.0"
+  checksum: a7c999f20297f229ebb32dc65f56c3aee237d941b478a1c75f5e904382c66fc4054bf3da93b1f5382e0b689147a825665500332f70807bfed952d312d2f501ac
+  languageName: node
+  linkType: hard
+
+"@semantic-release/commit-analyzer@npm:^9.0.1, @semantic-release/commit-analyzer@npm:^9.0.2":
   version: 9.0.2
   resolution: "@semantic-release/commit-analyzer@npm:9.0.2"
   dependencies:
@@ -2641,6 +2660,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@semantic-release/git@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@semantic-release/git@npm:10.0.1"
+  dependencies:
+    "@semantic-release/error": ^3.0.0
+    aggregate-error: ^3.0.0
+    debug: ^4.0.0
+    dir-glob: ^3.0.0
+    execa: ^5.0.0
+    lodash: ^4.17.4
+    micromatch: ^4.0.0
+    p-reduce: ^2.0.0
+  peerDependencies:
+    semantic-release: ">=18.0.0"
+  checksum: b0a346acaf13d1bbd8d8d895bb0dee025dd6d4742769b5dd875018fff8fcfe0f5414299dbe1ed026e53b8f8b04eeceef49a3d56c5f6506016c656df95d2ced04
+  languageName: node
+  linkType: hard
+
 "@semantic-release/github@npm:^8.0.0":
   version: 8.0.4
   resolution: "@semantic-release/github@npm:8.0.4"
@@ -2667,7 +2704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/npm@npm:^8.0.0":
+"@semantic-release/npm@npm:^8.0.0, @semantic-release/npm@npm:^8.0.3":
   version: 8.0.3
   resolution: "@semantic-release/npm@npm:8.0.3"
   dependencies:
@@ -2690,7 +2727,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/release-notes-generator@npm:^10.0.0":
+"@semantic-release/release-notes-generator@npm:^10.0.0, @semantic-release/release-notes-generator@npm:^10.0.2":
   version: 10.0.3
   resolution: "@semantic-release/release-notes-generator@npm:10.0.3"
   dependencies:
