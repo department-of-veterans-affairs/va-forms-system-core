@@ -46,5 +46,5 @@ jobs:
     - name: Run npx semantic-release, create Github Release, and Publish NPM package
       run: npx semantic-release
       env:
-        NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
+        SEMANTIC_NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
         GH_TOKEN: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
