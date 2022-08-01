@@ -121,6 +121,9 @@
     "webpack-dev-server": "^3.11.2",
     "webpack-hot-middleware": "^2.25.0"
   },
+  "peerDependencies": {
+    "@department-of-veterans-affairs/component-library": "^11.0.0"
+  },
   "lint-staged": {
     "src/**/*.{js,ts,jsx,tsx}": "eslint --cache --fix",
     "src/**/*.{js,ts,jsx,tsx,css,md}": "prettier --write"
