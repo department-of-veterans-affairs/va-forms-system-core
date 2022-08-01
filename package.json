@@ -1,6 +1,6 @@
 {
   "name": "@department-of-veterans-affairs/va-forms-system-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Department of Veterans Affairs Forms System Core.",
   "main": "dist/index.js",
   "module": "dist/va-forms-system-core.cjs.production.min.js",
@@ -120,6 +120,9 @@
     "webpack-dev-middleware": "^5.0.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-hot-middleware": "^2.25.0"
+  },
+  "peerDependencies": {
+    "@department-of-veterans-affairs/component-library": "^11.0.0"
   },
   "lint-staged": {
     "src/**/*.{js,ts,jsx,tsx}": "eslint --cache --fix",
