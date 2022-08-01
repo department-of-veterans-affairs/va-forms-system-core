@@ -1536,8 +1536,6 @@ __metadata:
     webpack-dev-middleware: ^5.0.0
     webpack-dev-server: ^3.11.2
     webpack-hot-middleware: ^2.25.0
-  peerDependencies:
-    "@department-of-veterans-affairs/component-library": ^11.0.0
   languageName: unknown
   linkType: soft
 
