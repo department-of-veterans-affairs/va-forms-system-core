@@ -8,6 +8,7 @@
 
 ```typescript
 export declare type AddressProps = FieldProps<string> & {
+    children: JSX.Element;
     legend: string;
     legendClasses: string;
 };

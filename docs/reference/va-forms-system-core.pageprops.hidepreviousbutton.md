@@ -10,5 +10,5 @@
 <b>Signature:</b>
 
 ```typescript
-hidePreviousButton: boolean;
+hidePreviousButton?: boolean;
 ```

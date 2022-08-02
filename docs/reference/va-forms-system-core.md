@@ -9,12 +9,18 @@
 |  Function | Description |
 |  --- | --- |
 |  [Chapter(props)](./va-forms-system-core.chapter.md) | <b><i>(BETA)</i></b> Renders the chapter contents |
+|  [ComponentReader(props)](./va-forms-system-core.componentreader.md) |  |
 |  [ConditionalRoute(props)](./va-forms-system-core.conditionalroute.md) |  |
+|  [createFieldDataFromChildren(children, rank, fields)](./va-forms-system-core.createfielddatafromchildren.md) |  |
+|  [createOptionsFromChildren(children)](./va-forms-system-core.createoptionsfromchildren.md) |  |
+|  [createPagesFromChildren(children, url)](./va-forms-system-core.createpagesfromchildren.md) |  |
 |  [FormFooter()](./va-forms-system-core.formfooter.md) |  |
 |  [FormRouter(props)](./va-forms-system-core.formrouter.md) | <b><i>(BETA)</i></b> Manages form pages as routes Parent formik insance is rendered here |
 |  [getMessage(messagePath)](./va-forms-system-core.getmessage.md) |  |
 |  [Page(props)](./va-forms-system-core.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
+|  [PageContextProvider(props)](./va-forms-system-core.pagecontextprovider.md) |  |
 |  [RadioGroup(props)](./va-forms-system-core.radiogroup.md) |  |
+|  [ReviewPage(props)](./va-forms-system-core.reviewpage.md) |  |
 
 ## Interfaces
 
@@ -22,11 +28,15 @@
 |  --- | --- |
 |  [Address](./va-forms-system-core.address.md) |  |
 |  [ChapterProps](./va-forms-system-core.chapterprops.md) | <b><i>(BETA)</i></b> The properties for the Chapter React component |
+|  [FieldObject](./va-forms-system-core.fieldobject.md) |  |
 |  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
 |  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
 |  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
+|  [IPageContext](./va-forms-system-core.ipagecontext.md) |  |
 |  [IRouterContext](./va-forms-system-core.iroutercontext.md) | <b><i>(BETA)</i></b> Properties for Router Context |
 |  [OMBInfoProps](./va-forms-system-core.ombinfoprops.md) | OMBInfo properties |
+|  [PageContextProps](./va-forms-system-core.pagecontextprops.md) |  |
+|  [PageObject](./va-forms-system-core.pageobject.md) |  |
 |  [PageProps](./va-forms-system-core.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
 |  [ProgressBarProps](./va-forms-system-core.progressbarprops.md) |  |
 |  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
@@ -56,10 +66,12 @@
 |  [isValidEmail](./va-forms-system-core.isvalidemail.md) | This function is used to validate an email address, while returning error messages if an email is invalid. The logic is as follows:<!-- -->1. Ensure the email address is a string. If it's not, return an error message 2. Ensure that one of the following is true, else output an error message: 2a. The field is not required -AND- the field has no entered value 2b. The value in the field matches an email validation regular expression |
 |  [isValidPhone](./va-forms-system-core.isvalidphone.md) |  |
 |  [isValidSSN](./va-forms-system-core.isvalidssn.md) | Conditions for valid SSN from the original 1010ez pdf form: '123456789' is not a valid SSN A value where the first 3 digits are 0 is not a valid SSN A value where the 4th and 5th digits are 0 is not a valid SSN A value where the last 4 digits are 0 is not a valid SSN A value with 3 digits, an optional -, 2 digits, an optional -, and 4 digits is a valid SSN 9 of the same digits (e.g., '111111111') is not a valid SSN |
+|  [matchType](./va-forms-system-core.matchtype.md) |  |
 |  [MilitaryCities](./va-forms-system-core.militarycities.md) |  |
 |  [MilitaryStates](./va-forms-system-core.militarystates.md) |  |
 |  [NumberField](./va-forms-system-core.numberfield.md) |  |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
+|  [PageContext](./va-forms-system-core.pagecontext.md) |  |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
 |  [PhoneField](./va-forms-system-core.phonefield.md) | <b><i>(BETA)</i></b> Renders the PhoneField component |
 |  [required](./va-forms-system-core.required.md) |  |
