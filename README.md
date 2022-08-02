@@ -22,6 +22,7 @@ VAFSC will include but not limited to:
 ## Prerequisites
 
 1. Nodejs/NPM
+   - run `nvm use` to install and use proper node version
 2. Yarn
 
 ## Quick start
