@@ -1,5 +1,4 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { RouteObject } from 'react-router-dom';
 import {
   IPageContext,
   PageContextProps,
