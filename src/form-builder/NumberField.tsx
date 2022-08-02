@@ -3,9 +3,9 @@ import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
-import { VaTextInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { VaNumberInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
-const TextField = (props: FieldProps<string>): JSX.Element => {
+const NumberField = (props: FieldProps<string>): JSX.Element => {
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required]),
@@ -13,22 +13,16 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
-  const onChange = (e: Event) => {
-    field.onChange(e);
-    if (props.onValueChange) props.onValueChange(e);
-  };
-
   return (
-    <VaTextInput
+    <VaNumberInput
       id={id}
-      type={props.type ? props.type : 'text'}
       label={props.label}
       required={!!props.required}
       {...field}
-      onInput={onChange}
+      onInput={field.onChange}
       error={(meta.touched && meta.error) || undefined}
     />
   );
 };
 
-export default TextField;
+export default NumberField;

@@ -4,23 +4,23 @@
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 
-import TextField from '../../src/form-builder/TextField';
+import NumberField from '../../src/form-builder/NumberField';
 import { buildRenderForm, changeValue } from '../utils';
 
 const renderForm = buildRenderForm({});
 
-const getInput = (container: HTMLElement): HTMLVaTextInputElement => {
+const getInput = (container: HTMLElement): HTMLVaNumberInputElement => {
   const input = container.querySelector(
-    'va-text-input'
-  ) as HTMLVaTextInputElement;
-  if (!input) throw new Error('No va-text-input found');
+    'va-number-input'
+  ) as HTMLVaNumberInputElement;
+  if (!input) throw new Error('No va-number-input found');
   return input;
 };
 
-describe('Form Builder - TextField', () => {
+describe('Form Builder - NumberField', () => {
   test('renders', () => {
     const { container } = renderForm(
-      <TextField name="thing" label="The Thing" />
+      <NumberField name="thing" label="The Thing" />
     );
     const input = getInput(container);
     expect(input.getAttribute('label')).toEqual('The Thing');
@@ -29,14 +29,14 @@ describe('Form Builder - TextField', () => {
 
   test('renders initial value', () => {
     const rf = buildRenderForm({ thing: 'asdf' });
-    const { container } = rf(<TextField name="thing" label="The Thing" />);
+    const { container } = rf(<NumberField name="thing" label="The Thing" />);
     const input = getInput(container);
     expect(input.getAttribute('value')).toEqual('asdf');
   });
 
   test('renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <TextField name="thing" label="The Thing" required />
+      <NumberField name="thing" label="The Thing" required />
     );
     const input = getInput(container);
     await waitFor(() => {
@@ -47,7 +47,7 @@ describe('Form Builder - TextField', () => {
 
   test('renders a custom "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <TextField
+      <NumberField
         name="thing"
         label="The Thing"
         required="You need to fill this in, bub"
@@ -65,7 +65,7 @@ describe('Form Builder - TextField', () => {
   test('validates using a function', async () => {
     const spy = jest.fn();
     const { getFormProps } = renderForm(
-      <TextField name="thing" label="The Thing" validate={spy} />
+      <NumberField name="thing" label="The Thing" validate={spy} />
     );
     await waitFor(() => {
       getFormProps().validateField('thing');
@@ -73,21 +73,10 @@ describe('Form Builder - TextField', () => {
     expect(spy).toBeCalled();
   });
 
-  test('handles value change using a function', async () => {
-    const spy = jest.fn();
-    const { container } = renderForm(
-      <TextField name="thing" label="The Thing" validate={spy} />
-    );
-    const input = getInput(container);
-
-    await changeValue(input, 'asdf', 'input');
-    expect(spy).toBeCalled();
-  });
-
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
     const { container, getFormProps } = rf(
-      <TextField name="thing" label="The Thing" />
+      <NumberField name="thing" label="The Thing" />
     );
     const input = getInput(container);
 

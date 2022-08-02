@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { CompatRouter, Route } from 'react-router-dom-v5-compat'
 import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';

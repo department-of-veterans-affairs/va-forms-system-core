@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { CompatRouter, Route } from 'react-router-dom-v5-compat';
 import FormRouter from '../../src/routing/FormRouter';
 import FormFooter from '../../src/form-layout/FormFooter';
 
@@ -15,9 +16,11 @@ describe('FormFooter', () => {
   test('Renders footer from router', () => {
     const { container } = render(
       <BrowserRouter basename="/">
-        <FormRouter title="hello world" formData={{ firstName: '' }}>
-          <Route path="/" element={<div>Hello World</div>} />
-        </FormRouter>
+        <CompatRouter>
+          <FormRouter title="hello world" formData={{ firstName: '' }}>
+            <Route path="/" element={<div>Hello World</div>} />
+          </FormRouter>
+        </CompatRouter>
       </BrowserRouter>
     );
 

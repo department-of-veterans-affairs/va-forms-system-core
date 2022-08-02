@@ -11,8 +11,8 @@ import {
   To,
   useSearchParams,
   useLocation,
-} from 'react-router-dom';
-import { FieldObject, PageProps } from './types';
+} from 'react-router-dom-v5-compat';
+import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
 import { PageContext } from '../form-data/PageContext';
 import { createFieldDataFromChildren } from '../form-data/ComponentReader';
