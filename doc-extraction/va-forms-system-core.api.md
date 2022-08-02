@@ -37,6 +37,7 @@ export const AddressField: (props: AddressProps) => JSX.Element;
 
 // @public (undocumented)
 export type AddressProps = FieldProps<string> & {
+    children: JSX.Element;
     legend: string;
     legendClasses: string;
 };
@@ -78,6 +79,12 @@ export type CheckboxProps = FieldProps<string> & {
 };
 
 // @public (undocumented)
+export function ComponentReader(props: {
+    fieldName: string;
+    children: JSX.Element | JSX.Element[] | Element;
+}): JSX.Element;
+
+// @public (undocumented)
 export function ConditionalRoute(props: {
     title: string;
     condition: string;
@@ -98,6 +105,18 @@ export const CountryUSA: {
 }[];
 
 // @public (undocumented)
+export function createFieldDataFromChildren(children: React_2.ReactNode, rank?: number, fields?: FieldObject[]): FieldObject[];
+
+// @public (undocumented)
+export function createOptionsFromChildren(children: React_2.ReactNode): {
+    key: string;
+    label: string;
+}[];
+
+// @public (undocumented)
+export function createPagesFromChildren(children: React_2.ReactNode, url?: string): PageObject[];
+
+// @public (undocumented)
 export const DateField: (props: DateProps) => JSX.Element;
 
 // @public (undocumented)
@@ -113,6 +132,23 @@ export const EmailField: (props: EmailProps) => JSX.Element;
 
 // @public (undocumented)
 export const emailRegex: RegExp;
+
+// @public (undocumented)
+export interface FieldObject {
+    // (undocumented)
+    children?: FieldObject[];
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    options?: {
+        key: string;
+        label: string;
+    }[];
+    // (undocumented)
+    value?: boolean | string | undefined | number | null;
+}
 
 // @public (undocumented)
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
@@ -177,6 +213,14 @@ export interface IFormData {
 // @public
 export const IntroductionPage: () => JSX.Element;
 
+// @public (undocumented)
+export interface IPageContext {
+    // (undocumented)
+    listOfPages: PageObject[];
+    // (undocumented)
+    setListOfPages: (pages: PageObject[]) => void;
+}
+
 // @beta
 export interface IRouterContext {
     // (undocumented)
@@ -200,6 +244,9 @@ export const isValidPhone: <T>(phoneString: T, props: FieldProps<T>) => Validati
 
 // @public
 export const isValidSSN: <T>(ssnString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const matchType: (elementType: React_2.JSXElementConstructor<any>) => boolean | null;
 
 // @public (undocumented)
 export const MilitaryCities: {
@@ -232,12 +279,36 @@ export interface OMBInfoProps {
 // @beta
 export function Page(props: PageProps): JSX.Element;
 
+// @public (undocumented)
+export const PageContext: React_2.Context<IPageContext>;
+
+// @public (undocumented)
+export interface PageContextProps {
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+}
+
+// @public (undocumented)
+export function PageContextProvider(props: PageContextProps): JSX.Element;
+
+// @public (undocumented)
+export interface PageObject {
+    // (undocumented)
+    fields: FieldObject[];
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    path: string;
+    // (undocumented)
+    title: string;
+}
+
 // @beta
 export interface PageProps {
     // (undocumented)
     children: JSX.Element | JSX.Element[] | Element;
     // (undocumented)
-    hidePreviousButton: boolean;
+    hidePreviousButton?: boolean;
     // (undocumented)
     nextButtonCustomText?: string;
     // (undocumented)
@@ -288,6 +359,11 @@ export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunction
 
 // @public (undocumented)
 export const requiredValue: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export function ReviewPage(props: {
+    title: string;
+}): JSX.Element;
 
 // @beta
 export interface Routable {
