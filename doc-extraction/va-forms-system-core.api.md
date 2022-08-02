@@ -101,7 +101,9 @@ export const CountryUSA: {
 export const DateField: (props: DateProps) => JSX.Element;
 
 // @public (undocumented)
-export type DateProps = FieldProps<string>;
+export type DateProps = FieldProps<string> & {
+    isMemorableDate?: boolean;
+};
 
 // @public
 export const DebuggerView: () => JSX.Element;

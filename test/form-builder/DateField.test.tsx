@@ -9,10 +9,11 @@ import { DateField } from '../../src';
 
 const renderForm = buildRenderForm({});
 
-const getInput = (container: HTMLElement): HTMLVaTextInputElement => {
-  const input = container.querySelector(
-    'va-date'
-  ) as HTMLVaTextInputElement;
+const getInput = (
+  container: HTMLElement,
+  dateType = 'va-date'
+): HTMLVaTextInputElement => {
+  const input = container.querySelector(dateType) as HTMLVaTextInputElement;
   if (!input) throw new Error('No va-date found');
   return input;
 };
@@ -27,9 +28,20 @@ describe('Form Builder - DateField', () => {
     expect(input.getAttribute('name')).toEqual('dateOfBirth');
   });
 
+  test('renders VaMemorableDate', () => {
+    const { container } = renderForm(
+      <DateField name="dateOfBirth" label="Date of Birth" isMemorableDate />
+    );
+    const input = getInput(container, 'va-memorable-date');
+    expect(input.getAttribute('label')).toEqual('Date of Birth');
+    expect(input.getAttribute('name')).toEqual('dateOfBirth');
+  });
+
   test('renders initial value', () => {
     const rf = buildRenderForm({ dateOfBirth: '2022-05-20' });
-    const { container } = rf(<DateField name="dateOfBirth" label="Date of Birth" />);
+    const { container } = rf(
+      <DateField name="dateOfBirth" label="Date of Birth" />
+    );
     const input = getInput(container);
     expect(input.getAttribute('value')).toEqual('2022-05-20');
   });
