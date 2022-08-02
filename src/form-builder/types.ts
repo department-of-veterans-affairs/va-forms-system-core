@@ -91,4 +91,6 @@ export interface Address {
   postalCode: string;
 }
 
-export type DateProps = FieldProps<string>;
+export type DateProps = FieldProps<string> & {
+  isMemorableDate?: boolean;
+};

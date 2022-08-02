@@ -6,7 +6,8 @@ import {
   DebuggerView,
   TextField,
   CheckboxFieldGroup,
-  FullNameField
+  FullNameField,
+  DateField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const checkboxProps = {
@@ -85,6 +86,7 @@ const SimpleApp = () => (
           radiumTreatments: false,
           campLejeune: false,
         },
+        birthDate: null,
         contactMethod: null,
       }}
     >
@@ -92,6 +94,7 @@ const SimpleApp = () => (
         <CheckboxField name="bar" label="Do you have pets?" required />
         <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
+        <DateField name="birthDate" label="date of birth" required isMemorableDate />
         <FullNameField name="fullName" label="fullName"/>
         <button type="submit" className="btn">
           {' '}
