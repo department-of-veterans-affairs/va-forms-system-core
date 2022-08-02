@@ -174,7 +174,7 @@ function ComponentReader(props: {
     if (listOfPagesCopy.length > 0) {
       setListOfPages(listOfPagesCopy);
     }
-  }, [props.fieldName, childrenLength]);
+  }, [props.fieldName, props.children]);
 
   return <>{props.children}</>;
 }
