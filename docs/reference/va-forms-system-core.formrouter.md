@@ -12,14 +12,14 @@ Manages form pages as routes Parent formik insance is rendered here
 <b>Signature:</b>
 
 ```typescript
-export default function FormRouter(props: RouterProps): JSX.Element;
+export default function FormRouter(props: FormRouterProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [RouterProps](./va-forms-system-core.routerprops.md) |  |
+|  props | [FormRouterProps](./va-forms-system-core.formrouterprops.md) |  |
 
 <b>Returns:</b>
 
