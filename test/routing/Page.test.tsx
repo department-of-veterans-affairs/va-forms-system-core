@@ -48,7 +48,7 @@ const initialValues = {
   zipcode: '',
 };
 
-describe('Routing - Page', () => {
+describe.skip('Routing - Page', () => {
   test('switches page content', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
