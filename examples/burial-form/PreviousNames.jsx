@@ -40,6 +40,7 @@ export default function PreviousNames(props) {
                   <FullNameField name="previousNames[0]" />
                   <VaButton
                     disabled
+                    secondary
                     text="Add another name"
                   />
                 </>
