@@ -16,7 +16,7 @@ import {
 /**
  * Renders the page contents
  *
- * @beta
+ * @public
  */
 export default function Page(props: PageProps): JSX.Element {
   const navigate = useNavigate();
