@@ -58,7 +58,7 @@ export default function Page(props: PageProps): JSX.Element {
         </div>
       )}
 
-      {previousRoute && !props.hidePreviousButton && (
+      {previousRoute && !nextRoute && !props.hidePreviousButton && (
         <VaButton
           back
           onClick={() => {
@@ -67,7 +67,7 @@ export default function Page(props: PageProps): JSX.Element {
         />
       )}
 
-      {nextRoute && props.hidePreviousButton && (
+      {nextRoute && !previousRoute && (
         <VaButton
           submit
           continue
