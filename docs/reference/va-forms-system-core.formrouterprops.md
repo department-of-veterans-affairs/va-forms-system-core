@@ -4,9 +4,6 @@
 
 ## FormRouterProps interface
 
-> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
-> 
-
 The properties for the Router React component
 
 <b>Signature:</b>
@@ -19,9 +16,9 @@ export interface FormRouterProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [children](./va-forms-system-core.formrouterprops.children.md) | ReactElement&lt;any, any&gt; \| ReactElement&lt;any, any&gt;\[\] | <b><i>(BETA)</i></b> |
-|  [formData](./va-forms-system-core.formrouterprops.formdata.md) | [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> |
-|  [subtitle?](./va-forms-system-core.formrouterprops.subtitle.md) | string | <b><i>(BETA)</i></b> <i>(Optional)</i> |
-|  [title](./va-forms-system-core.formrouterprops.title.md) | string | <b><i>(BETA)</i></b> |
-|  [transformForSubmit?](./va-forms-system-core.formrouterprops.transformforsubmit.md) | (values: FormikValues, actions: FormikHelpers&lt;FormikValues&gt;) =&gt; any | <b><i>(BETA)</i></b> <i>(Optional)</i> |
+|  [children](./va-forms-system-core.formrouterprops.children.md) | ReactElement&lt;any, any&gt; \| ReactElement&lt;any, any&gt;\[\] |  |
+|  [formData](./va-forms-system-core.formrouterprops.formdata.md) | [IFormData](./va-forms-system-core.iformdata.md) |  |
+|  [subtitle?](./va-forms-system-core.formrouterprops.subtitle.md) | string | <i>(Optional)</i> |
+|  [title](./va-forms-system-core.formrouterprops.title.md) | string |  |
+|  [transformForSubmit?](./va-forms-system-core.formrouterprops.transformforsubmit.md) | (values: FormikValues, actions: FormikHelpers&lt;FormikValues&gt;) =&gt; any | <i>(Optional)</i> |
 

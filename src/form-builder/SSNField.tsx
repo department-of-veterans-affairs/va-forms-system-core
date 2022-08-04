@@ -10,7 +10,7 @@ export type SSNProps = FieldProps<string>;
 /**
  * Renders the SSNField component
  *
- * @beta
+ * @public
  */
 const SSNField = (props: SSNProps): JSX.Element => {
   // Note: In this component, the Formik variable "field.value" holds the raw SSN value,

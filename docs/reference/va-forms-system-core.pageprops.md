@@ -4,9 +4,6 @@
 
 ## PageProps interface
 
-> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
-> 
-
 The properties for the Page React component
 
 <b>Signature:</b>
@@ -19,9 +16,9 @@ export interface PageProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [children](./va-forms-system-core.pageprops.children.md) | JSX.Element \| JSX.Element\[\] \| Element | <b><i>(BETA)</i></b> |
-|  [hidePreviousButton](./va-forms-system-core.pageprops.hidepreviousbutton.md) | boolean | <b><i>(BETA)</i></b> |
-|  [nextButtonCustomText?](./va-forms-system-core.pageprops.nextbuttoncustomtext.md) | string | <b><i>(BETA)</i></b> <i>(Optional)</i> |
-|  [nextButtonDescribedBy?](./va-forms-system-core.pageprops.nextbuttondescribedby.md) | string | <b><i>(BETA)</i></b> <i>(Optional)</i> |
-|  [title](./va-forms-system-core.pageprops.title.md) | string | <b><i>(BETA)</i></b> |
+|  [children](./va-forms-system-core.pageprops.children.md) | JSX.Element \| JSX.Element\[\] \| Element |  |
+|  [hidePreviousButton](./va-forms-system-core.pageprops.hidepreviousbutton.md) | boolean |  |
+|  [nextButtonCustomText?](./va-forms-system-core.pageprops.nextbuttoncustomtext.md) | string | <i>(Optional)</i> |
+|  [nextButtonDescribedBy?](./va-forms-system-core.pageprops.nextbuttondescribedby.md) | string | <i>(Optional)</i> |
+|  [title](./va-forms-system-core.pageprops.title.md) | string |  |
 

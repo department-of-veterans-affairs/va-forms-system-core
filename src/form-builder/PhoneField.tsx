@@ -9,7 +9,7 @@ export type PhoneProps = FieldProps<string>;
 /**
  * Renders the PhoneField component
  *
- * @beta
+ * @public
  */
 
 const PhoneField = (props: PhoneProps): JSX.Element => {

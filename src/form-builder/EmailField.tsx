@@ -10,7 +10,7 @@ export type EmailProps = FieldProps<string>;
 /**
  * Renders the EmailField component
  *
- * @beta
+ * @public
  */
 const EmailField = (props: EmailProps): JSX.Element => {
   const withValidation = {

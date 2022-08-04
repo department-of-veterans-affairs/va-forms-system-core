@@ -4,9 +4,6 @@
 
 ## RouteInfo interface
 
-> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
-> 
-
 Used for passing a list of routes into Router Context
 
 <b>Signature:</b>
@@ -19,8 +16,8 @@ export interface RouteInfo
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [conditional?](./va-forms-system-core.routeinfo.conditional.md) | boolean | <b><i>(BETA)</i></b> <i>(Optional)</i> |
-|  [isShown?](./va-forms-system-core.routeinfo.isshown.md) | boolean \| null | <b><i>(BETA)</i></b> <i>(Optional)</i> |
-|  [path](./va-forms-system-core.routeinfo.path.md) | string | <b><i>(BETA)</i></b> |
-|  [title](./va-forms-system-core.routeinfo.title.md) | string | <b><i>(BETA)</i></b> |
+|  [conditional?](./va-forms-system-core.routeinfo.conditional.md) | boolean | <i>(Optional)</i> |
+|  [isShown?](./va-forms-system-core.routeinfo.isshown.md) | boolean \| null | <i>(Optional)</i> |
+|  [path](./va-forms-system-core.routeinfo.path.md) | string |  |
+|  [title](./va-forms-system-core.routeinfo.title.md) | string |  |
 

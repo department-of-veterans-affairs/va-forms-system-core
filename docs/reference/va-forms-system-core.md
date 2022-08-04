@@ -8,12 +8,11 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [Chapter(props)](./va-forms-system-core.chapter.md) | <b><i>(BETA)</i></b> Renders the chapter contents |
 |  [ConditionalRoute(props)](./va-forms-system-core.conditionalroute.md) |  |
 |  [FormFooter()](./va-forms-system-core.formfooter.md) |  |
-|  [FormRouter(props)](./va-forms-system-core.formrouter.md) | <b><i>(BETA)</i></b> Manages form pages as routes Parent formik insance is rendered here |
+|  [FormRouter(props)](./va-forms-system-core.formrouter.md) | Manages form pages as routes Parent formik insance is rendered here |
 |  [getMessage(messagePath)](./va-forms-system-core.getmessage.md) |  |
-|  [Page(props)](./va-forms-system-core.page.md) | <b><i>(BETA)</i></b> Renders the page contents |
+|  [Page(props)](./va-forms-system-core.page.md) | Renders the page contents |
 |  [RadioGroup(props)](./va-forms-system-core.radiogroup.md) |  |
 
 ## Interfaces
@@ -21,16 +20,14 @@
 |  Interface | Description |
 |  --- | --- |
 |  [Address](./va-forms-system-core.address.md) |  |
-|  [ChapterProps](./va-forms-system-core.chapterprops.md) | <b><i>(BETA)</i></b> The properties for the Chapter React component |
-|  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | <b><i>(BETA)</i></b> The properties for the Router React component |
+|  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | The properties for the Router React component |
 |  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
-|  [IFormData](./va-forms-system-core.iformdata.md) | <b><i>(BETA)</i></b> The type for the FormData to define the flexible data object |
-|  [IRouterContext](./va-forms-system-core.iroutercontext.md) | <b><i>(BETA)</i></b> Properties for Router Context |
+|  [IFormData](./va-forms-system-core.iformdata.md) | The type for the FormData to define the flexible data object |
 |  [OMBInfoProps](./va-forms-system-core.ombinfoprops.md) | OMBInfo properties |
-|  [PageProps](./va-forms-system-core.pageprops.md) | <b><i>(BETA)</i></b> The properties for the Page React component |
+|  [PageProps](./va-forms-system-core.pageprops.md) | The properties for the Page React component |
 |  [ProgressBarProps](./va-forms-system-core.progressbarprops.md) |  |
-|  [Routable](./va-forms-system-core.routable.md) | <b><i>(BETA)</i></b> Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
-|  [RouteInfo](./va-forms-system-core.routeinfo.md) | <b><i>(BETA)</i></b> Used for passing a list of routes into Router Context |
+|  [Routable](./va-forms-system-core.routable.md) | Indicates if a component can be routed using <code>react-router-dom</code>. The <code>path</code> prop must be present. |
+|  [RouteInfo](./va-forms-system-core.routeinfo.md) | Used for passing a list of routes into Router Context |
 |  [RouterContextProps](./va-forms-system-core.routercontextprops.md) |  |
 
 ## Variables
@@ -46,7 +43,7 @@
 |  [CountryUSA](./va-forms-system-core.countryusa.md) |  |
 |  [DateField](./va-forms-system-core.datefield.md) |  |
 |  [DebuggerView](./va-forms-system-core.debuggerview.md) | Display the Formik state |
-|  [EmailField](./va-forms-system-core.emailfield.md) | <b><i>(BETA)</i></b> Renders the EmailField component |
+|  [EmailField](./va-forms-system-core.emailfield.md) | Renders the EmailField component |
 |  [emailRegex](./va-forms-system-core.emailregex.md) |  |
 |  [FormTitle](./va-forms-system-core.formtitle.md) | Form Title component is a simple wrapper around a Form Title and subTitle using VA styles |
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
@@ -61,12 +58,12 @@
 |  [NumberField](./va-forms-system-core.numberfield.md) |  |
 |  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
-|  [PhoneField](./va-forms-system-core.phonefield.md) | <b><i>(BETA)</i></b> Renders the PhoneField component |
+|  [PhoneField](./va-forms-system-core.phonefield.md) | Renders the PhoneField component |
 |  [required](./va-forms-system-core.required.md) |  |
 |  [requiredValue](./va-forms-system-core.requiredvalue.md) |  |
 |  [RouterContext](./va-forms-system-core.routercontext.md) |  |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
-|  [SSNField](./va-forms-system-core.ssnfield.md) | <b><i>(BETA)</i></b> Renders the SSNField component |
+|  [SSNField](./va-forms-system-core.ssnfield.md) | Renders the SSNField component |
 |  [States](./va-forms-system-core.states.md) |  |
 |  [States50AndDC](./va-forms-system-core.states50anddc.md) |  |
 |  [Suffixes](./va-forms-system-core.suffixes.md) |  |
