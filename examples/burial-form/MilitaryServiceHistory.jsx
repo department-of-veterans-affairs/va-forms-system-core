@@ -6,12 +6,13 @@ import {
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { isBeforeDate } from './utils';
+import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 export default function MilitaryServiceHistory(props) {
 
   const state = useFormikContext();
 
-  const {from, to} = state.values.toursOfDuty[0].dateRange;
+  const { from, to } = state.values.toursOfDuty[0].dateRange;
 
   return (
     <>
@@ -37,11 +38,10 @@ export default function MilitaryServiceHistory(props) {
           label="Place of entry" />
         <TextField name="toursOfDuty[0].placeOfSeparation"
           label="Place of separation" />
-        <button type="button"
-          className="usa-button-secondary va-growable-add-btn usa-button-disabled"
-          disabled>
-          Add another Service Period
-        </button>
+        <VaButton
+          disabled
+          text="Add another Service Period" />
+
         <br />
       </Page>
     </>

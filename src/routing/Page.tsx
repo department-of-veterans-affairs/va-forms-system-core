@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Form, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import {
   useNavigate,
   To,
@@ -8,6 +8,10 @@ import {
 } from 'react-router-dom-v5-compat';
 import { PageProps } from './types';
 import { RouterContext } from './RouterContext';
+import {
+  VaButtonPair,
+  VaButton,
+} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 /**
  * Renders the page contents
@@ -40,8 +44,8 @@ export default function Page(props: PageProps): JSX.Element {
 
       {editPage && (
         <div>
-          <button
-            onClick={(event) => {
+          <VaButton
+            onClick={() => {
               navigate(
                 `/review-and-submit${
                   sourceAnchor ? `#${sourceAnchor}` : ''
@@ -49,26 +53,16 @@ export default function Page(props: PageProps): JSX.Element {
               );
             }}
             className="btn next"
-          >
-            Back to Review page
-          </button>
+            text="Back to Review Page"
+          />
         </div>
       )}
-      {previousRoute && !props.hidePreviousButton && (
-        <button
-          className="btn usa-button-secondary prev"
-          onClick={() => {
-            navigate(previousRoute as To);
-          }}
-        >
-          <i className="fas fa-angle-double-left" /> Previous
-        </button>
-      )}
 
-      {nextRoute && (
-        <button
-          className="btn usa-button-primary next"
-          onClick={(event) => {
+      {nextRoute && !previousRoute && (
+        <VaButton
+          submit
+          continue
+          onClick={(event: Event) => {
             if (Object.keys(state.errors).length > 0) {
               state.handleSubmit();
               event.preventDefault();
@@ -77,12 +71,28 @@ export default function Page(props: PageProps): JSX.Element {
               navigate(nextRoute as To);
             }
           }}
-          type="submit"
           aria-describedby={props.nextButtonDescribedBy}
-        >
-          {props.nextButtonCustomText ? props.nextButtonCustomText : 'Next'}{' '}
-          <i className="fas fa-angle-double-right" />
-        </button>
+          className="btn next"
+        />
+      )}
+
+      {nextRoute && previousRoute && (
+        <VaButtonPair
+          continue
+          submit
+          onPrimaryClick={(event: Event) => {
+            if (Object.keys(state.errors).length > 0) {
+              state.handleSubmit();
+              event.preventDefault();
+            } else {
+              state.handleSubmit();
+              navigate(nextRoute as To);
+            }
+          }}
+          onSecondaryClick={() => {
+            navigate(previousRoute as To);
+          }}
+        />
       )}
     </div>
   );

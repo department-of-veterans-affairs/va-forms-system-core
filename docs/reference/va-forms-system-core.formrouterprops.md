@@ -16,6 +16,7 @@ export interface FormRouterProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [basename](./va-forms-system-core.formrouterprops.basename.md) | string |  |
 |  [children](./va-forms-system-core.formrouterprops.children.md) | ReactElement&lt;any, any&gt; \| ReactElement&lt;any, any&gt;\[\] |  |
 |  [formData](./va-forms-system-core.formrouterprops.formdata.md) | [IFormData](./va-forms-system-core.iformdata.md) |  |
 |  [subtitle?](./va-forms-system-core.formrouterprops.subtitle.md) | string | <i>(Optional)</i> |
