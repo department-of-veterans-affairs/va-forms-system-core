@@ -48,7 +48,7 @@ const ConfirmationPage = (props: { title: string }) => (
 );
 
 describe('Routing - Router Progress', () => {
-  test.skip('Progress Bars do not show on intro and confirmation pages', async () => {
+  test('Progress Bars do not show on intro and confirmation pages', async () => {
     const routes = ['/', '/about', '/confirmation'];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={0}>
