@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { Form, Formik } from 'formik';
 import {
   CheckboxField,
@@ -95,11 +95,8 @@ const SimpleApp = () => (
         <TextField name="foo" label="Example" required />
         <CheckboxFieldGroup {...checkboxProps} />
         <DateField name="birthDate" label="date of birth" required isMemorableDate />
-        <FullNameField name="fullName" label="fullName"/>
-        <button type="submit" className="btn">
-          {' '}
-          submit
-        </button>
+        <FullNameField name="fullName" label="fullName" />
+        <VaButton submit text="Submit" />
         <DebuggerView />
       </Form>
     </Formik>
