@@ -101,7 +101,9 @@ export const CountryUSA: {
 export const DateField: (props: DateProps) => JSX.Element;
 
 // @public (undocumented)
-export type DateProps = FieldProps<string>;
+export type DateProps = FieldProps<string> & {
+    isMemorableDate?: boolean;
+};
 
 // @public
 export const DebuggerView: () => JSX.Element;
@@ -118,6 +120,7 @@ export const emailRegex: RegExp;
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
     label: string;
     id?: string;
+    onValueChange?: (e: Event) => void;
     required?: boolean | string;
 };
 
