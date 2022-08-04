@@ -72,7 +72,7 @@ describe('Routing - Page', () => {
     );
   });
 
-  test.skip('switches page content to go back a page', async () => {
+  test('switches page content to go back a page', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={1}>
         <FormRouterInternal
@@ -86,7 +86,7 @@ describe('Routing - Page', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.prev');
+      const goLink = container.querySelector('va-button[back]');
       goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 

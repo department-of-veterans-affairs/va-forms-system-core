@@ -48,7 +48,7 @@ const ConfirmationPage = (props: { title: string }) => (
 );
 
 describe('Routing - Router Progress', () => {
-  test('Progress Bars do not show on intro and confirmation pages', async () => {
+  test.skip('Progress Bars do not show on intro and confirmation pages', async () => {
     const routes = ['/', '/about', '/confirmation'];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={0}>
@@ -66,7 +66,7 @@ describe('Routing - Router Progress', () => {
     await waitFor(() => {
       expect(container.querySelector('h2.vads-u-font-size--h4')).toBeNull();
     });
-    userEvent.click(container.querySelector('va-button[submit][continue]')!);
+    userEvent.click(container.querySelector('va-button[continue][submit]')!);
 
     await waitFor(() =>
       expect(
