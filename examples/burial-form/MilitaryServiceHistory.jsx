@@ -40,6 +40,7 @@ export default function MilitaryServiceHistory(props) {
           label="Place of separation" />
         <VaButton
           disabled
+          secondary
           text="Add another Service Period" />
 
         <br />

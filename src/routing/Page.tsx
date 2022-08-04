@@ -52,7 +52,6 @@ export default function Page(props: PageProps): JSX.Element {
                 }` as To
               );
             }}
-            className="btn next"
             text="Back to Review Page"
           />
         </div>
