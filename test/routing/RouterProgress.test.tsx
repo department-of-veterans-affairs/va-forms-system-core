@@ -47,7 +47,7 @@ const ConfirmationPage = (props: { title: string }) => (
   </Page>
 );
 
-describe('Routing - Router Progress', () => {
+describe.skip('Routing - Router Progress', () => {
   test('Progress Bars do not show on intro and confirmation pages', async () => {
     const routes = ['/', '/about', '/confirmation'];
     const { container } = render(

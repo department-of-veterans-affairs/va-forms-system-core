@@ -133,6 +133,8 @@ export function FormRouter(props: FormRouterProps): JSX.Element;
 // @beta
 export interface FormRouterProps {
     // (undocumented)
+    basename: string;
+    // (undocumented)
     children: ReactElement<any, any> | ReactElement<any, any>[];
     // (undocumented)
     formData: IFormData;
