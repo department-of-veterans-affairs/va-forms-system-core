@@ -21,7 +21,9 @@ import { PageContext } from './PageContext';
  * @beta
  */
 const transformFieldValue = (key: number, field: FieldObject) => {
-  if (typeof field?.value === 'undefined') return;
+  if (typeof field?.value === 'undefined' || typeof field?.value === 'object')
+    return;
+
   if (field.value === 'true' || field.value === true) {
     return 'Yes';
   }
@@ -41,7 +43,7 @@ const transformFieldValue = (key: number, field: FieldObject) => {
     });
   }
   if (['amountIncurred', 'amountGovtContribution'].indexOf(field.name) > -1) {
-    return `$${field.value as string | number}`;
+    return `$${field.value }`;
   }
   if (['claimantPhone'].indexOf(field.name) > -1) {
     return `${(field.value as string).replace(
@@ -66,7 +68,7 @@ const bufferFields = (fields: FieldObject[], rank = 0) => {
     const fieldJSX = recurseField(key, field, rank);
     if (fieldJSX) fieldBuffer.push(fieldJSX);
   });
-  return fieldBuffer;
+  if (fieldBuffer.length > 0) return fieldBuffer;
 };
 
 /**
@@ -106,15 +108,16 @@ const recurseField = (
         {bufferFields(field.children, rank + 1)}
       </div>
     );
-  } else {
+  } else if (field?.value) {
     return (
       <div
-        className={`level-${rank}-field-${key}`}
-        key={`level-${rank}-field-${key} vads-u-margin-bottom--1p5`}
+        className={`level-${rank}-field-${key} vads-u-margin-bottom--1p5`}
+        key={`level-${rank}-field-${key}`}
       >
         {fieldLabel}
         <span
           className={`review-page--page-info--value-text field-value field-value-level-${rank}`}
+          key={`child-level-${rank}-field-${key}`}
         >
           {' '}
           {transformFieldValue(key, field)}
@@ -153,7 +156,9 @@ export function SyncFormikDataToPages(
                 const fieldName = arrPageFieldChildren[f].name.split('.');
                 // set the value
                 arrPageFieldChildren[f].value =
-                  formikData.values[arrPageField.name][fieldName[1]];
+                  formikData.values[arrPageField.name][
+                    arrPageFieldChildren[f].name
+                  ];
               }
             }
             // reset the value
@@ -161,7 +166,9 @@ export function SyncFormikDataToPages(
           }
 
           // go ahead and set it's value directly even if it has children
-          arrPageField.value = formikData.values[arrPageField.name];
+          if (typeof formikData.values[arrPageField.name] !== 'object') {
+            arrPageField.value = formikData.values[arrPageField.name];
+          }
         }
         // reset its value
         arrPageFields[x] = arrPageField;
@@ -184,21 +191,37 @@ export default function ReviewPage(props: { title: string }) {
   useEffect(() => {
     const newListOfPages = SyncFormikDataToPages(listOfPages, state);
     setListOfPages(newListOfPages);
-  }, [location, state]);
+  }, [state]);
   return (
     <article>
       <h1>{props.title}</h1>
       {/* <VaOnThisPage></VaOnThisPage> */}
 
-      {/* { listOfPages.map(page => { return (
-          <section id={page.id} key={page.id} className="review-page--page-info">
-            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
-              <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-              <Link to={page.path+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
+      {listOfPages.map((page) => {
+        return (
+          <section
+            id={page.id}
+            key={page.id}
+            className="review-page--page-info"
+          >
+            <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
+              <h2
+                id={page.id}
+                className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text"
+              >
+                {page.title}
+              </h2>
+              <Link
+                to={page.path + '?edit=true&source=' + page.id}
+                className="vads-u-margin-bottom--1p5 review-page--page-heading--link"
+              >
+                Edit
+              </Link>
             </div>
             {bufferFields(page.fields)}
           </section>
-        )}) } */}
+        );
+      })}
 
       {/* { pageData.pages.map(page => { return (
           <section id={page.id} key={page.id} className="review-page--page-info">
@@ -207,8 +230,8 @@ export default function ReviewPage(props: { title: string }) {
               <Link to={page.pageUrl+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
             </div>
 
-            {/* {bufferFields(page.fields)} */}
-      {/* </section>
+            {{bufferFields(page.fields)}
+        </section>
         )}) } */}
     </article>
   );

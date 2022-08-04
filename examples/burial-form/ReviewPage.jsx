@@ -104,6 +104,19 @@ export default function ReviewPage(props) {
 
   useLayoutEffect(() => scrollToSection(location), [location])
 
+  const sampleConfig = [
+    {
+      title: 'Claimant information',
+      id: 'claimant-information',
+      pageUrl: '/claimant-information',
+      fields: [
+        'claimantFullName',
+        'relationship',
+        'claimingAsFirm'
+      ]
+    },
+  ]
+
   // mockup some data to review formik context
   const pageData = {
     pages: [
@@ -442,8 +455,7 @@ export default function ReviewPage(props) {
 
             {bufferFields(page.fields)}
           </section>
-        )}
-        ) }
+        )} ) }
       </article>
     </Page>
   )

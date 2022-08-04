@@ -121,7 +121,7 @@ export function createFieldDataFromChildren(
         element.props.children,
         rank + 1
       );
-    } else if (!element.props?.children && splitEl.length > 1 && rank === 0) {
+    } else if (!element.props.children && splitEl.length > 1 && rank === 0) {
       // manual functionality designed for flat level object fields like relationship.type
       // shallow child: this may need to be updated
       // later to include more than one nested level
@@ -131,7 +131,7 @@ export function createFieldDataFromChildren(
         (field) => field.name === fieldChildName
       );
 
-      if (fieldChildIndex && fieldChildIndex < 0) {
+      if (!fieldChildIndex || fieldChildIndex < 0) {
         const fieldChild: FieldObject = {
           name: fieldChildName,
           label: element.props.label,
