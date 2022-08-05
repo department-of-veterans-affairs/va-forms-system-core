@@ -37,14 +37,19 @@ jobs:
           ssm_parameter: /devops/VA_VSP_BOT_NPM_TOKEN
           env_variable_name: VA_VSP_BOT_NPM_TOKEN
 
-      - name: Get Github Token password
-        uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
-        with:
-          ssm_parameter: /devops/VA_VSP_BOT_GITHUB_TOKEN
-          env_variable_name: VA_VSP_BOT_GITHUB_TOKEN
-
-      - name: Run npx semantic-release, create Github Release, and Publish NPM package
-        run: npx semantic-release
+      - name: Publish build artifacts to NPM
+        run: yarn npm publish --access public --tolerate-republish
         env:
-          NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
-          GH_TOKEN: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
+
+      # - name: Get Github Token password
+      #   uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
+      #   with:
+      #     ssm_parameter: /devops/VA_VSP_BOT_GITHUB_TOKEN
+      #     env_variable_name: VA_VSP_BOT_GITHUB_TOKEN
+
+      # - name: Run npx semantic-release, create Github Release, and Publish NPM package
+      #   run: npx semantic-release
+      #   env:
+      #     NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
+      #     GH_TOKEN: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
