@@ -2,9 +2,8 @@ import React, {useLayoutEffect} from 'react';
 import {useFormikContext} from 'formik';
 import {Link, useLocation} from 'react-router-dom';
 import {VaOnThisPage} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-import {Page} from "@department-of-veterans-affairs/va-forms-system-core";
-import {parseDate} from "@department-of-veterans-affairs/va-forms-system-core";
-import { getRadioLabel } from './utils'
+import {CheckboxField, Page, parseDate} from "@department-of-veterans-affairs/va-forms-system-core";
+import {getRadioLabel} from './utils'
 
 /**
  * Transforms fields value into value that is more readable
@@ -440,10 +439,38 @@ export default function ReviewPage(props) {
               <Link to={page.pageUrl+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
             </div>
 
-            {bufferFields(page.fields)}
-          </section>
+                {bufferFields(page.fields)}
+              </section>
+            )
+          }
         )}
-        ) }
+
+        <div>
+          <div>
+            <strong>Note:</strong> According to federal law, there are criminal
+                                   penalties, including a fine and/or imprisonment for up to 5 years, for
+                                   withholding information or for providing incorrect information. (See 18
+                                   U.S.C. 1001)
+          </div>
+          <CheckboxField
+            required
+            name="privacyAgreementAccepted"
+            label="I have read and accepted the privacy policy above"
+            validate={(value => value === true ? '' : 'You must accept the privacy policy before continuing.')}
+            description={null}
+          >
+            <p slot="description">
+              I have read and accept the{' '}
+              <a
+                aria-label="Privacy policy, will open in new tab"
+                target="_blank"
+                href="/privacy-policy/"
+              >
+                privacy policy
+              </a>
+            </p>
+          </CheckboxField>
+        </div>
       </article>
     </Page>
   )
