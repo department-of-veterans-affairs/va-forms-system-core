@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
 import React, { useState } from 'react';
 import { Page, RouterProps } from '../../src';
 import RouterProgress from '../../src/routing/RouterProgress';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import { Formik } from 'formik';
 import userEvent from '@testing-library/user-event';
 
@@ -47,7 +47,7 @@ const ConfirmationPage = (props: { title: string }) => (
   </Page>
 );
 
-describe.skip('Routing - Router Progress', () => {
+describe('Routing - Router Progress', () => {
   test('Progress Bars do not show on intro and confirmation pages', async () => {
     const routes = ['/', '/about', '/confirmation'];
     const { container } = render(
@@ -66,14 +66,17 @@ describe.skip('Routing - Router Progress', () => {
     await waitFor(() => {
       expect(container.querySelector('h2.vads-u-font-size--h4')).toBeNull();
     });
-    userEvent.click(container.querySelector('button.next')!);
+    userEvent.click(container.querySelector('va-button[continue][submit]')!);
 
     await waitFor(() =>
       expect(
         container.querySelector('h2.vads-u-font-size--h4')?.innerHTML
       ).toContain('Step 1 of 1: About')
     );
-    userEvent.click(container.querySelector('button.next')!);
+    fireEvent(
+      container.querySelector('va-button-pair')!,
+      new CustomEvent('primaryClick')
+    );
 
     await waitFor(() => {
       expect(container.querySelector('h2.vads-u-font-size--h4')).toBeNull();

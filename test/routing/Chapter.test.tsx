@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 
 import {
   Link,
@@ -69,7 +69,7 @@ const initialValues = {
   zipcode: '',
 };
 
-describe.skip('Routing - Chapter', () => {
+describe('Routing - Chapter', () => {
   test('it can navigate Chapters and Pages', async () => {
     const { container } = render(
       <MemoryRouter
@@ -143,8 +143,10 @@ describe.skip('Routing - Chapter', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.next');
-      goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      fireEvent(
+        container.querySelector('va-button-pair')!,
+        new CustomEvent('primaryClick')
+      );
     });
 
     await waitFor(() =>
