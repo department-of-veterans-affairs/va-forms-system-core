@@ -12,6 +12,7 @@ import {
   VaButtonPair,
   VaButton,
 } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { PageContext } from '../form-data/PageContext';
 
 /**
  * Renders the page contents
@@ -25,8 +26,30 @@ export default function Page(props: PageProps): JSX.Element {
   const sourceAnchor = searchParams.get('source');
   const state = useFormikContext();
   const currentLocation = useLocation();
+  const { listOfPages, setListOfPages } = useContext(PageContext);
+  const childrenLength = React.Children.count(props.children);
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
+
+  useEffect(() => {
+    const listOfPagesCopy = [...listOfPages];
+
+    // go through list of pages and make sure info doesn't already exist
+    const pageIndex = listOfPagesCopy
+      .map((page) => page.id)
+      .indexOf(currentLocation.pathname.replace(/\\/g, ''));
+
+    if (pageIndex < 0 && props?.fieldNames) {
+      const pageData = {
+        id: currentLocation.pathname.replace(/\\/g, ''),
+        title: props.title,
+        path: currentLocation.pathname,
+        fieldNames: props?.fieldNames,
+        fields: [],
+      };
+      setListOfPages([...listOfPagesCopy, pageData]);
+    }
+  }, [currentLocation.pathname, childrenLength]);
 
   useEffect(() => {
     // Reset the form on route change.

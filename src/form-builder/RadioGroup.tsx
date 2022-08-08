@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext, useEffect } from 'react';
 import { RadioGroupProps, RadioItemProps } from './types';
 import {
   VaRadio,
@@ -6,8 +6,12 @@ import {
 } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { useField, FieldHookConfig } from 'formik';
 import { chainValidations, required } from '../utils/validation';
+import { PageContext } from '../form-data/PageContext';
+import { gatherFieldData } from '../form-data/FormData';
 
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
+  const { listOfPages, setListOfPages } = useContext(PageContext);
+
   const options = props.options;
   const withValidation = {
     ...props,
@@ -18,6 +22,11 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
   );
 
   const id = props.id || props.name;
+
+  useEffect(() => {
+    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
+  }, [field.name, field.value]);
 
   return (
     <VaRadio
