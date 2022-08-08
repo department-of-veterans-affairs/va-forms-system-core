@@ -48,7 +48,7 @@ const initialValues = {
   zipcode: '',
 };
 
-describe.skip('Routing - Page', () => {
+describe('Routing - Page', () => {
   test('switches page content', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
@@ -63,7 +63,7 @@ describe.skip('Routing - Page', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.next');
+      const goLink = container.querySelector('va-button[continue][submit]');
       goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 
@@ -86,7 +86,7 @@ describe.skip('Routing - Page', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.prev');
+      const goLink = container.querySelector('va-button[back]');
       goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 
