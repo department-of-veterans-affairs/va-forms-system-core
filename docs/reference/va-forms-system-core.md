@@ -34,7 +34,7 @@
 
 |  Variable | Description |
 |  --- | --- |
-|  [AddressField](./va-forms-system-core.addressfield.md) |  |
+|  [AddressField](./va-forms-system-core.addressfield.md) | AddressField |
 |  [CapitalizeFirstLetter](./va-forms-system-core.capitalizefirstletter.md) |  |
 |  [chainValidations](./va-forms-system-core.chainvalidations.md) |  |
 |  [CheckboxField](./va-forms-system-core.checkboxfield.md) | CheckboxField component is a simple form building component that displays a checkbox for the user. |
