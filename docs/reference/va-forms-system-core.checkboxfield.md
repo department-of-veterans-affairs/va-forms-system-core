@@ -4,8 +4,15 @@
 
 ## CheckboxField variable
 
+CheckboxField component is a simple form building component that displays a checkbox for the user.
+
 <b>Signature:</b>
 
 ```typescript
 CheckboxField: (props: CheckboxProps) => JSX.Element
 ```
+
+## Remarks
+
+A description can be passed in two different ways 1 - Pass a string variable through the description prop 2 - Inside a <CheckboxField> tag, create a child element with a slot="description" attribute, while setting the normal description prop to null. HTML can then be passed through the slot and will render above the CheckboxField.
+

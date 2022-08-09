@@ -14,6 +14,9 @@ import {
   MilitaryStates,
 } from '../utils/constants';
 
+/**
+ *  AddressField
+ */
 const AddressField = (props: AddressProps): JSX.Element => {
   const withValidation = {
     ...props,
