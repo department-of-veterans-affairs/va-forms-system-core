@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# This will prevent any commit that does not fit the semantic-release angular convention
 npx --no -- commitlint --edit "${1}"
