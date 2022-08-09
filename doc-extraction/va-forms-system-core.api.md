@@ -32,7 +32,7 @@ export interface Address {
     streetAddressLine3?: string;
 }
 
-// @public (undocumented)
+// @public
 export const AddressField: (props: AddressProps) => JSX.Element;
 
 // @public (undocumented)
