@@ -1,4 +1,5 @@
 import { FieldInputProps } from 'formik';
+import { ReactElement } from 'react';
 import {
   FieldProps,
   RadioGroupProps,
@@ -36,12 +37,11 @@ export const gatherFieldData = (
             fieldData.value = field.value;
           }
           if ((props as RadioGroupProps)?.options) {
-            const options = (props as RadioGroupProps)
-              ?.options ;
+            const options = (props as RadioGroupProps)?.options;
             const propOptions = options.map((option) => {
               return {
-                label: option.label ,
-                value: option.value ,
+                label: option.label,
+                value: option.value,
               };
             });
 
@@ -50,11 +50,12 @@ export const gatherFieldData = (
           if ((props as SelectProps)?.children) {
             // map options
             const propOptions = (
-              (props as SelectProps)?.children as HTMLOptionElement[]
-            ).map(() => {
+              (props as SelectProps)?.children as HTMLOptionElement &
+                ReactElement[]
+            ).map((element) => {
               return {
-                value: props.value as string,
-                label: props.children as string,
+                value: element.key as string,
+                label: element.props.children as string,
               };
             });
             fieldData.options = propOptions;
@@ -62,7 +63,9 @@ export const gatherFieldData = (
           listOfPages[i].fields?.push(fieldData);
         } else if (field.value && findExistingFieldIndex >= 0) {
           // make a copy
-          const fieldData = { ...listOfPages[i].fields[findExistingFieldIndex] };
+          const fieldData = {
+            ...listOfPages[i].fields[findExistingFieldIndex],
+          };
           if (field.value) {
             fieldData.value = field.value;
           }

@@ -26,6 +26,14 @@ const transformFieldValue = (key: number, field: FieldObject) => {
   if (typeof field?.value === 'undefined' || typeof field?.value === 'object')
     return;
 
+  if (field?.options) {
+    const fieldIndex = field.options.findIndex(
+      (fieldOption) => fieldOption.value === field?.value
+    );
+    if (fieldIndex > 0) {
+      return field.options[fieldIndex].label;
+    }
+  }
   if (field.value === 'true' || field.value === true) {
     return 'Yes';
   }
