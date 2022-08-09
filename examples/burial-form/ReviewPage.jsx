@@ -432,12 +432,15 @@ export default function ReviewPage(props) {
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
 
-        { pageData.pages.map(page => { if (page.isShown) return (
-          <section id={page.id} key={page.id} className="review-page--page-info">
-            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
-              <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-              <Link to={page.pageUrl+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
-            </div>
+        {pageData.pages.map(page => {
+            if (page.isShown) return (
+              <section id={page.id} key={page.id} className="review-page--page-info">
+                <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
+                  <h2 id={page.id}
+                      className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text">{page.title}</h2>
+                  <Link to={page.pageUrl + '?edit=true&source=' + page.id}
+                        className="vads-u-margin-bottom--1p5 review-page--page-heading--link">Edit</Link>
+                </div>
 
                 {bufferFields(page.fields)}
               </section>
@@ -446,12 +449,12 @@ export default function ReviewPage(props) {
         )}
 
         <div>
-          <div className="vads-u-padding-y--2">
+          <p className="vads-u-padding-y--2">
             <strong>Note:</strong> According to federal law, there are criminal
                                    penalties, including a fine and/or imprisonment for up to 5 years, for
                                    withholding information or for providing incorrect information. (See 18
                                    U.S.C. 1001)
-          </div>
+          </p>
           <CheckboxField
             required="You must accept the privacy policy before continuing."
             name="privacyAgreementAccepted"
