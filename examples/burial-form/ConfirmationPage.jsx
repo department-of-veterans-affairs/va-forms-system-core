@@ -1,6 +1,7 @@
 import React from 'react';
-import {Page} from '@department-of-veterans-affairs/va-forms-system-core';
-import {useFormikContext} from "formik";
+import { Page } from '@department-of-veterans-affairs/va-forms-system-core';
+import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { useFormikContext } from "formik";
 
 const SAMPLE_GUID = '20d0c3c3-7456-47cf-9a81-f0ada8dfb089';
 const DATE_OPTIONS = {
@@ -18,7 +19,7 @@ const benefitsLabels = {
 };
 
 export default function ConfirmationPage(props) {
-  const {values} = useFormikContext();
+  const { values } = useFormikContext();
 
   const benefits = {
     burialAllowance: values?.benefitsSelection?.burialAllowance,
@@ -48,9 +49,9 @@ export default function ConfirmationPage(props) {
               <span className="additional">(Form 21P-530)</span>
             </h3>
             <span>
-            for {values?.claimantFullName?.first} {values?.claimantFullName?.middle} {values?.claimantFullName?.last}{' '}
+              for {values?.claimantFullName?.first} {values?.claimantFullName?.middle} {values?.claimantFullName?.last}{' '}
               {values?.claimantFullName?.suffix}
-          </span>
+            </span>
             <ul className="claim-list">
               <li>
                 <h4>Confirmation number</h4>
@@ -59,15 +60,15 @@ export default function ConfirmationPage(props) {
               <li>
                 <h4>Date submitted</h4>
                 <span>
-                {new Date().toLocaleDateString('en-US', DATE_OPTIONS)}
-              </span>
+                  {new Date().toLocaleDateString('en-US', DATE_OPTIONS)}
+                </span>
               </li>
               <li>
                 <h4>Deceased Veteran</h4>
                 <span>
-                {values?.veteranFullName?.first} {values?.veteranFullName?.middle} {values?.veteranFullName?.last}{' '}
+                  {values?.veteranFullName?.first} {values?.veteranFullName?.middle} {values?.veteranFullName?.last}{' '}
                   {values?.veteranFullName?.suffix}
-              </span>
+                </span>
               </li>
               <li>
                 <h4>Benefits claimed</h4>
@@ -87,13 +88,10 @@ export default function ConfirmationPage(props) {
                 </address>
               </li>
             </ul>
-            <button
-              type="button"
-              className="usa-button screen-only"
+            <VaButton
               onClick={window.print}
-            >
-              Print for your records
-            </button>
+              text="Print for your records"
+            />
           </div>
         </div>
       </Page>
