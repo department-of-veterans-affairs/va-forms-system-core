@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import {
-  FormikBag,
-  FormikComputedProps,
-  FormikContextType,
-  FormikProps,
-  useFormikContext,
-} from 'formik';
-import { Link, useLocation } from 'react-router-dom';
+import { FormikContextType, useFormikContext } from 'formik';
+import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { Page, PageProps } from '../routing';
 import { FieldObject, PageObject } from './types';
@@ -170,7 +164,7 @@ export default function ReviewPage(props: { title: string }) {
   return (
     <article>
       <h1>{props.title}</h1>
-      {/* <VaOnThisPage></VaOnThisPage> */}
+      <VaOnThisPage></VaOnThisPage>
 
       {listOfPages.map((page) => {
         return (
@@ -197,16 +191,6 @@ export default function ReviewPage(props: { title: string }) {
           </section>
         );
       })}
-
-      {/* { pageData.pages.map(page => { return (
-          <section id={page.id} key={page.id} className="review-page--page-info">
-            <div className='review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default'>
-              <h2 id={page.id} className='vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text'>{page.title}</h2>
-              <Link to={page.pageUrl+'?edit=true&source='+page.id} className='vads-u-margin-bottom--1p5 review-page--page-heading--link'>Edit</Link>
-            </div>
-            {{bufferFields(page.fields)}
-        </section>
-        )}) } */}
     </article>
   );
 }
