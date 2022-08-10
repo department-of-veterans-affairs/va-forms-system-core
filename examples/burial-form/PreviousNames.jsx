@@ -20,7 +20,10 @@ export default function PreviousNames(props) {
 
   return (
     <>
-      <Page {...props}>
+      <Page {...props} fieldNames={[
+        "veteranServedUnderAnotherName",
+        "previousNames",
+      ]}>
         <div className={values?.veteranServedUnderAnotherName === "true" ? `${ExpandingGroupClass}` : ''}>
           <RadioGroup
             name="veteranServedUnderAnotherName"

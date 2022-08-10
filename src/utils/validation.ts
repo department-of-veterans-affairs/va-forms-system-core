@@ -167,6 +167,6 @@ export const isValidSSN = <T>(
   } else if (!/^\d{9}$/.test(ssnString)) {
     return 'Please enter a valid 9 digit Social Security number (dashes allowed)';
   } else {
-    return '';
+    return;
   }
 };

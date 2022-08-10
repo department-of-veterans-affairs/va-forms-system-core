@@ -24,6 +24,7 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
   };
 
   useEffect(() => {
+    // Create a copy so the context's state doesn't get mutated.
     const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);
