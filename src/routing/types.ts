@@ -4,11 +4,10 @@ import { FormikHelpers, FormikValues } from 'formik';
 /**
  * The properties for the Router React component
  *
- * @beta
+ * @public
  */
-export interface RouterProps {
+export interface FormRouterProps {
   children: ReactElement<any, any> | ReactElement<any, any>[];
-  basename: string;
   title: string;
   subtitle?: string;
   transformForSubmit?: (
@@ -16,6 +15,7 @@ export interface RouterProps {
     actions: FormikHelpers<FormikValues>
   ) => any;
   formData: IFormData;
+  basename: string;
 }
 
 export interface RouterContextProps {
@@ -27,7 +27,7 @@ export interface RouterContextProps {
  * Indicates if a component can be routed using `react-router-dom`. The `path`
  * prop must be present.
  *
- * @beta
+ * @public
  */
 export interface Routable {
   path: string;
@@ -36,7 +36,7 @@ export interface Routable {
 /**
  * Used for passing a list of routes into Router Context
  *
- * @beta
+ * @public
  */
 export interface RouteInfo {
   path: string;
@@ -48,7 +48,7 @@ export interface RouteInfo {
 /**
  * Properties for Router Context
  *
- * @beta
+ * @internal
  */
 export interface IRouterContext {
   listOfRoutes: RouteInfo[];
@@ -59,7 +59,7 @@ export interface IRouterContext {
 /**
  * The properties for the Page React component
  *
- * @beta
+ * @public
  */
 export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
@@ -72,7 +72,7 @@ export interface PageProps {
 /**
  * The type for the FormData to define the flexible data object
  *
- * @beta
+ * @public
  */
 export interface IFormData {
   [prop: string]: unknown;
@@ -81,7 +81,7 @@ export interface IFormData {
 /**
  * The properties for the Chapter React component
  *
- * @beta
+ * @alpha
  */
 export interface ChapterProps {
   children: Array<any> | any;

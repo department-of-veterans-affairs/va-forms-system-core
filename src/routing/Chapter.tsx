@@ -1,11 +1,11 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom-v5-compat';
 import { ChapterProps } from './types';
 
 /**
  * Renders the chapter contents
  *
- * @beta
+ * @alpha
  */
 export default function Chapter(props: ChapterProps): JSX.Element {
   return (

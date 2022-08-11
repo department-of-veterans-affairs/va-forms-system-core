@@ -7,7 +7,9 @@
 <b>Signature:</b>
 
 ```typescript
-export declare type DateProps = FieldProps<string>;
+export declare type DateProps = FieldProps<string> & {
+    isMemorableDate?: boolean;
+};
 ```
 <b>References:</b> [FieldProps](./va-forms-system-core.fieldprops.md)
 

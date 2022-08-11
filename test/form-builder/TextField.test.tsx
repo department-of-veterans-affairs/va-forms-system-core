@@ -73,6 +73,17 @@ describe('Form Builder - TextField', () => {
     expect(spy).toBeCalled();
   });
 
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+      <TextField name="thing" label="The Thing" validate={spy} />
+    );
+    const input = getInput(container);
+
+    await changeValue(input, 'asdf', 'input');
+    expect(spy).toBeCalled();
+  });
+
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
     const { container, getFormProps } = rf(

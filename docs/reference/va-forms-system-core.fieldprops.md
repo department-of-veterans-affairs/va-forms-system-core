@@ -10,6 +10,7 @@
 export declare type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
     label: string;
     id?: string;
+    onValueChange?: (e: Event) => void;
     required?: boolean | string;
 };
 ```

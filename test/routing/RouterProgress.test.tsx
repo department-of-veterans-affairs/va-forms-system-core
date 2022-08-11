@@ -1,11 +1,11 @@
-import { RouterContextProvider } from "../../src/routing/RouterContext";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
-import { Page, RouterProps } from "../../src";
-import RouterProgress from "../../src/routing/RouterProgress";
-import { render, waitFor } from "@testing-library/react";
-import { Formik } from "formik";
-import userEvent from "@testing-library/user-event";
+import { RouterContextProvider } from '../../src/routing/RouterContext';
+import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
+import React, { useState } from 'react';
+import { Page, RouterProps } from '../../src';
+import RouterProgress from '../../src/routing/RouterProgress';
+import { render, waitFor, fireEvent } from '@testing-library/react';
+import { Formik } from 'formik';
+import userEvent from '@testing-library/user-event';
 
 const FormRouterInternal = (props: RouterProps): JSX.Element => {
   const [route, updateRoute] = useState('/');
@@ -14,9 +14,9 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
     <RouterContextProvider
       routes={props.children}
       currentRoute={route}
-      updateRoute={updateRoute}>
-
-      <RouterProgress route={route}/>
+      updateRoute={updateRoute}
+    >
+      <RouterProgress route={route} />
       <Formik
         initialValues={props.formData}
         onSubmit={(values, actions) => {
@@ -26,47 +26,39 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
         <Routes>{props.children}</Routes>
       </Formik>
     </RouterContextProvider>
-  )
+  );
 };
 
 const IndexPage = (props: { title: string }) => (
-  <Page
-    {...props}
-    nextPage="/about">
+  <Page {...props} nextPage="/about">
     <p>Index</p>
   </Page>
 );
 
 const AboutPage = (props: { title: string }) => (
-  <Page
-    {...props}
-    nextPage="/confirmation">
+  <Page {...props} nextPage="/confirmation">
     <p>About</p>
   </Page>
 );
 
 const ConfirmationPage = (props: { title: string }) => (
-  <Page
-    {...props}
-    nextPage="/"
-  >
+  <Page {...props} nextPage="/">
     <p>Confirmation</p>
   </Page>
 );
 
 describe('Routing - Router Progress', () => {
-  test('Progress Bars do not show on intro and confirmation pages', async() => {
-    const routes = ["/", "/about", "/confirmation"];
+  test('Progress Bars do not show on intro and confirmation pages', async () => {
+    const routes = ['/', '/about', '/confirmation'];
     const { container } = render(
       <MemoryRouter initialEntries={routes} initialIndex={0}>
-        <FormRouterInternal
-          basename="/"
-          formData={{}}
-          title="Page Test"
-        >
-          <Route index element={<IndexPage title="Index"/>}/>
-          <Route path="/about" element={<AboutPage title="About"/>}/>
-          <Route path="/confirmation" element={<ConfirmationPage title="Confirmation"/>}/>
+        <FormRouterInternal basename="/" formData={{}} title="Page Test">
+          <Route index element={<IndexPage title="Index" />} />
+          <Route path="/about" element={<AboutPage title="About" />} />
+          <Route
+            path="/confirmation"
+            element={<ConfirmationPage title="Confirmation" />}
+          />
         </FormRouterInternal>
       </MemoryRouter>
     );
@@ -74,14 +66,17 @@ describe('Routing - Router Progress', () => {
     await waitFor(() => {
       expect(container.querySelector('h2.vads-u-font-size--h4')).toBeNull();
     });
-    userEvent.click(container.querySelector('button.next')!);
+    userEvent.click(container.querySelector('va-button[continue][submit]')!);
 
     await waitFor(() =>
-                    expect(
-                      container.querySelector('h2.vads-u-font-size--h4')
-                        ?.innerHTML).toContain('Step 1 of 1: About')
+      expect(
+        container.querySelector('h2.vads-u-font-size--h4')?.innerHTML
+      ).toContain('Step 1 of 1: About')
     );
-    userEvent.click(container.querySelector('button.next')!);
+    fireEvent(
+      container.querySelector('va-button-pair')!,
+      new CustomEvent('primaryClick')
+    );
 
     await waitFor(() => {
       expect(container.querySelector('h2.vads-u-font-size--h4')).toBeNull();

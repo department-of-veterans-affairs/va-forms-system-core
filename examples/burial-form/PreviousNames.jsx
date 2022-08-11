@@ -6,6 +6,7 @@ import {
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 import { ExpandingGroupClass } from '../Constant';
+import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 export default function PreviousNames(props) {
 
@@ -16,7 +17,7 @@ export default function PreviousNames(props) {
       setFieldValue(`previousNames`, [])
     }
   }, [values?.veteranServedUnderAnotherName]);
-  
+
   return (
     <>
       <Page {...props}>
@@ -27,25 +28,26 @@ export default function PreviousNames(props) {
             required
             options={
               [
-                {label: "Yes", value: true, key: 1},
-                {label: "No", value: false, key: 2},
+                { label: "Yes", value: true, key: 1 },
+                { label: "No", value: false, key: 2 },
               ]
             }
           />
           {
             values?.veteranServedUnderAnotherName === "true"
-            ? (
-              <>
-                <FullNameField name="previousNames[0]"/>
-                <button
-                  className="btn usa-button usa-button-disabled">
-                  Add another name
-                </button>
-              </>
-            )
-            : (
-              null
-            )
+              ? (
+                <>
+                  <FullNameField name="previousNames[0]" />
+                  <VaButton
+                    disabled
+                    secondary
+                    text="Add another name"
+                  />
+                </>
+              )
+              : (
+                null
+              )
           }
         </div>
       </Page>

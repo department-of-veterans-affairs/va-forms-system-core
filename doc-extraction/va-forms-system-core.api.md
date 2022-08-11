@@ -32,7 +32,7 @@ export interface Address {
     streetAddressLine3?: string;
 }
 
-// @public (undocumented)
+// @public
 export const AddressField: (props: AddressProps) => JSX.Element;
 
 // @public (undocumented)
@@ -41,10 +41,16 @@ export type AddressProps = FieldProps<string> & {
     legendClasses: string;
 };
 
-// @beta
+// @public (undocumented)
+export const CapitalizeFirstLetter: (value: string) => string;
+
+// @public (undocumented)
+export const chainValidations: <T>(props: FieldProps<T>, validations: ValidationFunction<T>[]) => (value: T) => ValidationFunctionResult<T>;
+
+// @alpha
 export function Chapter(props: ChapterProps): JSX.Element;
 
-// @beta
+// @alpha
 export interface ChapterProps {
     // (undocumented)
     children: Array<any> | any;
@@ -52,7 +58,7 @@ export interface ChapterProps {
     title?: string;
 }
 
-// @public (undocumented)
+// @public
 export const CheckboxField: (props: CheckboxProps) => JSX.Element;
 
 // @public (undocumented)
@@ -67,6 +73,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
 export type CheckboxProps = FieldProps<string> & {
     checked?: boolean;
     content?: string;
+    description?: string | null;
     onValueChange?: (e: Event) => void;
     value?: boolean;
 };
@@ -80,31 +87,65 @@ export function ConditionalRoute(props: {
 }): React_2.ReactElement<any, any>;
 
 // @public (undocumented)
+export const Countries: {
+    value: string;
+    label: string;
+}[];
+
+// @public (undocumented)
+export const CountryUSA: {
+    value: string;
+    label: string;
+}[];
+
+// @public (undocumented)
 export const DateField: (props: DateProps) => JSX.Element;
 
 // @public (undocumented)
-export type DateProps = FieldProps<string>;
+export type DateProps = FieldProps<string> & {
+    isMemorableDate?: boolean;
+};
 
 // @public
 export const DebuggerView: () => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "EmailProps" needs to be exported by the entry point index.d.ts
 //
-// @beta
+// @public
 export const EmailField: (props: EmailProps) => JSX.Element;
+
+// @public (undocumented)
+export const emailRegex: RegExp;
 
 // @public (undocumented)
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
     label: string;
     id?: string;
+    onValueChange?: (e: Event) => void;
     required?: boolean | string;
 };
 
 // @public (undocumented)
 export function FormFooter(): JSX.Element;
 
-// @beta
-export function FormRouter(props: RouterProps): JSX.Element;
+// @public
+export function FormRouter(props: FormRouterProps): JSX.Element;
+
+// @public
+export interface FormRouterProps {
+    // (undocumented)
+    basename: string;
+    // (undocumented)
+    children: ReactElement<any, any> | ReactElement<any, any>[];
+    // (undocumented)
+    formData: IFormData;
+    // (undocumented)
+    subtitle?: string;
+    // (undocumented)
+    title: string;
+    // (undocumented)
+    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
+}
 
 // @public
 export const FormTitle: (props: FormTitleProps) => JSX.Element;
@@ -126,7 +167,13 @@ export type FullNameProps = FieldProps<string> & {
     legendClasses: string;
 };
 
-// @beta
+// @public (undocumented)
+export const FUTURE_DATE_MESSAGE = "Please provide a valid current or past date";
+
+// @public (undocumented)
+export function getMessage(messagePath: string): string;
+
+// @public
 export interface IFormData {
     // (undocumented)
     [prop: string]: unknown;
@@ -135,7 +182,9 @@ export interface IFormData {
 // @public
 export const IntroductionPage: () => JSX.Element;
 
-// @beta
+// Warning: (ae-internal-missing-underscore) The name "IRouterContext" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export interface IRouterContext {
     // (undocumented)
     currentRoute: string;
@@ -146,6 +195,33 @@ export interface IRouterContext {
     // (undocumented)
     previousRoute: string | null;
 }
+
+// @public
+export const isValidDate: <T>(dateString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public
+export const isValidEmail: <T>(emailString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const isValidPhone: <T>(phoneString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public
+export const isValidSSN: <T>(ssnString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const MilitaryCities: {
+    label: string;
+    value: string;
+}[];
+
+// @public (undocumented)
+export const MilitaryStates: {
+    label: string;
+    value: string;
+}[];
+
+// @public (undocumented)
+export const NumberField: (props: FieldProps<string>) => JSX.Element;
 
 // @public
 export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
@@ -160,10 +236,10 @@ export interface OMBInfoProps {
     resBurden?: number;
 }
 
-// @beta
+// @public
 export function Page(props: PageProps): JSX.Element;
 
-// @beta
+// @public
 export interface PageProps {
     // (undocumented)
     children: JSX.Element | JSX.Element[] | Element;
@@ -177,9 +253,12 @@ export interface PageProps {
     title: string;
 }
 
+// @public
+export const parseDate: (dateString: string) => Date;
+
 // Warning: (ae-forgotten-export) The symbol "PhoneProps" needs to be exported by the entry point index.d.ts
 //
-// @beta
+// @public
 export const PhoneField: (props: PhoneProps) => JSX.Element;
 
 // @public (undocumented)
@@ -211,13 +290,19 @@ export type RadioItemProps = {
     onRadioOptionSelected: () => void;
 };
 
-// @beta
+// @public (undocumented)
+export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export const requiredValue: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public
 export interface Routable {
     // (undocumented)
     path: string;
 }
 
-// @beta
+// @public
 export interface RouteInfo {
     // (undocumented)
     conditional?: boolean;
@@ -229,7 +314,7 @@ export interface RouteInfo {
     title: string;
 }
 
-// Warning: (ae-incompatible-release-tags) The symbol "RouterContext" is marked as @public, but its signature references "IRouterContext" which is marked as @beta
+// Warning: (ae-incompatible-release-tags) The symbol "RouterContext" is marked as @public, but its signature references "IRouterContext" which is marked as @internal
 //
 // @public (undocumented)
 export const RouterContext: React_2.Context<IRouterContext>;
@@ -242,22 +327,6 @@ export interface RouterContextProps {
     routes: React.ReactElement | React.ReactElement[];
 }
 
-// @beta
-export interface RouterProps {
-    // (undocumented)
-    basename: string;
-    // (undocumented)
-    children: ReactElement<any, any> | ReactElement<any, any>[];
-    // (undocumented)
-    formData: IFormData;
-    // (undocumented)
-    subtitle?: string;
-    // (undocumented)
-    title: string;
-    // (undocumented)
-    transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
-}
-
 // Warning: (ae-forgotten-export) The symbol "SelectProps" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
@@ -265,11 +334,48 @@ export const SelectField: (props: SelectProps) => JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "SSNProps" needs to be exported by the entry point index.d.ts
 //
-// @beta
+// @public
 export const SSNField: (props: SSNProps) => JSX.Element;
 
 // @public (undocumented)
+export const States: {
+    CAN: {
+        label: string;
+        value: string;
+    }[];
+    MEX: {
+        label: string;
+        value: string;
+    }[];
+    USA: {
+        label: string;
+        value: string;
+    }[];
+};
+
+// @public (undocumented)
+export const States50AndDC: {
+    label: string;
+    value: string;
+}[];
+
+// @public (undocumented)
+export const Suffixes: string[];
+
+// @public (undocumented)
 export const TextField: (props: FieldProps<string>) => JSX.Element;
+
+// @public
+export const transformJSONSchema: (schema: any) => {};
+
+// @public (undocumented)
+export const UsaStates: string[];
+
+// @public (undocumented)
+export type ValidationFunction<T> = (value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export type ValidationFunctionResult<T> = void | undefined | string | Promise<unknown> | T;
 
 // (No @packageDocumentation comment for this package)
 
