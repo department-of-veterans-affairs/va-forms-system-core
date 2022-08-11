@@ -23,6 +23,8 @@ coverage/
 !.yarn/versions
 .pnp.*
 
+package-lock.json
+
 temp/
 doc-extraction/va-forms-system-core.api.json
 
