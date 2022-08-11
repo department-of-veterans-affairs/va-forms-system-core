@@ -32,7 +32,7 @@ export interface Address {
     streetAddressLine3?: string;
 }
 
-// @public (undocumented)
+// @public
 export const AddressField: (props: AddressProps) => JSX.Element;
 
 // @public (undocumented)
@@ -58,7 +58,7 @@ export interface ChapterProps {
     title?: string;
 }
 
-// @public (undocumented)
+// @public
 export const CheckboxField: (props: CheckboxProps) => JSX.Element;
 
 // @public (undocumented)
@@ -73,6 +73,7 @@ export type CheckboxGroupProps = FieldProps<string> & {
 export type CheckboxProps = FieldProps<string> & {
     checked?: boolean;
     content?: string;
+    description?: string | null;
     onValueChange?: (e: Event) => void;
     value?: boolean;
 };
