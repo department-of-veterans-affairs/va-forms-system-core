@@ -5,10 +5,6 @@ export interface FieldObject {
   name: string;
   label: string;
   value?: boolean | string | undefined | number | null;
-  // options?: {
-  //   key: string;
-  //   label: string;
-  // }[];
   options?: {
     label: string;
     value: string;

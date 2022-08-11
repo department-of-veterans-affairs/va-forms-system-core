@@ -121,42 +121,6 @@ const recurseField = (
   }
 };
 
-export function SyncFormikDataToPages(
-  pages: PageObject[],
-  formikData: FormikContextType<any>
-): PageObject[] {
-  const newArrayBuffer = [...pages];
-
-  // go into the page level
-  for (let i = 0; i < newArrayBuffer.length; i++) {
-    const arrPage = newArrayBuffer[i];
-    if (arrPage?.fields.length) {
-      // make a copy
-      const arrPageFields = [...arrPage.fields];
-      // go into the fields level
-      for (let x = 0; x < arrPageFields.length; x++) {
-        // make a copy
-        const arrPageField = arrPageFields[x];
-
-        // check to see if the value exists in formik
-        if (formikData.values[arrPageField.name]) {
-          // go ahead and set it's value directly even if it has children
-          if (typeof formikData.values[arrPageField.name] !== 'object') {
-            arrPageField.value = formikData.values[arrPageField.name];
-          }
-        }
-        // reset its value
-        arrPageFields[x] = arrPageField;
-      }
-
-      arrPage.fields = arrPageFields;
-    }
-    // reset the value
-    newArrayBuffer[i] = arrPage;
-  }
-  return newArrayBuffer;
-}
-
 export default function ReviewPage(props: { title: string }) {
   const state = useFormikContext();
   const { listOfPages, setListOfPages } = useContext(PageContext);
