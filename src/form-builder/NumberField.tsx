@@ -5,9 +5,11 @@ import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaNumberInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { gatherFieldData, PageContext } from '../form-data';
+import { useLocation } from 'react-router-dom';
 
 const NumberField = (props: FieldProps<string>): JSX.Element => {
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const currentLocation = useLocation();
 
   const withValidation = {
     ...props,
@@ -18,7 +20,12 @@ const NumberField = (props: FieldProps<string>): JSX.Element => {
 
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
-    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      field,
+      props,
+      currentLocation.pathname
+    );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);
 

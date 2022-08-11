@@ -5,9 +5,11 @@ import { chainValidations, required } from '../utils/validation';
 import { VaCheckbox } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { CheckboxProps } from './types';
 import { gatherFieldData, PageContext } from '../form-data';
+import { useLocation } from 'react-router-dom';
 
 const CheckboxField = (props: CheckboxProps): JSX.Element => {
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const currentLocation = useLocation();
 
   const withValidation = {
     ...props,
@@ -20,7 +22,12 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
 
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
-    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      field,
+      props,
+      currentLocation.pathname
+    );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);
 

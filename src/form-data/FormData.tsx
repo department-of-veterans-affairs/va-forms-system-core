@@ -1,5 +1,6 @@
 import { FieldInputProps } from 'formik';
 import { ReactElement } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   FieldProps,
   RadioGroupProps,
@@ -13,14 +14,16 @@ type typeList = RadioGroupProps | FieldProps<string> | SelectProps;
 export const gatherFieldData = (
   listOfPages: PageObject[],
   field: FieldInputProps<any>,
-  props: typeList
+  props: typeList,
+  currentPath: string
 ) => {
   if (listOfPages?.length <= 0) return;
   // Identify which page to edit
   for (let i = 0; i < listOfPages.length; i++) {
     if (
       typeof listOfPages[i]?.fieldNames !== 'undefined' &&
-      (listOfPages[i]?.fieldNames?.length as number) > 0
+      (listOfPages[i]?.fieldNames?.length as number) &&
+      currentPath?.includes(listOfPages[i].path)
     ) {
       for (let j = 0; j < (listOfPages[i]?.fieldNames?.length as number); j++) {
         const findExistingFieldIndex = listOfPages[i].fields?.findIndex(

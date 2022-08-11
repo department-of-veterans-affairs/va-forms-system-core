@@ -5,6 +5,7 @@ import { FieldProps } from './types';
 import { chainValidations, isValidSSN, required } from '../utils/validation';
 import { VaTextInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { gatherFieldData, PageContext } from '../form-data';
+import { useLocation } from 'react-router-dom';
 
 export type SSNProps = FieldProps<string>;
 
@@ -15,6 +16,7 @@ export type SSNProps = FieldProps<string>;
  */
 const SSNField = (props: SSNProps): JSX.Element => {
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const currentLocation = useLocation();
 
   // Note: In this component, the Formik variable "field.value" holds the raw SSN value,
   // while the useState variable "ssn" controls the view and will render the masked SSN to the page
@@ -35,7 +37,12 @@ const SSNField = (props: SSNProps): JSX.Element => {
     }
 
     // Create a copy so the context's state doesn't get mutated.
-    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      field,
+      props,
+      currentLocation.pathname
+    );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.value, field.name]);
 

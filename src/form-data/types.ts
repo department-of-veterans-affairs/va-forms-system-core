@@ -22,6 +22,7 @@ export interface PageObject {
 export interface IPageContext {
   listOfPages: PageObject[];
   setListOfPages: (pages: PageObject[]) => void;
+  currentPath: string;
 }
 
 export interface PageContextProps {

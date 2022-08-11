@@ -8,9 +8,11 @@ import { VaSelect } from '@department-of-veterans-affairs/component-library/dist
 import { PageContext } from '../form-data/PageContext';
 import { gatherFieldData } from '../form-data/FormData';
 import { SelectProps } from './types';
+import { useLocation } from 'react-router-dom';
 
 const SelectField = (props: SelectProps): JSX.Element => {
   const { listOfPages, setListOfPages } = useContext(PageContext);
+  const currentLocation = useLocation();
 
   const withValidation = {
     ...props,
@@ -21,7 +23,12 @@ const SelectField = (props: SelectProps): JSX.Element => {
 
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
-    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      field,
+      props,
+      currentLocation.pathname
+    );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);
 

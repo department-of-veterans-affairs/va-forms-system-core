@@ -24,7 +24,7 @@ const transformFieldValue = (key: number, field: FieldObject) => {
     const fieldIndex = field.options.findIndex(
       (fieldOption) => fieldOption.value === field?.value
     );
-    if (fieldIndex > 0) {
+    if (fieldIndex >= 0) {
       return field.options[fieldIndex].label;
     }
   }
