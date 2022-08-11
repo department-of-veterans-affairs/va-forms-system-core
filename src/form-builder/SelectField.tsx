@@ -11,8 +11,7 @@ import { SelectProps } from './types';
 import { useLocation } from 'react-router-dom';
 
 const SelectField = (props: SelectProps): JSX.Element => {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
-  const currentLocation = useLocation();
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
   const withValidation = {
     ...props,
@@ -27,7 +26,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
       [...listOfPages],
       field,
       props,
-      currentLocation.pathname
+      currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);

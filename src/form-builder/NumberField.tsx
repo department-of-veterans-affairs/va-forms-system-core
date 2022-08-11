@@ -8,8 +8,7 @@ import { gatherFieldData, PageContext } from '../form-data';
 import { useLocation } from 'react-router-dom';
 
 const NumberField = (props: FieldProps<string>): JSX.Element => {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
-  const currentLocation = useLocation();
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
   const withValidation = {
     ...props,
@@ -24,7 +23,7 @@ const NumberField = (props: FieldProps<string>): JSX.Element => {
       [...listOfPages],
       field,
       props,
-      currentLocation.pathname
+      currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);

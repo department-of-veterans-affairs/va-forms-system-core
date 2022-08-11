@@ -9,8 +9,7 @@ import { gatherFieldData } from '../form-data/FormData';
 import { useLocation } from 'react-router-dom';
 
 const TextField = (props: FieldProps<string>): JSX.Element => {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
-  const currentLocation = useLocation();
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
   // find current page on component mount?
   const withValidation = {
@@ -31,7 +30,7 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
       [...listOfPages],
       field,
       props,
-      currentLocation.pathname
+      currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);

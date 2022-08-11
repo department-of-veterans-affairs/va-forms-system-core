@@ -11,8 +11,7 @@ import { gatherFieldData } from '../form-data/FormData';
 import { useLocation } from 'react-router-dom';
 
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
-  const currentLocation = useLocation();
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
   const options = props.options;
   const withValidation = {
@@ -31,7 +30,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       [...listOfPages],
       field,
       props,
-      currentLocation.pathname
+      currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);

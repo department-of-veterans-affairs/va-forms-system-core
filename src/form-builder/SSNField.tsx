@@ -15,8 +15,7 @@ export type SSNProps = FieldProps<string>;
  * @public
  */
 const SSNField = (props: SSNProps): JSX.Element => {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
-  const currentLocation = useLocation();
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
   // Note: In this component, the Formik variable "field.value" holds the raw SSN value,
   // while the useState variable "ssn" controls the view and will render the masked SSN to the page
@@ -41,7 +40,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
       [...listOfPages],
       field,
       props,
-      currentLocation.pathname
+      currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.value, field.name]);
