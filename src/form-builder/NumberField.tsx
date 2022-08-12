@@ -21,7 +21,7 @@ const NumberField = (props: FieldProps<string>): JSX.Element => {
     // Create a copy so the context's state doesn't get mutated.
     const listOfPagesCopy = gatherFieldData(
       [...listOfPages],
-      field,
+      { ...field, type: 'accounting' },
       props,
       currentPath
     );

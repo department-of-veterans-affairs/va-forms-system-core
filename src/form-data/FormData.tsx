@@ -13,7 +13,7 @@ type typeList = RadioGroupProps | FieldProps<string> | SelectProps;
 
 export const gatherFieldData = (
   listOfPages: PageObject[],
-  field: FieldInputProps<any>,
+  field: FieldInputProps<any> & { type?: string },
   props: typeList,
   currentPath: string
 ) => {
@@ -38,6 +38,9 @@ export const gatherFieldData = (
           };
           if (field.value) {
             fieldData.value = field.value;
+          }
+          if (field.type) {
+            fieldData.type = field.type;
           }
           if ((props as RadioGroupProps)?.options) {
             const options = (props as RadioGroupProps)?.options;

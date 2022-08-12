@@ -9,6 +9,7 @@ export interface FieldObject {
     label: string;
     value: string;
   }[];
+  type?: string;
 }
 
 export interface PageObject {

@@ -7,6 +7,7 @@ import { FieldObject, PageObject } from './types';
 
 import { parseDate } from '../utils/helpers';
 import { PageContext } from './PageContext';
+import { type } from '@testing-library/user-event/dist/type';
 // import { getRadioLabel } from "../utils/helpers";
 
 /**
@@ -28,17 +29,7 @@ const transformFieldValue = (key: number, field: FieldObject) => {
       return field.options[fieldIndex].label;
     }
   }
-  if (field.value === 'true' || field.value === true) {
-    return 'Yes';
-  }
-  if (field.value === 'false' || field.value === false) {
-    return 'No';
-  }
-  if (
-    ['from', 'to', 'veteranDateOfBirth', 'deathDate', 'burialDate'].indexOf(
-      field.name
-    ) > -1
-  ) {
+  if (field?.type === 'date') {
     const date = parseDate(field.value as string);
     return date.toLocaleDateString('en-US', {
       day: 'numeric',
@@ -46,10 +37,10 @@ const transformFieldValue = (key: number, field: FieldObject) => {
       year: 'numeric',
     });
   }
-  if (['amountIncurred', 'amountGovtContribution'].indexOf(field.name) > -1) {
-    return `$${field.value}`;
+  if (field?.type === 'accounting') {
+    return `$${field.value as string}`;
   }
-  if (['claimantPhone'].indexOf(field.name) > -1) {
+  if (field?.type === 'tel') {
     return `${(field.value as string).replace(
       /(\d{3})(\d{3})(\d{4})/,
       '($1) $2-$3'

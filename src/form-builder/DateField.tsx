@@ -10,7 +10,7 @@ import {
 import { gatherFieldData, PageContext } from '../form-data';
 
 const DateField = (props: DateProps): JSX.Element => {
-  const { listOfPages, setListOfPages } = useContext(PageContext);
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required, isValidDate]),
@@ -31,7 +31,12 @@ const DateField = (props: DateProps): JSX.Element => {
 
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
-    const listOfPagesCopy = gatherFieldData([...listOfPages], field, props);
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      { ...field, type: 'date' },
+      props,
+      currentPath
+    );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.name, field.value]);
 
