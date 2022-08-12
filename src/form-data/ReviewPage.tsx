@@ -8,7 +8,17 @@ import { FieldObject, PageObject } from './types';
 import { parseDate } from '../utils/helpers';
 import { PageContext } from './PageContext';
 import { type } from '@testing-library/user-event/dist/type';
-// import { getRadioLabel } from "../utils/helpers";
+
+const TruthAndFalseLabels = [
+  {
+    label: 'Yes',
+    values: [true, 1],
+  },
+  {
+    label: 'No',
+    values: [false, 0],
+  },
+];
 
 /**
  * Transforms fields value into value that is more readable
@@ -18,9 +28,24 @@ import { type } from '@testing-library/user-event/dist/type';
  * @beta
  */
 const transformFieldValue = (key: number, field: FieldObject) => {
-  if (typeof field?.value === 'undefined' || typeof field?.value === 'object')
+  if (
+    typeof field?.value === 'undefined' ||
+    field.value === null ||
+    typeof field?.value === 'object'
+  )
     return;
 
+  // check for a 0,false,1,or true value
+  const truthOrFalseIndex = TruthAndFalseLabels.findIndex((labelValue) => {
+    return !!labelValue.values.find(
+      (fieldValue) => field?.value === fieldValue
+    );
+  });
+  if (truthOrFalseIndex >= 0) {
+    return TruthAndFalseLabels[truthOrFalseIndex].label;
+  }
+
+  // Add field options
   if (field?.options) {
     const fieldIndex = field.options.findIndex(
       (fieldOption) => fieldOption.value === field?.value
@@ -29,6 +54,7 @@ const transformFieldValue = (key: number, field: FieldObject) => {
       return field.options[fieldIndex].label;
     }
   }
+  // Parse date
   if (field?.type === 'date') {
     const date = parseDate(field.value as string);
     return date.toLocaleDateString('en-US', {
@@ -37,9 +63,11 @@ const transformFieldValue = (key: number, field: FieldObject) => {
       year: 'numeric',
     });
   }
+  // Number fields
   if (field?.type === 'accounting') {
     return `$${field.value as string}`;
   }
+  // Telephone fields
   if (field?.type === 'tel') {
     return `${(field.value as string).replace(
       /(\d{3})(\d{3})(\d{4})/,

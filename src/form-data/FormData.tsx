@@ -36,7 +36,7 @@ export const gatherFieldData = (
             name: props.name,
             label: props.label,
           };
-          if (field.value) {
+          if (typeof field.value !== 'undefined') {
             fieldData.value = field.value;
           }
           if (field.type) {
@@ -67,12 +67,15 @@ export const gatherFieldData = (
             fieldData.options = propOptions;
           }
           listOfPages[i].fields?.push(fieldData);
-        } else if (field.value && findExistingFieldIndex >= 0) {
+        } else if (
+          typeof field.value !== 'undefined' &&
+          findExistingFieldIndex >= 0
+        ) {
           // make a copy
           const fieldData = {
             ...listOfPages[i].fields[findExistingFieldIndex],
           };
-          if (field.value) {
+          if (typeof field.value !== 'undefined') {
             fieldData.value = field.value;
           }
           listOfPages[i].fields[findExistingFieldIndex] = fieldData;
