@@ -68,16 +68,31 @@ export default function Page(props: PageProps): JSX.Element {
       {editPage && (
         <div>
           <VaButton
-            onClick={() => {
-              navigate(
-                `/review-and-submit${
-                  sourceAnchor ? `#${sourceAnchor}` : ''
-                }` as To
-              );
+            onClick={(event: Event) => {
+              if (Object.keys(state.errors).length > 0) {
+                state.handleSubmit();
+                event.preventDefault();
+              } else {
+                state.handleSubmit();
+                navigate(
+                  `/review-and-submit${
+                    sourceAnchor ? `#${sourceAnchor}` : ''
+                  }` as To
+                );
+              }
             }}
             text="Back to Review Page"
           />
         </div>
+      )}
+
+      {previousRoute && !nextRoute && !props.hidePreviousButton && (
+        <VaButton
+          back
+          onClick={() => {
+            navigate(previousRoute as To);
+          }}
+        />
       )}
 
       {nextRoute && !previousRoute && (
@@ -98,7 +113,7 @@ export default function Page(props: PageProps): JSX.Element {
         />
       )}
 
-      {nextRoute && previousRoute && (
+      {nextRoute && previousRoute && !props.hidePreviousButton && (
         <VaButtonPair
           continue
           submit

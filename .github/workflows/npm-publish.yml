@@ -10,46 +10,46 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-        cache: 'yarn'
-    
-    - name: Install dependencies in react-components
-      run: yarn install
-    
-    - name: Build package NPM package
-      run: yarn build
+      - uses: actions/checkout@v2
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-gov-west-1
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          cache: 'yarn'
 
-    - name: Get NPM Token password
-      uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
-      with:
-        ssm_parameter: /devops/VA_VSP_BOT_NPM_TOKEN
-        env_variable_name: VA_VSP_BOT_NPM_TOKEN
+      - name: Install dependencies in react-components
+        run: yarn install
 
-    - name: Publish build artifacts to NPM
-      run: yarn npm publish --access public --tolerate-republish
-      env:
-        YARN_NPM_AUTH_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
+      - name: Build package NPM package
+        run: yarn build
 
-    # - name: Get Github Token password
-    #   uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
-    #   with:
-    #     ssm_parameter: /devops/VA_VSP_BOT_GITHUB_TOKEN
-    #     env_variable_name: VA_VSP_BOT_GITHUB_TOKEN
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-gov-west-1
 
-    # - name: Run npx semantic-release, create Github Release, and Publish NPM package
-    #   run: npx semantic-release
-    #   env:
-    #     NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
-    #     GH_TOKEN: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
+      - name: Get NPM Token password
+        uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
+        with:
+          ssm_parameter: /devops/VA_VSP_BOT_NPM_TOKEN
+          env_variable_name: VA_VSP_BOT_NPM_TOKEN
+
+      - name: Get Github Token password
+        uses: marvinpinto/action-inject-ssm-secrets@v1.2.1
+        with:
+          ssm_parameter: /devops/VA_VSP_BOT_GITHUB_TOKEN
+          env_variable_name: VA_VSP_BOT_GITHUB_TOKEN
+
+      - name: Run npx semantic-release, create Github Release, and Publish NPM package
+        run: npx semantic-release
+        env:
+          NPM_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}
+          GH_TOKEN: ${{ env.VA_VSP_BOT_GITHUB_TOKEN }}
+
+      - name: Publish build artifacts to NPM
+        run: yarn npm publish --access public --tolerate-republish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ env.VA_VSP_BOT_NPM_TOKEN }}

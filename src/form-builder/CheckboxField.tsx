@@ -7,6 +7,22 @@ import { CheckboxProps } from './types';
 import { gatherFieldData, PageContext } from '../form-data';
 import { useLocation } from 'react-router-dom';
 
+/**
+ * CheckboxField component is a simple form building component that displays a
+ * checkbox for the user.
+ *
+ * @param {CheckboxProps} props
+ *
+ * @returns React.Component
+ *
+ * @remarks
+ * A description can be passed in two different ways
+ *   1 - Pass a string variable through the description prop
+ *   2 - Inside a <CheckboxField> tag, create a child element
+ *   with a slot="description" attribute, while setting the
+ *   normal description prop to null. HTML can then be passed
+ *   through the slot and will render above the CheckboxField.
+ */
 const CheckboxField = (props: CheckboxProps): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
 
@@ -36,6 +52,7 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
       label={props.label}
       required={!!props.required}
       {...field}
+      description={props.description}
       name={props.name}
       checked={field.value}
       onBlur={() => helpers.setTouched(true)}
@@ -46,7 +63,9 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
         }
       }}
       error={(meta.touched && meta.error) || undefined}
-    />
+    >
+      {props.children}
+    </VaCheckbox>
   );
 };
 
