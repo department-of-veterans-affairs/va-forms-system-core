@@ -145,35 +145,37 @@ export default function ReviewPage(props: { title: string }) {
   const { listOfPages, setListOfPages } = useContext(PageContext);
 
   return (
-    <article>
-      <h1>{props.title}</h1>
-      <VaOnThisPage></VaOnThisPage>
+    <Page {...props} nextButtonCustomText="Submit" hidePreviousButton={false}>
+      <article>
+        <h1>{props.title}</h1>
+        <VaOnThisPage></VaOnThisPage>
 
-      {listOfPages.map((page) => {
-        return (
-          <section
-            id={page.id}
-            key={page.id}
-            className="review-page--page-info"
-          >
-            <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
-              <h2
-                id={page.id}
-                className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text"
-              >
-                {page.title}
-              </h2>
-              <Link
-                to={page.path + '?edit=true&source=' + page.id}
-                className="vads-u-margin-bottom--1p5 review-page--page-heading--link"
-              >
-                Edit
-              </Link>
-            </div>
-            {bufferFields(page.fields)}
-          </section>
-        );
-      })}
-    </article>
+        {listOfPages.map((page) => {
+          return (
+            <section
+              id={page.id}
+              key={page.id}
+              className="review-page--page-info"
+            >
+              <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
+                <h2
+                  id={page.id}
+                  className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text"
+                >
+                  {page.title}
+                </h2>
+                <Link
+                  to={page.path + '?edit=true&source=' + page.id}
+                  className="vads-u-margin-bottom--1p5 review-page--page-heading--link"
+                >
+                  Edit
+                </Link>
+              </div>
+              {bufferFields(page.fields)}
+            </section>
+          );
+        })}
+      </article>
+    </Page>
   );
 }
