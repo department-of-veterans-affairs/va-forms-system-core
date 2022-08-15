@@ -4,9 +4,7 @@ import { useField, FieldHookConfig } from 'formik';
 import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaTextInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-import { PageContext } from '../form-data/PageContext';
-import { gatherFieldData } from '../form-data/FormData';
-import { useLocation } from 'react-router-dom';
+import { gatherFieldData, PageContext } from '../form-data';
 
 const TextField = (props: FieldProps<string>): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);

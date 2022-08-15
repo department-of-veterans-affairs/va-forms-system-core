@@ -1,14 +1,12 @@
-import React, { ReactElement, useContext, useEffect } from 'react';
-import { RadioGroupProps, RadioItemProps } from './types';
+import React, { useContext, useEffect } from 'react';
+import { RadioGroupProps } from './types';
 import {
   VaRadio,
   VaRadioOption,
 } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { useField, FieldHookConfig } from 'formik';
 import { chainValidations, required } from '../utils/validation';
-import { PageContext } from '../form-data/PageContext';
-import { gatherFieldData } from '../form-data/FormData';
-import { useLocation } from 'react-router-dom';
+import { gatherFieldData, PageContext } from '../form-data';
 
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);

@@ -44,6 +44,7 @@ const BurialApp = (props) => {
           <Route path="/veteran-information" element={<VeteranInformation title="Deceased Veteran Information" />} />
           <Route path="/veteran-information/burial" element={<BurialInformation title="Deceased Veteran Information" />} />
           <Route path="/military-history/service-periods" element={<MilitaryServiceHistory title="Military Service History" />} />
+          <Route path="/military-history/previous-names" element={<PreviousNames title="Military history" />} />
           <Route path="/benefits/selection" element={<BenefitsSelection title="Benefits Selection" />} />
           <Route path="/benefits/burial-allowance" element={
             <ConditionalRoute title="Benefits Selection" type="conditional" condition={'benefitsSelection.burialAllowance'}>
@@ -56,7 +57,6 @@ const BurialApp = (props) => {
             </ConditionalRoute>}
           />
           <Route path="/claimant-contact-information" element={<ClaimantContactInformation title="Claimant contact information" />} />
-          {/* <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} /> */}
           <Route path="/review-and-submit" element={<ReviewPage title="Review Your Application" />} />
           <Route path="/confirmation" element={<ConfirmationPage title="Claim submitted" />} />
           <Route path="*" element={<NoMatch name="No Routes for App" />} />

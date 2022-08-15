@@ -2,21 +2,20 @@ import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { FormikContextType, useFormikContext } from 'formik';
 import { Link } from 'react-router-dom';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-import { Page, PageProps } from '../routing';
-import { FieldObject, PageObject } from './types';
+import { Page } from '../routing';
+import { FieldObject } from './types';
 
 import { parseDate } from '../utils/helpers';
 import { PageContext } from './PageContext';
-import { type } from '@testing-library/user-event/dist/type';
 
 const TruthAndFalseLabels = [
   {
     label: 'Yes',
-    values: [true, 1],
+    values: [true, 1, 'true'],
   },
   {
     label: 'No',
-    values: [false, 0],
+    values: [false, 0, 'false'],
   },
 ];
 

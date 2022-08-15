@@ -1,6 +1,5 @@
 import { FieldInputProps } from 'formik';
 import { ReactElement } from 'react';
-import { useLocation } from 'react-router-dom';
 import {
   FieldProps,
   RadioGroupProps,

@@ -5,7 +5,6 @@ import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaNumberInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { gatherFieldData, PageContext } from '../form-data';
-import { useLocation } from 'react-router-dom';
 
 const NumberField = (props: FieldProps<string>): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);

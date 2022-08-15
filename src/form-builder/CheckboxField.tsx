@@ -5,7 +5,6 @@ import { chainValidations, required } from '../utils/validation';
 import { VaCheckbox } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { CheckboxProps } from './types';
 import { gatherFieldData, PageContext } from '../form-data';
-import { useLocation } from 'react-router-dom';
 
 /**
  * CheckboxField component is a simple form building component that displays a
