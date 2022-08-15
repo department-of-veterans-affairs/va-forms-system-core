@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import { CompatRouter, Route } from 'react-router-dom-v5-compat'
 import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
+import { ReviewPage } from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
@@ -12,7 +13,6 @@ import PlotAllowance from './PlotAllowance';
 import BurialAllowance from "./BurialAllowance";
 import BenefitsSelection from './BenefitsSelection';
 import ClaimantContactInformation from "./ClaimantContactInformation";
-import { ReviewPage } from '@department-of-veterans-affairs/va-forms-system-core';
 import ConfirmationPage from "./ConfirmationPage";
 
 const NoMatch = (props) => (

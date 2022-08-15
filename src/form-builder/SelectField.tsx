@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
-import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaSelect } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { gatherFieldData, PageContext } from '../form-data';

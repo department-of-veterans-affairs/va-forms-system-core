@@ -1,11 +1,6 @@
 import { FieldInputProps } from 'formik';
 import { ReactElement } from 'react';
-import {
-  FieldProps,
-  RadioGroupProps,
-  RadioItemProps,
-  SelectProps,
-} from '../form-builder';
+import { FieldProps, RadioGroupProps, SelectProps } from '../form-builder';
 import { FieldObject, PageObject } from './types';
 
 type typeList = RadioGroupProps | FieldProps<string> | SelectProps;

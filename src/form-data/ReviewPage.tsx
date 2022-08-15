@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import { FormikContextType, useFormikContext } from 'formik';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useFormikContext } from 'formik';
+import { Link } from 'react-router-dom-v5-compat';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { Page } from '../routing';
 import { FieldObject } from './types';

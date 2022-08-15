@@ -1,11 +1,6 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom-v5-compat';
-import {
-  IPageContext,
-  PageContextProps,
-  PageObject,
-  FieldObject,
-} from './types';
+import { IPageContext, PageContextProps, PageObject } from './types';
 
 const PageContextInitialValues = {
   listOfPages: [],

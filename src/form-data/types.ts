@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import { RadioItemProps } from '../form-builder';
 
 export interface FieldObject {
   name: string;
