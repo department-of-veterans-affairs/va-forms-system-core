@@ -302,15 +302,15 @@ export default function ReviewPage(props) {
         fields: {
           "burialAllowance": {
             label: "Burial allowance",
-            value: state?.values?.benefitsSelection?.burialAllowance
+            value: state?.values?.burialAllowance
           },
           "plotAllowance": {
             label: "Plot or interment allowance",
-            value: state?.values?.benefitsSelection?.plotAllowance
+            value: state?.values?.plotAllowance
           },
           "transportation": {
             label: "Transportation expenses",
-            value: state?.values?.benefitsSelection?.transportation
+            value: state?.values?.transportation
           },
           "amountIncurred": {
             label: "Transportation amount incurred",

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useField, FieldHookConfig } from 'formik';
+import { useField, FieldHookConfig, useFormikContext } from 'formik';
 
-import { chainValidations, requiredValue } from '../utils/validation';
+import { chainValidations, required } from '../utils/validation';
 
 import { CheckboxGroupProps, CheckboxProps } from './types';
 
@@ -12,11 +12,33 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   // component re-renders these values per form input inside the form
   const withValidation = {
     ...props,
-    validate: chainValidations(props, [requiredValue]),
+    validate: chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string[]>
   );
+  const state = useFormikContext();
+
+  const onGroupChange = (event: any) => {
+    props?.options.map((option: any) => {
+      if (event.target.name === option.name) {
+        option.value = event.detail.checked;
+      }
+    });
+    const checkedOptions = props?.options.filter(
+      (option: any) => option.value === true
+    );
+
+    if (checkedOptions) {
+      helpers.setValue([]);
+    } else {
+      // Not working
+      state.setValues('benefitsSelection', undefined);
+      state.setErrors({ benefitsSelection: 'Please provide a response' });
+    }
+    console.log(helpers, meta);
+  };
+
   return (
     <>
       <VaCheckboxGroup
@@ -25,6 +47,7 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
         required={!!props.required}
         name={props.name}
         options={props.options}
+        onVaChange={onGroupChange}
         onBlur={() => {
           helpers.setTouched(true, true);
         }}

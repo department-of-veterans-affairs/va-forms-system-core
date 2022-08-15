@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Page,
   CheckboxFieldGroup,
-  TextField
+  TextField,
+  DebuggerView
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 
@@ -12,15 +13,15 @@ const checkboxProps = {
   required: true,
   options: [
     {
-      name: 'benefitsSelection.burialAllowance',
+      name: 'burialAllowance',
       label: 'Burial allowance',
     },
     {
-      name: 'benefitsSelection.plotAllowance',
+      name: 'plotAllowance',
       label: 'Plot or interment allowance (Check this box if you incurred expenses for the plot to bury the Veteran’s remains.)',
     },
     {
-      name: 'benefitsSelection.transportation',
+      name: 'transportation',
       label: 'Transportation expenses (Transportation of the Veteran’s remains from the place of death to the final resting place)',
     },
   ],
@@ -35,14 +36,14 @@ export default function BenefitsSelection(props) {
       <Page {...props}>
         <CheckboxFieldGroup {...checkboxProps} />
         {
-          !!state.values.benefitsSelection?.transportation && (
-            <div className={state.values.benefitsSelection?.transportation === true ? "form-expanding-group form-expanding-group-open" : ""}>
+          !!state.values.transportation && (
+            <div className={state.values?.transportation === true ? "form-expanding-group form-expanding-group-open" : ""}>
               <div className="form-expanding-group-inner-enter-done">
                 <div className="schemaform-expandUnder-indent">
                   <TextField 
                     name="amountIncurred" 
                     label="Transportation amount incurred"
-                    required={!!state.values.benefitsSelection?.transportation}    
+                    required={!!state.values.transportation}    
                   />
                   <div className="vads-u-margin-y--2">
                     <div className="usa-alert usa-alert-warning background-color-only">
@@ -57,7 +58,9 @@ export default function BenefitsSelection(props) {
             </div>
           )
         }
+        <DebuggerView />
       </Page>
+
     </>
   )
 }
