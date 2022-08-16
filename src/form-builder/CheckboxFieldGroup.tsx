@@ -15,7 +15,7 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
     validate: chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
-    withValidation as FieldHookConfig<string[]>
+    withValidation as FieldHookConfig<boolean>
   );
   const state = useFormikContext();
 
@@ -29,12 +29,12 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
       (option: any) => option.value === true
     );
 
-    if (checkedOptions) {
-      helpers.setValue([]);
+    if (checkedOptions.length > 0) {
+      helpers.setValue(true);
     } else {
-      // Not working
-      state.setValues('benefitsSelection', undefined);
-      state.setErrors({ benefitsSelection: 'Please provide a response' });
+      helpers.setValue(false);
+      helpers.setTouched(true);
+      helpers.setError('Please provide a response');
     }
     console.log(helpers, meta);
   };
