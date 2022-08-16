@@ -10,6 +10,7 @@
 export declare type CheckboxProps = FieldProps<string> & {
     checked?: boolean;
     content?: string;
+    description?: string | null;
     onValueChange?: (e: Event) => void;
     value?: boolean;
 };

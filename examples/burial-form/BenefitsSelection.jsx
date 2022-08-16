@@ -2,8 +2,7 @@ import React from 'react';
 import {
   Page,
   CheckboxFieldGroup,
-  TextField,
-  DebuggerView
+  NumberField,
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 
@@ -18,49 +17,55 @@ const checkboxProps = {
     },
     {
       name: 'plotAllowance',
-      label: 'Plot or interment allowance (Check this box if you incurred expenses for the plot to bury the Veteran’s remains.)',
+      label:
+        'Plot or interment allowance (Check this box if you incurred expenses for the plot to bury the Veteran’s remains.)',
     },
     {
       name: 'transportation',
-      label: 'Transportation expenses (Transportation of the Veteran’s remains from the place of death to the final resting place)',
+      label:
+        'Transportation expenses (Transportation of the Veteran’s remains from the place of death to the final resting place)',
     },
   ],
 };
 
 export default function BenefitsSelection(props) {
-
   const state = useFormikContext();
 
   return (
     <>
       <Page {...props}>
         <CheckboxFieldGroup {...checkboxProps} />
-        {
-          !!state.values.transportation && (
-            <div className={state.values?.transportation === true ? "form-expanding-group form-expanding-group-open" : ""}>
-              <div className="form-expanding-group-inner-enter-done">
-                <div className="schemaform-expandUnder-indent">
-                  <TextField 
-                    name="amountIncurred" 
-                    label="Transportation amount incurred"
-                    required={!!state.values.transportation}    
-                  />
-                  <div className="vads-u-margin-y--2">
-                    <div className="usa-alert usa-alert-warning background-color-only">
-                      <span>
-                        <strong>Note: </strong>
-                        At the end of the application, you will be asked to upload documentation for the expenses you incurred for transporting the Veteran’s remains.
-                      </span>
-                    </div>
+        {!!state.values.transportation && (
+          <div
+            className={
+              state.values.transportation === true
+                ? 'form-expanding-group form-expanding-group-open'
+                : ''
+            }
+          >
+            <div className="form-expanding-group-inner-enter-done">
+              <div className="schemaform-expandUnder-indent">
+                <NumberField
+                  name="amountIncurred"
+                  label="Transportation amount incurred"
+                  required={!!state.values.transportation}
+                />
+                <div className="vads-u-margin-y--2">
+                  <div className="usa-alert usa-alert-warning background-color-only">
+                    <span>
+                      <strong>Note: </strong>
+                      At the end of the application, you will be asked to upload
+                      documentation for the expenses you incurred for
+                      transporting the Veteran’s remains.
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-          )
-        }
-        <DebuggerView />
+          </div>
+        )}
       </Page>
 
     </>
-  )
+  );
 }

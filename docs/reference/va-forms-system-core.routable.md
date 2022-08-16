@@ -4,9 +4,6 @@
 
 ## Routable interface
 
-> This API is provided as a preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
-> 
-
 Indicates if a component can be routed using `react-router-dom`<!-- -->. The `path` prop must be present.
 
 <b>Signature:</b>
@@ -19,5 +16,5 @@ export interface Routable
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [path](./va-forms-system-core.routable.path.md) | string | <b><i>(BETA)</i></b> |
+|  [path](./va-forms-system-core.routable.path.md) | string |  |
 

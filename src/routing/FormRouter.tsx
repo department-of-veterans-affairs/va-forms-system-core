@@ -12,7 +12,7 @@ import { StringifyFormReplacer } from '../utils/helpers';
 /**
  * Manages form pages as routes
  * Parent formik insance is rendered here
- * @beta
+ * @public
  */
 export default function FormRouter(props: FormRouterProps): JSX.Element {
   const initialValues = props.formData;

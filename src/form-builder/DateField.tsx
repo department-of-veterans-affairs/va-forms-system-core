@@ -3,7 +3,10 @@ import { useField, FieldHookConfig } from 'formik';
 
 import { DateProps } from './types';
 import { chainValidations, isValidDate, required } from '../utils/validation';
-import { VaDate } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import {
+  VaDate,
+  VaMemorableDate,
+} from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 
 const DateField = (props: DateProps): JSX.Element => {
   const withValidation = {
@@ -24,7 +27,18 @@ const DateField = (props: DateProps): JSX.Element => {
     helpers.setValue((dateValue?.target as HTMLInputElement).value);
   };
 
-  return (
+  return props.isMemorableDate ? (
+    <VaMemorableDate
+      id={id}
+      required={!!props.required}
+      {...props}
+      label={props.label}
+      onDateChange={onChange}
+      value={value}
+      onDateBlur={() => helpers.setTouched(true)}
+      error={(meta.touched && meta.error) || undefined}
+    />
+  ) : (
     <VaDate
       id={id}
       required={!!props.required}

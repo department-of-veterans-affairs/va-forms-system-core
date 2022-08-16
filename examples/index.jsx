@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BurialApp from './burial-form';
+import ChapterForm from './chapter-form';
+import SimpleApp from './simple-form';
 
 import '@department-of-veterans-affairs/component-library/dist/main.css';
 import './form-styles.css';
@@ -15,7 +17,10 @@ const schemaKeys = transformJSONSchema(schema);
 const Main = () => {
   return (
     <>
+      {/* If you would like to see the simple form or chapter form, just uncomment and comment out BurialApp */}
       <BurialApp basename="/" initialValues={schemaKeys} />
+      {/* <ChapterForm basename="/" initialValues={schemaKeys} /> */}
+      {/* <SimpleApp /> */}
     </>
   )
 }

@@ -2,17 +2,13 @@ import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
-import { RouterProps } from '../../src/routing/types';
+import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
-import Chapter from '../../src/routing/Chapter';
 import { act } from 'react-dom/test-utils';
-import { FormFooter, FormTitle } from '../../src';
 import { Formik } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
-  const initialValues = props.formData;
-
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   return (
     <Formik
       initialValues={props.formData}
@@ -30,13 +26,13 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
 };
 
 const PageOne = () => (
-  <Page title="page one">
+  <Page title="page one" hidePreviousButton={true}>
     <p>page one</p>
   </Page>
 );
 
 const PageTwo = () => (
-  <Page title="page two">
+  <Page title="page two" hidePreviousButton={false}>
     <p>page two</p>
   </Page>
 );
@@ -67,7 +63,7 @@ describe('Routing - Page', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.next');
+      const goLink = container.querySelector('va-button[continue][submit]');
       goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 
@@ -90,7 +86,7 @@ describe('Routing - Page', () => {
       </MemoryRouter>
     );
     act(() => {
-      const goLink = container.querySelector('button.prev');
+      const goLink = container.querySelector('va-button[back]');
       goLink?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 

@@ -5,7 +5,7 @@ import { ChapterProps } from './types';
 /**
  * Renders the chapter contents
  *
- * @beta
+ * @alpha
  */
 export default function Chapter(props: ChapterProps): JSX.Element {
   return (
