@@ -7,20 +7,20 @@ form [type=submit] {
 }
 
 /* Review Page */
-.review-page--page-heading--text {
+.review-page__page-heading--text {
   color: var(--color-primary-darker);
 }
 
-.review-page--page-heading--link {
+.review-page__page-heading--link {
   text-align: right;
   margin-top: 1.8em;
 }
 
-.review-page--page-info--label-text {
+.review-page__page-info--label-text {
   color: var(--color-gray);
 }
 
-.review-page--page-info--value-text {
+.review-page__page-info--value-text {
   color: var(--color-gray-dark);
   font-size: 18px;
 }
