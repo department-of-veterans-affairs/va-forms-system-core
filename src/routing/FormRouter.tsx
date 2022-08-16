@@ -25,8 +25,9 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
           onSubmit={(values, actions) => {
             // This is where data is transformed if a custom transformForSubmit function is provided.
             // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
-            const data = JSON.stringify(values, StringifyFormReplacer);
-            console.log(data);
+
+            // Transform the data before submitting
+            // const data = JSON.stringify(values, StringifyFormReplacer);
             if (props.transformForSubmit) {
               props.transformForSubmit(values, actions);
             }

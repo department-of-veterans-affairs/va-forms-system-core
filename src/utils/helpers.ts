@@ -182,19 +182,12 @@ export const StringifyFormReplacer = (key: string, value: any): unknown => {
     value = value === 'false' ? false : true;
   }
 
-  // TODO: flaten checkbox values to match existing data model to submit to vets api
-
   // clean up empty objects, which we have no reason to send
   if (typeof value === 'object') {
     const fields = Object.keys(value || {});
     if (
       fields.length === 0 ||
-      fields.every(
-        (field) =>
-          value[field] === undefined ||
-          value[field] === '' ||
-          value[field] === ''
-      )
+      fields.every((field) => value[field] === undefined || value[field] === '')
     ) {
       return undefined;
     }
