@@ -37,6 +37,12 @@ export type CheckboxGroupProps = FieldProps<string> & {
   options: CheckboxProps[];
 };
 
+export type ArrayProps = FieldProps<string> & {
+  entries: any[];
+  collapsedView: any;
+  expandedView: any;
+}
+
 /**
  * OMBInfo properties
  *
