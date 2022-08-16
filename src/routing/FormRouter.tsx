@@ -7,6 +7,7 @@ import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
 import { RouterContextProvider } from './RouterContext';
 import RouterProgress from './RouterProgress';
+import { PageContextProvider } from '../form-data/PageContext';
 
 /**
  * Manages form pages as routes
@@ -33,7 +34,9 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
             <RouterContextProvider routes={props.children}>
               <FormTitle title={props.title} subTitle={props?.subtitle} />
               <RouterProgress />
-              <Routes>{props.children}</Routes>
+              <PageContextProvider>
+                <Routes>{props.children}</Routes>
+              </PageContextProvider>
               <FormFooter />
             </RouterContextProvider>
           </form>

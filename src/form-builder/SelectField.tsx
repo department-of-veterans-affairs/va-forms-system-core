@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
-import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
-
 import { VaSelect } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-
-type SelectProps = FieldProps<string> & {
-  onVaSelect?: (e: CustomEvent) => void;
-  children: HTMLOptionElement[] | unknown;
-};
+import { gatherFieldData, PageContext } from '../form-data';
+import { SelectProps } from './types';
 
 const SelectField = (props: SelectProps): JSX.Element => {
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required]),
   };
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
+
+  useEffect(() => {
+    // Create a copy so the context's state doesn't get mutated.
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      field,
+      props,
+      currentPath
+    );
+    if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
+  }, [field.name, field.value]);
 
   return (
     <VaSelect

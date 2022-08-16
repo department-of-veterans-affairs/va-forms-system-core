@@ -16,7 +16,9 @@ export default function MilitaryServiceHistory(props) {
 
   return (
     <>
-      <Page {...props}>
+      <Page {...props} fieldNames={[
+        "toursOfDuty" // this needs to be updated to allow multiple field values
+      ]}>
         <div className="usa-alert usa-alert-warning background-color-only">
           <span>
             <strong>Note:</strong> If you would rather upload a DD214 than enter dates
