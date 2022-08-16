@@ -87,6 +87,7 @@ const transformFieldValue = (key: number, field: FieldObject) => {
 const bufferFields = (fields: FieldObject[], rank = 0) => {
   const fieldBuffer: JSX.Element[] = [];
   fields.forEach((field, key) => {
+    // Revisit this in future ticket
     const fieldJSX = recurseField(key, field, rank);
     if (fieldJSX) fieldBuffer.push(fieldJSX);
   });
