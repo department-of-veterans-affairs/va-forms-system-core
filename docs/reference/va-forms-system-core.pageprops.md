@@ -17,6 +17,7 @@ export interface PageProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [children](./va-forms-system-core.pageprops.children.md) | JSX.Element \| JSX.Element\[\] \| Element |  |
+|  [fieldNames?](./va-forms-system-core.pageprops.fieldnames.md) | string\[\] | <i>(Optional)</i> |
 |  [hidePreviousButton](./va-forms-system-core.pageprops.hidepreviousbutton.md) | boolean |  |
 |  [nextButtonCustomText?](./va-forms-system-core.pageprops.nextbuttoncustomtext.md) | string | <i>(Optional)</i> |
 |  [nextButtonDescribedBy?](./va-forms-system-core.pageprops.nextbuttondescribedby.md) | string | <i>(Optional)</i> |
