@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { chainValidations, required } from '../utils/validation';
@@ -17,6 +17,10 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<boolean>
   );
+
+  useEffect(() => {
+    helpers.setValue(false);
+  }, []);
 
   const onGroupChange = (event: any) => {
     props?.options.map((option: any) => {

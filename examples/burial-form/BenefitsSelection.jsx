@@ -3,6 +3,7 @@ import {
   Page,
   CheckboxFieldGroup,
   NumberField,
+  DebuggerView
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 
@@ -65,7 +66,7 @@ export default function BenefitsSelection(props) {
           </div>
         )}
       </Page>
-
+            <DebuggerView />
     </>
   );
 }
