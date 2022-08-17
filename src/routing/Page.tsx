@@ -80,6 +80,16 @@ export default function Page(props: PageProps): JSX.Element {
                     sourceAnchor ? `#${sourceAnchor}` : ''
                   }` as To
                 );
+
+                // Allow time for render before finding the edit button and focusing on it
+                setTimeout(() => {
+                  const editLink = document.getElementById(
+                    `edit${sourceAnchor ? sourceAnchor : ''}`
+                  );
+
+                  // Only fire the focus method if the edit link exists
+                  editLink?.focus();
+                }, 0);
               }
             }}
             text="Back to Review Page"
