@@ -1,13 +1,11 @@
 import React from 'react';
-import { Page, IntroductionPage } from '@department-of-veterans-affairs/va-forms-system-core';
-import ArrayField from "@department-of-veterans-affairs/va-forms-system-core/form-builder/ArrayField";
+import {IntroductionPage, Page} from '@department-of-veterans-affairs/va-forms-system-core';
 
 export default function BurialIntroduction(props) {
   return (
     <>
       <Page {...props}>
-        <ArrayField label="" entries={} collapsedView={} expandedView={} />
-        <IntroductionPage />
+        <IntroductionPage/>
       </Page>
     </>
   )

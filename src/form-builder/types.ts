@@ -41,7 +41,8 @@ export type ArrayProps = FieldProps<string> & {
   entries: any[];
   collapsedView: any;
   expandedView: any;
-}
+  createEntry: () => void;
+};
 
 /**
  * OMBInfo properties

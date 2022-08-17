@@ -76,6 +76,7 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AddressProps](./va-forms-system-core.addressprops.md) |  |
+|  [ArrayProps](./va-forms-system-core.arrayprops.md) |  |
 |  [CheckboxGroupProps](./va-forms-system-core.checkboxgroupprops.md) |  |
 |  [CheckboxProps](./va-forms-system-core.checkboxprops.md) |  |
 |  [DateProps](./va-forms-system-core.dateprops.md) |  |

@@ -42,6 +42,13 @@ export type AddressProps = FieldProps<string> & {
 };
 
 // @public (undocumented)
+export type ArrayProps = FieldProps<string> & {
+    entries: any[];
+    collapsedView: any;
+    expandedView: any;
+};
+
+// @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
 
 // @public (undocumented)

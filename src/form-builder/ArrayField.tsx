@@ -21,40 +21,47 @@ const ArrayField = (props: ArrayProps): JSX.Element => {
 
   let visibleIndex = 0;
 
-  const removeEntry = (remove: any, index: number) => {
-    return;
-  }
+  const removeEntry = (remove: (index: number) => void, index: number) => {
+    props.entries.splice(index, 1);
+    remove(index);
+  };
 
-  const addEntry = (push: any) => {
-    return;
-  }
+  const addEntry = (push: (entry: any) => void) => {
+    const newEntry = props.createEntry();
+    push(newEntry);
+  };
 
   const editEntry = (index: number) => {
     visibleIndex = index;
-  }
+  };
 
   return (
     <div>
-      props.entries.length && (
       <FieldArray name={props.name}>
-        {({ insert, remove, push }) => (
+        {({ remove, push }) => (
           <div>
-            {/*{props.entries.map((entry: any, index: number) => (*/}
-            {/*  <div key={index}>*/}
-            {/*    {visibleIndex === index ? (*/}
-            {/*      // <div slot="expanded"></div>*/}
-            {/*      <button onClick={() => removeEntry(() => {return}, index)}>Remove</button>*/}
-            {/*    ) : (*/}
-            {/*       // <div slot="minimized"></div>*/}
-            {/*       <button onClick={() => editEntry(index)}>Edit</button>*/}
-            {/*     )}*/}
-            {/*  </div>*/}
-            {/*))}*/}
-            {/*<button onClick={() => addEntry(() => {return})}>Add</button>*/}
+            {props.entries.length &&
+              props.entries.map((entry: any, index: number) => (
+                <div key={index}>
+                  {visibleIndex === index ? (
+                    <>
+                      {React.cloneElement(props.expandedView, { entry })}
+                      <button onClick={() => removeEntry(remove, index)}>
+                        Remove
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {React.cloneElement(props.collapsedView, { entry })}
+                      <button onClick={() => editEntry(index)}>Edit</button>
+                    </>
+                  )}
+                </div>
+              ))}
+            <button onClick={() => addEntry(push)}>Add</button>
           </div>
         )}
       </FieldArray>
-      )
     </div>
   );
 };
