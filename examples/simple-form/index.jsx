@@ -85,6 +85,7 @@ const SimpleApp = () => (
           last: '',
           suffix: ''
         },
+        memorableDateExample: '',
         dateExample: '',
         acknowledgeExample: null,
       }}
@@ -96,7 +97,8 @@ const SimpleApp = () => (
         <TextField name="textExample" label="Enter some cool text!" required />
         <EmailField name="emailExample" label="Please Enter Your Email Address" />
         <CheckboxFieldGroup {...checkboxProps} />
-        <DateField name="dateExample" label="Enter Your Date of Birth" required isMemorableDate />
+        <DateField name="memorableDateExample" label="Enter Your Date of Birth" required isMemorableDate />
+        <DateField name="dateExample" label="Enter Your Date of Birth" required />
         <FullNameField name="nameExample" label="Enter Your Full Name Below" />
         <CheckboxField name="acknowledgeExample" label="Please acknowledge if you understand the Form above" required />
         <VaButton submit text="Submit" />
