@@ -10,6 +10,8 @@ import {defineCustomElements} from '@department-of-veterans-affairs/component-li
 import schema from './burial-form/schema';
 import {transformJSONSchema} from "@department-of-veterans-affairs/va-forms-system-core";
 
+// import { testData } from './testFormikData';
+
 void defineCustomElements();
 
 const schemaKeys = transformJSONSchema(schema);
