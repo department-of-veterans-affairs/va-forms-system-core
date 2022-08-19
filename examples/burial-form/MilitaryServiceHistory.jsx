@@ -1,82 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import React from 'react';
 import {ArrayField, DateField, DebuggerView, Page, TextField} from '@department-of-veterans-affairs/va-forms-system-core';
-import {useFormikContext} from 'formik';
+import {useFormikContext, FieldArray} from 'formik';
 import {isBeforeDate} from './utils';
 
 export default function MilitaryServiceHistory(props) {
 
   const state = useFormikContext();
 
-  const tourOfDuty = () => {
-    this.dateRange = {
-      from: undefined,
-      to: undefined
-    };
-    this.serviceBranch = undefined;
-    this.rank = undefined;
-    this.serviceNumber = undefined;
-    this.placeOfEntry = undefined;
-    this.placeOfSeparation = undefined;
-  }
-
-  const createEntry = () => {
-    const newEntry = new tourOfDuty();
-    state.values.toursOfDuty.push(newEntry);
-    return newEntry;
-  }
-
-  // const removeEntry = (index) => {
-  //   state.values.toursOfDuty.splice(index, 1);
-  // }
-
-  const expandedView = (props) => <>
-    <DateField name={props.entry.dateRange.from}
-               label="Service start date"/>
-    <DateField name={props.entry.dateRange.to}
-               label="Service end date"
-               validate={isBeforeDate(props.entry.dateRange.to, props.entry.dateRange.from, "End of service must be after start of service")}/>
-    <TextField name={props.entry.serviceBranch}
-               label="Branch of service"/>
-    <TextField name={props.entry.rank}
-               label="Rank"/>
-    <TextField name={props.entry.serviceNumber}
-               label="Service number"/>
-    <TextField name={props.entry.placeOfEntry}
-               label="Place of entry"/>
-    <TextField name={props.entry.placeOfSeparation}
-               label="Place of separation"/>
-  </>;
-
-  const collapsedView = (props) => <>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Service start date</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.dateRange.from}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Service end date</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.dateRange.to}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Branch of service</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.serviceBranch}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Rank</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.rank}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Service number</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.serviceNumber}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Place of entry</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.placeOfEntry}</span>
-    </div>
-    <div>
-      <label className="vads-u-margin-top--1 review-page--page-info--label-text">Place of separation</label>
-      <span className="review-page--page-info--value-text field-value">{props.entry.placeOfSeparation}</span>
-    </div>
-  </>
+  // TODO: fields for the rest of toursOfDuty schema
 
   return (
     <>
@@ -87,13 +19,20 @@ export default function MilitaryServiceHistory(props) {
             here, you can do that later in the form.
           </span>
         </div>
-        <ArrayField label="Service Periods"
-                    entries={state.values.toursOfDuty}
-                    collapsedView={collapsedView}
-                    expandedView={expandedView}
-                    createEntry={createEntry}
-                    // removeEntry={removeEntry}
-        />
+        <FieldArray name="toursOfDuty">
+          {({ remove, push }) => (
+            <div>
+              {state.values.toursOfDuty.length > 0 && state.values.toursOfDuty.map((tour, index) => (
+                <div key={index}>
+                  <DateField name={`toursOfDuty.${index}.dateRange.from`} />
+                  <DateField name={`toursOfDuty.${index}.dateRange.to`} />
+                  <button type="button" onClick={() => remove(index)}>remove</button>
+                </div>
+              ))}
+              <button type="button" onClick={() => push({dateRange: {from: '', to: ''}})}>add</button>
+            </div>
+          )}
+        </FieldArray>
         <br/>
         <DebuggerView/>
       </Page>

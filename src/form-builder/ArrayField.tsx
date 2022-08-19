@@ -21,48 +21,32 @@ const ArrayField = (props: ArrayProps): JSX.Element => {
 
   let visibleIndex = 0;
 
-  const removeEntry = (remove: (index: number) => void, index: number) => {
-    props.entries.splice(index, 1);
-    remove(index);
-  };
+  // const removeEntry = (remove: (index: number) => void, index: number) => {
+  //   props.entries.splice(index, 1);
+  //   remove(index);
+  // };
 
-  const addEntry = (push: (entry: any) => void) => {
-    const newEntry = props.createEntry();
-    push(newEntry);
-  };
+  // const addEntry = (push: (entry: any) => void) => {
+  //   const newEntry = props.createEntry();
+  //   push(newEntry);
+  // };
 
   const editEntry = (index: number) => {
     visibleIndex = index;
   };
 
   return (
-    <div>
-      <FieldArray name={props.name}>
-        {({ remove, push }) => (
-          <div>
-            {props.entries.length &&
-              props.entries.map((entry: any, index: number) => (
-                <div key={index}>
-                  {visibleIndex === index ? (
-                    <>
-                      {React.cloneElement(props.expandedView, { entry })}
-                      <button onClick={() => removeEntry(remove, index)}>
-                        Remove
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      {React.cloneElement(props.collapsedView, { entry })}
-                      <button onClick={() => editEntry(index)}>Edit</button>
-                    </>
-                  )}
-                </div>
-              ))}
-            <button onClick={() => addEntry(push)}>Add</button>
-          </div>
-        )}
-      </FieldArray>
-    </div>
+    <FieldArray name={props.name}>
+      {({ remove, push }) => (
+        <div>
+          {props.state.values.toursOfDuty.length > 0 &&
+            props.state.values.toursOfDuty.map((tour, index) => (
+              <>{props.children}</>
+            ))}
+          <button onClick={() => push()}>Add</button>
+        </div>
+      )}
+    </FieldArray>
   );
 };
 
