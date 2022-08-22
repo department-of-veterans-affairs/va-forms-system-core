@@ -1,4 +1,4 @@
-import {SSNField, TextField, RadioGroup, PhoneField, NumberField, DateField, CheckboxField, SelectField, CheckboxFieldGroup} from '../../src/form-builder/';
+import {SSNField, TextField, RadioGroup, PhoneField, NumberField, DateField, CheckboxField, SelectField, CheckboxFieldGroup, RadioItemProps} from '../../src/form-builder/';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 
@@ -67,6 +67,55 @@ const PageTwoC = () => (
     <CheckboxFieldGroup {...checkboxProps} />
   </Page>
 )
+const PageTwoD = () => (
+  <Page title="Movies Dates" fieldNames={['releaseDate']} hidePreviousButton={false}>
+    <DateField
+      name="releaseDate"
+      label="Release Date"
+      required
+    />
+  </Page>
+)
+const PageTwoE = () => (
+  <Page title="Movies Price" fieldNames={['ticketPrice']} hidePreviousButton={false}>
+    <NumberField
+      name="ticketPrice"
+      label="Ticket Price"
+      required
+    />
+  </Page>
+)
+const PageTwoF = () => (
+  <Page title="Movies List" fieldNames={['moviesList']} hidePreviousButton={false}>
+    <RadioGroup
+      name="moviesList"
+      label="Favorite Movie"
+      required
+      options={
+        [
+          {
+          label: "The Evil Dead",
+          value: "theEvilDead",
+        },
+        {
+          label: "Aliens",
+          value: "aliens",
+        }
+        ] as RadioItemProps[]
+      }
+      onChange={() => {}}
+    />
+  </Page>
+)
+const PageTwoG = () => (
+  <Page title="The Thing's SSN" fieldNames={['ssn']} hidePreviousButton={false}>
+    <NumberField
+      name="ssn"
+      label="The Thing's SSN"
+      required
+    />
+  </Page>
+)
 
 const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
@@ -94,7 +143,7 @@ describe('Form Data - Get Field Data', () => {
         <FormRouterInternal
           basename="/"
           formData={{'thing': true}}
-          title="Page Test"
+          title="Field Data Test"
         >
           <Route path="/page-two" element={<PageTwo/>}></Route>
           <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
@@ -117,7 +166,7 @@ describe('Form Data - Get Field Data', () => {
         <FormRouterInternal
           basename="/"
           formData={{'thing': undefined}}
-          title="Page Test"
+          title="Field Data Test"
         >
           <Route path="/page-two" element={<PageTwo/>}></Route>
           <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
@@ -140,7 +189,7 @@ describe('Form Data - Get Field Data', () => {
         <FormRouterInternal
           basename="/"
           formData={{'movies': 'the-thing'}}
-          title="Page Test"
+          title="Field Data Test"
         >
           <Route path="/page-two" element={<PageTwoB/>}></Route>
           <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
@@ -163,7 +212,7 @@ describe('Form Data - Get Field Data', () => {
         <FormRouterInternal
           basename="/"
           formData={{'movies': ''}}
-          title="Page Test"
+          title="Field Data Test"
         >
           <Route path="/page-two" element={<PageTwoB/>}></Route>
           <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
@@ -186,7 +235,7 @@ describe('Form Data - Get Field Data', () => {
         <FormRouterInternal
           basename="/"
           formData={{'halloween': true, 'scream': true, 'theShining': true}}
-          title="Page Test"
+          title="Field Data Test"
         >
           <Route path="/page-two" element={<PageTwoC/>}></Route>
           <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
@@ -203,6 +252,213 @@ describe('Form Data - Get Field Data', () => {
     })
   });
 
+  test('Uninitialized checkbox field data is not rendered on the review page', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'halloween': undefined, 'scream': undefined, 'theShining': undefined}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoC/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+
+      ).toBeUndefined();
+    })
+  });
+
+  test('Date field gathers correct data', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'releaseDate': '1981-03-03'}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoD/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('label')?.innerHTML
+      ).toContain('Release Date')
+    })
+  });
+
+  test('Uninitialized date field data is not rendered on the review page', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'releaseDate': undefined}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoD/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toBeUndefined()
+    })
+  });
+
+  test('Number field gathers correct data', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'ticketPrice': '10'}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoE/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('label')?.innerHTML
+      ).toContain('Ticket Price')
+    })
+  });
+
+  test('Uninitialized number field data is not rendered on the review page', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'ticketPrice': ''}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoE/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toBeUndefined();
+    })
+  });
+
+  test('Radio Group field gathers correct data', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'moviesList': 'aliens'}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoF/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toContain('Aliens')
+    })
+  });
+
+  test('Uninitialized Radio Group field data is not rendered on the review page', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'moviesList': ''}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoF/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toBeUndefined()
+    })
+  });
+
+  test('SSN field gathers correct data', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'ssn': '900-999-9882'}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoG/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toContain('900-999-9882')
+    })
+  });
+
+  test('Uninitialized SSN field data is not rendered on the review page', async () => {
+    const {container} = render(
+      <MemoryRouter initialEntries={['/page-two', '/page-three']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={{'ssn': ''}}
+          title="Field Data Test"
+        >
+          <Route path="/page-two" element={<PageTwoG/>}></Route>
+          <Route path="/page-three" element={<ReviewPage title="Review Your Application" />}></Route>
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(container.querySelector('va-button[continue][submit]')!);
+    });
+    await waitFor(() => {
+      expect(
+        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+      ).toBeUndefined()
+    })
+  });
 
 });
 
