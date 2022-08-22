@@ -12,6 +12,7 @@ import {
   VaButtonPair,
   VaButton,
 } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { PageContext } from '../form-data/PageContext';
 
 /**
  * Renders the page contents
@@ -25,8 +26,31 @@ export default function Page(props: PageProps): JSX.Element {
   const sourceAnchor = searchParams.get('source');
   const state = useFormikContext();
   const currentLocation = useLocation();
+  const { listOfPages, setListOfPages } = useContext(PageContext);
+  const childrenLength = React.Children.count(props.children);
+  const formHeading = document.querySelector<HTMLElement>('form h1');
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
+
+  useEffect(() => {
+    const listOfPagesCopy = [...listOfPages];
+
+    // go through list of pages and make sure info doesn't already exist
+    const pageIndex = listOfPagesCopy
+      .map((page) => page.id)
+      .indexOf(currentLocation.pathname.replace(/\\/g, ''));
+
+    if (pageIndex < 0 && props?.fieldNames) {
+      const pageData = {
+        id: currentLocation.pathname.replace(/\\/g, ''),
+        title: props.title,
+        path: currentLocation.pathname,
+        fieldNames: props?.fieldNames,
+        fields: [],
+      };
+      setListOfPages([...listOfPagesCopy, pageData]);
+    }
+  }, [currentLocation.pathname, childrenLength]);
 
   useEffect(() => {
     // Reset the form on route change.
@@ -56,6 +80,16 @@ export default function Page(props: PageProps): JSX.Element {
                     sourceAnchor ? `#${sourceAnchor}` : ''
                   }` as To
                 );
+
+                // Allow time for render before finding the edit button and focusing on it
+                setTimeout(() => {
+                  const editLink = document.getElementById(
+                    `edit${sourceAnchor ? sourceAnchor : ''}`
+                  );
+
+                  // Only fire the focus method if the edit link exists
+                  editLink?.focus();
+                }, 0);
               }
             }}
             text="Back to Review Page"
@@ -101,10 +135,16 @@ export default function Page(props: PageProps): JSX.Element {
             } else {
               state.handleSubmit();
               navigate(nextRoute as To);
+
+              // Set focus on the form heading if it exists
+              if (formHeading) formHeading.focus();
             }
           }}
           onSecondaryClick={() => {
             navigate(previousRoute as To);
+
+            // Set focus on the form heading if it exists
+            if (formHeading) formHeading.focus();
           }}
         />
       )}

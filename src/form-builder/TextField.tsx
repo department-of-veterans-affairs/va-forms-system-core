@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
 import { FieldProps } from './types';
 import { chainValidations, required } from '../utils/validation';
 import { VaTextInput } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
+import { gatherFieldData, PageContext } from '../form-data';
 
 const TextField = (props: FieldProps<string>): JSX.Element => {
+  const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+
+  // find current page on component mount?
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required]),
@@ -17,6 +21,17 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
+
+  useEffect(() => {
+    // Create a copy so the context's state doesn't get mutated.
+    const listOfPagesCopy = gatherFieldData(
+      [...listOfPages],
+      { ...field, type: props?.type && props.type },
+      props,
+      currentPath
+    );
+    if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
+  }, [field.name, field.value]);
 
   return (
     <VaTextInput
