@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField, FieldHookConfig } from 'formik';
 
-import { chainValidations, requiredValue } from '../utils/validation';
+import { chainValidations, required } from '../utils/validation';
 
 import { CheckboxGroupProps, CheckboxProps } from './types';
 
@@ -12,7 +12,7 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   // component re-renders these values per form input inside the form
   const withValidation = {
     ...props,
-    validate: chainValidations(props, [requiredValue]),
+    validate: chainValidations(props, [required]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<string[]>
