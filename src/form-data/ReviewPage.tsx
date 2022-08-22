@@ -154,7 +154,10 @@ export default function ReviewPage(props: { title: string }) {
           return (
             <section key={page.id} className="review-page--page-info">
               <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
-                <h2 className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text">
+                <h2
+                  id={page.id}
+                  className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text"
+                >
                   {page.title}
                 </h2>
 

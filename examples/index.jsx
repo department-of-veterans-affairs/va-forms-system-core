@@ -10,7 +10,7 @@ import {defineCustomElements} from '@department-of-veterans-affairs/component-li
 import schema from './burial-form/schema';
 import {transformJSONSchema} from "@department-of-veterans-affairs/va-forms-system-core";
 
-// import { testData } from './testFormikData';
+import { testData } from './testFormikData';
 
 void defineCustomElements();
 
@@ -20,7 +20,7 @@ const Main = () => {
   return (
     <>
       {/* If you would like to see the simple form or chapter form, just uncomment and comment out BurialApp */}
-      <BurialApp basename="/" initialValues={schemaKeys} />
+      <BurialApp basename="/" initialValues={testData} />
       {/* <ChapterForm basename="/" initialValues={schemaKeys} /> */}
       {/* <SimpleApp /> */}
     </>
