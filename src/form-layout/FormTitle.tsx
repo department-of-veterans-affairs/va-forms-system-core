@@ -17,7 +17,7 @@ import { FormTitleProps } from './types';
  */
 const FormTitle = (props: FormTitleProps) => (
   <div className="va-form-title">
-    <h1>{props.title}</h1>
+    <h1 tabIndex={0}>{props.title}</h1>
     {props.subTitle && <div className="va-form-subtitle">{props.subTitle}</div>}
   </div>
 );

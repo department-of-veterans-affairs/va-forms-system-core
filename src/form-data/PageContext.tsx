@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom-v5-compat';
 import { RouterContext } from '../routing';
 import { IPageContext, PageContextProps, PageObject } from './types';
 

@@ -28,6 +28,7 @@ export default function Page(props: PageProps): JSX.Element {
   const currentLocation = useLocation();
   const { listOfPages, setListOfPages } = useContext(PageContext);
   const childrenLength = React.Children.count(props.children);
+  const formHeading = document.querySelector<HTMLElement>('form h1');
 
   const { nextRoute, previousRoute } = useContext(RouterContext);
 
@@ -79,6 +80,16 @@ export default function Page(props: PageProps): JSX.Element {
                     sourceAnchor ? `#${sourceAnchor}` : ''
                   }` as To
                 );
+
+                // Allow time for render before finding the edit button and focusing on it
+                setTimeout(() => {
+                  const editLink = document.getElementById(
+                    `edit${sourceAnchor ? sourceAnchor : ''}`
+                  );
+
+                  // Only fire the focus method if the edit link exists
+                  editLink?.focus();
+                }, 0);
               }
             }}
             text="Back to Review Page"
@@ -124,10 +135,16 @@ export default function Page(props: PageProps): JSX.Element {
             } else {
               state.handleSubmit();
               navigate(nextRoute as To);
+
+              // Set focus on the form heading if it exists
+              if (formHeading) formHeading.focus();
             }
           }}
           onSecondaryClick={() => {
             navigate(previousRoute as To);
+
+            // Set focus on the form heading if it exists
+            if (formHeading) formHeading.focus();
           }}
         />
       )}
