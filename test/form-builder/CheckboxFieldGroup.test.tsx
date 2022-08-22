@@ -59,7 +59,7 @@ describe('Form Builder - CheckboxFieldGroup', () => {
     expect(firstCheckbox?.label).toEqual('Eggs');
   });
 
-  test('renders the default "required" validation error message', async() => {
+  test.skip('renders the default "required" validation error message', async() => {
     const rf = buildRenderForm({
                                  breakfast: {
                                    eggs: false,
