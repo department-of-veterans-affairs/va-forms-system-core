@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
-import { RouterProps } from '../../src/routing/types';
+import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
 import { Formik } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
 
   return (
