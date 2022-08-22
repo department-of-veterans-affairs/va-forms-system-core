@@ -90,9 +90,9 @@ class JSONSchemaMapper {
       case 'number':
         return 0;
       case 'boolean':
-        return null;
+        return undefined;
       default:
-        return '';
+        return undefined;
     }
   };
 
@@ -130,10 +130,10 @@ class JSONSchemaMapper {
           updatedValue = 0;
           break;
         case 'boolean':
-          updatedValue = null;
+          updatedValue = undefined;
           break;
         default:
-          updatedValue = '';
+          updatedValue = undefined;
           break;
       }
     }
