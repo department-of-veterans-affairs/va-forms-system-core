@@ -1,49 +1,34 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { FieldArray, FieldHookConfig, useField } from 'formik';
 
-import { chainValidations, requiredValue } from '../utils/validation';
+/*
+This needs to:
+- render a field array that can ingest a field name, an object schema, and formik state
+*/
 
-import { ArrayProps } from './types';
-
-const ArrayField = (props: ArrayProps): JSX.Element => {
-  // component re-renders these values per form input inside the form
-  const withValidation = {
-    ...props,
-    validate: chainValidations(props, [requiredValue]),
-  };
-  const [field, meta, helpers] = useField(
-    withValidation as FieldHookConfig<any[]>
-  );
-
-  if (!field.value) {
-    field.value = props.entries;
-  }
-
-  let visibleIndex = 0;
-
-  // const removeEntry = (remove: (index: number) => void, index: number) => {
-  //   props.entries.splice(index, 1);
-  //   remove(index);
-  // };
-
-  // const addEntry = (push: (entry: any) => void) => {
-  //   const newEntry = props.createEntry();
-  //   push(newEntry);
-  // };
-
-  const editEntry = (index: number) => {
-    visibleIndex = index;
-  };
+const ArrayField = (props): JSX.Element => {
+  const { name, state, arrayFieldSchema } = props;
 
   return (
-    <FieldArray name={props.name}>
+    <FieldArray name={name}>
       {({ remove, push }) => (
         <div>
-          {props.state.values.toursOfDuty.length > 0 &&
-            props.state.values.toursOfDuty.map((tour, index) => (
-              <>{props.children}</>
+          {state?.values?.[name]?.length > 0 &&
+            state?.values?.[name]?.map((entry, index) => (
+              <div key={index}>
+                {props.children.map((child) => {
+                  const indexedName = child.props.name.replace('index', index);
+                  return React.cloneElement(child, { name: indexedName });
+                })}
+                <button type="button" onClick={() => remove(index)}>
+                  remove
+                </button>
+              </div>
             ))}
-          <button onClick={() => push()}>Add</button>
+          <button type="button" onClick={() => push(arrayFieldSchema)}>
+            add
+          </button>
         </div>
       )}
     </FieldArray>

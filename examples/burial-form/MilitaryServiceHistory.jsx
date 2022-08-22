@@ -10,6 +10,18 @@ export default function MilitaryServiceHistory(props) {
 
   // TODO: fields for the rest of toursOfDuty schema
 
+  const serviceHistoryObjectSchema = {
+      dateRange: {
+        from: "",
+        to: ""
+      },
+      serviceBranch: "",
+      rank: "",
+      serviceNumber: "",
+      placeOfEntry: "",
+      placeOfSeparation: ""
+  }
+
   return (
     <>
       <Page {...props}>
@@ -19,20 +31,15 @@ export default function MilitaryServiceHistory(props) {
             here, you can do that later in the form.
           </span>
         </div>
-        <FieldArray name="toursOfDuty">
-          {({ remove, push }) => (
-            <div>
-              {state.values.toursOfDuty.length > 0 && state.values.toursOfDuty.map((tour, index) => (
-                <div key={index}>
-                  <DateField name={`toursOfDuty.${index}.dateRange.from`} />
-                  <DateField name={`toursOfDuty.${index}.dateRange.to`} />
-                  <button type="button" onClick={() => remove(index)}>remove</button>
-                </div>
-              ))}
-              <button type="button" onClick={() => push({dateRange: {from: '', to: ''}})}>add</button>
-            </div>
-          )}
-        </FieldArray>
+        <ArrayField name="toursOfDuty" state={state} arrayFieldSchema={serviceHistoryObjectSchema}>
+          <DateField name={`toursOfDuty.index.dateRange.from`} label="Date service period began"/>
+          <DateField name={`toursOfDuty.index.dateRange.to`} label="Date service period ended"/>
+          <TextField name={`toursOfDuty.index.serviceBranch`} label="Branch of Service"/>
+          <TextField name={`toursOfDuty.index.rank`} label="Rank held"/>
+          <TextField name={`toursOfDuty.index.serviceNumber`} label="Service number"/>
+          <TextField name={`toursOfDuty.index.placeOfEntry`} label="Location service period began"/>
+          <TextField name={`toursOfDuty.index.placeOfSeparation`} label="Location service period ended"/>
+        </ArrayField>
         <br/>
         <DebuggerView/>
       </Page>
