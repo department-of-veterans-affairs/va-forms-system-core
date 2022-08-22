@@ -106,7 +106,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--label-text')?.innerHTML
+        container.querySelector('label')?.innerHTML
       ).toContain('The Thing')
     })
   });
@@ -129,7 +129,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--label-text')?.innerHTML
+        container.querySelector('label')?.innerHTML
       ).toBeUndefined()
     })
   });
