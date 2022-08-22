@@ -22,6 +22,12 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
     helpers.setValue(false);
   }, []);
 
+  /**
+   * Toggles the value of checkbox group based on its options on change.
+   *
+   * @param event - Synthetic Event to get checkbox target name and value
+   *
+   */
   const onGroupChange = (event: any) => {
     props?.options.map((option: any) => {
       if (event.target.name === option.name) {

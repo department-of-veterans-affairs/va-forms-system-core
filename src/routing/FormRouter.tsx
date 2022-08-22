@@ -27,7 +27,7 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
             // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
 
             // Transform the data before submitting
-            // const data = JSON.stringify(values, StringifyFormReplacer);
+            const data = JSON.stringify(values, StringifyFormReplacer);
             if (props.transformForSubmit) {
               props.transformForSubmit(values, actions);
             }
