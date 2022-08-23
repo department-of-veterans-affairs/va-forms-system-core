@@ -70,7 +70,7 @@ describe('Helpers - JSON Schema', () => {
     }
     const expectedResult = {
       booleanProperty: undefined,
-      numberProperty: 0,
+      numberProperty: undefined,
       stringProperty: undefined,
     }
 
@@ -98,7 +98,7 @@ describe('Helpers - JSON Schema', () => {
     const expectedResult = {
       objectProperty: {
         prop1: undefined,
-        prop2: 0
+        prop2: undefined
       }
     }
 
@@ -167,7 +167,7 @@ describe('Helpers - JSON Schema', () => {
     }
     const expectedResult = {
       booleanProperty: undefined,
-      numberProperty: 0,
+      numberProperty: undefined,
       stringProperty: undefined
     }
 
