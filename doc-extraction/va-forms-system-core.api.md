@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="react" />
-
 import { FieldHookConfig } from 'formik';
 import { FieldInputProps } from 'formik';
 import { FormikHelpers } from 'formik';
