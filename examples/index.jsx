@@ -10,7 +10,7 @@ import {defineCustomElements} from '@department-of-veterans-affairs/component-li
 import schema from './burial-form/schema';
 import {transformJSONSchema} from "@department-of-veterans-affairs/va-forms-system-core";
 
-// USE THIS IF YOU DON'T WANT TO FILL OUR THE FORM
+// USE THIS IF YOU DON'T WANT TO FILL OUT THE FORM
 // Simply change the initialValues to use testData
 // import { testData } from './testFormikData';
 
