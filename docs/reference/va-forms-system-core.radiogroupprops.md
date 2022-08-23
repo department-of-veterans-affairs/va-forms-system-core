@@ -9,7 +9,7 @@
 ```typescript
 export declare type RadioGroupProps = FieldProps<string> & {
     name: string;
-    options: React.ReactElement<RadioItemProps>[];
+    options: RadioItemProps[];
     onChange: (v: string) => void;
 };
 ```

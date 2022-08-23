@@ -13,7 +13,13 @@ export default function ClaimantContactInformation(props) {
 
   return (
     <>
-      <Page {...props}>
+      <Page {...props} fieldNames={[
+        "firmName",
+        "officialPosition",
+        "claimantAddress",
+        "claimantEmail",
+        "claimantPhone"
+      ]}>
         {formikContext?.values?.relationship?.isEntity && (
           <>
             <TextField

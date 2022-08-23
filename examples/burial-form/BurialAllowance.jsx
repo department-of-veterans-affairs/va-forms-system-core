@@ -34,7 +34,12 @@ export default function BurialAllowance(props) {
 
   return (
     <>
-      <Page {...props} title="Burial allowance">
+      <Page {...props} title="Burial allowance" fieldNames={[
+        "burialAllowanceRequested",
+        "burialCost",
+        "previouslyReceivedAllowance",
+        "benefitsUnclaimedRemains",
+      ]}>
         <div className={"form-expanding-group " + (values?.burialAllowanceRequested === "vaMC" ? "form-expanding-group-open" : "")}>
           <RadioGroup name="burialAllowanceRequested"
                       label="Type of burial allowance requested"

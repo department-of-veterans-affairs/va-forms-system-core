@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { FieldArray, FieldHookConfig, useField } from 'formik';
-
+import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 /*
 This needs to:
 - render a field array that can ingest a field name, an object schema, and formik state
@@ -29,6 +29,11 @@ const ArrayField = (props): JSX.Element => {
           <button type="button" onClick={() => push(arrayFieldSchema)}>
             add
           </button>
+          <VaButton
+            onClick={() => push(arrayFieldSchema)}
+            text="Add another Service Period"
+            secondary
+          />
         </div>
       )}
     </FieldArray>

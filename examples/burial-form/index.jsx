@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import { CompatRouter, Route } from 'react-router-dom-v5-compat'
-import {FormRouter, ConditionalRoute} from '@department-of-veterans-affairs/va-forms-system-core';
+import {FormRouter, ConditionalRoute, ReviewPage} from '@department-of-veterans-affairs/va-forms-system-core';
 import BurialIntroduction from './BurialIntroduction';
 import ClaimantInformation from './ClaimantInformation';
 import VeteranInformation from './VeteranInformation';
@@ -12,7 +12,6 @@ import PlotAllowance from './PlotAllowance';
 import BurialAllowance from "./BurialAllowance";
 import BenefitsSelection from './BenefitsSelection';
 import ClaimantContactInformation from "./ClaimantContactInformation";
-import ReviewPage from './ReviewPage';
 import ConfirmationPage from "./ConfirmationPage";
 
 const NoMatch = (props) => (
@@ -21,10 +20,6 @@ const NoMatch = (props) => (
   </main>
 );
 
-
-
-const mapProps = (values, actions) => {
-}
 
 const BurialApp = (props) => {
   // Let users extract and use formData here
@@ -37,7 +32,6 @@ const BurialApp = (props) => {
         <FormRouter
           formData={props.initialValues}
           title="Burials Example"
-          transformForSubmit={mapProps}
         >
           <Route index element={<BurialIntroduction title="Introduction Page" />} />
           <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />

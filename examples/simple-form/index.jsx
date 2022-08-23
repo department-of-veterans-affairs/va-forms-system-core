@@ -7,12 +7,13 @@ import {
   TextField,
   CheckboxFieldGroup,
   FullNameField,
-  DateField
+  DateField, 
+  EmailField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const checkboxProps = {
   label: 'Military Service Details',
-  name: 'serviceStatus',
+  name: 'checkboxGroupExample',
   id: '12',
   /**
    * If `required` is true, the default message will be used. If `required` is a
@@ -22,49 +23,40 @@ const checkboxProps = {
   values: {},
   options: [
     {
-      name: 'purpleHeartRecipient',
-      label: 'Purple Heart award recipient',
-      required: false,
+      name: 'checkboxGroupExample.purpleHeartRecipient',
+      label: 'Purple Heart award recipient'
     },
     {
-      name: 'isFormerPow',
-      label: 'Former Prisoner of War',
-      required: false,
+      name: 'checkboxGroupExample.isFormerPow',
+      label: 'Former Prisoner of War'
     },
     {
-      name: 'postNov111998Combat',
-      label: 'Served in combat theater of operations after November 11, 1998',
-      required: false,
+      name: 'checkboxGroupExample.postNov111998Combat',
+      label: 'Served in combat theater of operations after November 11, 1998'
     },
     {
-      name: 'disabledInLineOfDuty',
-      label: 'Discharged or retired from the military for a disability incurred in the line of duty',
-      required: false,
+      name: 'checkboxGroupExample.disabledInLineOfDuty',
+      label: 'Discharged or retired from the military for a disability incurred in the line of duty'
     },
     {
-      name: 'sawAsiaCombat',
-      label: 'Served in Southwest Asia during the Gulf War between August 2, 1990, and Nov 11, 1998',
-      required: false,
+      name: 'checkboxGroupExample.sawAsiaCombat',
+      label: 'Served in Southwest Asia during the Gulf War between August 2, 1990, and Nov 11, 1998'
     },
     {
-      name: 'vietnamService',
-      label: 'Served in Vietnam between January 9, 1962, and May 7, 1975',
-      required: false,
+      name: 'checkboxGroupExample.vietnamService',
+      label: 'Served in Vietnam between January 9, 1962, and May 7, 1975'
     },
     {
-      name: 'exposedToRadiation',
-      label: 'Exposed to radiation while in the military',
-      required: false,
+      name: 'checkboxGroupExample.exposedToRadiation',
+      label: 'Exposed to radiation while in the military'
     },
     {
-      name: 'radiumTreatments',
-      label: 'Received nose/throat radium treatments while in the military',
-      required: false,
+      name: 'checkboxGroupExample.radiumTreatments',
+      label: 'Received nose/throat radium treatments while in the military'
     },
     {
-      name: 'campLejeune',
-      label: 'Received nose/throat radium treatments while in the military',
-      required: false,
+      name: 'checkboxGroupExample.campLejeune',
+      label: 'Received nose/throat radium treatments while in the military'
     },
   ],
 };
@@ -74,8 +66,9 @@ const SimpleApp = () => (
     <h1>Example form</h1>
     <Formik
       initialValues={{
-        email: "",
-        serviceStatus: {
+        emailExample: '',
+        textExample: '',
+        checkboxGroupExample: {
           purpleHeartRecipient: false,
           isFormerPow: false,
           postNov111998Combat: false,
@@ -86,16 +79,28 @@ const SimpleApp = () => (
           radiumTreatments: false,
           campLejeune: false,
         },
-        birthDate: null,
-        contactMethod: null,
+        nameExample: {
+          first: '',
+          middle: '',
+          last: '',
+          suffix: ''
+        },
+        memorableDateExample: '',
+        dateExample: '',
+        acknowledgeExample: null,
+      }}
+      onSubmit={values => {
+        alert(JSON.stringify(values, null, 2));
       }}
     >
       <Form>
-        <CheckboxField name="bar" label="Do you have pets?" required />
-        <TextField name="foo" label="Example" required />
+        <TextField name="textExample" label="Enter some cool text!" required />
+        <EmailField name="emailExample" label="Please Enter Your Email Address" />
         <CheckboxFieldGroup {...checkboxProps} />
-        <DateField name="birthDate" label="date of birth" required isMemorableDate />
-        <FullNameField name="fullName" label="fullName" />
+        <DateField name="memorableDateExample" label="Enter Your Date of Birth" required isMemorableDate />
+        <DateField name="dateExample" label="Enter Your Date of Birth" required />
+        <FullNameField name="nameExample" label="Enter Your Full Name Below" />
+        <CheckboxField name="acknowledgeExample" label="Please acknowledge if you understand the Form above" required />
         <VaButton submit text="Submit" />
         <DebuggerView />
       </Form>

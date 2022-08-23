@@ -167,3 +167,47 @@ export const parseDate = (dateString: string): Date => {
   const [yyyy, mm, dd] = dateString.split('-').map((str) => parseInt(str));
   return new Date(yyyy, mm - 1, dd);
 };
+
+/**
+ * Returns the value after checking if its value is not undefined.
+ *
+ * @remarks
+ * This method is part of the {@link core-library#Statistics | Statistics subsystem}.
+ *
+ * @param key - The key is of type string
+ * @param value - The value can be of any type like string, boolean, object, number.
+ *
+ */
+export const StringifyFormReplacer = (key: string, value: any): unknown => {
+  // an object with country is an address
+  const isAddress =
+    typeof value?.country !== 'undefined' &&
+    (!value.street || !value.city || (!value.postalCode && !value.zipcode));
+
+  if (isAddress) return undefined;
+
+  // converting string to boolean
+  if (value === 'false' || value === 'true') {
+    value = value === 'false' ? false : true;
+  }
+
+  // clean up empty objects, which we have no reason to send
+  if (typeof value === 'object') {
+    const fields = Object.keys(value || {});
+    if (
+      fields.length === 0 ||
+      fields.every((field) => value[field] === undefined || value[field] === '')
+    ) {
+      return undefined;
+    }
+  }
+
+  // Clean up empty objects in arrays
+  if (Array.isArray(value)) {
+    const newValues = value.filter((v) => !!StringifyFormReplacer(key, v));
+    // If every item in the array is cleared, remove the whole array
+    return newValues.length > 0 ? newValues : undefined;
+  }
+
+  return value;
+};

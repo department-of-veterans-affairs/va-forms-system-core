@@ -21,7 +21,7 @@ export type CheckboxProps = FieldProps<string> & {
 
 export type RadioGroupProps = FieldProps<string> & {
   name: string;
-  options: React.ReactElement<RadioItemProps>[];
+  options: RadioItemProps[];
   onChange: (v: string) => void;
 };
 
@@ -37,11 +37,9 @@ export type CheckboxGroupProps = FieldProps<string> & {
   options: CheckboxProps[];
 };
 
-export type ArrayProps = FieldProps<string> & {
-  entries: any[];
-  collapsedView: any;
-  expandedView: any;
-  createEntry: () => void;
+export type SelectProps = FieldProps<string> & {
+  onVaSelect?: (e: CustomEvent) => void;
+  children: HTMLOptionElement[] | unknown;
 };
 
 /**
