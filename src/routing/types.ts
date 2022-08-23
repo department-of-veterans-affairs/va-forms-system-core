@@ -65,7 +65,7 @@ export interface PageProps {
   children: JSX.Element | JSX.Element[] | Element;
   title: string;
   fieldNames?: string[];
-  hidePreviousButton: boolean;
+  hidePreviousButton?: boolean;
   nextButtonCustomText?: string;
   nextButtonDescribedBy?: string;
 }
