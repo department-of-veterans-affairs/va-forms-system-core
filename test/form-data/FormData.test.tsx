@@ -201,7 +201,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toContain('The Thing')
     })
   });
@@ -224,7 +224,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toBeUndefined()
     })
   });
@@ -247,7 +247,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toContain('Yes')
     })
   });
@@ -270,7 +270,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
 
       ).toBeUndefined();
     })
@@ -317,7 +317,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toBeUndefined()
     })
   });
@@ -363,7 +363,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toBeUndefined();
     })
   });
@@ -386,7 +386,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toContain('Aliens')
     })
   });
@@ -409,7 +409,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toBeUndefined()
     })
   });
@@ -432,7 +432,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toContain('900-999-9882')
     })
   });
@@ -455,7 +455,7 @@ describe('Form Data - Get Field Data', () => {
     });
     await waitFor(() => {
       expect(
-        container.querySelector('.review-page__page-info--value-text')?.innerHTML
+        container.querySelector('.review-page--page-info--value-text')?.innerHTML
       ).toBeUndefined()
     })
   });
