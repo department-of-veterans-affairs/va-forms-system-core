@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Page,
   CheckboxFieldGroup,
-  NumberField,
+  NumberField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import { useFormikContext } from 'formik';
 
@@ -12,16 +12,16 @@ const checkboxProps = {
   required: true,
   options: [
     {
-      name: 'benefitsSelection.burialAllowance',
+      name: 'burialAllowance',
       label: 'Burial allowance',
     },
     {
-      name: 'benefitsSelection.plotAllowance',
+      name: 'plotAllowance',
       label:
         'Plot or interment allowance (Check this box if you incurred expenses for the plot to bury the Veteran’s remains.)',
     },
     {
-      name: 'benefitsSelection.transportation',
+      name: 'transportation',
       label:
         'Transportation expenses (Transportation of the Veteran’s remains from the place of death to the final resting place)',
     },
@@ -40,10 +40,10 @@ export default function BenefitsSelection(props) {
         "amountIncurred"
       ]}>
         <CheckboxFieldGroup {...checkboxProps} />
-        {!!state.values.benefitsSelection?.transportation && (
+        {!!state.values.transportation && (
           <div
             className={
-              state.values.benefitsSelection?.transportation === true
+              state.values.transportation === true
                 ? 'form-expanding-group form-expanding-group-open'
                 : ''
             }
@@ -53,7 +53,7 @@ export default function BenefitsSelection(props) {
                 <NumberField
                   name="amountIncurred"
                   label="Transportation amount incurred"
-                  required={!!state.values.benefitsSelection?.transportation}
+                  required={!!state.values.transportation}
                 />
                 <div className="vads-u-margin-y--2">
                   <div className="usa-alert usa-alert-warning background-color-only">
