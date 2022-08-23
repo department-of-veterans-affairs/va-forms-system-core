@@ -61,12 +61,10 @@ describe('Form Builder - CheckboxFieldGroup', () => {
 
   test('renders the default "required" validation error message', async() => {
     const rf = buildRenderForm({
-                                 breakfast: {
-                                   eggs: false,
-                                   protein: false,
-                                   toast: false,
-                                   fruit: false,
-                                 },
+                                 eggs: false,
+                                 protein: false,
+                                 toast: false,
+                                 fruit: false,
                                });
     const { container, getFormProps } = rf(
       <CheckboxFieldGroup {...testData} />
