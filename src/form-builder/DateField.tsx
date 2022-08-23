@@ -11,6 +11,8 @@ import { gatherFieldData, PageContext } from '../form-data';
 
 const DateField = (props: DateProps): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+  const currentPage = listOfPages.find((page) => page.path === currentPath);
+
   const withValidation = {
     ...props,
     validate: chainValidations(props, [required, isValidDate]),
@@ -38,7 +40,7 @@ const DateField = (props: DateProps): JSX.Element => {
       currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
-  }, [field.name, field.value]);
+  }, [field.name, field.value, currentPage]);
 
   return props.isMemorableDate ? (
     <VaMemorableDate

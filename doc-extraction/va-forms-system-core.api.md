@@ -268,7 +268,7 @@ export interface PageProps {
     // (undocumented)
     fieldNames?: string[];
     // (undocumented)
-    hidePreviousButton: boolean;
+    hidePreviousButton?: boolean;
     // (undocumented)
     nextButtonCustomText?: string;
     // (undocumented)

@@ -9,7 +9,7 @@ import {
 } from '../../src/routing/RouterContext';
 import { Formik } from 'formik';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
-import { ConditionalRoute, Page, RouterProps } from '../../src';
+import { ConditionalRoute, Page, FormRouterProps } from '../../src';
 import { render, waitFor } from '@testing-library/react';
 import RouterProgress from '../../src/routing/RouterProgress';
 
@@ -44,7 +44,7 @@ const initialValues = {
   conditionalFalse: false,
 };
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
 
   return (

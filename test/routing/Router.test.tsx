@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
-import { RouterProps } from '../../src/routing/types';
+import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
 import { Formik } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
 
   return (
@@ -48,7 +48,7 @@ const initialValues = {
   zipcode: '',
 };
 describe('Routing - Router', () => {
-  test('can display page content', () => {
+  test('can display page content', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
         <FormRouterInternal
@@ -61,12 +61,13 @@ describe('Routing - Router', () => {
         </FormRouterInternal>
       </MemoryRouter>
     );
-
-    const containerTitleP1 = container.querySelector('h3');
-    expect(containerTitleP1?.innerHTML).toContain('page one');
+    await waitFor(() => {
+      const containerTitleP1 = container.querySelector('h3');
+      expect(containerTitleP1?.innerHTML).toContain('page one');
+    })
   });
 
-  test('switches page content', () => {
+  test('switches page content', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={1}>
         <FormRouterInternal
@@ -80,7 +81,9 @@ describe('Routing - Router', () => {
       </MemoryRouter>
     );
 
-    const containerTitleP1 = container.querySelector('h3');
-    expect(containerTitleP1?.innerHTML).toContain('page two');
+    await waitFor(() => {
+      const containerTitleP1 = container.querySelector('h3');
+      expect(containerTitleP1?.innerHTML).toContain('page two');
+    });
   });
 });
