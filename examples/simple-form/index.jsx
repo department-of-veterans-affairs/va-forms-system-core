@@ -8,7 +8,8 @@ import {
   CheckboxFieldGroup,
   FullNameField,
   DateField, 
-  EmailField
+  EmailField,
+  RadioGroup
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const checkboxProps = {
@@ -99,6 +100,14 @@ const SimpleApp = () => (
         <CheckboxFieldGroup {...checkboxProps} />
         <DateField name="memorableDateExample" label="Enter Your Date of Birth" required isMemorableDate />
         <DateField name="dateExample" label="Enter Your Date of Birth" required />
+        <RadioGroup 
+          name="radioExample" 
+          label="Please select one of the few radio buttons" 
+          required 
+          options={[
+            { label: 'Yes', value: true, key: 1 },
+            { label: 'No', value: false, key: 2 },
+          ]}/>
         <FullNameField name="nameExample" label="Enter Your Full Name Below" />
         <CheckboxField name="acknowledgeExample" label="Please acknowledge if you understand the Form above" required />
         <VaButton submit text="Submit" />
