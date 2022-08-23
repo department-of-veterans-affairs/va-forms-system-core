@@ -1,22 +1,20 @@
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
 import React, { useState } from 'react';
-import { Page, RouterProps } from '../../src';
+import { Page, FormRouterProps } from '../../src';
 import RouterProgress from '../../src/routing/RouterProgress';
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import { Formik } from 'formik';
 import userEvent from '@testing-library/user-event';
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const [route, updateRoute] = useState('/');
 
   return (
     <RouterContextProvider
       routes={props.children}
-      currentRoute={route}
-      updateRoute={updateRoute}
     >
-      <RouterProgress route={route} />
+      <RouterProgress />
       <Formik
         initialValues={props.formData}
         onSubmit={(values, actions) => {
@@ -30,19 +28,19 @@ const FormRouterInternal = (props: RouterProps): JSX.Element => {
 };
 
 const IndexPage = (props: { title: string }) => (
-  <Page {...props} nextPage="/about">
+  <Page {...props}>
     <p>Index</p>
   </Page>
 );
 
 const AboutPage = (props: { title: string }) => (
-  <Page {...props} nextPage="/confirmation">
+  <Page {...props}>
     <p>About</p>
   </Page>
 );
 
 const ConfirmationPage = (props: { title: string }) => (
-  <Page {...props} nextPage="/">
+  <Page {...props}>
     <p>Confirmation</p>
   </Page>
 );
