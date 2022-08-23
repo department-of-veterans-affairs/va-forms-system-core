@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom-v5-compat';
 import { VaOnThisPage } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { Page } from '../routing';
 import { FieldObject } from './types';
+import { CheckboxField } from '../form-builder';
 
 import { parseDate } from '../utils/helpers';
 import { PageContext } from './PageContext';
@@ -171,6 +172,32 @@ export default function ReviewPage(props: { title: string }) {
             </section>
           );
         })}
+
+        <div>
+          <p className="vads-u-padding-y--2">
+            <strong>Note:</strong> According to federal law, there are criminal
+            penalties, including a fine and/or imprisonment for up to 5 years,
+            for withholding information or for providing incorrect information.
+            (See 18 U.S.C. 1001)
+          </p>
+          <CheckboxField
+            required="You must accept the privacy policy before continuing."
+            name="privacyAgreementAccepted"
+            label="I have read and accept the privacy policy"
+            description={null}
+          >
+            <p slot="description">
+              Please read and accept the{' '}
+              <a
+                aria-label="Privacy policy, will open in new tab"
+                target="_blank"
+                href="/privacy-policy/"
+              >
+                privacy policy
+              </a>
+            </p>
+          </CheckboxField>
+        </div>
       </article>
     </Page>
   );
