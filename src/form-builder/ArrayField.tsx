@@ -5,6 +5,9 @@ import { VaButton } from '@department-of-veterans-affairs/component-library/dist
 /*
 This needs to:
 - render a field array that can ingest a field name, an object schema, and formik state
+- collapse entries that are not currently active
+  - it should collapse entries when "add another" is clicked
+  - potentially clone the array and add a property to each entry that expands or collapses it?
 */
 
 const ArrayField = (props): JSX.Element => {
@@ -26,9 +29,6 @@ const ArrayField = (props): JSX.Element => {
                 </button>
               </div>
             ))}
-          <button type="button" onClick={() => push(arrayFieldSchema)}>
-            add
-          </button>
           <VaButton
             onClick={() => push(arrayFieldSchema)}
             text="Add another Service Period"
