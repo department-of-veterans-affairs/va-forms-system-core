@@ -1,3 +1,4 @@
+require('../css/reviewPage.css');
 import React, { useContext } from 'react';
 import { useFormikContext } from 'formik';
 import { Link } from 'react-router-dom-v5-compat';
@@ -117,7 +118,7 @@ const recurseField = (
   )
     return;
   const fieldLabel = field.label && (
-    <label className="vads-u-margin-top--1 review-page--page-info--label-text">
+    <label className="vads-u-margin-top--1 review-page__page-info__label-text">
       {field.label}
     </label>
   );
@@ -130,7 +131,7 @@ const recurseField = (
       >
         {fieldLabel}
         <span
-          className={`review-page--page-info--value-text field-value field-value-level-${rank}`}
+          className={`review-page__page-info__value-text field-value field-value-level-${rank}`}
           key={`child-level-${rank}-field-${key}`}
         >
           {' '}
@@ -153,15 +154,15 @@ export default function ReviewPage(props: { title: string }) {
 
         {listOfPages.map((page) => {
           return (
-            <section key={page.id} className="review-page--page-info">
-              <div className="review-page--page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
-                <h2 className="vads-u-font-size--h3 vads-u-flex--1 review-page--page-heading--text">
+            <section key={page.id} className="review-page__page-info">
+              <div className="review-page__page-heading vads-u-justify-content--space-between vads-l-row vads-u-border-bottom--1px vads-u-border-color--link-default">
+                <h2 className="vads-u-font-size--h3 vads-u-flex--1 review-page__page-heading--text">
                   {page.title}
                 </h2>
 
                 <Link
                   to={page.path + '?edit=true&source=' + page.id}
-                  className="vads-u-margin-bottom--1p5 review-page--page-heading--link"
+                  className="vads-u-margin-bottom--1p5 review-page__page-heading--link"
                   id={`edit${page.id}`}
                   aria-label={`Edit ${page.title}`}
                 >
