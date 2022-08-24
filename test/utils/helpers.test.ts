@@ -69,9 +69,9 @@ describe('Helpers - JSON Schema', () => {
       }
     }
     const expectedResult = {
-      booleanProperty: null,
-      numberProperty: 0,
-      stringProperty: '',
+      booleanProperty: undefined,
+      numberProperty: undefined,
+      stringProperty: undefined,
     }
 
     const actualResult = transformJSONSchema(schemaToTest);
@@ -97,8 +97,8 @@ describe('Helpers - JSON Schema', () => {
     }
     const expectedResult = {
       objectProperty: {
-        prop1: '',
-        prop2: 0
+        prop1: undefined,
+        prop2: undefined
       }
     }
 
@@ -129,8 +129,8 @@ describe('Helpers - JSON Schema', () => {
     const expectedResult = {
       arrayProperty: [
         {
-          prop3: null,
-          prop4: ''
+          prop3: undefined,
+          prop4: undefined
         }
       ]
     }
@@ -166,9 +166,9 @@ describe('Helpers - JSON Schema', () => {
       }
     }
     const expectedResult = {
-      booleanProperty: null,
-      numberProperty: 0,
-      stringProperty: ''
+      booleanProperty: undefined,
+      numberProperty: undefined,
+      stringProperty: undefined
     }
 
     const actualResult = transformJSONSchema(schemaToTest);
@@ -205,10 +205,10 @@ describe('Helpers - JSON Schema', () => {
     }
     const expectedResult = {
       fullNameProperty: {
-        first: '',
-        middle: '',
-        last: '',
-        suffix: ''
+        first: undefined,
+        middle: undefined,
+        last: undefined,
+        suffix: undefined
       }
     }
 
@@ -244,8 +244,8 @@ describe('Helpers - JSON Schema', () => {
     const expectedResult = {
       filesProperty: [
         {
-          name: '',
-          size: ''
+          name: undefined,
+          size: undefined
         }
       ]
     }
@@ -281,8 +281,8 @@ describe('Helpers - JSON Schema', () => {
     }
     const expectedResult = {
       datesOfServiceProperty: {
-        from: '',
-        to: ''
+        from: undefined,
+        to: undefined
       }
     }
 
@@ -322,8 +322,8 @@ describe('Helpers - JSON Schema', () => {
       filesProperty: [
         [
           {
-            name: '',
-            size: ''
+            name: undefined,
+            size: undefined
           }
         ]
       ]

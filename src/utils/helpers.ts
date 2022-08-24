@@ -87,12 +87,8 @@ class JSONSchemaMapper {
         return [this.flattenProperties(definition.items.properties)];
       case 'object':
         return this.flattenProperties(definition.properties);
-      case 'number':
-        return 0;
-      case 'boolean':
-        return null;
       default:
-        return '';
+        return undefined;
     }
   };
 
@@ -129,14 +125,8 @@ class JSONSchemaMapper {
         case 'object':
           updatedValue = this.flattenProperties(initialValue.properties);
           break;
-        case 'number':
-          updatedValue = 0;
-          break;
-        case 'boolean':
-          updatedValue = null;
-          break;
         default:
-          updatedValue = '';
+          updatedValue = undefined;
           break;
       }
     }
