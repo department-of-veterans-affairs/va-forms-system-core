@@ -17,17 +17,7 @@ export default function MilitaryServiceHistory(props) {
 
   // TODO: fields for the rest of toursOfDuty schema
 
-  const serviceHistoryObjectSchema = {
-      dateRange: {
-        from: "",
-        to: ""
-      },
-      serviceBranch: "",
-      rank: "",
-      serviceNumber: "",
-      placeOfEntry: "",
-      placeOfSeparation: ""
-  }
+  const objectSchema = state?.initialValues?.toursOfDuty[0];
 
   return (
     <>
@@ -43,7 +33,7 @@ export default function MilitaryServiceHistory(props) {
             dates here, you can do that later in the form.
           </span>
         </div>
-        <ArrayField name="toursOfDuty" state={state} arrayFieldSchema={serviceHistoryObjectSchema}>
+        <ArrayField name="toursOfDuty" state={state} arrayFieldSchema={objectSchema}>
           <DateField name={`toursOfDuty.index.dateRange.to`} label="Service start date"/>
           <DateField 
             name={`toursOfDuty.index.dateRange.from`} 

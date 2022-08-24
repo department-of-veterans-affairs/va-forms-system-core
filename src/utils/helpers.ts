@@ -119,7 +119,10 @@ class JSONSchemaMapper {
             updatedValue = [this.getReferencedType(initialValue.items.$ref)];
           } else {
             updatedValue = [
-              this.flattenProperties(initialValue.items.properties),
+              this.flattenProperties({
+                ...initialValue.items.properties,
+                isOpen: true,
+              }),
             ];
           }
           break;
