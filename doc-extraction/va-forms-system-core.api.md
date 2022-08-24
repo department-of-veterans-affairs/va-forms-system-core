@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="react" />
-
 import { FieldHookConfig } from 'formik';
 import { FieldInputProps } from 'formik';
 import { FormikHelpers } from 'formik';
@@ -388,6 +386,9 @@ export const States50AndDC: {
     label: string;
     value: string;
 }[];
+
+// @public
+export const StringifyFormReplacer: (key: string, value: any) => unknown;
 
 // @public (undocumented)
 export const Suffixes: string[];
