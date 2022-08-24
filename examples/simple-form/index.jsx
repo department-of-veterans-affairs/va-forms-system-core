@@ -9,7 +9,8 @@ import {
   FullNameField,
   DateField, 
   EmailField,
-  RadioGroup
+  RadioGroup, 
+  NumberField
 } from '@department-of-veterans-affairs/va-forms-system-core';
 
 const checkboxProps = {
@@ -96,6 +97,7 @@ const SimpleApp = () => (
     >
       <Form>
         <TextField name="textExample" label="Enter some cool text!" required />
+        <NumberField name="numberExample" label="Enter your favorite number." required />
         <EmailField name="emailExample" label="Please Enter Your Email Address" />
         <CheckboxFieldGroup {...checkboxProps} />
         <DateField name="memorableDateExample" label="Enter Your Date of Birth" required isMemorableDate />
