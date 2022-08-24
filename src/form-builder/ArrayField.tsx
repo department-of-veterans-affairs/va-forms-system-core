@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { FieldArray, FieldHookConfig, useField } from 'formik';
+import { FieldArray, useFormikContext } from 'formik';
 import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 /*
 This needs to:
-- render a field array that can ingest a field name, an object schema, and formik state
-- collapse entries that are not currently active
-  - it should collapse entries when "add another" is clicked
-  - potentially clone the array and add a property to each entry that expands or collapses it?
+- format dates in a readable fasion
 */
 
 const ArrayField = (props): JSX.Element => {
   const { name, state, arrayFieldSchema } = props;
+  const { setFieldValue } = useFormikContext();
 
   /**
    * Pushes a new entry into the array. Loops through each current entry and
@@ -24,6 +22,24 @@ const ArrayField = (props): JSX.Element => {
       entry.isOpen = false;
     });
     pushHandler(schema);
+  };
+
+  /**
+   * Creates a copy of the array field stored in Formik and
+   * sets entry.isOpen to true for the matching index. Then,
+   * uses setFieldValue to update the field itself in Formik
+   * @param idx index of entry that needs to be expanded
+   */
+  const onEditHandler = (idx) => {
+    const fieldArrayOfObjects = [...state.values?.[name]];
+    fieldArrayOfObjects.forEach((entry, index) => {
+      if (index === idx) {
+        entry.isOpen = true;
+      } else {
+        entry.isOpen = false;
+      }
+    });
+    setFieldValue(name, fieldArrayOfObjects);
   };
 
   return (
@@ -43,6 +59,11 @@ const ArrayField = (props): JSX.Element => {
                   <p className="vads-u-margin--0">
                     {entry.dateRange.from} - {entry.dateRange.to}
                   </p>
+                  <VaButton
+                    secondary
+                    text="Edit"
+                    onClick={() => onEditHandler(index)}
+                  />
                 </div>
               ) : (
                 <div key={index}>
@@ -53,9 +74,10 @@ const ArrayField = (props): JSX.Element => {
                     );
                     return React.cloneElement(child, { name: indexedName });
                   })}
-                  <button type="button" onClick={() => remove(index)}>
-                    remove
-                  </button>
+                  <VaButton
+                    onClick={() => remove(index)}
+                    text="Remove Service Period"
+                  />
                 </div>
               )
             )}
