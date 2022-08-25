@@ -15,6 +15,7 @@ export interface FormRouterProps {
     actions: FormikHelpers<FormikValues>
   ) => any;
   formData: IFormData;
+  uiFormData?: IFormData;
   basename: string;
 }
 
