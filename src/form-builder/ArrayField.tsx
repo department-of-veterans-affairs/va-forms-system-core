@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { FieldArray, useFormikContext } from 'formik';
 import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { ArrayFieldProps } from './types';
@@ -16,7 +16,7 @@ import { ArrayFieldProps } from './types';
  */
 
 const ArrayField = (props: ArrayFieldProps): JSX.Element => {
-  const { name, state, arrayFieldSchema } = props;
+  const { name, values, arrayFieldSchema, buttonLabel } = props;
   const { setFieldValue } = useFormikContext();
 
   /**
@@ -25,8 +25,11 @@ const ArrayField = (props: ArrayFieldProps): JSX.Element => {
    * @param pushHandler push helper received from Formik's FieldArray
    * @param schema the arrayFieldSchema passed in as a prop
    */
-  const onAddHandler = (pushHandler, schema) => {
-    state.values?.[name].forEach((entry) => {
+  const onAddHandler = (
+    pushHandler: (obj: Record<string, unknown>) => void,
+    schema: Record<string, unknown>
+  ) => {
+    values?.[name].forEach((entry: Record<string, unknown>) => {
       entry.isOpen = false;
     });
     pushHandler(schema);
@@ -38,8 +41,8 @@ const ArrayField = (props: ArrayFieldProps): JSX.Element => {
    * uses setFieldValue to update the field itself in Formik
    * @param idx index of entry that needs to be expanded
    */
-  const onEditHandler = (idx) => {
-    const fieldArrayOfObjects = [...state.values?.[name]];
+  const onEditHandler = (idx: number) => {
+    const fieldArrayOfObjects = [...values?.[name]];
     fieldArrayOfObjects.forEach((entry, index) => {
       if (index === idx) {
         entry.isOpen = true;
@@ -54,44 +57,50 @@ const ArrayField = (props: ArrayFieldProps): JSX.Element => {
     <FieldArray name={name}>
       {({ remove, push }) => (
         <div>
-          {state?.values?.[name]?.length > 0 &&
-            state?.values?.[name]?.map((entry, index) =>
-              entry.isOpen === false ? (
-                <div
-                  className="vads-u-background-color--gray-light-alt vads-u-padding--2 vads-u-margin-y--1"
-                  key={index}
-                >
-                  <strong className="vads-u-margin--0">
-                    {entry.serviceBranch}
-                  </strong>
-                  <p className="vads-u-margin--0">
-                    {entry.dateRange.from} - {entry.dateRange.to}
-                  </p>
-                  <VaButton
-                    secondary
-                    text="Edit"
-                    onClick={() => onEditHandler(index)}
-                  />
-                </div>
-              ) : (
-                <div key={index}>
-                  {props.children.map((child) => {
-                    const indexedName = child.props.name.replace(
-                      'index',
-                      index
-                    );
-                    return React.cloneElement(child, { name: indexedName });
-                  })}
-                  <VaButton
-                    onClick={() => remove(index)}
-                    text="Remove Service Period"
-                  />
-                </div>
-              )
+          {values?.[name]?.length > 0 &&
+            values?.[name]?.map(
+              (entry: Record<string, unknown>, index: number) =>
+                entry.isOpen === false ? (
+                  <div
+                    className="vads-u-background-color--gray-light-alt vads-u-padding--2 vads-u-margin-y--1"
+                    key={index}
+                  >
+                    <strong className="vads-u-margin--0">
+                      {entry.serviceBranch}
+                    </strong>
+                    <p className="vads-u-margin--0">
+                      {entry.dateRange.from} - {entry.dateRange.to}
+                    </p>
+                    <VaButton
+                      secondary
+                      text="Edit"
+                      onClick={() => onEditHandler(index)}
+                    />
+                  </div>
+                ) : (
+                  <div key={index}>
+                    {React.Children.map(
+                      props.children,
+                      (child: ReactElement) => {
+                        const indexedName = child?.props.name.replace(
+                          'index',
+                          index
+                        );
+                        return React.cloneElement(child, {
+                          name: indexedName,
+                        });
+                      }
+                    )}
+                    <VaButton
+                      onClick={() => remove(index)}
+                      text={`Remove ${buttonLabel}`}
+                    />
+                  </div>
+                )
             )}
           <VaButton
             onClick={() => onAddHandler(push, arrayFieldSchema)}
-            text="Add another Service Period"
+            text={`Add another ${buttonLabel}`}
             secondary
           />
         </div>

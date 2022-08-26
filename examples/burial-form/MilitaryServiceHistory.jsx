@@ -14,6 +14,7 @@ import { isBeforeDate } from './utils';
 
 export default function MilitaryServiceHistory(props) {
   const state = useFormikContext();
+  const { values } = state;
 
   // TODO: fields for the rest of toursOfDuty schema
 
@@ -33,7 +34,7 @@ export default function MilitaryServiceHistory(props) {
             dates here, you can do that later in the form.
           </span>
         </div>
-        <ArrayField name="toursOfDuty" state={state} arrayFieldSchema={objectSchema}>
+        <ArrayField name="toursOfDuty" values={values} arrayFieldSchema={objectSchema} buttonLabel="Service Period">
           <DateField name={`toursOfDuty.index.dateRange.to`} label="Service start date"/>
           <DateField 
             name={`toursOfDuty.index.dateRange.from`} 

@@ -102,9 +102,10 @@ export type DateProps = FieldProps<string> & {
   isMemorableDate?: boolean;
 };
 
-export type ArrayFieldProps = {
+export interface ArrayFieldProps {
   name: string;
-  state: Record<string, unknown>;
+  buttonLabel: string;
+  values: Record<string, unknown>;
   arrayFieldSchema: Record<string, unknown>;
-  children: React.ReactNode | unknown;
-};
+  children: React.ReactElement;
+}
