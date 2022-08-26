@@ -1,18 +1,11 @@
 import React from 'react';
-<<<<<<< HEAD
-import {IntroductionPage, Page} from '@department-of-veterans-affairs/va-forms-system-core';
-=======
 import { Page, FormTitle } from '@department-of-veterans-affairs/va-forms-system-core';
 import { VaProcessList, VaOmbInfo } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
->>>>>>> 89c6e8b (fix(#288): use web-components for OMBInfo and move IntroductionPage (#591))
 
 export default function BurialIntroduction(props) {
   return (
     <>
       <Page {...props}>
-<<<<<<< HEAD
-        <IntroductionPage/>
-=======
         <div className="schemaform-intro">
           <FormTitle title="Apply for burial benefits" />
           <p>Equal to VA Form 21P-530 (Application for Burial Benefits).</p>
@@ -110,7 +103,6 @@ export default function BurialIntroduction(props) {
           </VaProcessList>
           <VaOmbInfo resBurden={15} ombNumber="2900-0003" expDate="04/30/2020" />
         </div>
->>>>>>> 89c6e8b (fix(#288): use web-components for OMBInfo and move IntroductionPage (#591))
       </Page>
     </>
   )
