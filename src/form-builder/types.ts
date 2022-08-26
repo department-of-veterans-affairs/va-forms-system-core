@@ -1,4 +1,5 @@
 import { FieldHookConfig } from 'formik';
+import React from 'react';
 
 export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
   label: string;
@@ -99,4 +100,11 @@ export interface Address {
 
 export type DateProps = FieldProps<string> & {
   isMemorableDate?: boolean;
+};
+
+export type ArrayFieldProps = {
+  name: string;
+  state: Record<string, unknown>;
+  arrayFieldSchema: Record<string, unknown>;
+  children: React.ReactNode | unknown;
 };

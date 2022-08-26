@@ -52,7 +52,6 @@
 |  [FullNameField](./va-forms-system-core.fullnamefield.md) |  |
 |  [FUTURE\_DATE\_MESSAGE](./va-forms-system-core.future_date_message.md) |  |
 |  [gatherFieldData](./va-forms-system-core.gatherfielddata.md) |  |
-|  [IntroductionPage](./va-forms-system-core.introductionpage.md) | IntroductionPage component current copy of the original Burials introduction page this will need to be updated to be more dynamic after demo. |
 |  [isValidDate](./va-forms-system-core.isvaliddate.md) | This function is used to validate an date field and make sure it's not in the future |
 |  [isValidEmail](./va-forms-system-core.isvalidemail.md) | This function is used to validate an email address, while returning error messages if an email is invalid. The logic is as follows:<!-- -->1. Ensure the email address is a string. If it's not, return an error message 2. Ensure that one of the following is true, else output an error message: 2a. The field is not required -AND- the field has no entered value 2b. The value in the field matches an email validation regular expression |
 |  [isValidPhone](./va-forms-system-core.isvalidphone.md) |  |
@@ -60,7 +59,6 @@
 |  [MilitaryCities](./va-forms-system-core.militarycities.md) |  |
 |  [MilitaryStates](./va-forms-system-core.militarystates.md) |  |
 |  [NumberField](./va-forms-system-core.numberfield.md) |  |
-|  [OMBInfo](./va-forms-system-core.ombinfo.md) | OMBInfo component is a simple form building component that displays the VA OMB number from your form, expDate, and resBurden. |
 |  [PageContext](./va-forms-system-core.pagecontext.md) |  |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
 |  [PhoneField](./va-forms-system-core.phonefield.md) | Renders the PhoneField component |

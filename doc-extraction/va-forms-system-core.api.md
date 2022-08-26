@@ -189,9 +189,6 @@ export interface IFormData {
     [prop: string]: unknown;
 }
 
-// @public
-export const IntroductionPage: () => JSX.Element;
-
 // Warning: (ae-internal-missing-underscore) The name "IRouterContext" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -232,9 +229,6 @@ export const MilitaryStates: {
 
 // @public (undocumented)
 export const NumberField: (props: FieldProps<string>) => JSX.Element;
-
-// @public
-export const OMBInfo: (props: OMBInfoProps) => JSX.Element;
 
 // @public
 export interface OMBInfoProps {

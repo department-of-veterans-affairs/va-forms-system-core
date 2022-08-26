@@ -1,13 +1,21 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { FieldArray, useFormikContext } from 'formik';
 import { VaButton } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
-/*
-This needs to:
-- format dates in a readable fasion
-*/
+import { ArrayFieldProps } from './types';
 
-const ArrayField = (props: any): JSX.Element => {
+/**
+ * The ArrayField accepts props.children and renders them for each entry in whichever array field is
+ * specified in props.name. This component provides a wrapper around FieldArray so end users do not
+ * have to manage looping through their array, or working with Formik helpers, instead allowing them to
+ * just focus on what their React components will look like.
+ *
+ * @param props - will include the field name as props.name,
+ * the formik state as props.state, and the array entry object schema as props.arrayFieldSchema
+ *
+ * @returns - FieldArray component provided by Formik
+ */
+
+const ArrayField = (props: ArrayFieldProps): JSX.Element => {
   const { name, state, arrayFieldSchema } = props;
   const { setFieldValue } = useFormikContext();
 
@@ -17,8 +25,8 @@ const ArrayField = (props: any): JSX.Element => {
    * @param pushHandler push helper received from Formik's FieldArray
    * @param schema the arrayFieldSchema passed in as a prop
    */
-  const onAddHandler = (pushHandler: any, schema: any) => {
-    state.values?.[name].forEach((entry: any) => {
+  const onAddHandler = (pushHandler, schema) => {
+    state.values?.[name].forEach((entry) => {
       entry.isOpen = false;
     });
     pushHandler(schema);
@@ -30,7 +38,7 @@ const ArrayField = (props: any): JSX.Element => {
    * uses setFieldValue to update the field itself in Formik
    * @param idx index of entry that needs to be expanded
    */
-  const onEditHandler = (idx: any) => {
+  const onEditHandler = (idx) => {
     const fieldArrayOfObjects = [...state.values?.[name]];
     fieldArrayOfObjects.forEach((entry, index) => {
       if (index === idx) {
@@ -47,7 +55,7 @@ const ArrayField = (props: any): JSX.Element => {
       {({ remove, push }) => (
         <div>
           {state?.values?.[name]?.length > 0 &&
-            state?.values?.[name]?.map((entry: any, index: number) =>
+            state?.values?.[name]?.map((entry, index) =>
               entry.isOpen === false ? (
                 <div
                   className="vads-u-background-color--gray-light-alt vads-u-padding--2 vads-u-margin-y--1"
@@ -67,7 +75,7 @@ const ArrayField = (props: any): JSX.Element => {
                 </div>
               ) : (
                 <div key={index}>
-                  {props.children.map((child: any) => {
+                  {props.children.map((child) => {
                     const indexedName = child.props.name.replace(
                       'index',
                       index
