@@ -1496,8 +1496,8 @@ __metadata:
     "@types/express": ^4.17.13
     "@types/jest": ^26.0.23
     "@types/lodash": ^4.14.171
-    "@types/react": ^17.0.14
-    "@types/react-dom": ^17.0.9
+    "@types/react": ^17.0.0
+    "@types/react-dom": ^17.0.0
     "@types/react-router-dom": ^5.1.8
     "@typescript-eslint/eslint-plugin": ^4.26.1
     "@typescript-eslint/parser": ^4.26.1
@@ -1519,9 +1519,9 @@ __metadata:
     lint-staged: ^11.0.0
     lodash: ^4.17.21
     prettier: ^2.3.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-is: ^17.0.2
+    react: ^17.0.0
+    react-dom: ^17.0.0
+    react-is: ^17.0.0
     react-router-dom: ^5.3.0
     react-router-dom-v5-compat: ^6.3.0
     semantic-release: ^19.0.3
@@ -3315,12 +3315,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.9":
-  version: 17.0.15
-  resolution: "@types/react-dom@npm:17.0.15"
+"@types/react-dom@npm:^17.0.0":
+  version: 17.0.17
+  resolution: "@types/react-dom@npm:17.0.17"
   dependencies:
     "@types/react": ^17
-  checksum: 7b90372bd7207d3860e1043ebfe10fd21fbd9ec3417a29593ca14359774830c888ba4ebb25cf0510628607496f8d35b09d23d329ea709b9311f5866185c5fd67
+  checksum: 23caf98aa03e968811560f92a2c8f451694253ebe16b670929b24eaf0e7fa62ba549abe9db0ac028a9d8a9086acd6ab9c6c773f163fa21224845edbc00ba6232
   languageName: node
   linkType: hard
 
@@ -3356,7 +3356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17, @types/react@npm:^17.0.14":
+"@types/react@npm:^17":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -3364,6 +3364,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17.0.0":
+  version: 17.0.48
+  resolution: "@types/react@npm:17.0.48"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: b683fa33f751ced0b8c8715df9f40de15513c1d7ce66064a75cdfb8805cc913b0b214a2e7022ef0b724bd62a1e8651d040cd265dd0452bde03cca9b8e495742d
   languageName: node
   linkType: hard
 
@@ -15070,7 +15081,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.2":
+"react-dom@npm:^17.0.0":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -15134,7 +15145,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-is@npm:^17.0.1, react-is@npm:^17.0.2":
+"react-is@npm:^17.0.0, react-is@npm:^17.0.1":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
@@ -15271,7 +15282,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
+"react@npm:^17.0.0":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:

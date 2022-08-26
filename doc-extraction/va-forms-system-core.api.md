@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="react" />
+
 import { FieldHookConfig } from 'formik';
 import { FieldInputProps } from 'formik';
 import { FormikHelpers } from 'formik';
@@ -41,11 +43,7 @@ export type AddressProps = FieldProps<string> & {
 };
 
 // @public (undocumented)
-export type ArrayProps = FieldProps<string> & {
-    entries: any[];
-    collapsedView: any;
-    expandedView: any;
-};
+export const ArrayField: (props: any) => JSX.Element;
 
 // @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
@@ -393,6 +391,9 @@ export const States50AndDC: {
     label: string;
     value: string;
 }[];
+
+// @public
+export const StringifyFormReplacer: (key: string, value: any) => unknown;
 
 // @public (undocumented)
 export const Suffixes: string[];

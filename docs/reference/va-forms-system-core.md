@@ -37,6 +37,7 @@
 |  Variable | Description |
 |  --- | --- |
 |  [AddressField](./va-forms-system-core.addressfield.md) | AddressField |
+|  [ArrayField](./va-forms-system-core.arrayfield.md) |  |
 |  [CapitalizeFirstLetter](./va-forms-system-core.capitalizefirstletter.md) |  |
 |  [chainValidations](./va-forms-system-core.chainvalidations.md) |  |
 |  [CheckboxField](./va-forms-system-core.checkboxfield.md) | CheckboxField component is a simple form building component that displays a checkbox for the user. |
@@ -70,6 +71,7 @@
 |  [SSNField](./va-forms-system-core.ssnfield.md) | Renders the SSNField component |
 |  [States](./va-forms-system-core.states.md) |  |
 |  [States50AndDC](./va-forms-system-core.states50anddc.md) |  |
+|  [StringifyFormReplacer](./va-forms-system-core.stringifyformreplacer.md) | Returns the value after checking if its value is not undefined. |
 |  [Suffixes](./va-forms-system-core.suffixes.md) |  |
 |  [TextField](./va-forms-system-core.textfield.md) |  |
 |  [transformJSONSchema](./va-forms-system-core.transformjsonschema.md) | A function to transform a VA schema into a flattened, Formik compatible object |
@@ -80,7 +82,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AddressProps](./va-forms-system-core.addressprops.md) |  |
-|  [ArrayProps](./va-forms-system-core.arrayprops.md) |  |
 |  [CheckboxGroupProps](./va-forms-system-core.checkboxgroupprops.md) |  |
 |  [CheckboxProps](./va-forms-system-core.checkboxprops.md) |  |
 |  [DateProps](./va-forms-system-core.dateprops.md) |  |

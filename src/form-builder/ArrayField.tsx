@@ -7,7 +7,7 @@ This needs to:
 - format dates in a readable fasion
 */
 
-const ArrayField = (props): JSX.Element => {
+const ArrayField = (props: any): JSX.Element => {
   const { name, state, arrayFieldSchema } = props;
   const { setFieldValue } = useFormikContext();
 
@@ -17,8 +17,8 @@ const ArrayField = (props): JSX.Element => {
    * @param pushHandler push helper received from Formik's FieldArray
    * @param schema the arrayFieldSchema passed in as a prop
    */
-  const onAddHandler = (pushHandler, schema) => {
-    state.values?.[name].forEach((entry) => {
+  const onAddHandler = (pushHandler: any, schema: any) => {
+    state.values?.[name].forEach((entry: any) => {
       entry.isOpen = false;
     });
     pushHandler(schema);
@@ -30,7 +30,7 @@ const ArrayField = (props): JSX.Element => {
    * uses setFieldValue to update the field itself in Formik
    * @param idx index of entry that needs to be expanded
    */
-  const onEditHandler = (idx) => {
+  const onEditHandler = (idx: any) => {
     const fieldArrayOfObjects = [...state.values?.[name]];
     fieldArrayOfObjects.forEach((entry, index) => {
       if (index === idx) {
@@ -47,7 +47,7 @@ const ArrayField = (props): JSX.Element => {
       {({ remove, push }) => (
         <div>
           {state?.values?.[name]?.length > 0 &&
-            state?.values?.[name]?.map((entry, index) =>
+            state?.values?.[name]?.map((entry: any, index: number) =>
               entry.isOpen === false ? (
                 <div
                   className="vads-u-background-color--gray-light-alt vads-u-padding--2 vads-u-margin-y--1"
@@ -67,7 +67,7 @@ const ArrayField = (props): JSX.Element => {
                 </div>
               ) : (
                 <div key={index}>
-                  {props.children.map((child) => {
+                  {props.children.map((child: any) => {
                     const indexedName = child.props.name.replace(
                       'index',
                       index
