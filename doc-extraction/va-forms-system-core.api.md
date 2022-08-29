@@ -387,6 +387,9 @@ export const States50AndDC: {
     value: string;
 }[];
 
+// @public
+export const StringifyFormReplacer: (key: string, value: any) => unknown;
+
 // @public (undocumented)
 export const Suffixes: string[];
 
