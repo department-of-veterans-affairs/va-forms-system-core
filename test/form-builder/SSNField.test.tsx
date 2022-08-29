@@ -1,7 +1,7 @@
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 
-import { buildRenderForm } from '../utils';
+import { buildRenderForm, changeValue } from '../utils';
 import SSNField from '../../src/form-builder/SSNField';
 
 const renderForm = buildRenderForm({});
@@ -242,5 +242,16 @@ describe('Form Builder - SSNField', () => {
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
     expect(input.getAttribute('error')).toEqual('Please provide a response');
+  });
+
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+      <SSNField name="ssn" label="SSN" validate={spy} />
+    );
+    const input = getInput(container);
+
+    await changeValue(input, '989557788', 'input');
+    expect(spy).toBeCalled();
   });
 });

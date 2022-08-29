@@ -16,6 +16,11 @@ const SelectField = (props: SelectProps): JSX.Element => {
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
+  const onChange = (e: Event) => {
+    field.onChange(e);
+    if (props.onValueChange) props.onValueChange(e);
+  };
+
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
     const listOfPagesCopy = gatherFieldData(
@@ -34,6 +39,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
       required={!!props.required}
       {...field}
       onVaSelect={field.onChange}
+      onInput={onChange}
       error={(meta.touched && meta.error) || undefined}
     >
       {props.children}

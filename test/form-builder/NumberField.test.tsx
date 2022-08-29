@@ -73,6 +73,17 @@ describe('Form Builder - NumberField', () => {
     expect(spy).toBeCalled();
   });
 
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+      <NumberField name="thing" label="The Thing" validate={spy} />
+    );
+    const input = getInput(container);
+
+    await changeValue(input, '5463', 'input');
+    expect(spy).toBeCalled();
+  });
+
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ thing: 'foo' });
     const { container, getFormProps } = rf(

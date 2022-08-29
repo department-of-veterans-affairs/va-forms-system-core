@@ -34,6 +34,11 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
   );
   const id = props.id || props.name;
 
+  const onChange = (e: Event) => {
+    field.onChange(e);
+    if (props.onValueChange) props.onValueChange(e);
+  };
+
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
     const listOfPagesCopy = gatherFieldData(
@@ -61,6 +66,7 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
           props.onValueChange(e);
         }
       }}
+      onInput={onChange}
       error={(meta.touched && meta.error) || undefined}
     >
       {props.children}
