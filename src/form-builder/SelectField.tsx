@@ -8,6 +8,7 @@ import { SelectProps } from './types';
 
 const SelectField = (props: SelectProps): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+  const currentPage = listOfPages.find((page) => page.path === currentPath);
 
   const withValidation = {
     ...props,
@@ -30,7 +31,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
       currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
-  }, [field.name, field.value]);
+  }, [field.name, field.value, currentPage]);
 
   return (
     <VaSelect

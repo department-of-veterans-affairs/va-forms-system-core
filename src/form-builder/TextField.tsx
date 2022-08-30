@@ -8,6 +8,7 @@ import { gatherFieldData, PageContext } from '../form-data';
 
 const TextField = (props: FieldProps<string>): JSX.Element => {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+  const currentPage = listOfPages.find((page) => page.path === currentPath);
 
   // find current page on component mount?
   const withValidation = {
@@ -31,7 +32,7 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
       currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
-  }, [field.name, field.value]);
+  }, [field.name, field.value, currentPage]);
 
   return (
     <VaTextInput

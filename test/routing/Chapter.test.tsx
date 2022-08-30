@@ -8,11 +8,10 @@ import {
   Router,
   Routes,
 } from 'react-router-dom-v5-compat';
-import { RouterProps } from '../../src/routing/types';
+import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
 import Chapter from '../../src/routing/Chapter';
 import { act } from 'react-dom/test-utils';
-import { FormFooter, FormTitle } from '../../src';
 import { Formik } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 
@@ -39,7 +38,7 @@ const ChapterOnePageTwo = (props: { title: string }) => (
   </Page>
 );
 
-const FormRouterInternal = (props: RouterProps): JSX.Element => {
+const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
 
   return (

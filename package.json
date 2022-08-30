@@ -1,6 +1,6 @@
 {
   "name": "@department-of-veterans-affairs/va-forms-system-core",
-  "version": "1.4.0",
+  "version": "1.4.4",
   "description": "Department of Veterans Affairs Forms System Core.",
   "main": "dist/index.js",
   "module": "dist/va-forms-system-core.cjs.production.min.js",

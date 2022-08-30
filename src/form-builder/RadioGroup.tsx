@@ -10,6 +10,7 @@ import { gatherFieldData, PageContext } from '../form-data';
 
 export function RadioGroup(props: RadioGroupProps): JSX.Element {
   const { listOfPages, setListOfPages, currentPath } = useContext(PageContext);
+  const currentPage = listOfPages.find((page) => page.path === currentPath);
 
   const options = props.options;
   const withValidation = {
@@ -37,7 +38,7 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       currentPath
     );
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
-  }, [field.name, field.value]);
+  }, [field.name, field.value, currentPage]);
 
   return (
     <VaRadio
