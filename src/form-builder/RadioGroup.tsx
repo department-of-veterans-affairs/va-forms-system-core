@@ -22,7 +22,6 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
   );
 
   const onInputHandler = (e: Event) => {
-    console.log(e);
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
