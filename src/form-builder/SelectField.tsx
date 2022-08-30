@@ -16,7 +16,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
-  const onChange = (e: Event) => {
+  const onInputHandler = (e: Event) => {
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
@@ -39,7 +39,7 @@ const SelectField = (props: SelectProps): JSX.Element => {
       required={!!props.required}
       {...field}
       onVaSelect={field.onChange}
-      onInput={onChange}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     >
       {props.children}

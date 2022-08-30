@@ -17,7 +17,7 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
   const [field, meta] = useField(withValidation as FieldHookConfig<string>);
   const id = props.id || props.name;
 
-  const onChange = (e: Event) => {
+  const onInputHandler = (e: Event) => {
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
@@ -40,7 +40,7 @@ const TextField = (props: FieldProps<string>): JSX.Element => {
       label={props.label}
       required={!!props.required}
       {...field}
-      onInput={onChange}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     />
   );

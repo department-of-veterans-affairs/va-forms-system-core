@@ -44,7 +44,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.value, field.name]);
 
-  const onChange = (e: Event) => {
+  const onInputHandler = (e: Event) => {
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
@@ -94,7 +94,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
       maxlength={11}
       onFocus={onFocus}
       onBlur={onBlur}
-      onInput={onChange}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     />
   );

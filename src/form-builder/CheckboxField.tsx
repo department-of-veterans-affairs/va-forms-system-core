@@ -34,7 +34,7 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
   );
   const id = props.id || props.name;
 
-  const onChange = (e: Event) => {
+  const onInputHandler = (e: Event) => {
     field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
@@ -66,7 +66,7 @@ const CheckboxField = (props: CheckboxProps): JSX.Element => {
           props.onValueChange(e);
         }
       }}
-      onInput={onChange}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     >
       {props.children}
