@@ -109,4 +109,28 @@ describe('Form Builder - RadioGroup', () => {
     await changeValue(el, true);
     expect(getFormProps().values).toEqual({ veteranServedUnderAnotherName: true });
   })
+
+  test.skip('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const renderForm = buildRenderForm({ "demo": false }); 
+    const {container} = renderForm(
+      <RadioGroup
+        name="radio-test-demo"
+        label="Did the Veteran serve under another name?"
+        validate={spy}
+        required
+        options={
+          [
+            {label: "Yes", value: "true", key: 1},
+            {label: "No", value: "false", key: 2},
+          ]
+        }
+      />);
+    await waitFor(() => {
+      const el = getByTestId(container, 'radio-test-demo-0');
+      el.focus();
+      fireEvent.click(el);
+      expect(spy).toBeCalled();
+    });
+  })
 });

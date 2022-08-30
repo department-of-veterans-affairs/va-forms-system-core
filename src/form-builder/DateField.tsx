@@ -31,6 +31,11 @@ const DateField = (props: DateProps): JSX.Element => {
     helpers.setValue((dateValue?.target as HTMLInputElement).value);
   };
 
+  const onInputHandler = (e: Event) => {
+    field.onChange(e);
+    if (props.onValueChange) props.onValueChange(e);
+  };
+
   useEffect(() => {
     // Create a copy so the context's state doesn't get mutated.
     const listOfPagesCopy = gatherFieldData(
@@ -62,6 +67,7 @@ const DateField = (props: DateProps): JSX.Element => {
       onDateChange={onChange}
       value={value}
       onDateBlur={() => helpers.setTouched(true)}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     />
   );
