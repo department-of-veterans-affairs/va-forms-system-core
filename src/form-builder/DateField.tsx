@@ -50,7 +50,6 @@ const DateField = (props: DateProps): JSX.Element => {
       label={props.label}
       onDateChange={onChange}
       value={value}
-      onDateBlur={() => helpers.setTouched(true)}
       error={(meta.touched && meta.error) || undefined}
     />
   ) : (
@@ -61,7 +60,6 @@ const DateField = (props: DateProps): JSX.Element => {
       label={props.label}
       onDateChange={onChange}
       value={value}
-      onDateBlur={() => helpers.setTouched(true)}
       error={(meta.touched && meta.error) || undefined}
     />
   );

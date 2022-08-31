@@ -6,9 +6,11 @@ import { useFormikContext } from 'formik';
  */
 const DebuggerView = () => {
   const state = useFormikContext();
+
   return (
     <>
       <pre>
+        {/* <code>{JSON.stringify(state, (k, v) => v === undefined ? null : v, 2)}</code> */}
         <code>{JSON.stringify(state, null, 2)}</code>
       </pre>
     </>
