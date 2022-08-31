@@ -144,6 +144,8 @@ export interface FormRouterProps {
     title: string;
     // (undocumented)
     transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
+    // (undocumented)
+    uiFormData?: IFormData;
 }
 
 // @public

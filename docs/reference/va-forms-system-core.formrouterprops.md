@@ -22,4 +22,5 @@ export interface FormRouterProps
 |  [subtitle?](./va-forms-system-core.formrouterprops.subtitle.md) | string | <i>(Optional)</i> |
 |  [title](./va-forms-system-core.formrouterprops.title.md) | string |  |
 |  [transformForSubmit?](./va-forms-system-core.formrouterprops.transformforsubmit.md) | (values: FormikValues, actions: FormikHelpers&lt;FormikValues&gt;) =&gt; any | <i>(Optional)</i> |
+|  [uiFormData?](./va-forms-system-core.formrouterprops.uiformdata.md) | [IFormData](./va-forms-system-core.iformdata.md) | <i>(Optional)</i> |
 
