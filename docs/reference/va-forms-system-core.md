@@ -61,6 +61,7 @@
 |  [PageContext](./va-forms-system-core.pagecontext.md) |  |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
 |  [PhoneField](./va-forms-system-core.phonefield.md) | Renders the PhoneField component |
+|  [replaceUndefinedWithNull](./va-forms-system-core.replaceundefinedwithnull.md) | Returns null if value is undefined, otherwise returns value |
 |  [required](./va-forms-system-core.required.md) |  |
 |  [requiredValue](./va-forms-system-core.requiredvalue.md) |  |
 |  [RouterContext](./va-forms-system-core.routercontext.md) |  |
