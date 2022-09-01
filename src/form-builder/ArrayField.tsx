@@ -63,16 +63,30 @@ const ArrayField = <T extends Record<string, unknown>>(
     helpers.setValue(fieldValueCopy);
   };
 
+  const deleteField = (index: number) => {
+    const fieldValueCopy = field.value;
+
+    fieldValueCopy.splice(index, 1);
+    helpers.setValue(fieldValueCopy);
+  };
+
   if (field.value.length === 0) {
     return <a onClick={addField}> Add </a>;
   }
   return (
     <div>
-      {field.value.map((value, index) =>
-        FieldArrayTemplate({ data: value, index: index })
-      )}
+      {field.value.map((value, index) => {
+        return (
+          <div key={index}>
+            {FieldArrayTemplate({ data: value, index: index })}
+            <a onClick={() => deleteField(index)}> Remove </a>
+          </div>
+        );
+      })}
 
       <a onClick={addField}> Add </a>
+
+      {meta.error && meta.touched && <div>{meta.error}</div>}
     </div>
   );
 };
