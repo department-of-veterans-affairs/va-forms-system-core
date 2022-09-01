@@ -43,6 +43,10 @@ const ArrayField = <T extends Record<string, unknown>>(
   const { name, buttonLabel, FieldArrayTemplate } = props;
 
   const vldatr = (value: T[], props: IArrFieldPrps<T>) => {
+    // todo: this I think could be a prop to check for required fields for each item?
+    // how specific do we need to be with this?
+    // idea: does there need to be at least one required
+    // field as a requirement to add more into the array?
     return 'hello validator';
   };
 
