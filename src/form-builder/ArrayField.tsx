@@ -18,19 +18,6 @@ import { FieldProps } from './types';
 
 //You can however skip the type annotation, and make the function generic and type props explicitly.
 
-type FieldArrayTemplateType = {
-  index: number;
-  dateRange: {
-    to: string;
-    from: string;
-  };
-  serviceBranch: string;
-  rank: string;
-  serviceNumber: string;
-  placeOfEntry: string;
-  placeOfSeparation: string;
-};
-
 export interface ArrayFieldProps {
   name: string;
   buttonLabel: string;
@@ -56,24 +43,28 @@ const ArrayField = <T extends Record<string, unknown>>(
   const { name, buttonLabel, FieldArrayTemplate } = props;
 
   const vldatr = (value: T[], props: IArrFieldPrps<T>) => {
-    console.log(value);
-    return 'false';
+    return 'hello validator';
   };
 
   const withValidation = {
     ...props,
     validate: chainArrayValidations(props, [vldatr]),
   };
-  const [field] = useField(withValidation as FieldHookConfig<T[]>);
-  const { setFieldValue } = useFormikContext();
+  const [field, meta, helpers] = useField(
+    withValidation as FieldHookConfig<T[]>
+  );
+  // const { setFieldValue } = useFormikContext();
 
-  const addField = (e: React.MouseEvent) => {
-    console.log('hello');
-    return e;
+  const addField = () => {
+    // Add some validation checks here?
+
+    const fieldValueCopy = field.value;
+    fieldValueCopy.push(props.arrayFieldSchema as T);
+    helpers.setValue(fieldValueCopy);
   };
 
   if (field.value.length === 0) {
-    return 'No fields return';
+    return <a onClick={addField}> Add </a>;
   }
   return (
     <div>
@@ -81,7 +72,7 @@ const ArrayField = <T extends Record<string, unknown>>(
         FieldArrayTemplate({ data: value, index: index })
       )}
 
-      <a onClick={(e) => addField(e)}> Add </a>
+      <a onClick={addField}> Add </a>
     </div>
   );
 };

@@ -11,6 +11,17 @@ import {
 import { useFormikContext } from 'formik';
 import { isBeforeDate } from './utils';
 
+const ARRAY_FIELD_PROPS = {
+  dateRange: {
+    to: undefined,
+    from: undefined,
+  },
+  serviceBranch: undefined,
+  rank: undefined,
+  serviceNumber: undefined,
+  placeOfEntry: undefined,
+  placeOfSeparation: undefined,
+}
 
 const FieldArrayTemplate = ({data, index}) => {
 
@@ -54,8 +65,6 @@ export default function MilitaryServiceHistory(props) {
 
   // TODO: fields for the rest of toursOfDuty schema
 
-  const objectSchema = state?.initialValues?.toursOfDuty[0];
-
   return (
     <>
       <Page
@@ -73,7 +82,7 @@ export default function MilitaryServiceHistory(props) {
         <ArrayField 
           name="toursOfDuty" 
           value={values.toursOfDuty} 
-          arrayFieldSchema={objectSchema} 
+          arrayFieldSchema={ARRAY_FIELD_PROPS} 
           buttonLabel="Service Period"
           FieldArrayTemplate={FieldArrayTemplate} />
         <br/>
