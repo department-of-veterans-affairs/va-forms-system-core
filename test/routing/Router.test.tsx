@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
 import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
-import { Formik, useFormikContext } from 'formik';
+import { FieldAttributes, Formik, FormikBag, FormikComputedProps, GenericFieldHTMLAttributes, useFormikContext } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
 import { before } from 'lodash';
 import { TextField } from '../../src';
@@ -110,7 +110,7 @@ describe('Routing - Router', () => {
 
     await waitFor(() => {
       const containerTextInput = container.querySelector('#eggs');
-      expect(containerTextInput?.value).toEqual(false);
+      expect((containerTextInput as GenericFieldHTMLAttributes)?.value).toEqual(false);
     });
   });
 });
