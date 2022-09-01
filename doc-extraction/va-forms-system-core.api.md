@@ -303,6 +303,9 @@ export type RadioItemProps = {
     onRadioOptionSelected: () => void;
 };
 
+// @public
+export const replaceUndefinedWithNull: (value: any) => unknown;
+
 // @public (undocumented)
 export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
 
