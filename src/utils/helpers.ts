@@ -201,3 +201,13 @@ export const StringifyFormReplacer = (key: string, value: any): unknown => {
 
   return value;
 };
+
+/**
+ * Returns null if value is undefined, otherwise returns value
+ *
+ * @param value - The value can be of any type like string, boolean, object, number.
+ *
+ */
+export const replaceUndefinedWithNull = (value: any): unknown => {
+  return value === undefined ? null : value;
+};

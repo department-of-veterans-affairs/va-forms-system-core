@@ -1437,12 +1437,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@department-of-veterans-affairs/component-library@npm:11.5.4":
-  version: 11.5.4
-  resolution: "@department-of-veterans-affairs/component-library@npm:11.5.4"
+"@department-of-veterans-affairs/component-library@npm:^11.5.4":
+  version: 11.6.0
+  resolution: "@department-of-veterans-affairs/component-library@npm:11.6.0"
   dependencies:
     "@department-of-veterans-affairs/react-components": 7.0.1
-    "@department-of-veterans-affairs/web-components": 4.12.4
+    "@department-of-veterans-affairs/web-components": 4.13.0
     i18next: ^21.6.14
     i18next-browser-languagedetector: ^6.1.4
     react-focus-on: ^3.5.1
@@ -1451,7 +1451,7 @@ __metadata:
     "@department-of-veterans-affairs/formation": "*"
     react: ^17
     react-dom: "*"
-  checksum: a7ec66911430be48a3cfc7c4a4bf50393b676cfc724fb41b630aa4b0322897b8e52a0cc8b2f7af3dbb660e8dd5ea271432a92466d3378150d3c8362b64c0c5b8
+  checksum: c7272bd806a4a66533b0a8806842644841f8c1e43a614ac888e3ecd7b71dbd27f8cacd27744ff6c183f347c88d6394d5302e174c616e45cd263142bc9d18dfc6
   languageName: node
   linkType: hard
 
@@ -1482,7 +1482,7 @@ __metadata:
     "@babel/preset-env": ^7.14.5
     "@babel/preset-react": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    "@department-of-veterans-affairs/component-library": 11.5.4
+    "@department-of-veterans-affairs/component-library": ^11.5.4
     "@microsoft/api-documenter": ^7.13.41
     "@microsoft/api-extractor": ^7.18.6
     "@semantic-release/changelog": ^6.0.1
@@ -1538,9 +1538,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@department-of-veterans-affairs/web-components@npm:4.12.4":
-  version: 4.12.4
-  resolution: "@department-of-veterans-affairs/web-components@npm:4.12.4"
+"@department-of-veterans-affairs/web-components@npm:4.13.0":
+  version: 4.13.0
+  resolution: "@department-of-veterans-affairs/web-components@npm:4.13.0"
   dependencies:
     "@stencil/core": ^2.10.0
     aria-hidden: ^1.1.3
@@ -1551,7 +1551,7 @@ __metadata:
     "@department-of-veterans-affairs/formation": ^7.0.1
     i18next: "*"
     i18next-browser-languagedetector: "*"
-  checksum: feaaa4cef1284b369318ac6f5f7234cd403be549158cd77908bbc6777a60be70a1b6d487d680b161c1900a044e292b768969e0aa5fdda1b984d1d86a83f02046
+  checksum: f5f7759d4418764b0930fc88d725c9b8ae3f4ec57fef9e0db14815cab2c517da2513fa0a2356811a0ad79947e2e7c7029f558613d2a81af3aa5455a50e5fd0cc
   languageName: node
   linkType: hard
 

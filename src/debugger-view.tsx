@@ -1,9 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-
-const replaceUndefinedWithNull = (k: string, v: any): unknown => {
-  return v === undefined ? null : v;
-};
+import { replaceUndefinedWithNull } from './utils';
 
 /**
  * Display the Formik state
@@ -14,7 +11,13 @@ const DebuggerView = () => {
   return (
     <>
       <pre>
-        <code>{JSON.stringify(state, replaceUndefinedWithNull, 2)}</code>
+        <code>
+          {JSON.stringify(
+            state,
+            (key, value) => replaceUndefinedWithNull(value),
+            2
+          )}
+        </code>
       </pre>
     </>
   );
