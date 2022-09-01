@@ -37,7 +37,11 @@ const FieldArrayTemplate = ({data, index}) => {
         //   'End of service must be after start of service'
         // )}
       />
-      <DateField name={`toursOfDuty[${index}]dateRange.to`} label="Service end date" value={data.dateRange.to}/>
+      <DateField 
+        name={`toursOfDuty[${index}]dateRange.to`}
+        label="Service end date"
+        value={data.dateRange.to}
+      />
       <SelectField
       name={`toursOfDuty[${index}]serviceBranch`}
       label="Branch of service"
