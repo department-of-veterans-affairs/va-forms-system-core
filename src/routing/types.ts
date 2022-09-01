@@ -2,7 +2,17 @@ import { ReactElement } from 'react';
 import { FormikHelpers, FormikValues } from 'formik';
 
 /**
- * The properties for the Router React component
+ * The prop type for the Router React component
+ *
+ *
+ * @typeParam children - Component children
+ * @typeParam title - Title of the form
+ * @typeParam subtitle - An optional subtitle of the form
+ * @typeParam transformForSubmit - custom hook for transforming data before form submit
+ * @typeParam formData - Initial Formik data to be passed into the form from schema.js
+ * @typeParam uiFormData - Optional UI formik data that is not in schema.js to be
+ * * added to formik initial validation
+ * @typeParam basename router basename
  *
  * @public
  */

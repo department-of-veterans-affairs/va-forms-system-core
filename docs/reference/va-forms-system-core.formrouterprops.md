@@ -4,7 +4,7 @@
 
 ## FormRouterProps interface
 
-The properties for the Router React component
+The prop type for the Router React component
 
 <b>Signature:</b>
 

@@ -22,7 +22,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [Address](./va-forms-system-core.address.md) |  |
-|  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | The properties for the Router React component |
+|  [FormRouterProps](./va-forms-system-core.formrouterprops.md) | The prop type for the Router React component |
 |  [FormTitleProps](./va-forms-system-core.formtitleprops.md) | FormTitle properties |
 |  [IFormData](./va-forms-system-core.iformdata.md) | The type for the FormData to define the flexible data object |
 |  [OMBInfoProps](./va-forms-system-core.ombinfoprops.md) | OMBInfo properties |
