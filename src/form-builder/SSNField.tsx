@@ -47,7 +47,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
 
   const onFocus = () => {
     if (!field.value) return;
-    const valueWithoutDashes = field.value.replaceAll('-', '');
+    const valueWithoutDashes = field.value.replace('-', '');
 
     setSSN(valueWithoutDashes);
   };
@@ -55,7 +55,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
   const onBlur = (event: Event) => {
     setTimeout(() => {
       const { value } = event.target as HTMLTextAreaElement;
-      const ssnString: string = value.replaceAll('-', '');
+      const ssnString: string = value.replace('-', '');
       helpers.setValue(ssnString);
       helpers.setTouched(true);
 

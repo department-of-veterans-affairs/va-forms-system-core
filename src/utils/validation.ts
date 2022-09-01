@@ -7,6 +7,16 @@ import { FUTURE_DATE_MESSAGE } from './constants';
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+export type IArrFieldPrps<T> = FieldProps<T[]> & {
+  name: string;
+  buttonLabel: string;
+  value: T[];
+  // arrayClickHook: (data: T) => {}
+  arrayFieldSchema: Record<string, unknown>;
+  children: React.ReactElement;
+  FieldArrayTemplate: (props: { data: T; index: number }) => React.ReactNode;
+};
+
 export type ValidationFunctionResult<T> =
   | void
   | undefined
@@ -17,6 +27,27 @@ export type ValidationFunction<T> = (
   value: T,
   props: FieldProps<T>
 ) => ValidationFunctionResult<T>;
+
+export type ValidationFunctionArray<T> = (
+  value: T[],
+  props: IArrFieldPrps<T>
+) => ValidationFunctionResult<T>;
+
+export const chainArrayValidations = <T>(
+  props: IArrFieldPrps<T>,
+  validations: ValidationFunctionArray<T>[]
+): ((value: T[]) => ValidationFunctionResult<T>) => {
+  return (value: T[]) => {
+    // Return the error message from the first validation function that fails.
+    const errorMessage = validations
+      .map((v) => v(value, props))
+      .filter((m) => m)[0];
+    if (errorMessage) return errorMessage;
+    // None of the built-in validation functions failed; run the validate
+    // function passed to the component.
+    return props.validate ? props.validate(value) : undefined;
+  };
+};
 
 export const chainValidations = <T>(
   props: FieldProps<T>,

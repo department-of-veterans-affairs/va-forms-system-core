@@ -101,11 +101,3 @@ export interface Address {
 export type DateProps = FieldProps<string> & {
   isMemorableDate?: boolean;
 };
-
-export interface ArrayFieldProps {
-  name: string;
-  buttonLabel: string;
-  values: Record<string, unknown>;
-  arrayFieldSchema: Record<string, unknown>;
-  children: React.ReactElement;
-}
