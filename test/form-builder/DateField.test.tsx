@@ -57,6 +57,17 @@ describe('Form Builder - DateField', () => {
     expect(input.getAttribute('error')).toEqual('Please provide a response');
   });
 
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+      <DateField name="dateOfBirth" label="Date of Birth" validate={spy} />
+    );
+    const input = getInput(container);
+
+    await changeValue(input, '2021-08-28', 'dateChange');
+    expect(spy).toBeCalled();
+  });
+
   test('updates the formik state', async () => {
     const rf = buildRenderForm({ dateOfBirth: '2022-05-20' });
     const { container, getFormProps } = rf(

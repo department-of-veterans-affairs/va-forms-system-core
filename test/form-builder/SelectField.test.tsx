@@ -73,6 +73,19 @@ describe('Form Builder - SelectField', () => {
     expect(spy).toBeCalled();
   });
 
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+    <SelectField name="thing" label="The Thing" validate={spy}>
+      <option value="first">Item one</option>
+      <option value="second">Item two</option>
+    </SelectField>);
+    const input = getInput(container);
+
+    await changeValue(input, 'second', 'vaSelect');
+    expect(spy).toBeCalled();
+  });
+
   test('updates the formik state', async () => {
     const { container, getFormProps } = renderForm(componentUnderTest);
     const input = getInput(container);

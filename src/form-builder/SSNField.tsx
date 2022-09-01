@@ -45,6 +45,11 @@ const SSNField = (props: SSNProps): JSX.Element => {
     if (listOfPagesCopy) setListOfPages(listOfPagesCopy);
   }, [field.value, field.name, currentPage]);
 
+  const onInputHandler = (e: Event) => {
+    field.onChange(e);
+    if (props.onValueChange) props.onValueChange(e);
+  };
+
   const onFocus = () => {
     if (!field.value) return;
     const valueWithoutDashes = field.value.replace('-', '');
@@ -90,6 +95,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
       maxlength={11}
       onFocus={onFocus}
       onBlur={onBlur}
+      onInput={onInputHandler}
       error={(meta.touched && meta.error) || undefined}
     />
   );
