@@ -381,10 +381,6 @@ const schema = {
           }
         }
       },
-      // To be removed only radio button is compatible to handle this
-      "veteranServedUnderAnotherName": {
-        "type": "boolean"
-      },
       "previousNames": {
         "type": "array",
         "items": {

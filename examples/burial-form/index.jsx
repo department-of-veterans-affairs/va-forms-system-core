@@ -31,6 +31,7 @@ const BurialApp = (props) => {
         <CompatRouter>
         <FormRouter
           formData={props.initialValues}
+          uiFormData={props.uiValues}
           title="Burials Example"
         >
           <Route index element={<BurialIntroduction title="Introduction Page" />} />

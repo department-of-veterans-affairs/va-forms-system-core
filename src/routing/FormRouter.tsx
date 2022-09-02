@@ -13,16 +13,20 @@ import { PageContextProvider } from '../form-data/PageContext';
 /**
  * Manages form pages as routes
  * Parent formik insance is rendered here
+ * @param {FormRouterProps} props
+ *
  * @public
  */
 export default function FormRouter(props: FormRouterProps): JSX.Element {
   const initialValues = props.formData;
+  const uiInitialValues = props?.uiFormData || {};
+  const formValues = { ...initialValues, ...uiInitialValues };
 
   return (
     <div className="row">
       <div className="usa-width-two-thirds medium-8 columns">
         <Formik
-          initialValues={initialValues}
+          initialValues={formValues}
           onSubmit={(values, actions) => {
             // This is where data is transformed if a custom transformForSubmit function is provided.
             // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
