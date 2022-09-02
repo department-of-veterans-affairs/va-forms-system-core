@@ -21,6 +21,11 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
     withValidation as FieldHookConfig<string>
   );
 
+  const onInputHandler = (e: Event) => {
+    field.onChange(e);
+    if (props.onValueChange) props.onValueChange(e);
+  };
+
   const id = props.id || props.name;
 
   useEffect(() => {
@@ -41,6 +46,8 @@ export function RadioGroup(props: RadioGroupProps): JSX.Element {
       required={!!props.required}
       options={options}
       {...field}
+      onInput={onInputHandler}
+      onClick={onInputHandler}
       onBlur={() => helpers.setTouched(true)}
       error={(meta.touched && meta.error) || undefined}
       onVaValueChange={(event: React.ChangeEvent<HTMLInputElement>) => {

@@ -28,7 +28,7 @@ const Main = () => {
   return (
     <>
       {/* If you would like to see the simple form or chapter form, just uncomment and comment out BurialApp */}
-      <BurialApp basename="/" initialValues={schemaKeys} uiValues={uiInitialValues} />
+      <BurialApp basename="/" initialValues={schemaKeys} uiValues={uiInitialValues}/>
       {/* <ChapterForm basename="/" initialValues={schemaKeys} /> */}
       {/* <SimpleApp /> */}
     </>

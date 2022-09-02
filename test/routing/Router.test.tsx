@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom-v5-compat';
 import { FormRouterProps } from '../../src/routing/types';
 import Page from '../../src/routing/Page';
-import { Formik } from 'formik';
+import { FieldAttributes, Formik, FormikBag, FormikComputedProps, GenericFieldHTMLAttributes, useFormikContext } from 'formik';
 import { RouterContextProvider } from '../../src/routing/RouterContext';
+import { before } from 'lodash';
+import { TextField } from '../../src';
 
 const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
   const initialValues = props.formData;
+  const uiValues = props?.uiFormData || {} ;
+  const formData = {...initialValues, ...uiValues} 
 
   return (
     <Formik
-      initialValues={props.formData}
+      initialValues={formData}
       onSubmit={(values, actions) => {
         // Here we leverage formik actions to perform validations, submit data, etc.
         // Also a good candidate for extracting data out of form apps
@@ -28,6 +32,7 @@ const FormRouterInternal = (props: FormRouterProps): JSX.Element => {
 const PageOne = () => (
   <Page title="page one">
     <p>page one</p>
+    <TextField name="eggs" label="eggs" id="eggs"/>
   </Page>
 );
 
@@ -46,8 +51,10 @@ const initialValues = {
   streetThree: '',
   state: '',
   zipcode: '',
+  eggs: true
 };
 describe('Routing - Router', () => {
+
   test('can display page content', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
@@ -84,6 +91,26 @@ describe('Routing - Router', () => {
     await waitFor(() => {
       const containerTitleP1 = container.querySelector('h3');
       expect(containerTitleP1?.innerHTML).toContain('page two');
+    });
+  });
+
+  test('uiFormDataAreGettingCombined', async () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={['/', '/page-two']} initialIndex={0}>
+        <FormRouterInternal
+          basename="/"
+          formData={initialValues}
+          uiFormData={{eggs: false}}
+          title="Page Test"
+        >
+          <Route index element={<PageOne />} />
+        </FormRouterInternal>
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      const containerTextInput = container.querySelector('#eggs');
+      expect((containerTextInput as GenericFieldHTMLAttributes)?.value).toEqual(false);
     });
   });
 });

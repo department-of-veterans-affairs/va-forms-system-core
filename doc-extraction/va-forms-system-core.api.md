@@ -144,6 +144,8 @@ export interface FormRouterProps {
     title: string;
     // (undocumented)
     transformForSubmit?: (values: FormikValues, actions: FormikHelpers<FormikValues>) => any;
+    // (undocumented)
+    uiFormData?: IFormData;
 }
 
 // @public
@@ -302,6 +304,9 @@ export type RadioItemProps = {
     value: string;
     onRadioOptionSelected: () => void;
 };
+
+// @public
+export const replaceUndefinedWithNull: (value: any) => unknown;
 
 // @public (undocumented)
 export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;

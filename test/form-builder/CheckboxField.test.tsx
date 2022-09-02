@@ -70,6 +70,17 @@ describe('Form Builder - CheckboxField', () => {
     expect(spy).toBeCalled();
   });
 
+  test('handles value change using a function', async () => {
+    const spy = jest.fn();
+    const { container } = renderForm(
+      <CheckboxField name="thing" label="The Thing" validate={spy} />
+    );
+    const input = getInput(container);
+
+    await changeValue(input, true);
+    expect(spy).toBeCalled();
+  });
+
   test('updates the formik state', async () => {
     const { container, getFormProps } = renderForm(
       <CheckboxField name="thing" label="The Thing" />

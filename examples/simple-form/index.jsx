@@ -96,7 +96,7 @@ const SimpleApp = () => (
       }}
     >
       <Form>
-        <TextField name="textExample" label="Enter some cool text!" required />
+        <TextField name="textExample" label="Enter some cool text!" />
         <NumberField name="numberExample" label="Enter your favorite number." required />
         <EmailField name="emailExample" label="Please Enter Your Email Address" />
         <CheckboxFieldGroup {...checkboxProps} />

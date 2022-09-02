@@ -164,7 +164,6 @@ export const parseDate = (dateString: string): Date => {
  * Returns the value after checking if its value is not undefined.
  *
  * @remarks
- * This method is part of the {@link core-library#Statistics | Statistics subsystem}.
  *
  * @param key - The key is of type string
  * @param value - The value can be of any type like string, boolean, object, number.
@@ -202,6 +201,16 @@ export const StringifyFormReplacer = (key: string, value: any): unknown => {
   }
 
   return value;
+};
+
+/**
+ * Returns null if value is undefined, otherwise returns value
+ *
+ * @param value - The value can be of any type like string, boolean, object, number.
+ *
+ */
+export const replaceUndefinedWithNull = (value: any): unknown => {
+  return value === undefined ? null : value;
 };
 
 /**
