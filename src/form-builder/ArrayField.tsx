@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
 import {
   FieldArray,
   FieldHookConfig,
@@ -13,22 +13,22 @@ import {
   chainValidations,
   chainArrayValidations,
   IArrFieldPrps,
+  requiredLength,
+  minLengthMaxLength,
+  minLength,
 } from '../utils';
 import { FieldProps } from './types';
 
-//You can however skip the type annotation, and make the function generic and type props explicitly.
-
-export interface ArrayFieldProps {
-  name: string;
-  buttonLabel: string;
-  values: Record<string, unknown>;
-  arrayFieldSchema: Record<string, unknown>;
-  children: React.ReactElement;
-}
+const errorTemplate = (errorMsg: string) => (
+  <span className="usa-input-error-message" role="alert">
+    <span className="sr-only">Error</span>
+    {errorMsg}
+  </span>
+);
 
 /**
- * The ArrayField accepts props.children and renders them for each entry in whichever array field is
- * specified in props.name. This component provides a wrapper around FieldArray so end users do not
+ * The ArrayField accepts a template and a schema and renders them for each entry in whichever array field is
+ * specified in props.name. This component provides a wrapper so end users do not
  * have to manage looping through their array, or working with Formik helpers, instead allowing them to
  * just focus on what their React components will look like.
  *
@@ -40,153 +40,59 @@ export interface ArrayFieldProps {
 const ArrayField = <T extends Record<string, unknown>>(
   props: IArrFieldPrps<T>
 ) => {
-  const { name, buttonLabel, FieldArrayTemplate } = props;
-
-  const vldatr = (value: T[], props: IArrFieldPrps<T>) => {
-    // todo: this I think could be a prop to check for required fields for each item?
-    // how specific do we need to be with this?
-    // idea: does there need to be at least one required
-    // field as a requirement to add more into the array?
-    return 'hello validator';
-  };
+  const { FieldArrayTemplate } = props;
 
   const withValidation = {
     ...props,
-    validate: chainArrayValidations(props, [vldatr]),
+    validate: chainArrayValidations(props, [requiredLength, minLength]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<T[]>
   );
-  // const { setFieldValue } = useFormikContext();
 
-  const addField = () => {
-    // Add some validation checks here?
-
+  const addItem = () => {
     const fieldValueCopy = field.value;
     fieldValueCopy.push(props.arrayFieldSchema as T);
     helpers.setValue(fieldValueCopy);
+    helpers.setTouched(true);
   };
 
-  const deleteField = (index: number) => {
+  const deleteItem = (index: number) => {
     const fieldValueCopy = field.value;
 
     fieldValueCopy.splice(index, 1);
     helpers.setValue(fieldValueCopy);
+    helpers.setTouched(true);
   };
 
-  if (field.value.length === 0) {
-    return <a onClick={addField}> Add </a>;
-  }
   return (
-    <div>
-      {field.value.map((value, index) => {
-        return (
-          <div key={index}>
-            {FieldArrayTemplate({ data: value, index: index })}
-            <a onClick={() => deleteField(index)}> Remove </a>
-          </div>
-        );
-      })}
+    <div id={props.name}>
+      <fieldset>
+        <legend>{props.label}</legend>
+        {field.value.map((value, index) => {
+          return (
+            <div key={index}>
+              {FieldArrayTemplate({ data: value, index: index })}
 
-      <a onClick={addField}> Add </a>
+              <VaButton
+                onClick={() => deleteItem(index)}
+                text="Remove"
+                id={`remove-${index}`}
+              />
+            </div>
+          );
+        })}
+      </fieldset>
 
-      {meta.error && meta.touched && <div>{meta.error}</div>}
+      <VaButton onClick={addItem} text="Add" id="add-item" />
+
+      {
+        // since theres not really a ds component for this,
+        // errors need to be inserted as markup
+        meta.touched && meta.error && errorTemplate(meta.error)
+      }
     </div>
   );
 };
-
-// const ArrayField = (props: ArrayFieldProps): JSX.Element => {
-//   const { name, values, arrayFieldSchema, buttonLabel } = props;
-//   const { setFieldValue } = useFormikContext();
-
-//   /**
-//    * Pushes a new entry into the array. Loops through each current entry and
-//    * sets isOpen to false so the collapsed view can be toggled on.
-//    * @param pushHandler push helper received from Formik's FieldArray
-//    * @param schema the arrayFieldSchema passed in as a prop
-//    */
-//   const onAddHandler = (
-//     pushHandler: (obj: Record<string, unknown>) => void,
-//     schema: Record<string, unknown>
-//   ) => {
-//     values?.[name].forEach((entry: Record<string, unknown>) => {
-//       entry.isOpen = false;
-//     });
-//     pushHandler(schema);
-//   };
-
-//   /**
-//    * Creates a copy of the array field stored in Formik and
-//    * sets entry.isOpen to true for the matching index. Then,
-//    * uses setFieldValue to update the field itself in Formik
-//    * @param idx index of entry that needs to be expanded
-//    */
-//   const onEditHandler = (idx: number) => {
-//     const fieldArrayOfObjects = [...values?.[name]];
-//     fieldArrayOfObjects.forEach((entry, index) => {
-//       if (index === idx) {
-//         entry.isOpen = true;
-//       } else {
-//         entry.isOpen = false;
-//       }
-//     });
-//     setFieldValue(name, fieldArrayOfObjects);
-//   };
-
-//   return (
-//     <FieldArray name={name}>
-//       {({ remove, push }) => (
-//         <div>
-//           {values?.[name]?.length > 0 &&
-//             values?.[name]?.map(
-//               (entry: Record<string, unknown>, index: number) =>
-//                 entry.isOpen === false ? (
-//                   <div
-//                     className="vads-u-background-color--gray-light-alt vads-u-padding--2 vads-u-margin-y--1"
-//                     key={index}
-//                   >
-//                     <strong className="vads-u-margin--0">
-//                       {entry.serviceBranch}
-//                     </strong>
-//                     <p className="vads-u-margin--0">
-//                       {entry.dateRange.from} - {entry.dateRange.to}
-//                     </p>
-//                     <VaButton
-//                       secondary
-//                       text="Edit"
-//                       onClick={() => onEditHandler(index)}
-//                     />
-//                   </div>
-//                 ) : (
-//                   <div key={index}>
-//                     {React.Children.map(
-//                       props.children,
-//                       (child: ReactElement) => {
-//                         const indexedName = child?.props.name.replace(
-//                           'index',
-//                           index
-//                         );
-//                         return React.cloneElement(child, {
-//                           name: indexedName,
-//                         });
-//                       }
-//                     )}
-//                     <VaButton
-//                       onClick={() => remove(index)}
-//                       text={`Remove ${buttonLabel}`}
-//                     />
-//                   </div>
-//                 )
-//             )}
-//           <VaButton
-//             onClick={() => onAddHandler(push, arrayFieldSchema)}
-//             text={`Add another ${buttonLabel}`}
-//             secondary
-//           />
-//         </div>
-//       )}
-//     </FieldArray>
-//   );
-// };
 
 export default ArrayField;

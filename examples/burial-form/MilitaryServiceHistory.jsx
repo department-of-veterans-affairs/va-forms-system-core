@@ -32,8 +32,8 @@ const FieldArrayTemplate = ({data, index}) => {
         label="Service start date" 
         value={data.dateRange.from}
         // validate={isBeforeDate(
-        //   to,
-        //   from,
+        //   data.dateRange.from,
+        //   data.dateRange.to,
         //   'End of service must be after start of service'
         // )}
       />
@@ -85,10 +85,10 @@ export default function MilitaryServiceHistory(props) {
         </div>
         <ArrayField 
           name="toursOfDuty" 
-          value={values.toursOfDuty} 
           arrayFieldSchema={ARRAY_FIELD_PROPS} 
           buttonLabel="Service Period"
-          FieldArrayTemplate={FieldArrayTemplate} />
+          FieldArrayTemplate={FieldArrayTemplate}
+          required />
         <br/>
         <DebuggerView/>
         <br />

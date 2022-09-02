@@ -15,6 +15,8 @@ export type IArrFieldPrps<T> = FieldProps<T[]> & {
   arrayFieldSchema: Record<string, unknown>;
   children: React.ReactElement;
   FieldArrayTemplate: (props: { data: T; index: number }) => React.ReactNode;
+  minLength?: number;
+  maxLength?: number;
 };
 
 export type ValidationFunctionResult<T> =
@@ -79,18 +81,46 @@ export const required = <T>(
   }
 };
 
-export const requiredValue = <T>(
-  value: T,
-  props: FieldProps<T>
+export const minLengthMaxLength = <T>(
+  value: T[],
+  props: IArrFieldPrps<T>
 ): ValidationFunctionResult<T> => {
   if (
-    (props.required && !value) ||
-    !Object?.values(value).find((v: boolean) => v)
+    value &&
+    value?.length > 0 &&
+    props?.maxLength &&
+    value.length > props.maxLength
   ) {
     const errorMessage =
       typeof props.required === 'string'
         ? props.required
-        : getMessage('required.default');
+        : getMessage('length.min').replace('x', `${props?.minLength || 0}`);
+    return errorMessage;
+  }
+};
+
+export const minLength = <T>(
+  value: T[],
+  props: IArrFieldPrps<T>
+): ValidationFunctionResult<T> => {
+  if (props?.minLength && value?.length < props?.minLength) {
+    const errorMessage = getMessage('length.min').replace(
+      'x',
+      `${props?.minLength}`
+    );
+    return errorMessage;
+  }
+};
+
+export const requiredLength = <T>(
+  value: T[],
+  props: IArrFieldPrps<T>
+): ValidationFunctionResult<T> => {
+  if (props.required && (!value || value.length === 0)) {
+    const errorMessage =
+      typeof props.required === 'string'
+        ? props.required
+        : getMessage('length.default');
     return errorMessage;
   }
 };
