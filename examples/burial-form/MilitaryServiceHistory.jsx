@@ -67,8 +67,6 @@ export default function MilitaryServiceHistory(props) {
   const state = useFormikContext();
   const { values } = state;
 
-  // TODO: fields for the rest of toursOfDuty schema
-
   return (
     <>
       <Page
@@ -88,7 +86,7 @@ export default function MilitaryServiceHistory(props) {
           arrayFieldSchema={ARRAY_FIELD_PROPS} 
           buttonLabel="Service Period"
           FieldArrayTemplate={FieldArrayTemplate}
-          required />
+          maxLength={5} />
         <br/>
         <DebuggerView/>
         <br />

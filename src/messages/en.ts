@@ -11,7 +11,7 @@ export const messages: Messages = {
   },
   length: {
     default: 'Please provide one or more entries',
-    min: 'Please provide more than x amount of entries.',
-    max: 'Please provide less than x amount of entries.',
+    min: 'The minimum amount of entries is x',
+    max: 'The maximum amount of entries is x',
   },
 };

@@ -1,23 +1,11 @@
 import { isFuture } from 'date-fns';
 import { range } from 'lodash';
-import { FieldProps } from '../form-builder/types';
+import { ArrayFieldProps, FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
 import { FUTURE_DATE_MESSAGE } from './constants';
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-export type IArrFieldPrps<T> = FieldProps<T[]> & {
-  name: string;
-  buttonLabel: string;
-  value: T[];
-  // arrayClickHook: (data: T) => {}
-  arrayFieldSchema: Record<string, unknown>;
-  children: React.ReactElement;
-  FieldArrayTemplate: (props: { data: T; index: number }) => React.ReactNode;
-  minLength?: number;
-  maxLength?: number;
-};
 
 export type ValidationFunctionResult<T> =
   | void
@@ -32,11 +20,11 @@ export type ValidationFunction<T> = (
 
 export type ValidationFunctionArray<T> = (
   value: T[],
-  props: IArrFieldPrps<T>
+  props: ArrayFieldProps<T>
 ) => ValidationFunctionResult<T>;
 
 export const chainArrayValidations = <T>(
-  props: IArrFieldPrps<T>,
+  props: ArrayFieldProps<T>,
   validations: ValidationFunctionArray<T>[]
 ): ((value: T[]) => ValidationFunctionResult<T>) => {
   return (value: T[]) => {
@@ -81,9 +69,9 @@ export const required = <T>(
   }
 };
 
-export const minLengthMaxLength = <T>(
+export const maxLength = <T>(
   value: T[],
-  props: IArrFieldPrps<T>
+  props: ArrayFieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (
     value &&
@@ -94,14 +82,14 @@ export const minLengthMaxLength = <T>(
     const errorMessage =
       typeof props.required === 'string'
         ? props.required
-        : getMessage('length.min').replace('x', `${props?.minLength || 0}`);
+        : getMessage('length.max').replace('x', `${props?.maxLength}`);
     return errorMessage;
   }
 };
 
 export const minLength = <T>(
   value: T[],
-  props: IArrFieldPrps<T>
+  props: ArrayFieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (props?.minLength && value?.length < props?.minLength) {
     const errorMessage = getMessage('length.min').replace(
@@ -114,7 +102,7 @@ export const minLength = <T>(
 
 export const requiredLength = <T>(
   value: T[],
-  props: IArrFieldPrps<T>
+  props: ArrayFieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (props.required && (!value || value.length === 0)) {
     const errorMessage =

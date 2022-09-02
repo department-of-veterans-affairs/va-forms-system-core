@@ -10,14 +10,12 @@ import DateField from './DateField';
 import SelectField from './SelectField';
 import TextField from './TextField';
 import {
-  chainValidations,
   chainArrayValidations,
-  IArrFieldPrps,
   requiredLength,
-  minLengthMaxLength,
   minLength,
+  maxLength,
 } from '../utils';
-import { FieldProps } from './types';
+import { ArrayFieldProps } from './types';
 
 const errorTemplate = (errorMsg: string) => (
   <span className="usa-input-error-message" role="alert">
@@ -38,13 +36,17 @@ const errorTemplate = (errorMsg: string) => (
  * @returns - FieldArray component provided by Formik
  */
 const ArrayField = <T extends Record<string, unknown>>(
-  props: IArrFieldPrps<T>
+  props: ArrayFieldProps<T>
 ) => {
   const { FieldArrayTemplate } = props;
 
   const withValidation = {
     ...props,
-    validate: chainArrayValidations(props, [requiredLength, minLength]),
+    validate: chainArrayValidations(props, [
+      requiredLength,
+      minLength,
+      maxLength,
+    ]),
   };
   const [field, meta, helpers] = useField(
     withValidation as FieldHookConfig<T[]>

@@ -12,6 +12,18 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
   required?: boolean | string;
 };
 
+export type ArrayFieldProps<T> = FieldProps<T[]> & {
+  name: string;
+  buttonLabel: string;
+  value: T[];
+  // arrayClickHook: (data: T) => {}
+  arrayFieldSchema: Record<string, unknown>;
+  children: React.ReactElement;
+  FieldArrayTemplate: (props: { data: T; index: number }) => React.ReactNode;
+  minLength?: number;
+  maxLength?: number;
+};
+
 export type CheckboxProps = FieldProps<string> & {
   checked?: boolean;
   content?: string;
