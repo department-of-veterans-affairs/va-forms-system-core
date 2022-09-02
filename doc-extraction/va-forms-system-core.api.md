@@ -306,6 +306,9 @@ export type RadioItemProps = {
 };
 
 // @public
+export const removeUiInitialValues: (values: string, uiInitialValues: IFormData) => string;
+
+// @public
 export const replaceUndefinedWithNull: (value: any) => unknown;
 
 // @public (undocumented)
