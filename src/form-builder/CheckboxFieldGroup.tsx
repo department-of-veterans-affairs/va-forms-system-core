@@ -19,6 +19,8 @@ const CheckboxFieldGroup = (props: CheckboxGroupProps): JSX.Element => {
   );
 
   useEffect(() => {
+    // Only set the value to false if there isn't a value defined
+    if (field.value) return;
     helpers.setValue(false);
   }, []);
 
