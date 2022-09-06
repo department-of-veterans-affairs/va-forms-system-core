@@ -1,6 +1,7 @@
 import { isFuture } from 'date-fns';
 import { range } from 'lodash';
-import { FieldProps } from '../form-builder/types';
+import { ArrayFieldProps, FieldProps } from '../form-builder/types';
+import { getMessage } from './i18n';
 import { FUTURE_DATE_MESSAGE } from './constants';
 
 export const emailRegex =
@@ -16,6 +17,27 @@ export type ValidationFunction<T> = (
   value: T,
   props: FieldProps<T>
 ) => ValidationFunctionResult<T>;
+
+export type ValidationFunctionArray<T> = (
+  value: T[],
+  props: ArrayFieldProps<T>
+) => ValidationFunctionResult<T>;
+
+export const chainArrayValidations = <T>(
+  props: ArrayFieldProps<T>,
+  validations: ValidationFunctionArray<T>[]
+): ((value: T[]) => ValidationFunctionResult<T>) => {
+  return (value: T[]) => {
+    // Return the error message from the first validation function that fails.
+    const errorMessage = validations
+      .map((v) => v(value, props))
+      .filter((m) => m)[0];
+    if (errorMessage) return errorMessage;
+    // None of the built-in validation functions failed; run the validate
+    // function passed to the component.
+    return props.validate ? props.validate(value) : undefined;
+  };
+};
 
 export const chainValidations = <T>(
   props: FieldProps<T>,
@@ -59,8 +81,53 @@ export const required = <T>(
         errorMessage = props.required;
       }
     }
+  }
+};
 
+export const maxLength = <T>(
+  value: T[],
+  props: ArrayFieldProps<T>
+): ValidationFunctionResult<T> => {
+  if (
+    value &&
+    value?.length > 0 &&
+    props?.maxLength &&
+    value.length > props.maxLength
+  ) {
+    const errorMessage =
+      typeof props.maxLength === 'string'
+        ? props.maxLength
+        : getMessage('length.max').replace(
+            'x',
+            `${props?.maxLength as number}`
+          );
+    return errorMessage as string;
+  }
+};
+
+export const minLength = <T>(
+  value: T[],
+  props: ArrayFieldProps<T>
+): ValidationFunctionResult<T> => {
+  if (props?.minLength && value?.length < props?.minLength) {
+    const errorMessage = getMessage('length.min').replace(
+      'x',
+      `${props?.minLength as number}`
+    );
     return errorMessage;
+  }
+};
+
+export const requiredLength = <T>(
+  value: T[],
+  props: ArrayFieldProps<T>
+): ValidationFunctionResult<T> => {
+  if (props.required && (!value || value.length === 0)) {
+    const errorMessage =
+      typeof props.required === 'string'
+        ? props.required
+        : getMessage('length.default');
+    return errorMessage as string;
   }
 };
 

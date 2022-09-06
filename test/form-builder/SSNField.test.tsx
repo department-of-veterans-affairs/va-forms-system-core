@@ -223,12 +223,13 @@ describe('Form Builder - SSNField', () => {
 
   test('handles value change using a function', async () => {
     const spy = jest.fn();
-    const { container } = renderForm(
+    const { container, getFormProps } = renderForm(
       <SSNField name="ssn" label="SSN" validate={spy} />
     );
     const input = getInput(container);
 
     await changeValue(input, '989557788', 'input');
+    await waitFor(() => getFormProps().setFieldTouched('ssn'));
     expect(spy).toBeCalled();
   });
 });

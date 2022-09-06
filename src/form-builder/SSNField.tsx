@@ -46,13 +46,12 @@ const SSNField = (props: SSNProps): JSX.Element => {
   }, [field.value, field.name, currentPage]);
 
   const onInputHandler = (e: Event) => {
-    field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
 
   const onFocus = () => {
     if (!field.value) return;
-    const valueWithoutDashes = field.value.replaceAll('-', '');
+    const valueWithoutDashes = field.value.replace('-', '');
 
     setSSN(valueWithoutDashes);
   };
@@ -60,7 +59,7 @@ const SSNField = (props: SSNProps): JSX.Element => {
   const onBlur = (event: Event) => {
     setTimeout(() => {
       const { value } = event.target as HTMLTextAreaElement;
-      const ssnString: string = value.replaceAll('-', '');
+      const ssnString: string = value.replace('-', '');
       helpers.setValue(ssnString);
       helpers.setTouched(true);
 
