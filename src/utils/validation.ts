@@ -3,7 +3,6 @@ import { range } from 'lodash';
 import { ArrayFieldProps, FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
 import { FUTURE_DATE_MESSAGE } from './constants';
-import { ErrorMessage } from 'formik';
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
