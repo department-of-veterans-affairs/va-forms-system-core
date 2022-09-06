@@ -1,5 +1,5 @@
 import { transformJSONSchema } from '../../src/utils/helpers';
-import { StringifyFormReplacer } from '../../src/utils/helpers'
+import { StringifyFormReplacer, removeUiInitialValues } from '../../src/utils/helpers'
 
 // describe('Helpers - buildPath', () => {
 //   test('It returns expected results', () => {
@@ -403,6 +403,59 @@ describe('Helpers - JSON Schema', () => {
     }
 
     const actualResult = JSON.stringify(schemaToTest, StringifyFormReplacer);
+
+    expect(JSON.parse(actualResult)).toEqual(expectedResult);
+  });
+
+  test('remove ui form values', () => {
+    const schemaToTest = {
+      name: undefined,
+      previousName: {
+        first: 'Hello',
+        last: 'world',
+        middle: undefined,
+        suffix: undefined
+      },
+      someRadioButtonValue: "true",
+      address: {
+        country: 'USA',
+        street: '123 Baker St.',
+        postalCode: '12345',
+        city: 'Heaven'
+      },
+      address2: {
+        country: 'USA',
+        street: undefined,
+        postalCode: '12345',
+        city: 'Heaven'
+      },
+      veteranServedUnderAnotherName: false,
+      benefitsSelection: true
+    }
+
+    const uiInitialValues = {
+      veteranServedUnderAnotherName: undefined,
+      benefitsSelection: undefined
+    }
+
+    const expectedResult = {
+      previousName: {
+        first: 'Hello',
+        last: 'world'
+      },
+      someRadioButtonValue: true,
+      address: {
+        country: 'USA',
+        street: '123 Baker St.',
+        postalCode: '12345',
+        city: 'Heaven'
+      }
+    }
+
+    const actualResult = removeUiInitialValues(
+      JSON.stringify(schemaToTest, StringifyFormReplacer),
+      uiInitialValues
+    );
 
     expect(JSON.parse(actualResult)).toEqual(expectedResult);
   });

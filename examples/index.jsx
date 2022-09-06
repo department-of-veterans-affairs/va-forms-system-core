@@ -18,11 +18,17 @@ void defineCustomElements();
 
 const schemaKeys = transformJSONSchema(schema);
 
+// Initializing object to validate fields which are not present in schema but are required for form validation
+const uiInitialValues = {
+  veteranServedUnderAnotherName: undefined,
+  benefitsSelection: undefined
+}
+
 const Main = () => {
   return (
     <>
       {/* If you would like to see the simple form or chapter form, just uncomment and comment out BurialApp */}
-      <BurialApp basename="/" initialValues={schemaKeys} uiValues={{veteranServedUnderAnotherName: undefined}} />
+      <BurialApp basename="/" initialValues={schemaKeys} uiValues={uiInitialValues}/>
       {/* <ChapterForm basename="/" initialValues={schemaKeys} /> */}
       {/* <SimpleApp /> */}
     </>

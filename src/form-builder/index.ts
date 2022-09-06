@@ -10,4 +10,5 @@ export { default as FullNameField } from './FullNameField';
 export { default as PhoneField } from './PhoneField';
 export { RadioGroup } from './RadioGroup';
 export { default as AddressField } from './AddressField';
+export { default as ArrayField } from './ArrayField';
 export * from './types';

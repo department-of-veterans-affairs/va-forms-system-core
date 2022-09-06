@@ -5,6 +5,8 @@
  * @param args Path arguments
  * @returns {String} Returns the combined, normalized path
  */
+import { IFormData } from '../routing/types';
+
 const buildPath = (...args: string[]): string => {
   return args
     .map((part, i) => {
@@ -115,7 +117,10 @@ class JSONSchemaMapper {
             updatedValue = [this.getReferencedType(initialValue.items.$ref)];
           } else {
             updatedValue = [
-              this.flattenProperties(initialValue.items.properties),
+              this.flattenProperties({
+                ...initialValue.items.properties,
+                isOpen: true,
+              }),
             ];
           }
           break;
@@ -209,4 +214,31 @@ export const StringifyFormReplacer = (key: string, value: any): unknown => {
  */
 export const replaceUndefinedWithNull = (value: any): unknown => {
   return value === undefined ? null : value;
+};
+
+/**
+ * Returns JSON string after removing all ui initial values.
+ *
+ * @param values - The object contains all the filled values as JSON string
+ * @param uiInitialValues - The object initialized for ui validation contains list of key value pair.
+ *
+ */
+export const removeUiInitialValues = (
+  values: string,
+  uiInitialValues: IFormData
+): string => {
+  // Parsing the JSON string
+  const parsedData = JSON.parse(values);
+
+  // Creating list of keys in uiInitialValues
+  const keys = Object.keys(uiInitialValues);
+
+  // Looping through the parsedData object
+  for (const key of Object.keys(parsedData)) {
+    // Delete all the keys present in keys Array
+    if (keys.includes(key)) delete parsedData[key];
+  }
+
+  // Stringifying the JSON object
+  return JSON.stringify(parsedData);
 };

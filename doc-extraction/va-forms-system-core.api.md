@@ -41,6 +41,9 @@ export type AddressProps = FieldProps<string> & {
 };
 
 // @public (undocumented)
+export const ArrayField: (props: any) => JSX.Element;
+
+// @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
 
 // @public (undocumented)
@@ -304,6 +307,9 @@ export type RadioItemProps = {
     value: string;
     onRadioOptionSelected: () => void;
 };
+
+// @public
+export const removeUiInitialValues: (values: string, uiInitialValues: IFormData) => string;
 
 // @public
 export const replaceUndefinedWithNull: (value: any) => unknown;
