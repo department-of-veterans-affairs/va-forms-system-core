@@ -27,11 +27,12 @@ describe('Form Builder - EmailField', () => {
       <EmailField name="email" label="Email" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('email');
     });
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it renders a custom "required" validation error message', async () => {
@@ -86,9 +87,10 @@ describe('Form Builder - EmailField', () => {
       <EmailField name="email" label="Email" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('email'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it sets the field as touched on blur', async () => {
@@ -97,8 +99,9 @@ describe('Form Builder - EmailField', () => {
       <EmailField name="email" label="Email" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('email'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 });

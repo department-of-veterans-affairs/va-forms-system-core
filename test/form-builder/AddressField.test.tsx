@@ -141,6 +141,10 @@ describe('Form Builder - AddressField', () => {
     const { streetAddressInput, cityInput, postalCodeInput } =
       getInputs(container);
 
+    const streetAddressLabel = streetAddressInput.getAttribute('label');
+    const cityLabel = cityInput.getAttribute('label');
+    const postalCodeLabel = postalCodeInput.getAttribute('label');
+
     await waitFor(() => {
       getFormProps().setFieldTouched('homeAddress.streetAddress');
       getFormProps().setFieldTouched('homeAddress.city');
@@ -148,11 +152,13 @@ describe('Form Builder - AddressField', () => {
     });
 
     expect(streetAddressInput.getAttribute('error')).toContain(
-      'provide a response'
+      `${streetAddressLabel} is required`
     );
-    expect(cityInput.getAttribute('error')).toContain('provide a response');
+    expect(cityInput.getAttribute('error')).toContain(
+      `${cityLabel} is required`
+    );
     expect(postalCodeInput.getAttribute('error')).toContain(
-      'provide a response'
+      `${postalCodeLabel} is required`
     );
   });
 

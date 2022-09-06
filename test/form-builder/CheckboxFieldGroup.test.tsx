@@ -59,35 +59,38 @@ describe('Form Builder - CheckboxFieldGroup', () => {
     expect(firstCheckbox?.label).toEqual('Eggs');
   });
 
-  test('renders the default "required" validation error message', async() => {
+  test('renders the default "required" validation error message', async () => {
     const rf = buildRenderForm({
-                                 eggs: false,
-                                 protein: false,
-                                 toast: false,
-                                 fruit: false,
-                               });
+      eggs: false,
+      protein: false,
+      toast: false,
+      fruit: false,
+    });
     const { container, getFormProps } = rf(
       <CheckboxFieldGroup {...testData} />
     );
     const input = getCheckboxGroupContainer(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('breakfast');
     });
 
-    expect(input.getAttribute('error')).toContain('Please provide a response');
+    expect(input.getAttribute('error')).toContain(
+      `You must answer this question: ${label}`
+    );
   });
 
-  test('does not render the default "required" validation error message when required is not set', async() => {
+  test('does not render the default "required" validation error message when required is not set', async () => {
     const rf = buildRenderForm({
-                                 breakfast: {
-                                   eggs: false,
-                                   protein: false,
-                                   toast: false,
-                                   fruit: false,
-                                 },
-                               });
+      breakfast: {
+        eggs: false,
+        protein: false,
+        toast: false,
+        fruit: false,
+      },
+    });
     const { container, getFormProps } = rf(
-      <CheckboxFieldGroup {...testData} required={false}/>
+      <CheckboxFieldGroup {...testData} required={false} />
     );
     const input = getCheckboxGroupContainer(container);
     await waitFor(() => {
@@ -98,10 +101,10 @@ describe('Form Builder - CheckboxFieldGroup', () => {
 
   test('renders initial value', () => {
     const rf = buildRenderForm({
-        eggs: true,
-        protein: false,
-        toast: false,
-        fruit: false,
+      eggs: true,
+      protein: false,
+      toast: false,
+      fruit: false,
     });
     const { container } = rf(<CheckboxFieldGroup {...testData} />);
     const input = getCheckboxGroupContainer(container);
@@ -147,13 +150,13 @@ describe('Form Builder - CheckboxFieldGroup', () => {
       ],
     };
     const rf = buildRenderForm({
-                                   breakfast: {
-                                     eggs: true,
-                                     protein: false,
-                                     toast: false,
-                                     fruit: false,
-                                   },
-                               });
+      breakfast: {
+        eggs: true,
+        protein: false,
+        toast: false,
+        fruit: false,
+      },
+    });
     const { container } = rf(<CheckboxFieldGroup {...nestedTestData} />);
     const input = getCheckboxGroupContainer(container);
     const firstCheckbox = input.querySelector('va-checkbox');

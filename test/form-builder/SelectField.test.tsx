@@ -39,10 +39,11 @@ describe('Form Builder - SelectField', () => {
       <SelectField name="thing" label="The Thing" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('thing');
     });
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('renders a custom "required" validation error message', async () => {
@@ -76,10 +77,11 @@ describe('Form Builder - SelectField', () => {
   test('handles value change using a function', async () => {
     const spy = jest.fn();
     const { container } = renderForm(
-    <SelectField name="thing" label="The Thing" validate={spy}>
-      <option value="first">Item one</option>
-      <option value="second">Item two</option>
-    </SelectField>);
+      <SelectField name="thing" label="The Thing" validate={spy}>
+        <option value="first">Item one</option>
+        <option value="second">Item two</option>
+      </SelectField>
+    );
     const input = getInput(container);
 
     await changeValue(input, 'second', 'vaSelect');

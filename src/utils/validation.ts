@@ -1,7 +1,6 @@
 import { isFuture } from 'date-fns';
 import { range } from 'lodash';
 import { FieldProps } from '../form-builder/types';
-import { getMessage } from './i18n';
 import { FUTURE_DATE_MESSAGE } from './constants';
 
 export const emailRegex =
@@ -40,26 +39,27 @@ export const required = <T>(
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (props.required && !value) {
-    const errorMessage =
-      typeof props.required === 'string'
-        ? props.required
-        : getMessage('required.default');
-    return errorMessage;
-  }
-};
+    let errorMessage = `${props.label} is required`;
+    const labelLastCharacter = props.label.slice(-1);
 
-export const requiredValue = <T>(
-  value: T,
-  props: FieldProps<T>
-): ValidationFunctionResult<T> => {
-  if (
-    (props.required && !value) ||
-    !Object?.values(value).find((v: boolean) => v)
-  ) {
-    const errorMessage =
-      typeof props.required === 'string'
-        ? props.required
-        : getMessage('required.default');
+    // If the required prop is a boolean and the last character of the input label is a question mark
+    if (typeof props.required === 'boolean' && labelLastCharacter === '?') {
+      errorMessage = `You must answer this question: ${props.label}`;
+    }
+
+    // If the required prop is a string
+    if (typeof props.required === 'string') {
+      const requiredLastCharacter = props.required.slice(-1);
+      const isQuestion = requiredLastCharacter === '?';
+
+      if (isQuestion) {
+        errorMessage = `You must answer this question: ${props.required}`;
+      } else {
+        // If the required is not a question, don't modify the string
+        errorMessage = props.required;
+      }
+    }
+
     return errorMessage;
   }
 };

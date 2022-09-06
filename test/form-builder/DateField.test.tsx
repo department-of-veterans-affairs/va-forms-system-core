@@ -51,10 +51,11 @@ describe('Form Builder - DateField', () => {
       <DateField name="dateOfBirth" label="Date of Birth" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('dateOfBirth');
     });
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('handles value change using a function', async () => {
