@@ -41,6 +41,9 @@ export type AddressProps = FieldProps<string> & {
 };
 
 // @public (undocumented)
+export const ArrayField: (props: any) => JSX.Element;
+
+// @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
 
 // @public (undocumented)
