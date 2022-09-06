@@ -30,8 +30,7 @@ const errorTemplate = (errorMsg: string) => (
  * have to manage looping through their array, or working with Formik helpers, instead allowing them to
  * just focus on what their React components will look like.
  *
- * @param props - will include the field name as props.name,
- * the formik state as props.state, and the array entry object schema as props.arrayFieldSchema
+ * @param {ArrayFieldProps} props
  *
  * @returns - FieldArray component provided by Formik
  */

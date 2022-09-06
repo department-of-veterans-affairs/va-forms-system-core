@@ -23,7 +23,6 @@ const ARRAY_FIELD_PROPS = {
   placeOfSeparation: undefined,
 }
 
-
 /**
  * JSX element template is passed two parameters, the
  * * individual array item in the array field, and an index
@@ -71,7 +70,6 @@ const FieldArrayTemplate = ({data, index}) => {
     </>
   )
 }
-
 
 export default function MilitaryServiceHistory(props) {
   const state = useFormikContext();
