@@ -16,7 +16,6 @@ const renderForm = buildRenderForm({});
 const ArrayFieldTemplate = ({data, index}) => 
 <TextField name={`thing[${index}]thing`} label="Rank" value={data.thing}/>
 
-
 describe('Form Builder - ArrayField', () => {
   test('renders', () => {
     const { container } = render(
@@ -29,11 +28,6 @@ describe('Form Builder - ArrayField', () => {
         onSubmit={(values, actions) => {}}
       >
         <ArrayField name="thing" label="The Thing" 
-          value={[
-            {
-              thing: 'hello'
-            }
-          ]}
           arrayFieldSchema={
             {
               thing: undefined
@@ -59,11 +53,6 @@ describe('Form Builder - ArrayField', () => {
         onSubmit={(values, actions) => {}}
       >
         <ArrayField name="thing" label="The Thing" 
-          value={[
-            {
-              thing: 'hello'
-            }
-          ]}
           arrayFieldSchema={
             {
               thing: undefined
@@ -98,11 +87,6 @@ describe('Form Builder - ArrayField', () => {
         onSubmit={(values, actions) => {}}
       >
         <ArrayField name="thing" label="The Thing" 
-          value={[
-            {
-              thing: 'hello'
-            }
-          ]}
           arrayFieldSchema={
             {
               thing: undefined

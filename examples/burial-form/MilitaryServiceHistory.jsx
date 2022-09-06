@@ -23,8 +23,18 @@ const ARRAY_FIELD_PROPS = {
   placeOfSeparation: undefined,
 }
 
-const FieldArrayTemplate = ({data, index}) => {
 
+/**
+ * JSX element template is passed two parameters, the
+ * * individual array item in the array field, and an index
+ *
+ * @param data - individual array field item - an object with key
+ * * value pairs
+ * @param index - Where the item can be located inside of the array
+ * @returns - JSX that gets returned per array item inside of the
+ * array field
+ */
+const FieldArrayTemplate = ({data, index}) => {
   return (
     <>
       <DateField 

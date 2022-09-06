@@ -12,13 +12,25 @@ export type FieldProps<V> = Omit<FieldHookConfig<V>, 'required'> & {
   required?: boolean | string;
 };
 
+/**
+ * The prop type for the Array Field Component
+ *
+ *
+ * @param name - Name of the component
+ * @param label - Label of the form
+ * @param arrayFieldSchema - Schema of the type of the items in the array - an object
+ * * with key value pairs
+ * @param FieldArrayTemplate - JSX element template that is passed two parameters, the
+ * * individual array item in the array field, and an index
+ * @param minLength - optional minimum length of the array field
+ * @param maxLength - optional maximum length of the array field
+ *
+ * @public
+ */
 export type ArrayFieldProps<T> = FieldProps<T[]> & {
   name: string;
-  buttonLabel: string;
-  value: T[];
-  // arrayClickHook: (data: T) => {}
+  label: string;
   arrayFieldSchema: Record<string, unknown>;
-  children: React.ReactElement;
   FieldArrayTemplate: (props: { data: T; index: number }) => React.ReactNode;
   minLength?: number;
   maxLength?: number;
