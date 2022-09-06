@@ -11,6 +11,10 @@ import {
 import { useFormikContext } from 'formik';
 import { isBeforeDate } from './utils';
 
+/**
+ * An individual object is passed into the array field to represent
+ * the data that gets populated into the array
+ */
 const ARRAY_FIELD_PROPS = {
   dateRange: {
     to: undefined,
