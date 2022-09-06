@@ -46,7 +46,6 @@ const SSNField = (props: SSNProps): JSX.Element => {
   }, [field.value, field.name, currentPage]);
 
   const onInputHandler = (e: Event) => {
-    field.onChange(e);
     if (props.onValueChange) props.onValueChange(e);
   };
 
