@@ -3,6 +3,7 @@ import { range } from 'lodash';
 import { ArrayFieldProps, FieldProps } from '../form-builder/types';
 import { getMessage } from './i18n';
 import { FUTURE_DATE_MESSAGE } from './constants';
+import { ErrorMessage } from 'formik';
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -81,6 +82,8 @@ export const required = <T>(
         errorMessage = props.required;
       }
     }
+
+    return errorMessage;
   }
 };
 
@@ -94,14 +97,11 @@ export const maxLength = <T>(
     props?.maxLength &&
     value.length > props.maxLength
   ) {
-    const errorMessage =
-      typeof props.maxLength === 'string'
-        ? props.maxLength
-        : getMessage('length.max').replace(
-            'x',
-            `${props?.maxLength as number}`
-          );
-    return errorMessage as string;
+    const errorMessage = getMessage('length.max').replace(
+      'x',
+      `${props?.maxLength as number}`
+    );
+    return errorMessage;
   }
 };
 
