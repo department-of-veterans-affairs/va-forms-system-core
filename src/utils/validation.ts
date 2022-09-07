@@ -61,25 +61,17 @@ export const required = <T>(
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (props.required && !value) {
-    let errorMessage = `${props.label} is required`;
     const labelLastCharacter = props.label.slice(-1);
 
-    // If the required prop is a boolean and the last character of the input label is a question mark
-    if (typeof props.required === 'boolean' && labelLastCharacter === '?') {
-      errorMessage = `You must answer this question: ${props.label}`;
-    }
+    // Set the default error message
+    let errorMessage = `${props.label} is required`;
 
-    // If the required prop is a string
+    // If the required prop is a string, override the default error message with the string
     if (typeof props.required === 'string') {
-      const requiredLastCharacter = props.required.slice(-1);
-      const isQuestion = requiredLastCharacter === '?';
-
-      if (isQuestion) {
-        errorMessage = `You must answer this question: ${props.required}`;
-      } else {
-        // If the required is not a question, don't modify the string
-        errorMessage = props.required;
-      }
+      errorMessage = props.required;
+    } else if (labelLastCharacter === '?') {
+      // If the label is a question, override the error message
+      errorMessage = `You must answer this question: ${props.label}`;
     }
 
     return errorMessage;
@@ -98,7 +90,7 @@ export const maxLength = <T>(
   ) {
     const errorMessage = getMessage('length.max').replace(
       'x',
-      `${props?.maxLength as number}`
+      `${props?.maxLength}`
     );
     return errorMessage;
   }
@@ -111,7 +103,7 @@ export const minLength = <T>(
   if (props?.minLength && value?.length < props?.minLength) {
     const errorMessage = getMessage('length.min').replace(
       'x',
-      `${props?.minLength as number}`
+      `${props?.minLength}`
     );
     return errorMessage;
   }
@@ -126,7 +118,7 @@ export const requiredLength = <T>(
       typeof props.required === 'string'
         ? props.required
         : getMessage('length.default');
-    return errorMessage as string;
+    return errorMessage;
   }
 };
 

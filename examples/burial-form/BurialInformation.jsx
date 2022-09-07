@@ -52,10 +52,7 @@ export default function BurialInformation(props) {
           className="vads-u-border-color--primary-alt-light vads-u-border-left--4px vads-u-padding-left--2 vads-u-padding-y--0p5 vads-u-margin-left--neg2p5"
           name="locationOfDeath.other"
           label="Please specify where the Veteran's death occurred"
-          required={
-            values.locationOfDeath.location === 'other' &&
-            "A specific location of the Veteran's death is required"
-          }
+          required="A specific location of the Veteran's death is required"
         />
       )}
     </Page>
