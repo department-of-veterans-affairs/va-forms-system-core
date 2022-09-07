@@ -23,19 +23,21 @@ describe('Form Builder - PhoneField', () => {
   });
   test('it renders the default "required" validation error message', async () => {
     const { container, getFormProps } = renderForm(
-      <PhoneField name="phone" label="Phone" required/>
+      <PhoneField name="phone" label="Phone" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('phone');
     });
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it renders a custom "required" validation error message', async () => {
-    const customValidationMsg = 'Please enter a 10-digit phone number (with or without dashes)';
+    const customValidationMsg =
+      'Please enter a 10-digit phone number (with or without dashes)';
     const { container, getFormProps } = renderForm(
-      <PhoneField name="phone" label="Phone" required={customValidationMsg}/>
+      <PhoneField name="phone" label="Phone" required={customValidationMsg} />
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));
@@ -46,7 +48,7 @@ describe('Form Builder - PhoneField', () => {
   test('it shows the correct error message for an invalid phone format', async () => {
     const rf = buildRenderForm({ phone: '(972)837' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" required/>
+      <PhoneField name="phone" label="Phone" required />
     );
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('phone'));
@@ -81,22 +83,24 @@ describe('Form Builder - PhoneField', () => {
   test('it shows an error message for an empty phone if field is required', async () => {
     const rf = buildRenderForm({ phone: '' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" required/>
+      <PhoneField name="phone" label="Phone" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('phone'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it sets the field as touched on blur', async () => {
     const rf = buildRenderForm({ phone: '' });
     const { container, getFormProps } = rf(
-      <PhoneField name="phone" label="Phone" required/>
+      <PhoneField name="phone" label="Phone" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('phone'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 });

@@ -85,6 +85,8 @@ describe('Form Builder - FullNameField', () => {
       <FullNameField name="veteranFullName" label="" />
     );
     const { firstNameInput, lastNameInput } = getInputs(container);
+    const firstNameLabel = firstNameInput.getAttribute('label');
+    const lastNameLabel = lastNameInput.getAttribute('label');
 
     await waitFor(() => {
       getFormProps().setFieldTouched('veteranFullName.first');
@@ -92,9 +94,11 @@ describe('Form Builder - FullNameField', () => {
     });
 
     expect(firstNameInput.getAttribute('error')).toContain(
-      'provide a response'
+      `${firstNameLabel} is required`
     );
-    expect(lastNameInput.getAttribute('error')).toContain('provide a response');
+    expect(lastNameInput.getAttribute('error')).toContain(
+      `${lastNameLabel} is required`
+    );
   });
 
   test('updates the formik state', async () => {

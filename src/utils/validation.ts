@@ -61,10 +61,19 @@ export const required = <T>(
   props: FieldProps<T>
 ): ValidationFunctionResult<T> => {
   if (props.required && !value) {
-    const errorMessage =
-      typeof props.required === 'string'
-        ? props.required
-        : getMessage('required.default');
+    const labelLastCharacter = props.label.slice(-1);
+
+    // Set the default error message
+    let errorMessage = `${props.label} is required`;
+
+    // If the required prop is a string, override the default error message with the string
+    if (typeof props.required === 'string') {
+      errorMessage = props.required;
+    } else if (labelLastCharacter === '?') {
+      // If the label is a question, override the error message
+      errorMessage = `You must answer this question: ${props.label}`;
+    }
+
     return errorMessage;
   }
 };
@@ -79,10 +88,10 @@ export const maxLength = <T>(
     props?.maxLength &&
     value.length > props.maxLength
   ) {
-    const errorMessage =
-      typeof props.required === 'string'
-        ? props.required
-        : getMessage('length.max').replace('x', `${props?.maxLength}`);
+    const errorMessage = getMessage('length.max').replace(
+      'x',
+      `${props?.maxLength}`
+    );
     return errorMessage;
   }
 };

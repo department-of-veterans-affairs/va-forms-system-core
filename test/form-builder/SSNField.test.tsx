@@ -26,11 +26,12 @@ describe('Form Builder - SSNField', () => {
       <SSNField name="ssn" label="ssn" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('ssn');
     });
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it renders a custom "required" validation error message', async () => {
@@ -46,9 +47,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for consecutive numbers', async () => {
     const rf = buildRenderForm({ ssn: '123456789' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -59,9 +58,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for consecutive numbers with hyphens', async () => {
     const rf = buildRenderForm({ ssn: '123-45-6789' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -72,9 +69,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn starting with 000', async () => {
     const rf = buildRenderForm({ ssn: '000547762' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -85,9 +80,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn starting with 000 with hypens', async () => {
     const rf = buildRenderForm({ ssn: '000-54-7762' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -98,9 +91,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn with middle 00', async () => {
     const rf = buildRenderForm({ ssn: '321006789' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -111,9 +102,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn with middle 00 with hyphens', async () => {
     const rf = buildRenderForm({ ssn: '321-00-6789' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -124,9 +113,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn ending in 0000', async () => {
     const rf = buildRenderForm({ ssn: '321770000' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -137,9 +124,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn ending in 0000 with hyphens', async () => {
     const rf = buildRenderForm({ ssn: '321-77-0000' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -150,9 +135,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn containing all the same number', async () => {
     const rf = buildRenderForm({ ssn: '111111111' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -163,9 +146,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for ssn containing all the same number', async () => {
     const rf = buildRenderForm({ ssn: '111-11-1111' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -176,9 +157,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows the correct error message for an invalid ssn format', async () => {
     const rf = buildRenderForm({ ssn: 'foo' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -189,9 +168,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows no error message for a valid ssn with hypens', async () => {
     const rf = buildRenderForm({ ssn: '989-55-7788' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -200,9 +177,7 @@ describe('Form Builder - SSNField', () => {
 
   test('it shows no error message for a valid ssn without hypens', async () => {
     const rf = buildRenderForm({ ssn: '989557788' });
-    const { container, getFormProps } = rf(
-      <SSNField name="ssn" label="ssn" />
-    );
+    const { container, getFormProps } = rf(<SSNField name="ssn" label="ssn" />);
     const input = getInput(container);
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
@@ -228,9 +203,10 @@ describe('Form Builder - SSNField', () => {
       <SSNField name="ssn" label="ssn" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('it sets the field as touched on blur', async () => {
@@ -239,9 +215,10 @@ describe('Form Builder - SSNField', () => {
       <SSNField name="ssn" label="ssn" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => getFormProps().setFieldTouched('ssn'));
 
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('handles value change using a function', async () => {

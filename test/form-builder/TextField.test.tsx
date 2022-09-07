@@ -39,10 +39,11 @@ describe('Form Builder - TextField', () => {
       <TextField name="thing" label="The Thing" required />
     );
     const input = getInput(container);
+    const label = input.getAttribute('label');
     await waitFor(() => {
       getFormProps().setFieldTouched('thing');
     });
-    expect(input.getAttribute('error')).toEqual('Please provide a response');
+    expect(input.getAttribute('error')).toEqual(`${label} is required`);
   });
 
   test('renders a custom "required" validation error message', async () => {
