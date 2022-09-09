@@ -4,8 +4,10 @@
 
 ## ArrayField variable
 
+The ArrayField accepts a template and a schema and renders them for each entry in whichever array field is specified in props.name. This component provides a wrapper so end users do not have to manage looping through their array, or working with Formik helpers, instead allowing them to just focus on what their React components will look like.
+
 <b>Signature:</b>
 
 ```typescript
-ArrayField: (props: any) => JSX.Element
+ArrayField: <T extends Record<string, unknown>>(props: ArrayFieldProps<T>) => JSX.Element
 ```

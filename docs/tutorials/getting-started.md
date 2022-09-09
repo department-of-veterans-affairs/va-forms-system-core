@@ -8,7 +8,9 @@ parent: Tutorials
 
 Welcome to VA Forms System Core!
 
-For now, VA Forms System Core is just a light layer on top of Formik for building single-page forms which can be [embedded inside existing applications](va-forms-system-core/how-to-guides/how-to-integrate-with-old-forms.html) or used in a stand-alone app. This light layer is responsible for using the VA.gov design system components and providing some basic validation.
+VA Forms System Core (VAFSC) is the second generation of the `forms library` which is built using React, Formik, and Typescript.
+
+This package is used for building single-page forms which can be [embedded inside existing applications](va-forms-system-core/how-to-guides/how-to-integrate-with-old-forms.html) or used in a stand-alone app. This package is responsible for using the VA.gov design system components and providing some basic validation.
 
 To get started, check out the [Formik tutorial](https://formik.org/docs/tutorial) for more information on how to build single-page forms.
 
