@@ -37,8 +37,9 @@
 |  Variable | Description |
 |  --- | --- |
 |  [AddressField](./va-forms-system-core.addressfield.md) | AddressField |
-|  [ArrayField](./va-forms-system-core.arrayfield.md) |  |
+|  [ArrayField](./va-forms-system-core.arrayfield.md) | The ArrayField accepts a template and a schema and renders them for each entry in whichever array field is specified in props.name. This component provides a wrapper so end users do not have to manage looping through their array, or working with Formik helpers, instead allowing them to just focus on what their React components will look like. |
 |  [CapitalizeFirstLetter](./va-forms-system-core.capitalizefirstletter.md) |  |
+|  [chainArrayValidations](./va-forms-system-core.chainarrayvalidations.md) |  |
 |  [chainValidations](./va-forms-system-core.chainvalidations.md) |  |
 |  [CheckboxField](./va-forms-system-core.checkboxfield.md) | CheckboxField component is a simple form building component that displays a checkbox for the user. |
 |  [CheckboxFieldGroup](./va-forms-system-core.checkboxfieldgroup.md) |  |
@@ -56,8 +57,10 @@
 |  [isValidEmail](./va-forms-system-core.isvalidemail.md) | This function is used to validate an email address, while returning error messages if an email is invalid. The logic is as follows:<!-- -->1. Ensure the email address is a string. If it's not, return an error message 2. Ensure that one of the following is true, else output an error message: 2a. The field is not required -AND- the field has no entered value 2b. The value in the field matches an email validation regular expression |
 |  [isValidPhone](./va-forms-system-core.isvalidphone.md) |  |
 |  [isValidSSN](./va-forms-system-core.isvalidssn.md) | Conditions for valid SSN from the original 1010ez pdf form: '123456789' is not a valid SSN A value where the first 3 digits are 0 is not a valid SSN A value where the 4th and 5th digits are 0 is not a valid SSN A value where the last 4 digits are 0 is not a valid SSN A value with 3 digits, an optional -, 2 digits, an optional -, and 4 digits is a valid SSN 9 of the same digits (e.g., '111111111') is not a valid SSN |
+|  [maxLength](./va-forms-system-core.maxlength.md) |  |
 |  [MilitaryCities](./va-forms-system-core.militarycities.md) |  |
 |  [MilitaryStates](./va-forms-system-core.militarystates.md) |  |
+|  [minLength](./va-forms-system-core.minlength.md) |  |
 |  [NumberField](./va-forms-system-core.numberfield.md) |  |
 |  [PageContext](./va-forms-system-core.pagecontext.md) |  |
 |  [parseDate](./va-forms-system-core.parsedate.md) | A function to transform a dateString in the form yyyy-mm-dd into a javascript date object. This is necessary because parsing the date string will result in a date one day before the expected value |
@@ -65,7 +68,7 @@
 |  [removeUiInitialValues](./va-forms-system-core.removeuiinitialvalues.md) | Returns JSON string after removing all ui initial values. |
 |  [replaceUndefinedWithNull](./va-forms-system-core.replaceundefinedwithnull.md) | Returns null if value is undefined, otherwise returns value |
 |  [required](./va-forms-system-core.required.md) |  |
-|  [requiredValue](./va-forms-system-core.requiredvalue.md) |  |
+|  [requiredLength](./va-forms-system-core.requiredlength.md) |  |
 |  [RouterContext](./va-forms-system-core.routercontext.md) |  |
 |  [SelectField](./va-forms-system-core.selectfield.md) |  |
 |  [SSNField](./va-forms-system-core.ssnfield.md) | Renders the SSNField component |
@@ -82,6 +85,7 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AddressProps](./va-forms-system-core.addressprops.md) |  |
+|  [ArrayFieldProps](./va-forms-system-core.arrayfieldprops.md) | The prop type for the Array Field Component |
 |  [CheckboxGroupProps](./va-forms-system-core.checkboxgroupprops.md) |  |
 |  [CheckboxProps](./va-forms-system-core.checkboxprops.md) |  |
 |  [DateProps](./va-forms-system-core.dateprops.md) |  |
@@ -91,5 +95,6 @@
 |  [RadioItemProps](./va-forms-system-core.radioitemprops.md) |  |
 |  [SelectProps](./va-forms-system-core.selectprops.md) |  |
 |  [ValidationFunction](./va-forms-system-core.validationfunction.md) |  |
+|  [ValidationFunctionArray](./va-forms-system-core.validationfunctionarray.md) |  |
 |  [ValidationFunctionResult](./va-forms-system-core.validationfunctionresult.md) |  |
 
