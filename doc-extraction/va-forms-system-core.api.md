@@ -40,11 +40,27 @@ export type AddressProps = FieldProps<string> & {
     legendClasses: string;
 };
 
-// @public (undocumented)
-export const ArrayField: (props: any) => JSX.Element;
+// @public
+export const ArrayField: <T extends Record<string, unknown>>(props: ArrayFieldProps<T>) => JSX.Element;
+
+// @public
+export type ArrayFieldProps<T> = FieldProps<T[]> & {
+    name: string;
+    label: string;
+    arrayFieldSchema: Record<string, unknown>;
+    FieldArrayTemplate: (props: {
+        data: T;
+        index: number;
+    }) => React_2.ReactNode;
+    minLength?: number;
+    maxLength?: number;
+};
 
 // @public (undocumented)
 export const CapitalizeFirstLetter: (value: string) => string;
+
+// @public (undocumented)
+export const chainArrayValidations: <T>(props: ArrayFieldProps<T>, validations: ValidationFunctionArray<T>[]) => (value: T[]) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
 export const chainValidations: <T>(props: FieldProps<T>, validations: ValidationFunction<T>[]) => (value: T) => ValidationFunctionResult<T>;
@@ -218,6 +234,9 @@ export const isValidPhone: <T>(phoneString: T, props: FieldProps<T>) => Validati
 export const isValidSSN: <T>(ssnString: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
+export const maxLength: <T>(value: T[], props: ArrayFieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
 export const MilitaryCities: {
     label: string;
     value: string;
@@ -228,6 +247,9 @@ export const MilitaryStates: {
     label: string;
     value: string;
 }[];
+
+// @public (undocumented)
+export const minLength: <T>(value: T[], props: ArrayFieldProps<T>) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
 export const NumberField: (props: FieldProps<string>) => JSX.Element;
@@ -318,7 +340,7 @@ export const replaceUndefinedWithNull: (value: any) => unknown;
 export const required: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
-export const requiredValue: <T>(value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+export const requiredLength: <T>(value: T[], props: ArrayFieldProps<T>) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
 export function ReviewPage(props: {
@@ -409,6 +431,9 @@ export const UsaStates: string[];
 
 // @public (undocumented)
 export type ValidationFunction<T> = (value: T, props: FieldProps<T>) => ValidationFunctionResult<T>;
+
+// @public (undocumented)
+export type ValidationFunctionArray<T> = (value: T[], props: ArrayFieldProps<T>) => ValidationFunctionResult<T>;
 
 // @public (undocumented)
 export type ValidationFunctionResult<T> = void | undefined | string | Promise<unknown> | T;
