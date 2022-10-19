@@ -71,10 +71,10 @@ export default function Page(props: PageProps): JSX.Element {
           <VaButton
             onClick={(event: Event) => {
               if (Object.keys(state.errors).length > 0) {
-                state.handleSubmit();
+                // state.handleSubmit();
                 event.preventDefault();
               } else {
-                state.handleSubmit();
+                // state.handleSubmit();
                 navigate(
                   `/review-and-submit${
                     sourceAnchor ? `#${sourceAnchor}` : ''
@@ -112,10 +112,10 @@ export default function Page(props: PageProps): JSX.Element {
           continue
           onClick={(event: Event) => {
             if (Object.keys(state.errors).length > 0) {
-              state.handleSubmit();
+              // state.handleSubmit();
               event.preventDefault();
             } else {
-              state.handleSubmit();
+              // state.handleSubmit();
               navigate(nextRoute as To);
             }
           }}
@@ -124,30 +124,59 @@ export default function Page(props: PageProps): JSX.Element {
         />
       )}
 
-      {nextRoute && previousRoute && !props.hidePreviousButton && (
-        <VaButtonPair
-          continue
-          submit
-          onPrimaryClick={(event: Event) => {
-            if (Object.keys(state.errors).length > 0) {
-              state.handleSubmit();
-              event.preventDefault();
-            } else {
-              state.handleSubmit();
+      {props.willSubmit && (
+        <div>
+          <VaButton
+            back
+            onClick={() => {
+              navigate(previousRoute as To);
+            }}
+          />
+          <VaButton
+            submit
+            text="Submit"
+            onClick={() => {
+              if (props.willSubmit) {
+                state.handleSubmit();
+              }
               navigate(nextRoute as To);
 
               // Set focus on the form heading if it exists
               if (formHeading) formHeading.focus();
-            }
-          }}
-          onSecondaryClick={() => {
-            navigate(previousRoute as To);
-
-            // Set focus on the form heading if it exists
-            if (formHeading) formHeading.focus();
-          }}
-        />
+            }}
+          />
+        </div>
       )}
+
+      {nextRoute &&
+        previousRoute &&
+        !props.hidePreviousButton &&
+        !props.willSubmit && (
+          <VaButtonPair
+            continue
+            submit={props.willSubmit}
+            onPrimaryClick={(event: Event) => {
+              if (Object.keys(state.errors).length > 0) {
+                // state.handleSubmit();
+                event.preventDefault();
+              } else {
+                if (props.willSubmit) {
+                  state.handleSubmit();
+                }
+                navigate(nextRoute as To);
+
+                // Set focus on the form heading if it exists
+                if (formHeading) formHeading.focus();
+              }
+            }}
+            onSecondaryClick={() => {
+              navigate(previousRoute as To);
+
+              // Set focus on the form heading if it exists
+              if (formHeading) formHeading.focus();
+            }}
+          />
+        )}
     </div>
   );
 }

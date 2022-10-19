@@ -25,6 +25,12 @@ const BurialApp = (props) => {
   // Let users extract and use formData here
   // initialValues would ideally be provided by a json-schema
 
+  const submitHandler = (values, action) => { 
+    for (const value in values) { 
+      console.log(`${value}`, values[value]);
+    }
+  }
+
   return (
     <div className='vads-u-display--flex vads-u-align-items--center vads-u-flex-direction--column'>
       <BrowserRouter basename={props.basename}>
@@ -33,6 +39,7 @@ const BurialApp = (props) => {
           formData={props.initialValues}
           uiFormData={props.uiValues}
           title="Burials Example"
+          transformForSubmit={submitHandler}
         >
           <Route index element={<BurialIntroduction title="Introduction Page" />} />
           <Route path="/claimant-information" element={<ClaimantInformation title="Claimant Information" />} />

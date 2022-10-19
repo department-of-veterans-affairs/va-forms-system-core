@@ -27,16 +27,30 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
       <div className="usa-width-two-thirds medium-8 columns">
         <Formik
           initialValues={formValues}
-          onSubmit={(values, actions) => {
+          onSubmit={async (values, actions) => {
             // This is where data is transformed if a custom transformForSubmit function is provided.
             // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
             // Transform the data before submitting
+            values.formNumber = props.formUri;
             const data = removeUiInitialValues(
               JSON.stringify(values, StringifyFormReplacer),
               uiInitialValues
             );
             if (props.transformForSubmit) {
               props.transformForSubmit(values, actions);
+            }
+            if (props.formUri) {
+              console.log(props.formUri);
+              const result = await fetch(
+                `https://charleystran.ngrok.io/forms_api/v1/${props.formUri}`,
+                {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: data,
+                }
+              );
+              console.log(`Sending: ${data} to ${props.formUri}`);
+              console.log(result);
             }
           }}
         >

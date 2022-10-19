@@ -26,7 +26,9 @@ export interface FormRouterProps {
   ) => any;
   formData: IFormData;
   uiFormData?: IFormData;
+  preFillData?: IFormData;
   basename: string;
+  formUri?: string;
 }
 
 export interface RouterContextProps {
@@ -79,6 +81,7 @@ export interface PageProps {
   hidePreviousButton?: boolean;
   nextButtonCustomText?: string;
   nextButtonDescribedBy?: string;
+  willSubmit?: boolean;
 }
 
 /**

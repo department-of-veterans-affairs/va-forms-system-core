@@ -146,7 +146,12 @@ export default function ReviewPage(props: { title: string }) {
   const { listOfPages, setListOfPages } = useContext(PageContext);
 
   return (
-    <Page {...props} nextButtonCustomText="Submit" hidePreviousButton={false}>
+    <Page
+      {...props}
+      willSubmit={true}
+      nextButtonCustomText="Submit"
+      hidePreviousButton={false}
+    >
       <article>
         <h1>{props.title}</h1>
         <VaOnThisPage></VaOnThisPage>
