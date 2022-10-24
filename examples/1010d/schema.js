@@ -265,7 +265,6 @@ const schema = {
   properties: {
     formNumber: {
       $ref: '#/definitions/formNumber',
-      default: 'vha_10_10d',
     },
     vaFileNumber: {
       $ref: '#/definitions/vaFileNumber',

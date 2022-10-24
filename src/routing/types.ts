@@ -29,6 +29,7 @@ export interface FormRouterProps {
   preFillData?: IFormData;
   basename: string;
   formUri?: string;
+  formNumber?: string;
 }
 
 export interface RouterContextProps {

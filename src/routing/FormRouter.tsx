@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes } from 'react-router-dom-v5-compat';
 import { Formik } from 'formik';
-import { FormRouterProps } from './types';
+import { FormRouterProps, IFormData } from './types';
 
 import FormTitle from '../form-layout/FormTitle';
 import FormFooter from '../form-layout/FormFooter';
@@ -20,7 +20,12 @@ import { PageContextProvider } from '../form-data/PageContext';
 export default function FormRouter(props: FormRouterProps): JSX.Element {
   const initialValues = props.formData;
   const uiInitialValues = props?.uiFormData || {};
-  const formValues = { ...initialValues, ...uiInitialValues };
+  const formNumber: IFormData = { formNumber: props?.formNumber || '' };
+  const formValues = {
+    ...initialValues,
+    ...uiInitialValues,
+    ...formNumber,
+  };
 
   return (
     <div className="row">
@@ -31,7 +36,6 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
             // This is where data is transformed if a custom transformForSubmit function is provided.
             // The wrapping onSubmit function will need updated in the future if the default case needs updated when users don't pass a transformForSubmit function
             // Transform the data before submitting
-            values.formNumber = props.formUri;
             const data = removeUiInitialValues(
               JSON.stringify(values, StringifyFormReplacer),
               uiInitialValues
@@ -40,7 +44,6 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
               props.transformForSubmit(values, actions);
             }
             if (props.formUri) {
-              console.log(props.formUri);
               const result = await fetch(
                 `https://charleystran.ngrok.io/forms_api/v1/${props.formUri}`,
                 {
@@ -49,6 +52,12 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
                   body: data,
                 }
               );
+
+              if (result.ok) {
+                actions.setStatus({ success: result.status });
+              } else {
+                actions.setStatus({ failed: result.status });
+              }
               console.log(`Sending: ${data} to ${props.formUri}`);
               console.log(result);
             }

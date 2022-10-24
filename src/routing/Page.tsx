@@ -13,6 +13,7 @@ import {
   VaButton,
 } from '@department-of-veterans-affairs/component-library/dist/react-bindings';
 import { PageContext } from '../form-data/PageContext';
+import { hasSelectionSupport } from '@testing-library/user-event/dist/utils';
 
 /**
  * Renders the page contents
@@ -61,6 +62,8 @@ export default function Page(props: PageProps): JSX.Element {
     state.setSubmitting(false); // resetting fields
   }, [currentLocation]);
 
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
   return (
     <div>
       <h3>{props.title}</h3>
@@ -108,14 +111,11 @@ export default function Page(props: PageProps): JSX.Element {
 
       {nextRoute && !previousRoute && (
         <VaButton
-          submit
           continue
           onClick={(event: Event) => {
             if (Object.keys(state.errors).length > 0) {
-              // state.handleSubmit();
               event.preventDefault();
             } else {
-              // state.handleSubmit();
               navigate(nextRoute as To);
             }
           }}
@@ -135,14 +135,12 @@ export default function Page(props: PageProps): JSX.Element {
           <VaButton
             submit
             text="Submit"
-            onClick={() => {
-              if (props.willSubmit) {
-                state.handleSubmit();
-              }
-              navigate(nextRoute as To);
-
-              // Set focus on the form heading if it exists
-              if (formHeading) formHeading.focus();
+            disabled={state.isSubmitting}
+            onClick={async () => {
+              state.handleSubmit();
+              await sleep(1000);
+              console.log(state.status || 'No errors');
+              // navigate(nextRoute as To);
             }}
           />
         </div>
@@ -154,15 +152,10 @@ export default function Page(props: PageProps): JSX.Element {
         !props.willSubmit && (
           <VaButtonPair
             continue
-            submit={props.willSubmit}
             onPrimaryClick={(event: Event) => {
               if (Object.keys(state.errors).length > 0) {
-                // state.handleSubmit();
                 event.preventDefault();
               } else {
-                if (props.willSubmit) {
-                  state.handleSubmit();
-                }
                 navigate(nextRoute as To);
 
                 // Set focus on the form heading if it exists

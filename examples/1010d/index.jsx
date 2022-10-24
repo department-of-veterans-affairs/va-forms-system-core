@@ -28,6 +28,7 @@ const ControlSubApp = (props) => {
             formData={props.initialValues}
             title="10-10D CHAMPVA"
             formUri="vha_10_10d"
+            formNumber="vha_10_10d"
           >
             <Route index element={<IntroductionPage title="Introduction" />} />
             <Route
