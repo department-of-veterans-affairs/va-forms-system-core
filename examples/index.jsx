@@ -40,7 +40,7 @@ const Main = () => {
       <ControlSubApp
         basename="/"
         initialValues={schemaKeys}
-        uiValues={uiInitialValues}
+        uiValues={schemaKeys}
       />
     </>
   );

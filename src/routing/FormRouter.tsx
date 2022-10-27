@@ -66,6 +66,7 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
               }
               console.log(`Sending: ${data} to ${props.formUri}`);
               console.log(result);
+              actions.setSubmitting(false);
             }
           }}
         >

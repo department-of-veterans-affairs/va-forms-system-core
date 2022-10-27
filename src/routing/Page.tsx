@@ -63,13 +63,21 @@ export default function Page(props: PageProps): JSX.Element {
   }, [currentLocation]);
 
   useEffect(() => {
-    if (state.status?.submitStatus === 'success') {
-      console.log('success');
-      navigate(nextRoute as To);
-    } else {
-      console.log('error');
+    switch (state.status?.submitStatus) {
+      case 'success':
+        console.log('success');
+        console.log(state.status?.resultCode);
+        // navigate(nextRoute as To);
+        break;
+      case 'error':
+        console.log('error');
+        // navigate('/error');
+        break;
+      default:
+        console.log('default');
+        break;
     }
-  }, [state.status]);
+  }, [state.isSubmitting]);
 
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

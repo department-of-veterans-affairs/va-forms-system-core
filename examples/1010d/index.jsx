@@ -26,6 +26,7 @@ const ControlSubApp = (props) => {
         <CompatRouter>
           <FormRouter
             formData={props.initialValues}
+            uiFormData={props.uiValues}
             title="10-10D CHAMPVA"
             formUri="vha_10_10d"
             formNumber="vha_10_10d"
