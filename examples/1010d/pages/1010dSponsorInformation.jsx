@@ -70,17 +70,17 @@ const SponsorInformation = (props) => {
         <DateField name="vet.marraigeDate" label="Marraige Date" />
 
         <RadioGroup
-          name="vet.deceased"
+          name="deceased"
           label="Is veteran deceased?"
           options={OPTIONS}
         />
 
-        {values.vet?.deceased === 'yes' && (
+        {values.deceased === 'yes' && (
           <div>
             <DateField name="vet.deceasedDate" label="Date of Death" />
 
             <RadioGroup
-              name="vet.deathDuringService"
+              name="deathDuringService"
               label="Did the vetran die while on active millitary service?"
               options={OPTIONS}
             />

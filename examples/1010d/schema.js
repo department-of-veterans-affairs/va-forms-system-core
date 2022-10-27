@@ -213,6 +213,14 @@ const schema = {
     vaFileNumber: {
       type: 'string',
     },
+    deceased: {
+      type: 'boolean',
+      enum: [false],
+    },
+    deathDuringService: {
+      type: 'boolean',
+      enum: [false],
+    },
     dateRange: {
       type: 'object',
       properties: {
@@ -283,6 +291,12 @@ const schema = {
     },
     veteranFullName: {
       $ref: '#/definitions/fullName',
+    },
+    deceased: {
+      $ref: '#/definitions/deceased',
+    },
+    deathDuringService: {
+      $ref: '#/definitions/deathDuringService',
     },
   },
   required: ['veteranFullName', 'privacyAgreementAccepted'],

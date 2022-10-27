@@ -54,9 +54,15 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
               );
 
               if (result.ok) {
-                actions.setStatus({ success: result.status });
+                actions.setStatus({
+                  submitStatus: 'success',
+                  resultCode: result.status,
+                });
               } else {
-                actions.setStatus({ failed: result.status });
+                actions.setStatus({
+                  submitStatus: 'error',
+                  resultCode: result.status,
+                });
               }
               console.log(`Sending: ${data} to ${props.formUri}`);
               console.log(result);

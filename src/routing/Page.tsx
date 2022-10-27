@@ -62,6 +62,15 @@ export default function Page(props: PageProps): JSX.Element {
     state.setSubmitting(false); // resetting fields
   }, [currentLocation]);
 
+  useEffect(() => {
+    if (state.status?.submitStatus === 'success') {
+      console.log('success');
+      navigate(nextRoute as To);
+    } else {
+      console.log('error');
+    }
+  }, [state.status]);
+
   const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   return (
@@ -136,11 +145,8 @@ export default function Page(props: PageProps): JSX.Element {
             submit
             text="Submit"
             disabled={state.isSubmitting}
-            onClick={async () => {
+            onClick={() => {
               state.handleSubmit();
-              await sleep(1000);
-              console.log(state.status || 'No errors');
-              // navigate(nextRoute as To);
             }}
           />
         </div>
