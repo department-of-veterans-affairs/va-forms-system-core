@@ -63,19 +63,21 @@ export default function Page(props: PageProps): JSX.Element {
   }, [currentLocation]);
 
   useEffect(() => {
-    switch (state.status?.submitStatus) {
-      case 'success':
-        console.log('success');
-        console.log(state.status?.resultCode);
-        // navigate(nextRoute as To);
-        break;
-      case 'error':
-        console.log('error');
-        // navigate('/error');
-        break;
-      default:
-        console.log('default');
-        break;
+    if (props.willSubmit) {
+      switch (state.status?.submitStatus) {
+        case 'success':
+          console.log('success');
+          console.log(state.status?.resultCode);
+          // navigate(nextRoute as To);
+          break;
+        case 'error':
+          console.log('error');
+          // navigate('/error');
+          break;
+        default:
+          console.log('default');
+          break;
+      }
     }
   }, [state.isSubmitting]);
 

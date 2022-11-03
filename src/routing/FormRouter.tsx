@@ -48,8 +48,10 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
                 `https://charleystran.ngrok.io/forms_api/v1/${props.formUri}`,
                 {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: data,
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(values),
                 }
               );
 
@@ -64,7 +66,9 @@ export default function FormRouter(props: FormRouterProps): JSX.Element {
                   resultCode: result.status,
                 });
               }
-              console.log(`Sending: ${data} to ${props.formUri}`);
+              console.log(
+                `Sending: ${JSON.stringify(values)} to ${props.formUri}`
+              );
               console.log(result);
               actions.setSubmitting(false);
             }

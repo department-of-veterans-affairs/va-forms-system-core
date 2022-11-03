@@ -103,3 +103,7 @@ export interface ChapterProps {
   children: Array<any> | any;
   title?: string;
 }
+
+export interface ErrorPageProps {
+  title?: string;
+}

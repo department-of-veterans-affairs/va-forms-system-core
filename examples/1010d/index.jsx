@@ -5,6 +5,7 @@ import {
   FormRouter,
   ConditionalRoute,
   ReviewPage,
+  ErrorPage,
 } from '@department-of-veterans-affairs/va-forms-system-core';
 import IntroductionPage from './pages/1010dIntro';
 import SponsorInformation from './pages/1010dSponsorInformation';
@@ -46,6 +47,7 @@ const ControlSubApp = (props) => {
               element={<ReviewPage title="Review Your Application" />}
             />
             <Route path="/confirmation" element={<ConfirmationPage />} />
+            <Route path="/error" element={<ErrorPage />} />
             <Route path="*" element={<NoMatch name="No Routes for App" />} />
           </FormRouter>
         </CompatRouter>

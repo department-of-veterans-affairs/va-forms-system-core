@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  AddressField,
   Page,
   DateField,
   EmailField,
@@ -46,6 +47,12 @@ const ApplicantInformation = (props) => {
                 className="vads-u-border-color--primary-alt-light vads-u-border-left--4px vads-u-padding-left--2 vads-u-padding-y--0p5 vads-u-margin-left--neg2p5"
                 name={`applicant${applicant}.ssn`}
                 label="Social Security Number"
+              />
+
+              <AddressField
+                className="vads-u-border-color--primary-alt-light vads-u-border-left--4px vads-u-padding-left--2 vads-u-padding-y--0p5 vads-u-margin-left--neg2p5"
+                name={`applicant${applicant}.address`}
+                label="Applicant Address"
               />
 
               <EmailField
